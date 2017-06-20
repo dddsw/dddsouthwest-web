@@ -6,11 +6,7 @@
 *.user
 *.sln.docstates
 .vs
-.vscode
-.idea.SimpleBlog
 .idea/
-docker-compose.prod.yml
-docker-compose.dev.yml
 
 # Build results
 
