@@ -3,7 +3,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
-    <UserSecretsId>aspnet-DDDSouthWest.Web-3890FF99-B4D9-4BB1-B840-FA4686208B04</UserSecretsId>
+    <UserSecretsId>aspnet-dddsouthwest.web-3890FF99-B4D9-4BB1-B840-FA4686208B04</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview1-final" />
@@ -16,5 +16,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\Site\Home" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dddsouthwest.domain\dddsouthwest.domain.csproj" />
   </ItemGroup>
 </Project>

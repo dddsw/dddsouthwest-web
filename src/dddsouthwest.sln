@@ -1,20 +1,38 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDSouthWest.Web", "DDDSouthWest.Web\DDDSouthWest.Web.csproj", "{E929B775-C9B2-49D4-9729-BB7F083634D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dddsouthwestweb", "dddsouthwest.web\dddsouthwest.web.csproj", "{E929B775-C9B2-49D4-9729-BB7F083634D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dddsouthwest.domain", "dddsouthwest.domain\dddsouthwest.domain.csproj", "{EFDEC65E-E5B0-4994-B560-190F6E383DEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E929B775-C9B2-49D4-9729-BB7F083634D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E929B775-C9B2-49D4-9729-BB7F083634D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E929B775-C9B2-49D4-9729-BB7F083634D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E929B775-C9B2-49D4-9729-BB7F083634D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFDEC65E-E5B0-4994-B560-190F6E383DEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFDEC65E-E5B0-4994-B560-190F6E383DEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFDEC65E-E5B0-4994-B560-190F6E383DEA}.Debug|x64.ActiveCfg = Debug|x64
+		{EFDEC65E-E5B0-4994-B560-190F6E383DEA}.Debug|x64.Build.0 = Debug|x64
+		{EFDEC65E-E5B0-4994-B560-190F6E383DEA}.Debug|x86.ActiveCfg = Debug|x86
+		{EFDEC65E-E5B0-4994-B560-190F6E383DEA}.Debug|x86.Build.0 = Debug|x86
+		{EFDEC65E-E5B0-4994-B560-190F6E383DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFDEC65E-E5B0-4994-B560-190F6E383DEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFDEC65E-E5B0-4994-B560-190F6E383DEA}.Release|x64.ActiveCfg = Release|x64
+		{EFDEC65E-E5B0-4994-B560-190F6E383DEA}.Release|x64.Build.0 = Release|x64
+		{EFDEC65E-E5B0-4994-B560-190F6E383DEA}.Release|x86.ActiveCfg = Release|x86
+		{EFDEC65E-E5B0-4994-B560-190F6E383DEA}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
