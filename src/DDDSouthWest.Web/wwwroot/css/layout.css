@@ -1,0 +1,95 @@
+.header-container {
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.site-logo {
+    float: left;
+    position: relative;
+    display: block;
+    line-height: 50px;
+    font-weight: 800;
+    text-decoration: none;
+    padding: 0 10px;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+}
+
+/* Homepae */
+
+.home-banner {
+    background-image: url('/images/home_banner.jpg');
+    background-size: cover;
+    background-position: center;;
+    padding: 150px 20px;
+    text-align: center;
+}
+
+.home-banner p {
+    margin: 0 auto 40px;
+    text-align: center;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.home-banner span {
+    display: block;
+    color: #fff;
+    margin: 0 0 15px;
+}
+
+.home-banner__line1 {
+    font-size: 70px;
+    line-height: 70px;
+    letter-spacing: -4px;
+}
+
+.home-banner__line2 {
+    font-size: 35px;
+    letter-spacing: 5px;
+}
+
+.home-banner__line3 {
+    font-size: 20px;
+}
+
+.home-strapline {
+    font-size: 30px;
+    color: #808080;
+    width: 70%;
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 38px;
+    margin: 50px auto 30px;
+}
+
+/* Button */
+
+.button {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.button--default {
+    color: #999;
+    background-color: transparent;
+}
+
+.button--primary {
+    background-color: #ff9930;
+    color: #fff;
+}
+
+.button--large {
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.button--small {
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 15px;
+}

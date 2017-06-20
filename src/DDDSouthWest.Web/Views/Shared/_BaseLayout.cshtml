@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    @if (!string.IsNullOrEmpty(ViewBag.TitleTag))
+    {
+      <title>@ViewBag.TitleTag</title>
+    }
+
+    @if (!string.IsNullOrEmpty(ViewBag.MetaDescription))
+    {
+        <meta name="description" content="@ViewBag.MetaDescription">
+    }
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+
+	<environment names="Development">
+        <link href="/css/normalize.css" rel="stylesheet" />
+        <link href="/css/unsemantic-grid-responsive-no-ie7.css" rel="stylesheet" />
+	    <link href="/css/default.css" rel="stylesheet" />
+	    <link href="/css/layout.css" rel="stylesheet" />
+	    <link href="/css/nav.css" rel="stylesheet" />
+    </environment>
+
+    @if (IsSectionDefined("Css"))
+    {
+        @RenderSection("Css", false)
+    }
+
+    @if (IsSectionDefined("ScriptsHeader"))
+    {
+        @RenderSection("ScriptsHeader", false)
+    }
+</head>
+<body>
+        
+<header>
+    
+    <div class="header-container">
+        
+        <a href="/" class="site-logo">
+            <span class="site-logo__title">DDD South West</span>
+        </a>
+        <nav class="main-menu-container">
+            <ul class="main-menu">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/">About</a></li>
+                <li><a href="/">Speakers</a></li>
+                <li><a href="/">Sessions</a></li>
+                <li><a href="/">Venue</a></li>
+                <li><a href="/">Sponsors</a></li>
+            </ul>
+        </nav>
+        
+        <div class="clear"></div>
+    </div>
+
+</header>
+    
+@RenderBody()
+
+@if (IsSectionDefined("ScriptsFooter"))
+{
+    @RenderSection("ScriptsFooter", false)
+}
+
+</body>
+</html>

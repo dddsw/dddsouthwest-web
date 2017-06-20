@@ -1,0 +1,39 @@
+.main-menu-container {
+    float: right;
+    position: relative;
+    margin-right: 20px;
+}
+
+.main-menu {
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 0 0 5px;
+    padding: 0;
+}
+
+.main-menu a {
+    display: block;
+    line-height: 50px;
+    text-decoration: none;
+    padding: 0 10px;
+    font-size: 13px;
+    color: #717171;
+    text-transform: uppercase;
+}
+
+.main-menu a:hover {
+    color: #ff9930;
+}
+
+.main-menu a:last-child {
+    padding-right: 10px;
+}
+    
+.main-menu .active a {
+    color: #ff9930;
+}

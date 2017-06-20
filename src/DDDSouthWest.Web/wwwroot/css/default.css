@@ -1,0 +1,38 @@
+﻿html {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #fff;
+    color: #6d6d6d;
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+}
+
+a {
+    color: #ff9930;
+    outline: none;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+header, footer, hgroup,
+nav, section {
+    display: block;
+}
+
+.util-text--center {
+    text-align: center;
+}

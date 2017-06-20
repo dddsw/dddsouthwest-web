@@ -1,0 +1,46 @@
+@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+@section ScriptsHeader
+{
+    @RenderSection("ScriptsHeader", false)
+}
+
+@section Css
+{
+    @RenderSection("Css", false)
+}
+
+@if (IsSectionDefined("Breadcrumbs"))
+{
+    @RenderSection("Breadcrumbs")
+}
+
+@if (IsSectionDefined("Header"))
+{
+    @RenderSection("Header")
+}
+
+<div class="grid-container">
+
+    <div class="grid-70 tablet-grid-65 mobile-grid-100">
+	    <div id="mainColumn">
+		    <div class="main-content">
+		    	@RenderSection("MainCol")
+		    </div>
+	    </div>
+    </div>
+
+    <div class="grid-30 tablet-grid-35 mobile-grid-100">
+        <div id="sideColumn">
+            @RenderSection("SideColumn")
+        </div>
+    </div>
+
+</div>
+
+@section ScriptsFooter
+{
+    @RenderSection("ScriptsFooter", false)
+}
