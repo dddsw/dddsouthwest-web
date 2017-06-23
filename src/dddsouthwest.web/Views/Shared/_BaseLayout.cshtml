@@ -1,5 +1,7 @@
+@using DDDSouthWest.Web.Framework
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     @if (!string.IsNullOrEmpty(ViewBag.TitleTag))
     {
@@ -12,8 +14,7 @@
     }
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
 
 	<environment names="Development">
@@ -22,8 +23,8 @@
 	    <link href="/css/default.css" rel="stylesheet" />
 	    <link href="/css/layout.css" rel="stylesheet" />
 	    <link href="/css/nav.css" rel="stylesheet" />
-    </environment>
-
+    </environment>    
+    
     @if (IsSectionDefined("Css"))
     {
         @RenderSection("Css", false)
@@ -45,8 +46,8 @@
         </a>
         <nav class="main-menu-container">
             <ul class="main-menu">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/">About</a></li>
+                <li @Html.Raw(ViewBag.Tab == PageTab.Home ? "class=\"active\"" : string.Empty)><a href="/">Home</a></li>
+                <li @Html.Raw(ViewBag.Tab == PageTab.About ? "class=\"active\"" : string.Empty)><a href="/page/about">About</a></li>
                 <li><a href="/">Speakers</a></li>
                 <li><a href="/">Sessions</a></li>
                 <li><a href="/">Venue</a></li>

@@ -6,8 +6,11 @@
     <UserSecretsId>aspnet-dddsouthwest.web-3890FF99-B4D9-4BB1-B840-FA4686208B04</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview1-final" />
     <PackageReference Include="OdeToCode.AddFeatureFolders" Version="1.0.4" />
+    <PackageReference Include="MediatR" Version="3.0.1" />
+    <PackageReference Include="Scrutor" Version="1.12.0" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0-preview1-final" />
@@ -15,9 +18,14 @@
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0-preview1-final" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Site\Home" />
+    <ProjectReference Include="..\DDDSouthWest.Domain\DDDSouthWest.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\dddsouthwest.domain\dddsouthwest.domain.csproj" />
+    <Folder Include="Features\Admin\Blog" />
+    <Folder Include="Features\Admin\Login" />
+    <Folder Include="Features\Admin\Page" />
+    <Folder Include="Features\Speakers\Bio" />
+    <Folder Include="Features\Speakers\Register" />
+    <Folder Include="Features\Speakers\Submissions" />
   </ItemGroup>
 </Project>

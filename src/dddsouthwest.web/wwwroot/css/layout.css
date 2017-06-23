@@ -17,7 +17,7 @@
     letter-spacing: -2px;
 }
 
-/* Homepae */
+/* Homepage */
 
 .home-banner {
     background-image: url('/images/home_banner.jpg');
@@ -92,4 +92,25 @@
     padding: 5px 10px;
     font-weight: bold;
     font-size: 15px;
+}
+
+/* Page */
+
+.page-banner {
+    background-image: url('/images/home_banner.jpg');
+    background-size: cover;
+    background-position: center;;
+}
+
+.page-banner__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.page-banner--title {
+    font-size: 60px;
+    color: #fff;
+    height: 250px;
+    line-height: 250px;
 }

@@ -1,0 +1,30 @@
+﻿@using DDDSouthWest.Web.Framework
+@model DDDSouthWest.Web.Features.Public.Page.PageViewModel
+@{
+    ViewBag.Tab = PageTab.About;                                                        
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section MainCol {
+
+    <div class="page-banner">
+        <div class="grid-container">
+            <div class="grid-100">
+                
+                <div class="page-banner__content">
+                    <h1 class="page-banner--title">@Model.Reponse.Title</h1>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="grid-container">
+        <div class="grid-100">
+            <p>@Model.Reponse.BodyContent</p>
+        </div>
+    </div>
+    
+
+}

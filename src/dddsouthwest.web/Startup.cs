@@ -1,7 +1,15 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using DDDSouthWest.Domain.Features.Public.Page;
+using DDDSouthWest.Web.Framework;
+using MediatR;
+using MediatR.Pipeline;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Scrutor;
 
 namespace DDDSouthWest.Web
 {
@@ -18,12 +26,7 @@ namespace DDDSouthWest.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().AddFeatureFolders();
-            
-            /*var viewExpander = new ViewLocationExpander();
-            services.Configure<RazorViewEngineOptions>(options =>
-            {
-                options.ViewLocationExpanders.Add(viewExpander);
-            });*/
+            services.AddMediatR(typeof(GetPage.Query).GetTypeInfo().Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,9 +45,8 @@ namespace DDDSouthWest.Web
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "page", template: "page/{*filename}", defaults: new { controller = "Page", action = "Index" });
             });
         }
     }

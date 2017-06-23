@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceRoot}/src/dddsouthwest.web/bin/Debug/netcoreapp2.0/dddsouthwest.web.dll",
+            "program": "${workspaceRoot}/src/DDDSouthWest.Web/bin/Debug/netcoreapp2.0/DDDSouthWest.Web.dll",
             "args": [],
-            "cwd": "${workspaceRoot}/src/dddsouthwest.web",
+            "cwd": "${workspaceRoot}/src/DDDSouthWest.Web",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {
