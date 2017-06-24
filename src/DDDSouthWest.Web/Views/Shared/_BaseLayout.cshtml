@@ -1,4 +1,5 @@
 @using DDDSouthWest.Web.Framework
+@using Microsoft.AspNetCore.Mvc
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,8 +48,8 @@
         <nav class="main-menu-container">
             <ul class="main-menu">
                 <li @Html.Raw(ViewBag.Tab == PageTab.Home ? "class=\"active\"" : string.Empty)><a href="/">Home</a></li>
-                <li @Html.Raw(ViewBag.Tab == PageTab.About ? "class=\"active\"" : string.Empty)><a href="/page/about">About</a></li>
-                <li @Html.Raw(ViewBag.Tab == PageTab.Speakers ? "class=\"active\"" : string.Empty)><a href="/page/speakers">Speakers</a></li>
+                <li @Html.Raw(ViewBag.Tab == PageTab.About ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new { filename = "about" })">About</a></li>
+                <li @Html.Raw(ViewBag.Tab == PageTab.Speakers ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new { filename = "speakers" })">Speakers</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Sessions ? "class=\"active\"" : string.Empty)><a href="/page/speakers">Sessions</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Venue ? "class=\"active\"" : string.Empty)><a href="/page/venue">Venue</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Sponsors ? "class=\"active\"" : string.Empty)><a href="/page/sponsors">Sponsors</a></li>
