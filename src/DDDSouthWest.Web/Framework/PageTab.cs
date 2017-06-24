@@ -3,6 +3,11 @@
     public enum PageTab
     {
         Home,
-        About
+        About,
+        Speakers,
+        Sessions,
+        Venue,
+        Sponsors,
+        Contact
     }
 }

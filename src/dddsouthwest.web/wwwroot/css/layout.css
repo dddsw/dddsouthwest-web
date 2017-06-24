@@ -8,11 +8,15 @@
     float: left;
     position: relative;
     display: block;
-    line-height: 50px;
-    font-weight: 800;
     text-decoration: none;
     padding: 0 10px;
+    
+}
+
+.site-logo__title {
+    font-weight: 800;
     font-size: 28px;
+    line-height: 50px;
     text-transform: uppercase;
     letter-spacing: -2px;
 }
@@ -106,11 +110,11 @@
     max-width: 1200px;
     margin: 0 auto;
     text-align: left;
+    padding: 90px 0;
 }
 
 .page-banner--title {
     font-size: 60px;
     color: #fff;
-    height: 250px;
-    line-height: 250px;
+    line-height: 1.3;
 }

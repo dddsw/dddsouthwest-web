@@ -1,27 +1,12 @@
-﻿using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Public.Page;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace DDDSouthWest.Web.Features.Public.Page
 {
     public class PageController : Controller
     {
-        private readonly IMediator _mediator;
-
-        public PageController(IMediator mediator)
+        public IActionResult Index(string filename)
         {
-            _mediator = mediator;
-        }
-
-        public async Task<IActionResult> Index(GetPage.Query query)
-        {
-            var page = await _mediator.Send(query);
-            
-            return View(new PageViewModel
-            {
-                Reponse = page
-            });
+            return View($"~/Features/Public/Page/{filename}.cshtml");
         }
     }
 }

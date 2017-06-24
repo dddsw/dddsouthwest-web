@@ -21,6 +21,7 @@
     <ProjectReference Include="..\DDDSouthWest.Domain\DDDSouthWest.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Components" />
     <Folder Include="Features\Admin\Blog" />
     <Folder Include="Features\Admin\Login" />
     <Folder Include="Features\Admin\Page" />

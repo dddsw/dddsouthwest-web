@@ -48,10 +48,11 @@
             <ul class="main-menu">
                 <li @Html.Raw(ViewBag.Tab == PageTab.Home ? "class=\"active\"" : string.Empty)><a href="/">Home</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.About ? "class=\"active\"" : string.Empty)><a href="/page/about">About</a></li>
-                <li><a href="/">Speakers</a></li>
-                <li><a href="/">Sessions</a></li>
-                <li><a href="/">Venue</a></li>
-                <li><a href="/">Sponsors</a></li>
+                <li @Html.Raw(ViewBag.Tab == PageTab.Speakers ? "class=\"active\"" : string.Empty)><a href="/page/speakers">Speakers</a></li>
+                <li @Html.Raw(ViewBag.Tab == PageTab.Sessions ? "class=\"active\"" : string.Empty)><a href="/page/speakers">Sessions</a></li>
+                <li @Html.Raw(ViewBag.Tab == PageTab.Venue ? "class=\"active\"" : string.Empty)><a href="/page/venue">Venue</a></li>
+                <li @Html.Raw(ViewBag.Tab == PageTab.Sponsors ? "class=\"active\"" : string.Empty)><a href="/page/sponsors">Sponsors</a></li>
+                <li @Html.Raw(ViewBag.Tab == PageTab.Contact ? "class=\"active\"" : string.Empty)><a href="/page/contact">Contact</a></li>
             </ul>
         </nav>
         
@@ -60,6 +61,8 @@
 
 </header>
     
+
+
 @RenderBody()
 
 @if (IsSectionDefined("ScriptsFooter"))

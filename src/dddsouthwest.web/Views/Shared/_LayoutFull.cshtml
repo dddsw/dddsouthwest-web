@@ -22,7 +22,17 @@
     @RenderSection("Header")
 }
 
-@RenderSection("MainCol")
+@if (IsSectionDefined("MainColBody"))
+{
+    <div class="grid-container">
+        <div class="grid-100">
+            @RenderSection("MainColBody")
+        </div>
+    </div>
+} else if (IsSectionDefined("MainCol"))
+{
+    @RenderSection("MainCol")
+}
 
 @section ScriptsFooter
 {
