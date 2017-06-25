@@ -42,6 +42,7 @@
     display: block;
     color: #fff;
     margin: 0 0 15px;
+    filter: drop-shadow(0 0 10px black);
 }
 
 .home-banner__line1 {
