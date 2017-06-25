@@ -42,7 +42,7 @@
     display: block;
     color: #fff;
     margin: 0 0 15px;
-    filter: drop-shadow(0 0 10px black);
+    text-shadow: 0 0 20px black;
 }
 
 .home-banner__line1 {
@@ -118,5 +118,5 @@
     font-size: 60px;
     color: #fff;
     line-height: 1.3;
-    filter: drop-shadow(0 0 10px black);
+    text-shadow: 0 0 20px black;
 }
