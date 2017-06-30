@@ -1,8 +1,12 @@
-﻿using System.IO;
-using Microsoft.AspNetCore;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
-namespace DDDSouthWest.Web
+namespace DDDSouthWest.IdentityServer
 {
     public class Program
     {
@@ -11,8 +15,8 @@ namespace DDDSouthWest.Web
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseUrls("http://localhost:5004")
                 .UseIISIntegration()
+                .UseUrls("http://localhost:5000")
                 .UseStartup<Startup>()
                 .Build();
 

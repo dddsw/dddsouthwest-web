@@ -1,12 +1,12 @@
-﻿using System.Reflection;
-using DDDSouthWest.Domain.Features.Public.Page;
-using MediatR;
+﻿
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
-namespace DDDSouthWest.Web
+namespace DDDSouthWest.Api
 {
     public class Startup
     {
@@ -20,18 +20,19 @@ namespace DDDSouthWest.Web
             Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthorization();
-            services.AddMvc().AddFeatureFolders();
-            services.AddMediatR(typeof(GetPage.Query).GetTypeInfo().Assembly);
+            // Add framework services.
+            services.AddMvc();
+                services.AddAuthorization();
+                /*.AddJsonFormatters();*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -41,12 +42,15 @@ namespace DDDSouthWest.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            
-            app.UseMvc(routes =>
+
+            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
             {
-                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(name: "page", template: "page/{*filename}", defaults: new { controller = "Page", action = "Index" });
+                Authority = "http://localhost:5000",
+                RequireHttpsMetadata = false,
+                ApiName = "api1"
             });
+
+            app.UseMvc();
         }
     }
 }
