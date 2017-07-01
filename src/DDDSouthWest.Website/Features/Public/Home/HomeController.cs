@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DDDSouthWest.Web.Features.Public.Home
+namespace DDDSouthWest.Website.Features.Public.Home
 {
     public class HomeController : Controller
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DDDSouthWest.Web.Features.Public.Page
+namespace DDDSouthWest.Website.Features.Public.Page
 {
     public class PageController : Controller
     {

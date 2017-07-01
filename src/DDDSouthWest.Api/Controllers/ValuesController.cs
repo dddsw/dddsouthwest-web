@@ -11,10 +11,6 @@ namespace DDDSouthWest.Api.Controllers
     [Authorize]
     public class ValuesController : Controller
     {
-        public ValuesController()
-        {
-            var res = 1;
-        }
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()

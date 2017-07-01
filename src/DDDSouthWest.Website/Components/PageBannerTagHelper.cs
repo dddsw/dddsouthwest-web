@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace DDDSouthWest.Web.Components
+namespace DDDSouthWest.Website.Components
 {
     public class PageBannerTagHelper : TagHelper
     {

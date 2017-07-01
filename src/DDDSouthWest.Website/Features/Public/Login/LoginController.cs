@@ -5,7 +5,7 @@ using IdentityModel.Client;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
-namespace DDDSouthWest.Web.Features.Public.Login
+namespace DDDSouthWest.Website.Features.Public.Login
 {
     public class LoginController : Controller
     {   

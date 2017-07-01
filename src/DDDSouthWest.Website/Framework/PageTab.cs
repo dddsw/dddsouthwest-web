@@ -1,4 +1,4 @@
-﻿namespace DDDSouthWest.Web.Framework
+﻿namespace DDDSouthWest.Website.Framework
 {
     public enum PageTab
     {

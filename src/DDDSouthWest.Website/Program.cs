@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace DDDSouthWest.Web
+namespace DDDSouthWest.Website
 {
     public class Program
     {
