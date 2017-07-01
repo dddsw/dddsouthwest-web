@@ -1,0 +1,44 @@
+﻿@using DDDSouthWest.Website.Framework
+
+@{
+    ViewBag.Tab = PageTab.Speakers;                                                        
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="DDD South West 8 Speakers"/>
+}
+
+@section MainColBody {
+        
+    <h2>Speakers</h2>
+    
+    <div class="media">
+        <div class="media__left">
+            <img src="https://www.developerdeveloperdeveloper.com/images/profiles/660209cf-1fa4-434f-b074-cb29548b2bd3_portrait-2.png" style="width: 200px;" class="polaroid"/>
+        </div>
+        <div class="media__body">
+            <p><strong>Adam Ralph</strong></p>
+            <p>Adam is a software developer and an open source advocate with a keen interest in distributed systems design, DDD, CQRS and event sourcing.</p>
+            <p>He maintains FakeItEasy and xBehave.net and contributes to many more open source projects. In 2014 he had his 15 minutes of fame when he became the first community member to have a pull request accepted for the .NET Core Framework.</p>
+            <p>Adam currently enjoys working remotely for Particular Software, the makers of NServiceBus. He started writing software for fun and friends in 1983 after his Dad bought him his first computer, an Acorn Electron, and he's been delivering commerical software since the mid-'90s.</p>
+        </div>
+    </div>
+    
+    
+    <div class="divider"></div>
+    
+    <div class="media">
+        <div class="media__left">
+            <img src="https://www.developerdeveloperdeveloper.com/images/profiles/30b7269f-82c7-4f65-9859-02508c778b18_Robin_headshot_500x500.png" style="width: 200px;" class="polaroid"/>
+        </div>
+        <div class="media__body">
+            <p><strong>Robin Minto</strong></p>
+            <p>Robin is a software developer/technical architect working for a supply chain management software company in the UK.</p>
+            <p>He has been writing software since the 1980s, professionally from the mid-90s. Highlights of his work include websites, APIs, mobile applications, distributed systems and infrastructure. Low points include WebForms and VB6.</p>
+            <p>His fascination with security allows him to create apps and systems that resist the bad guys. He’s big on DevOps, Continuous Deployment and Continuous Improvement.</p>
+            <p>When not at a computer, he tries to be a bit more active. He’d love to ski and snowboard all year round but so far he’s restricted that to winter in the northern hemisphere. He also cycles around the roads and in the hills. That is, when his fantastic family aren't keeping him busy.</p>
+        </div>
+    </div>
+
+}
