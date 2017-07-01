@@ -8,6 +8,7 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
     <PackageReference Include="OdeToCode.AddFeatureFolders" Version="1.0.4" />
     <PackageReference Include="MediatR" Version="3.0.1" />
     <PackageReference Include="Scrutor" Version="1.12.0" />
@@ -16,6 +17,7 @@
     <ProjectReference Include="..\DDDSouthWest.Domain\DDDSouthWest.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="wwwroot" />
     <Folder Include="Components" />
     <Folder Include="Features\Speakers\Bio" />
     <Folder Include="Features\Speakers\Register" />
