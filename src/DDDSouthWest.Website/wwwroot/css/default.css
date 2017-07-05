@@ -42,7 +42,20 @@ nav, section {
 
 h1 {
     margin: 0;
-    padding:0;
+    padding: 0;
+}
+
+h2, h3, h4 {
+    margin: 20px 0;
+    padding: 0;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+h3 {
+    font-size: 35px;
 }
 
 p {

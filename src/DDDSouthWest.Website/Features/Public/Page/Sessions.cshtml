@@ -1,0 +1,41 @@
+﻿@using DDDSouthWest.Website.Framework
+
+@{
+    ViewBag.Tab = PageTab.Sessions;                                                        
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="DDD South West 8 Sessions"/>
+}
+
+@section MainColBody {
+        
+    <h2>Sessions</h2>
+    
+    <div class="media">
+        <div class="media__left">
+            <img src="https://www.developerdeveloperdeveloper.com/images/profiles/660209cf-1fa4-434f-b074-cb29548b2bd3_portrait-2.png" style="width: 100px;" class="polaroid"/>
+        </div>
+        <div class="media__body">
+            <p><strong>What is .NET Standard?</strong><br/>by <a href="#">Adam Ralph</a></p>
+            <p>.NET Standard is one of many new technologies to emerge from the mass of open source .NET initiatives during the past year. Compared to what's come before, .NET Standard is not only a more effective way to use NuGet packages cross platform, it's also way simpler. It has the potential to remove most, if not all, of the current confusion surrounding cross platform multi-targeting.</p>
+            <p>So what is exactly is it and how does it work? How does it relate to .NET Core? Join Adam as he answers these questions and more, and takes a dive into some of the magic which makes .NET Standard work.​</p>
+        </div>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <div class="media">
+        <div class="media__left">
+            <img src="https://www.developerdeveloperdeveloper.com/images/profiles/30b7269f-82c7-4f65-9859-02508c778b18_Robin_headshot_500x500.png" style="width: 100px;" class="polaroid"/>
+        </div>
+        <div class="media__body">
+            <p><strong>#FAIL - Lessons from infosec incidents</strong><br/>by <a href="#">Robin Minto</a></p>
+            <p>Securing a web application is a challenge. The internet is awash with malicious traffic and web applications are globally accessible. Don’t make it easy for them and the baddies will move on and find someone else to annoy.</p>
+            <p>We’ll look at the risks facing web applications, the basic steps you can take so that you don’t make yourself a target and the things you should do to avoid becoming a data breach statistic. We’ll also look at lessons that can be learnt from mistakes that others have made.</p>
+            <p>We’ll demo some of the techniques and tools in both attack and defence with examples for any web application developer.</p>
+        </div>
+    </div>
+
+}
