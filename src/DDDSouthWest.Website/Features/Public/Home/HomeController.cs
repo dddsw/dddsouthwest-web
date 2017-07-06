@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DDDSouthWest.Website.Features.Public.Home
 {
@@ -6,6 +7,14 @@ namespace DDDSouthWest.Website.Features.Public.Home
     {
         public IActionResult Index()
         {
+            return View();
+        }
+        
+        [Authorize]
+        public IActionResult Secure()
+        {
+            ViewData["Message"] = "Secure page.";
+
             return View();
         }
     }

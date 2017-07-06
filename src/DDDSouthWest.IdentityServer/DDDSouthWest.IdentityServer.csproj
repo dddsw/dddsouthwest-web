@@ -3,7 +3,23 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Quickstart\Account" />
+    <Folder Include="Quickstart\Consent" />
+    <Folder Include="Quickstart\Grants" />
+    <Folder Include="Quickstart\Home" />
+    <Folder Include="Views\Account" />
+    <Folder Include="Views\Consent" />
+    <Folder Include="Views\Grants" />
+    <Folder Include="Views\Home" />
+    <Folder Include="Views\Shared" />
     <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\css" />
+    <Folder Include="wwwroot\js" />
+    <Folder Include="wwwroot\lib\bootstrap\css" />
+    <Folder Include="wwwroot\lib\bootstrap\fonts" />
+    <Folder Include="wwwroot\lib\bootstrap\js" />
+    <Folder Include="wwwroot\lib\jquery" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />

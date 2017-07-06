@@ -1,10 +1,14 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using DDDSouthWest.Domain.Features.Public.Page;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DDDSouthWest.Website
 {
@@ -34,6 +38,22 @@ namespace DDDSouthWest.Website
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
+            
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationScheme = "Cookies"
+            });
+
+            app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
+            {
+                AuthenticationScheme = "oidc",
+                SignInScheme = "Cookies",
+                Authority = "http://localhost:5000",
+                RequireHttpsMetadata = false,
+                ClientId = "mvc",
+                SaveTokens = true
+            });
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

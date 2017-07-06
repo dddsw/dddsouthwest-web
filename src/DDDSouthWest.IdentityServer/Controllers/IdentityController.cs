@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DDDSouthWest.IdentityServer.Controllers
 {
     [Route("[controller]")]
-    /*[Authorize]*/
+    [Authorize]
     public class IdentityController : ControllerBase
     {
         [HttpGet]
