@@ -13,6 +13,7 @@ var configuration = Argument("configuration", "Release");
 // Define directories.
 var buildDir = Directory("./src/DDDSouthWest.Website/bin") + Directory(configuration);
 var solution = "./src/DDDSouthWest.sln";
+var projectName = "DDDSouthWest";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -35,27 +36,19 @@ Task("Build")
     .IsDependentOn("Restore-NuGet-Packages")
     .Does(() =>
 {
-    if(IsRunningOnWindows())
-    {
-      // Use MSBuild
-      MSBuild(solution, settings =>
+    MSBuild(solution, settings =>
         settings.SetConfiguration(configuration));
-    }
-    else
-    {
-      // Use XBuild
-      XBuild(solution, settings =>
-        settings.SetConfiguration(configuration));
-    }
 });
 
 Task("Run-Unit-Tests")
     .IsDependentOn("Build")
     .Does(() =>
 {
-    NUnit3("./src/**/bin/" + configuration + "/*.Tests.dll", new NUnit3Settings {
-        NoResults = true
-        });
+    var settings = new DotNetCoreTestSettings
+    {
+        Configuration = "Release"
+    };
+    DotNetCoreTest("./src/" + projectName + ".Tests/" + projectName + ".Tests.csproj", settings);
 });
 
 //////////////////////////////////////////////////////////////////////
