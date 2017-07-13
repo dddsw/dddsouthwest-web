@@ -1,8 +1,12 @@
 ﻿using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Net.Sockets;
 using System.Reflection;
 using DDDSouthWest.Domain.Features.Public.Page;
+using DDDSouthWest.Website.Framework;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,6 +36,25 @@ namespace DDDSouthWest.Website
             services.AddAuthorization();
             services.AddMvc().AddFeatureFolders();
             services.AddMediatR(typeof(GetPage.Query).GetTypeInfo().Assembly);
+
+            /*services.AddAuthorization(options =>
+                options.AddPolicy(AccessPolicies.OrganiserAccessPolicy, policy => policy.RequireClaim("role", "organiser")));*/
+
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(AccessPolicies.OrganiserAccessPolicy, policy => policy.RequireClaim("role"));
+            });
+            
+            /*services.AddAuthorization(options => options.AddPolicy("IsValidUser", ResolvePolicy));*/
+            
+            
+                
+        }
+        
+        private void ResolvePolicy(AuthorizationPolicyBuilder policy)
+        {
+            policy.Requirements.Add(new UsernameRequirement("administrator"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +74,9 @@ namespace DDDSouthWest.Website
                 Authority = "http://localhost:5000",
                 RequireHttpsMetadata = false,
                 ClientId = "mvc",
-                SaveTokens = true
+                SaveTokens = true,
+                /*Scope = { "role" },*/
+                GetClaimsFromUserInfoEndpoint = true
             });
             
             if (env.IsDevelopment())
@@ -62,6 +87,9 @@ namespace DDDSouthWest.Website
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+           
+            // Adds IdentityServer
+            // app.UseIdentityServer();
             
             app.UseMvc(routes =>
             {
