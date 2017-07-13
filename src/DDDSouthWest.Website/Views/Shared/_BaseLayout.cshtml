@@ -48,14 +48,13 @@
         </a>
         <nav class="main-menu-container">
             <ul class="main-menu">
-                @*TODO: Add to static list and loop loop through*@
                 <li @Html.Raw(ViewBag.Tab == PageTab.Home ? "class=\"active\"" : string.Empty)><a href="/">Home</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.About ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "about"})">About</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Speakers ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "speakers"})">Speakers</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Sessions ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sessions"})">Sessions</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Venue ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "venue"})">Venue</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Sponsors ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sponsors"})">Sponsors</a></li>
-                <li @Html.Raw(ViewBag.Tab == PageTab.Contact ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "contact"})">Contact</a></li>
+                <li @Html.Raw(ViewBag.Tab == PageTab.Login ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("account_login")">Login</a></li>
             </ul>
         </nav>
         
