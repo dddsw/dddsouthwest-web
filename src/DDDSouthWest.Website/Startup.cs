@@ -75,7 +75,7 @@ namespace DDDSouthWest.Website
                 RequireHttpsMetadata = false,
                 ClientId = "mvc",
                 SaveTokens = true,
-                /*Scope = { "role" },*/
+                Scope = { "roles" },
                 GetClaimsFromUserInfoEndpoint = true
             });
             

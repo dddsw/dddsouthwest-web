@@ -64,7 +64,7 @@ namespace DDDSouthWest.IdentityServer
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
-                    "role",
+                    "roles",
                     IdentityServerConstants.StandardScopes.Email
                 }
             }
