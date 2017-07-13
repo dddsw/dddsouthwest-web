@@ -5,14 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace DDDSouthWest.Website.Features.Public.Account.Dashboard
 {
     [Route("account/dashboard", Name = "account_dashboard")]
-    [Authorize(Policy = AccessPolicies.OrganiserAccessPolicy)]
+    [Authorize(Policy = AccessPolicies.RegisteredAccessPolicy)]
     public class DashboardController : Controller
-    {
-        public DashboardController()
-        {
-            var res = 1;
-        }
-        
+    {        
         public IActionResult Index()
         {
             return View();

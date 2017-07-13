@@ -4,5 +4,6 @@
     {
         public static string Organiser = "organiser";
         public static string Speaker = "speaker";
+        public static string Registered = "registered";
     }
 }

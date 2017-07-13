@@ -37,24 +37,12 @@ namespace DDDSouthWest.Website
             services.AddMvc().AddFeatureFolders();
             services.AddMediatR(typeof(GetPage.Query).GetTypeInfo().Assembly);
 
-            /*services.AddAuthorization(options =>
-                options.AddPolicy(AccessPolicies.OrganiserAccessPolicy, policy => policy.RequireClaim("role", "organiser")));*/
-
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(AccessPolicies.OrganiserAccessPolicy, policy => policy.RequireClaim("role"));
+                options.AddPolicy(AccessPolicies.OrganiserAccessPolicy, policy => policy.RequireClaim("role", "organiser"));
+                options.AddPolicy(AccessPolicies.RegisteredAccessPolicy, policy => policy.RequireClaim("role", "registered"));
             });
-            
-            /*services.AddAuthorization(options => options.AddPolicy("IsValidUser", ResolvePolicy));*/
-            
-            
-                
-        }
-        
-        private void ResolvePolicy(AuthorizationPolicyBuilder policy)
-        {
-            policy.Requirements.Add(new UsernameRequirement("administrator"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,9 +75,6 @@ namespace DDDSouthWest.Website
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-           
-            // Adds IdentityServer
-            // app.UseIdentityServer();
             
             app.UseMvc(routes =>
             {

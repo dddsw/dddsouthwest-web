@@ -9,7 +9,6 @@ namespace DDDSouthWest.Website.Features.Public.Account.Login
         [Authorize]
         public IActionResult Login()
         {
-            var res = User;
             return RedirectToRoute("account_dashboard");
         }
     }

@@ -76,25 +76,26 @@ namespace DDDSouthWest.IdentityServer
             {
                 SubjectId = "1",
                 Username = "josephwoodward",
-                Password = "letmein",
+                Password = "password",
                 Claims = new List<Claim>
                 {
-                    new Claim("name", "Joseph"),
-                    new Claim("website", "https://alice.com"),
-                    new Claim("role", "organiser")
+                    new Claim("name", "Joseph Woodward"),
+                    new Claim("role", Role.Organiser),
+                    new Claim("role", Role.Speaker),
+                    new Claim("role", Role.Registered)
                 }
             },
             new TestUser
             {
                 SubjectId = "2",
-                Username = "bob",
+                Username = "stuartlang",
                 Password = "password",
-
                 Claims = new List<Claim>
                 {
-                    new Claim("name", "Bob"),
-                    new Claim("website", "https://bob.com"),
-                    new Claim("role", Role.Speaker)
+                    new Claim("name", "Stuart Lang"),
+                    /*new Claim("role", Role.Organiser),*/
+                    new Claim("role", Role.Speaker),
+                    new Claim("role", Role.Registered)
                 }
             }
         };
