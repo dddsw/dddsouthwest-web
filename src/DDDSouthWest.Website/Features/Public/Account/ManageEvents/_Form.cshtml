@@ -1,0 +1,23 @@
+﻿@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+
+<fieldset>
+    <div class="pure-control-group">
+        <label for="name">Event Name</label>
+        <input id="name" type="text" placeholder="Event Name">
+    </div>
+
+    <div class="pure-control-group">
+        <label for="name">Event Filename</label>
+        <input id="name" type="text" placeholder="Event Filename">
+    </div>
+
+    <div class="pure-control-group">
+        <label for="name">Event Date</label>
+        <input id="name" type="text" placeholder="Event Date">
+    </div>
+
+    <div class="pure-controls">
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    </div>
+</fieldset>

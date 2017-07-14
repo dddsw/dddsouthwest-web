@@ -7,10 +7,23 @@ namespace DDDSouthWest.Website.Features.Public.Account.Dashboard
     [Route("account/dashboard", Name = "account_dashboard")]
     [Authorize(Policy = AccessPolicies.RegisteredAccessPolicy)]
     public class DashboardController : Controller
-    {        
+    {
         public IActionResult Index()
         {
-            return View();
+            var viewModel = new DashboardViewModel
+            {
+                IsOrganiser = User.HasClaim("role", "organiser"),
+                IsRegistered = User.HasClaim("role", "registered")
+            };
+
+            return View(viewModel);
         }
+    }
+
+    public class DashboardViewModel
+    {
+        public bool IsOrganiser { get; set; }
+
+        public bool IsRegistered { get; set; }
     }
 }

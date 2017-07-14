@@ -20,7 +20,6 @@
     <ProjectReference Include="..\DDDSouthWest.Domain\DDDSouthWest.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Components" />
     <Folder Include="wwwroot\bootstrap" />
   </ItemGroup>
 </Project>

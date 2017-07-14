@@ -1,4 +1,5 @@
 ﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.Account.Dashboard.DashboardViewModel
 
 @{
     ViewBag.Tab = PageTab.About;                                                        
@@ -12,17 +13,21 @@
 @section MainColBody {
 
     <h2>Welcome</h2>
+
+    <div is-visible="@Model.IsOrganiser">
+        <h2>Organiser</h2>
+        <ul>
+            <li><a href="@Url.RouteUrl("events_manage")">Manage Events</a></li>
+            <li><a href="#">Manage Pages</a></li>
+        </ul>
+    </div>
     
-    <h2>Organiser</h2>
-    <ul>
-        <li><a href="#">Manage Events</a></li>
-        <li><a href="#">Manage Pages</a></li>
-    </ul>
-    
-    <h2>Speakers</h2>
-    <ul>
-        <li><a href="#">Manage Profile</a></li>
-        <li><a href="#">Manage Talks</a></li>
-    </ul>
+    <div is-visible="@Model.IsRegistered">
+        <h2>Speakers</h2>
+        <ul>
+            <li><a href="#">Manage Profile</a></li>
+            <li><a href="#">Manage Talks</a></li>
+        </ul>    
+    </div>
 
 }

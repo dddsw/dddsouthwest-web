@@ -36,10 +36,6 @@ nav, section {
     display: block;
 }
 
-.util-text--center {
-    text-align: center;
-}
-
 h1 {
     margin: 0;
     padding: 0;
@@ -63,4 +59,17 @@ p {
     font-size: 15.4px;
     line-height: 1.5em;
     margin: 0 0 16px;
+}
+
+.util-text--center {
+    text-align: center;
+}
+
+.util--stretch {
+    width: 100%;
+}
+
+.pure-block,
+.util--app-block {
+    margin-bottom: 20px;
 }
