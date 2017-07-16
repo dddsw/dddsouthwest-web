@@ -15,11 +15,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="1.1.2" />
     <PackageReference Include="MediatR" Version="3.0.1" />
     <PackageReference Include="Scrutor" Version="1.12.0" />
+    <PackageReference Include="FluentValidation" Version="7.1.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DDDSouthWest.Domain\DDDSouthWest.Domain.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\bootstrap" />
   </ItemGroup>
 </Project>
