@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 
-namespace DDDSouthWest.Domain.Features.Account.ManageEvents.CreateEvent
+namespace DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateEvent
 {
-    public class CreateEvent
+    public class UpdatEvent
     {
         public class Command : IRequest<Response>
         {
@@ -16,9 +16,9 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.CreateEvent
 
         public class Handler : IAsyncRequestHandler<Command, Response>
         {
-            private readonly CreateEventValidation _validation;
+            private readonly UpdateEventValidation _validation;
 
-            public Handler(CreateEventValidation validation)
+            public Handler(UpdateEventValidation validation)
             {
                 _validation = validation;
             }

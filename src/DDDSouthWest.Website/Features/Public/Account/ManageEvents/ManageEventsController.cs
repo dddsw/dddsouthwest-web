@@ -23,14 +23,14 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageEvents
             return View();
         }
         
-        [Route("/account/events/create", Name="events_create")]
+        [Route("/account/events/create")]
         public IActionResult Create()
         {
             return View();
         }
         
         [HttpPost]
-        [Route("/account/events/create", Name="events_create")]
+        [Route("/account/events/create")]
         public async Task<IActionResult> Create(CreateEvent.Command command)
         {
             var result = await _mediator.Send(command);
@@ -39,7 +39,17 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageEvents
             return RedirectToAction("Edit", result.Id);
         }
         
-        [Route("/account/events/edit", Name="events_create")]
+        [HttpPost]
+        [Route("/account/events/update")]
+        public async Task<IActionResult> Update(CreateEvent.Command command)
+        {
+            var result = await _mediator.Send(command);
+            
+            /*return RedirectToAction("Edit", new BlogPostEdit.Query { Id = id.Id });*/
+            return RedirectToAction("Edit", result.Id);
+        }
+        
+        [Route("/account/events/edit")]
         public IActionResult Edit(int id)
         {
             return View();

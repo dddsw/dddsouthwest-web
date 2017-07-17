@@ -1,20 +1,24 @@
-﻿@Html.AntiForgeryToken()
+﻿@model DDDSouthWest.Domain.Features.Account.ManageEvents.CreateEvent.CreateEvent.Command
+
+@Html.AntiForgeryToken()
 @Html.ValidationSummary(true)
 
 <fieldset>
+    
     <div class="pure-control-group">
         <label for="name">Event Name</label>
-        <input id="name" type="text" placeholder="Event Name">
+        @*<input id="name" type="text" placeholder="Event Name">*@
+        @Html.TextBoxFor(x => x.EventName)
     </div>
 
     <div class="pure-control-group">
         <label for="name">Event Filename</label>
-        <input id="name" type="text" placeholder="Event Filename">
+        @Html.TextBoxFor(x => x.EventFilename)
     </div>
 
     <div class="pure-control-group">
         <label for="name">Event Date</label>
-        <input id="name" type="text" placeholder="Event Date">
+        @Html.TextBoxFor(x => x.EventDate)
     </div>
 
     <div class="pure-controls">

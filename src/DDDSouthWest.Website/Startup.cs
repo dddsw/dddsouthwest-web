@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Sockets;
 using System.Reflection;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateEvent;
 using DDDSouthWest.Domain.Features.Public.Page;
 using DDDSouthWest.Website.Framework;
 using MediatR;
@@ -36,6 +37,7 @@ namespace DDDSouthWest.Website
             services.AddAuthorization();
             services.AddMvc().AddFeatureFolders();
             services.AddMediatR(typeof(GetPage.Query).GetTypeInfo().Assembly);
+            services.AddTransient<CreateEventValidation, CreateEventValidation>();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthorization(options =>

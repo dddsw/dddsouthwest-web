@@ -11,9 +11,9 @@
 
 @section MainColBody {
 
-    <h2>Create Event</h2>
+    <h2>Edit Event</h2>
     
-    @using (Html.BeginForm("Create", "ManageEvents", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    @using (Html.BeginForm("Update", "ManageEvents", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
     {
         @Html.Partial("_Form")
     }
