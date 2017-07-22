@@ -1,42 +1,41 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateEvent;
+using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DDDSouthWest.Website.Features.Public.Account.ManageEvents
+namespace DDDSouthWest.Website.Features.Public.Account.ManagePages
 {
     [Authorize(Policy = AccessPolicies.OrganiserAccessPolicy)]
-    public class ManageEventsController : Controller
+    public class ManagePagesController : Controller
     {
         private readonly IMediator _mediator;
 
-        public ManageEventsController(IMediator mediator)
+        public ManagePagesController(IMediator mediator)
         {
             _mediator = mediator;
         }
-        
-        [Route("/account/events/", Name = RouteNames.EventsManage)]
+
+        [Route("/account/pages/", Name = RouteNames.PagesManage)]
         public IActionResult Index()
         {
             return View();
         }
-        
-        [Route("/account/events/create", Name = RouteNames.EventCreate)]
+
+        [Route("/account/pages/create", Name = RouteNames.PageCreate)]
         public IActionResult Create()
         {
-            return View(new ManageEventsViewModel());
+            return View(new ManagePagesViewModel());
         }
-        
+
         [HttpPost]
-        [Route("/account/events/create")]
-        public async Task<IActionResult> Create(CreateEvent.Command command)
+        [Route("/account/pages/create")]
+        public async Task<IActionResult> Create(CreatePage.Command command)
         {
-            CreateEvent.Response result;
+            CreatePage.Response result;
 
             try
             {
@@ -44,36 +43,36 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageEvents
             }
             catch (ValidationException e)
             {
-                return View(new ManageEventsViewModel
+                return View(new ManagePagesViewModel
                 {
                     Errors = e.Errors.ToList(),
-                    EventDate = command.EventDate,
-                    EventFilename = command.EventFilename,
-                    EventName = command.EventName
+                    PageTitle = command.PageTitle,
+                    PageFilename = command.PageFilename,
+                    PageBody = command.PageBody
                 });
             }
-            
+
             /*return RedirectToAction("Edit", new BlogPostEdit.Query { Id = id.Id });*/
             return RedirectToAction("Edit", result.Id);
         }
 
-        [Route("/account/events/edit/{id}", Name = RouteNames.EventEdit)]
+        [Route("/account/pages/edit/{id}", Name = RouteNames.PageEdit)]
         public IActionResult Edit(int id)
         {
             // TODO: Pull data from database
 
-            return View(new ManageEventsViewModel
+            return View(new ManagePagesViewModel
             {
                 Id = id
             });
         }
 
         [HttpPost]
-        [Route("/account/events/edit")]
-        public async Task<IActionResult> Edit(CreateEvent.Command command)
+        [Route("/account/pages/edit")]
+        public async Task<IActionResult> Edit(CreatePage.Command command)
         {
             var result = await _mediator.Send(command);
-            
+
             /*return RedirectToAction("Edit", new BlogPostEdit.Query { Id = id.Id });*/
             return RedirectToAction("Edit", result.Id);
         }

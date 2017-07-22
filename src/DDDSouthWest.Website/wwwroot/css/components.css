@@ -11,3 +11,9 @@
     border-bottom: 1px dotted #ccc;
     margin: 20px 0;
 }
+
+.error-list {}
+
+.error-list li {
+    color: red;
+}

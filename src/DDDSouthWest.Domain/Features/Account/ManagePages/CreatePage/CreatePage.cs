@@ -1,40 +1,45 @@
 ﻿using System;
 using System.Threading.Tasks;
 using FluentValidation;
-using FluentValidation.Results;
 using MediatR;
-/*using EventResponse = (string status, Response response);*/
 
-namespace DDDSouthWest.Domain.Features.Account.ManageEvents.CreateEvent
+namespace DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage
 {
-    public class CreateEvent
+    public class CreatePage
     {
         public class Command : IRequest<Response>
         {
-            public string EventName { get; set; }
-            public string EventFilename { get; set; }
-            public DateTime EventDate { get; set; }
+            public int Id { get; set; }
+
+            public string PageTitle { get; set; }
+
+            public string PageFilename { get; set; }
+
+            public string PageBody { get; set; }
+
+            public DateTime LastModified { get; set; }
         }
 
         public class Handler : IAsyncRequestHandler<Command, Response>
         {
-            private readonly CreateEventValidation _validation;
+            private readonly CreatePageValidation _validation;
 
-            public Handler(CreateEventValidation validation)
+            public Handler(CreatePageValidation validation)
             {
                 _validation = validation;
             }
-            
+
             public Task<Response> Handle(Command message)
             {
                 _validation.ValidateAndThrow(message);
-                
+
                 return Task.FromResult(new Response
                 {
                     Id = 1
                 });
             }
         }
+
 
         public class Response
         {

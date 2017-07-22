@@ -17,8 +17,8 @@
     <div is-visible="@Model.IsOrganiser">
         <h2>Organiser</h2>
         <ul>
-            <li><a href="@Url.RouteUrl("events_manage")">Manage Events</a></li>
-            <li><a href="#">Manage Pages</a></li>
+            <li><a href="@Url.RouteUrl(RouteNames.EventsManage)">Manage Events</a></li>
+            <li><a href="@Url.RouteUrl(RouteNames.PagesManage)">Manage Pages</a></li>
         </ul>
     </div>
     

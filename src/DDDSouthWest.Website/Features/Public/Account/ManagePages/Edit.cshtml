@@ -1,5 +1,5 @@
 ﻿@using DDDSouthWest.Website.Framework
-@model DDDSouthWest.Website.Features.Public.Account.ManageEvents.ManageEventsViewModel
+@model DDDSouthWest.Website.Features.Public.Account.ManagePages.ManagePagesViewModel
 
 @{
     ViewBag.Tab = PageTab.Login;                                                        
@@ -7,14 +7,14 @@
 }
 
 @section Header {
-    <page-banner title="Events"/>
+    <page-banner title="Pages"/>
 }
 
 @section MainColBody {
 
-    <h2>Edit Event</h2>
+    <h2>Edit Page</h2>
     
-    @using (Html.BeginForm("Edit", "ManageEvents", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    @using (Html.BeginForm("Edit", "ManagePages", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
     {
         @Html.HiddenFor(x => x.Id)
         @Html.Partial("_Form")
