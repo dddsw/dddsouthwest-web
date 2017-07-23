@@ -1,20 +1,14 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Net.Sockets;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateEvent;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
 using DDDSouthWest.Domain.Features.Public.Page;
 using DDDSouthWest.Website.Framework;
 using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 
 namespace DDDSouthWest.Website
 {
@@ -24,8 +18,8 @@ namespace DDDSouthWest.Website
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -45,8 +39,10 @@ namespace DDDSouthWest.Website
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(AccessPolicies.OrganiserAccessPolicy, policy => policy.RequireClaim("role", "organiser"));
-                options.AddPolicy(AccessPolicies.RegisteredAccessPolicy, policy => policy.RequireClaim("role", "registered"));
+                options.AddPolicy(AccessPolicies.OrganiserAccessPolicy,
+                    policy => policy.RequireClaim("role", "organiser"));
+                options.AddPolicy(AccessPolicies.RegisteredAccessPolicy,
+                    policy => policy.RequireClaim("role", "registered"));
             });
         }
 
@@ -54,7 +50,7 @@ namespace DDDSouthWest.Website
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
-            
+
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationScheme = "Cookies"
@@ -68,23 +64,19 @@ namespace DDDSouthWest.Website
                 RequireHttpsMetadata = false,
                 ClientId = "mvc",
                 SaveTokens = true,
-                Scope = { "roles" },
+                Scope = {"roles"},
                 GetClaimsFromUserInfoEndpoint = true
             });
-            
+
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
-            {
                 app.UseExceptionHandler("/Home/Error");
-            }
-            
+
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(name: "page", template: "page/{*filename}", defaults: new { controller = "Page", action = "Index" });
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute("page", "page/{*filename}", new {controller = "Page", action = "Index"});
             });
         }
     }

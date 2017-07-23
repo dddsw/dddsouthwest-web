@@ -15,7 +15,7 @@ namespace DDDSouthWest.Website.Components
                 return;
 
             output.TagMode = TagMode.StartTagAndEndTag;
-            
+
             var panel = @"
             <ul class=""error-list"">";
             foreach (var error in Errors)

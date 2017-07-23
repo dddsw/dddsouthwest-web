@@ -9,5 +9,8 @@
         public const string PageEdit = "page_edit";
         public const string PageCreate = "page_create";
         public const string PagesManage = "page_manage";
+        
+        public const string SpeakerEdit = "speaker_edit";
+        public const string SpeakersManage = "speaker_manage";
     }
 }

@@ -1,28 +1,24 @@
-﻿@addTagHelper *, DDDSouthWest.Website
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
-@model DDDSouthWest.Website.Features.Public.Account.ManageEvents.ManageEventsViewModel
+﻿@model DDDSouthWest.Website.Features.Public.Account.ManageEvents.ManageEventsViewModel
 
 @Html.AntiForgeryToken()
-@Html.ValidationSummary(true)
 
 <validation-summary errors="@Model.Errors" />
 
 <fieldset>
     
     <div class="pure-control-group">
-        <label for="name">Event Name</label>
-        @Html.TextBoxFor(x => x.EventName, new { @class="pure-input-2-3"})
+        <label asp-for="EventName">Event Name</label>
+        <input asp-for="EventName" class="pure-input-2-3"/>
     </div>
 
     <div class="pure-control-group">
-        <label for="name">Event Filename</label>
-        @Html.TextBoxFor(x => x.EventFilename, new { @class="pure-input-2-3"})
+        <label asp-for="EventName">Event Filename</label>
+        <input asp-for="EventFilename" class="pure-input-2-3"/>
     </div>
 
     <div class="pure-control-group">
-        <label for="name">Event Date</label>
-        @Html.TextBoxFor(x => x.EventDate, new { @class="pure-input-1-4"})
+        <label asp-for="EventDate">Event Date</label>
+        <input asp-for="EventDate" class="pure-input-1-4"/>
     </div>
 
     <div class="pure-controls">

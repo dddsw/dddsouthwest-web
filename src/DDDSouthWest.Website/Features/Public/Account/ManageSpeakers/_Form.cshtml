@@ -1,0 +1,38 @@
+﻿@model DDDSouthWest.Website.Features.Public.Account.ManageSpeakers.ManageSpeakersViewModel
+
+@Html.AntiForgeryToken()
+
+<validation-summary errors="@Model.Errors" />
+
+<fieldset>
+    
+    <div class="pure-control-group">
+        <label asp-for="SpeakerFirstName">First Name</label>
+        <input asp-for="SpeakerFirstName" class="pure-input-2-3"/>
+    </div>
+
+    <div class="pure-control-group">
+        <label asp-for="SpeakerFamilyName">Family Name</label>
+        <input asp-for="SpeakerFamilyName" class="pure-input-2-3"/>
+    </div>
+
+    <div class="pure-control-group">
+        <label asp-for="SpeakerBio">Bio</label>
+        <textarea asp-for="SpeakerBio" class="pure-input-2-3" style="height: 250px;"></textarea>
+    </div>
+    
+    <div class="pure-control-group">
+        <label asp-for="WebsiteUrl">Website URL</label>
+        <input asp-for="WebsiteUrl" class="pure-input-2-3"/>
+    </div>
+    
+    <div class="pure-control-group">
+        <label asp-for="TwitterHandle">Twitter Handle</label>
+        <input asp-for="TwitterHandle" class="pure-input-2-3"/>
+    </div>
+
+    <div class="pure-controls">
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    </div>
+
+</fieldset>
