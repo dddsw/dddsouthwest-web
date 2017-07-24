@@ -1,0 +1,28 @@
+version: '3'
+services:
+
+  identityserver:
+      build:
+        context: .
+        dockerfile: identityserver.dockerfile
+      container_name: ddd-southwest-identityserver
+      image: ddd_southwest_identityserver
+      environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+      ports:
+        - "5000:5000"
+
+  website:
+      build:
+        context: .
+        dockerfile: website.dockerfile
+      depends_on:
+        - identityserver
+      container_name: ddd-southwest-website
+      image: ddd_southwest_website
+      environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+      ports:
+        - "5002:5002"
+      links: 
+        - identityserver
