@@ -60,7 +60,7 @@ namespace DDDSouthWest.Website
             {
                 AuthenticationScheme = "oidc",
                 SignInScheme = "Cookies",
-                Authority = "http://localhost:5000",
+                Authority = "http://identityserver:5000",
                 RequireHttpsMetadata = false,
                 ClientId = "mvc",
                 SaveTokens = true,

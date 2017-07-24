@@ -11,7 +11,7 @@ namespace DDDSouthWest.Website
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseUrls("http://localhost:5002")
+                .UseUrls("http://*:5002")
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
