@@ -19,8 +19,9 @@ namespace DDDSouthWest.Website
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName.ToLower()}.json", true)
                 .AddEnvironmentVariables();
+
             Configuration = builder.Build();
         }
 
@@ -33,6 +34,8 @@ namespace DDDSouthWest.Website
             services.AddMvc().AddFeatureFolders();
             services.AddMediatR(typeof(GetPage.Query).GetTypeInfo().Assembly);
 
+            services.AddWebsiteAppSettingsOptions(Configuration);
+            
             services.AddTransient<CreateEventValidation, CreateEventValidation>();
             services.AddTransient<CreatePageValidation, CreatePageValidation>();
 
@@ -47,7 +50,7 @@ namespace DDDSouthWest.Website
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, WebsiteConfigurationOptions configurationOptions)
         {
             app.UseStaticFiles();
 
@@ -60,7 +63,7 @@ namespace DDDSouthWest.Website
             {
                 AuthenticationScheme = "oidc",
                 SignInScheme = "Cookies",
-                Authority = "http://identityserver:5000",
+                Authority = configurationOptions.IdentityServer.AuthorityServer,
                 RequireHttpsMetadata = false,
                 ClientId = "mvc",
                 SaveTokens = true,

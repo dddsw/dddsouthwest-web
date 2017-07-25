@@ -9,6 +9,7 @@ services:
       image: ddd_southwest_identityserver
       environment:
         - ASPNETCORE_ENVIRONMENT=Development
+        - DDDSouthWestIdentityServer__WebsiteUrl=http://website:5002
       ports:
         - "5000:5000"
 
@@ -22,6 +23,7 @@ services:
       image: ddd_southwest_website
       environment:
         - ASPNETCORE_ENVIRONMENT=Development
+        - DDDSouthWestWebsite__IdentityServer__AuthorityServer=http://identityserver:5000
       ports:
         - "5002:5002"
       links: 

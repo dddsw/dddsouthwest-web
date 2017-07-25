@@ -7,6 +7,7 @@ using DDDSouthWest.IdentityServer.Framework;
 using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
+using Microsoft.Extensions.Configuration;
 
 namespace DDDSouthWest.IdentityServer
 {
@@ -26,7 +27,7 @@ namespace DDDSouthWest.IdentityServer
         };
 
         // clients want to access resources (aka scopes)
-        public static IEnumerable<Client> GetClients() => new List<Client>
+        public static IEnumerable<Client> GetClients(string websiteUrl) => new List<Client>
         {
             new Client
             {
@@ -58,14 +59,14 @@ namespace DDDSouthWest.IdentityServer
                 ClientName = "MVC Client",
                 AllowedGrantTypes = GrantTypes.Implicit,
                 RequireConsent = false,
-                RedirectUris = {"http://website:5002/signin-oidc"},
-                PostLogoutRedirectUris = {"http://website:5002/signout-callback-oidc"},
+                RedirectUris = {$"{websiteUrl}/signin-oidc"},
+                PostLogoutRedirectUris = {$"{websiteUrl}/signout-callback-oidc"},
                 AllowedScopes =
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
-                    "roles",
-                    IdentityServerConstants.StandardScopes.Email
+                    IdentityServerConstants.StandardScopes.Email,
+                    "roles"
                 }
             }
         };
