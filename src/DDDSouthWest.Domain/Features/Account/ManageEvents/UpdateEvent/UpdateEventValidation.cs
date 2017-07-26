@@ -2,7 +2,7 @@
 
 namespace DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateEvent
 {
-    public class UpdateEventValidation : AbstractValidator<UpdatEvent.Command>
+    public class UpdateEventValidation : AbstractValidator<UpdateEvent.Command>
     {
         public UpdateEventValidation()
         {

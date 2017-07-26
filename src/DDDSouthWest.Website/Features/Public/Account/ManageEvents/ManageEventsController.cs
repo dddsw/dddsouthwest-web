@@ -1,7 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateEvent;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateEvent;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
 using MediatR;
@@ -52,30 +53,41 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageEvents
                     EventName = command.EventName
                 });
             }
-            
-            /*return RedirectToAction("Edit", new BlogPostEdit.Query { Id = id.Id });*/
+
             return RedirectToAction("Edit", result.Id);
         }
 
         [Route("/account/events/edit/{id}", Name = RouteNames.EventEdit)]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(GetEvent.Query query)
         {
-            // TODO: Pull data from database
-
+            var eventModel = await _mediator.Send(query);
+            
             return View(new ManageEventsViewModel
             {
-                Id = id
+                Id = eventModel.Id
             });
         }
 
         [HttpPost]
         [Route("/account/events/edit")]
-        public async Task<IActionResult> Edit(CreateEvent.Command command)
+        public async Task<IActionResult> Edit(UpdateEvent.Command command)
         {
-            var result = await _mediator.Send(command);
-            
-            /*return RedirectToAction("Edit", new BlogPostEdit.Query { Id = id.Id });*/
-            return RedirectToAction("Edit", result.Id);
+            try
+            {
+                await _mediator.Send(command);
+            }
+            catch (ValidationException e)
+            {
+                return View(new ManageEventsViewModel
+                {
+                    Errors = e.Errors.ToList(),
+                    EventDate = command.EventDate,
+                    EventFilename = command.EventFilename,
+                    EventName = command.EventName
+                });
+            }
+
+            return RedirectToAction("Edit", command.Id);
         }
     }
 }

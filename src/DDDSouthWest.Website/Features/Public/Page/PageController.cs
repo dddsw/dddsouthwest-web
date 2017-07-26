@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using DDDSouthWest.Website.Framework;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace DDDSouthWest.Website.Features.Public.Page
 {

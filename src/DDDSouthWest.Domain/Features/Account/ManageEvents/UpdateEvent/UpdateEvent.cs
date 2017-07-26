@@ -5,16 +5,17 @@ using MediatR;
 
 namespace DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateEvent
 {
-    public class UpdatEvent
+    public class UpdateEvent
     {
-        public class Command : IRequest<Response>
+        public class Command : IRequest
         {
+            public int Id { get; set; }
             public string EventName { get; set; }
             public string EventFilename { get; set; }
             public DateTime EventDate { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Command, Response>
+        public class Handler : IAsyncRequestHandler<Command>
         {
             private readonly UpdateEventValidation _validation;
 
@@ -22,21 +23,13 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateEvent
             {
                 _validation = validation;
             }
-            
-            public Task<Response> Handle(Command message)
+
+            public Task Handle(Command message)
             {
                 _validation.ValidateAndThrow(message);
-                
-                return Task.FromResult(new Response
-                {
-                    Id = 1
-                });
-            }
-        }
 
-        public class Response
-        {
-            public int Id { get; set; }
+                return Task.CompletedTask;
+            }
         }
     }
 }

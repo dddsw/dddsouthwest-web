@@ -1,6 +1,8 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
+using DDDSouthWest.Domain;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateEvent;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
 using DDDSouthWest.Domain.Features.Public.Page;
 using DDDSouthWest.Website.Framework;
@@ -38,6 +40,7 @@ namespace DDDSouthWest.Website
             
             services.AddTransient<CreateEventValidation, CreateEventValidation>();
             services.AddTransient<CreatePageValidation, CreatePageValidation>();
+            services.AddTransient<GetEventByIdQuery, GetEventByIdQuery>();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthorization(options =>
@@ -50,7 +53,7 @@ namespace DDDSouthWest.Website
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, WebsiteConfigurationOptions configurationOptions)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, AuthServerConfigurationOptions configurationOptions)
         {
             app.UseStaticFiles();
 

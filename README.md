@@ -22,6 +22,10 @@ New and improved website for the DDD South West conference.
 - Add `website` and `identityserver` to your host file, mapping them both to `localhost`. 
 - Navigate to the website on `http://website:5002`
 
+### Create your database (temporary - will be improved)
+
+`docker run -p 5432:5432-e POSTGRES_USER=dddsouthwest_user -e POSTGRES_PASSWORD=letmein -e POSTGRES_DB=dddsouthwest postgres:9.4`
+
 # Design
 
 A preview of the front page:

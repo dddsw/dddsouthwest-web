@@ -1,6 +1,6 @@
 ﻿namespace DDDSouthWest.Website.Framework
 {
-    public class WebsiteConfigurationOptions
+    public class AuthServerConfigurationOptions
     {
         public IdentityServer IdentityServer { get; set; }
     }
