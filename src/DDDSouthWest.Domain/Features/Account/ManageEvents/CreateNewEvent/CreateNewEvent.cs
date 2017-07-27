@@ -36,11 +36,13 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
                     // TODO: Move into query object, or even validation object?
-                    int totalClashingEvents = await connection.QuerySingleOrDefaultAsync<int>("SELECT COUNT(*) FROM events WHERE EventFilename = @EventFilename", new {EventFilename = message.EventFilename});
+                    const string sql = "SELECT COUNT(*) FROM events WHERE EventFilename = @EventFilename";
+                    int totalClashingEvents = await connection.QuerySingleOrDefaultAsync<int>(sql, new {EventFilename = message.EventFilename});
                     if (totalClashingEvents > 0)
                         throw new DuplicateRecordException($"Event with filename '{message.EventFilename}' already exists");
 
-                    eventId = await connection.QuerySingleAsync<int>(@"INSERT INTO events (EventName, EventFilename) Values (@EventName, @EventFilename) RETURNING Id;", message);
+                    const string createEventSql = "INSERT INTO events (EventName, EventFilename) Values (@EventName, @EventFilename) RETURNING Id";
+                    eventId = await connection.QuerySingleAsync<int>(createEventSql, message);
                 }
 
                 return new Response

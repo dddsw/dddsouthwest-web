@@ -27,7 +27,8 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.ListEvents
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    var events = await connection.QueryAsync<EventListModel>("SELECT Id, EventName, EventFilename FROM events");
+                    const string sql = "SELECT Id, EventName, EventFilename FROM events";
+                    var events = await connection.QueryAsync<EventListModel>(sql);
 
                     return new Response
                     {
