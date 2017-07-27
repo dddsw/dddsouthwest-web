@@ -14,7 +14,7 @@
 
     <h2>Edit Event</h2>
     
-    @using (Html.BeginForm("Edit", "ManageEvents", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    @using (Html.BeginForm("Update", "ManageEvents", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
     {
         @Html.HiddenFor(x => x.Id)
         @Html.Partial("_Form")

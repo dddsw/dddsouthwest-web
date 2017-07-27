@@ -1,15 +1,14 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Dapper;
 using Npgsql;
 
 namespace DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent
 {
-    public class GetEventByIdQuery
+    public class QueryEventById
     {
         private readonly ClientConfigurationOptions _options;
 
-        public GetEventByIdQuery(ClientConfigurationOptions options)
+        public QueryEventById(ClientConfigurationOptions options)
         {
             _options = options;
         }
@@ -18,9 +17,7 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent
         {
             using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
             {
-                var result = await connection.QueryAsync<EventModel>("SELECT Id, EventName, EventFilename FROM events WHERE Id = @id LIMIT 1", new {id});
-
-                return result.FirstOrDefault();
+                return await connection.QuerySingleOrDefaultAsync<EventModel>("SELECT Id, EventName, EventFilename FROM events WHERE Id = @id LIMIT 1", new {id});
             }
         }
     }

@@ -12,16 +12,16 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent
 
         public class Handler : IAsyncRequestHandler<Query, EventModel>
         {
-            private readonly GetEventByIdQuery _getEventByIdQuery;
+            private readonly QueryEventById _queryEventById;
 
-            public Handler(GetEventByIdQuery getEventByIdQuery)
+            public Handler(QueryEventById queryEventById)
             {
-                _getEventByIdQuery = getEventByIdQuery;
+                _queryEventById = queryEventById;
             }
 
             public async Task<EventModel> Handle(Query message)
             {
-                return await _getEventByIdQuery.Invoke(message.Id);
+                return await _queryEventById.Invoke(message.Id);
             }
         }
     }

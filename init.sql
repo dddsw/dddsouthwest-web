@@ -5,8 +5,8 @@ GRANT ALL PRIVILEGES ON DATABASE dddsouthwest TO dddsouthwest_user;
 CREATE TABLE public.Events
 (
     Id SERIAL PRIMARY KEY,
-    EventName VARCHAR(200) NOT NULL,
-    EventFilename VARCHAR(200)
+    Name VARCHAR(200) NOT NULL,
+    Filename VARCHAR(200)
 );
 
-CREATE UNIQUE INDEX events_EventFilename_uindex ON public.events (EventFilename);
+CREATE UNIQUE INDEX Events_Filename_uindex ON public.Events (Filename);

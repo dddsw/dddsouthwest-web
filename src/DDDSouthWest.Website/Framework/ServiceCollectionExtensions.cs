@@ -12,10 +12,9 @@ namespace DDDSouthWest.Website.Framework
             services.AddOptions();
             services.Configure<ClientConfigurationOptions>(configuration.GetSection("DDDSouthWestWebsite"));
 
-            services.AddSingleton(p => p.GetRequiredService<IOptions<AuthServerConfigurationOptions>>().Value);
-            services.AddSingleton(p => p.GetRequiredService<AuthServerConfigurationOptions>().IdentityServer);
-            
             services.AddSingleton(p => p.GetRequiredService<IOptions<ClientConfigurationOptions>>().Value);
+            
+            services.AddSingleton(p => p.GetRequiredService<ClientConfigurationOptions>().IdentityServer);
             services.AddSingleton(p => p.GetRequiredService<ClientConfigurationOptions>().Database);
 
             return services;

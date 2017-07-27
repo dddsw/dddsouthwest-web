@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 
-namespace DDDSouthWest.Domain.Features.Account.ManageEvents.CreateEvent
+namespace DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent
 {
-    public class CreateEventValidation : AbstractValidator<CreateEvent.Command>
+    public class CreateEventValidation : AbstractValidator<CreateNewEvent.Command>
     {
         public CreateEventValidation()
         {

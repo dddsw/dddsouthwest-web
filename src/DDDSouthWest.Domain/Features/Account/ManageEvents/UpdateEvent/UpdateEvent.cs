@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using FluentValidation;
 using MediatR;
+using Npgsql;
 
 namespace DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateEvent
 {
@@ -18,17 +21,26 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateEvent
         public class Handler : IAsyncRequestHandler<Command>
         {
             private readonly UpdateEventValidation _validation;
+            private readonly ClientConfigurationOptions _options;
 
-            public Handler(UpdateEventValidation validation)
+            public Handler(UpdateEventValidation validation, ClientConfigurationOptions options)
             {
                 _validation = validation;
+                _options = options;
             }
 
-            public Task Handle(Command message)
+            public async Task Handle(Command message)
             {
                 _validation.ValidateAndThrow(message);
 
-                return Task.CompletedTask;
+                using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
+                {
+                    int totalClashingEvents = await connection.QuerySingleOrDefaultAsync<int>("SELECT COUNT(*) FROM events WHERE EventFilename = @EventFilename AND Id != @Id", new { Id = message.Id, EventFilename = message.EventFilename});
+                    if (totalClashingEvents > 0)
+                        throw new DuplicateRecordException($"Event with filename '{message.EventFilename}' already exists");
+
+                    await connection.ExecuteAsync(@"UPDATE events SET EventName = @EventName, EventFilename = @EventFilename WHERE Id = @Id", message);
+                }
             }
         }
     }

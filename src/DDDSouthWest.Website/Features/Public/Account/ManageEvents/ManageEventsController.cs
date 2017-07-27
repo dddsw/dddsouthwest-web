@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateEvent;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.ListEvents;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateEvent;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
@@ -22,9 +23,14 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageEvents
         }
         
         [Route("/account/events/", Name = RouteNames.EventsManage)]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var result = await _mediator.Send(new ListAllEvents.Query());
+            
+            return View(new EventListViewModel
+            {
+                Events = result.Events
+            });
         }
         
         [Route("/account/events/create", Name = RouteNames.EventCreate)]
@@ -35,9 +41,9 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageEvents
         
         [HttpPost]
         [Route("/account/events/create")]
-        public async Task<IActionResult> Create(CreateEvent.Command command)
+        public async Task<IActionResult> Create(CreateNewEvent.Command command)
         {
-            CreateEvent.Response result;
+            CreateNewEvent.Response result;
 
             try
             {
@@ -54,23 +60,26 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageEvents
                 });
             }
 
-            return RedirectToAction("Edit", result.Id);
+            return RedirectToAction(nameof(Index));
         }
 
         [Route("/account/events/edit/{id}", Name = RouteNames.EventEdit)]
         public async Task<IActionResult> Edit(GetEvent.Query query)
         {
             var eventModel = await _mediator.Send(query);
-            
+
             return View(new ManageEventsViewModel
             {
-                Id = eventModel.Id
+                Id = eventModel.Id,
+                EventFilename = eventModel.EventFilename,
+                EventDate = eventModel.EventDate,
+                EventName = eventModel.EventName
             });
         }
 
         [HttpPost]
         [Route("/account/events/edit")]
-        public async Task<IActionResult> Edit(UpdateEvent.Command command)
+        public async Task<IActionResult> Update(UpdateEvent.Command command)
         {
             try
             {
@@ -87,7 +96,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageEvents
                 });
             }
 
-            return RedirectToAction("Edit", command.Id);
+            return RedirectToRoute(RouteNames.EventsManage);
         }
     }
 }
