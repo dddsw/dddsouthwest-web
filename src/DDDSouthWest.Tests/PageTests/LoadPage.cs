@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Public.Page;
+using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
@@ -19,7 +20,17 @@ namespace DDDSouthWest.Tests.PageTests
         
     	[Given("Given the page handler exits")]
     	void GivenTheHandlerExists()
-    	{
+	    {
+	        var services = new ServiceCollection();
+
+	        services.AddTransient<GetPage>();
+
+		    var res = services.BuildServiceProvider();
+	        
+		    
+	            
+	            
+	        res.Bui
 	        _handler = new GetPage.Handler();
     	}
         
