@@ -2,8 +2,8 @@
 
 namespace DDDSouthWest.IdentityServer.Framework
 {
-    public class UserRegistrationService : User
+    /*public class UserRegistrationService : User
     {
         
-    }
+    }*/
 }

@@ -1,48 +1,27 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
-using DDDSouthWest.Domain.Features.Public.Page;
-using Microsoft.Extensions.DependencyInjection;
-using TestStack.BDDfy;
+using DDDSouthWest.Tests.Framework;
+using Shouldly;
 using Xunit;
 
 namespace DDDSouthWest.Tests.PageTests
 {
     public class CreateNewEventTests
     {
-
-        private IServiceProvider _serviceProvider;
-        
-        public CreateNewEventTests()
-        {
-            var services = new ServiceCollection();
-
-            services.AddTransient<CreateNewEvent>();
-
-            _serviceProvider = services.BuildServiceProvider();
-        }
-
-        [Given("Given the page handler exits")]
-        private void GivenTheHandlerExists()
-        {
-            _handler = new GetPage.Handler();
-        }
-
-        private async Task WhenTheUserRequestsAPage()
-        {
-            _response = await _handler.Handle(new GetPage.Query {Filename = Filename});
-        }
-
-        private void ThenThePageShouldBeLoaded()
-        {
-            _response.Filename.ShouldBe(Filename);
-            _response.BodyContent.ShouldNotBeNullOrEmpty();
-        }
-
         [Fact]
-        public void Execute()
+        public async Task Should_create_new_event()
         {
-            this.BDDfy();
+            var mediator = ResolveContainer.GetMediator();
+
+            var result = await mediator.Send(new CreateNewEvent.Command
+            {
+                EventDate = DateTime.Now,
+                EventFilename = "Event filename",
+                EventName = "Event name"
+            });
+            
+            result.Id.ShouldBe(5);
         }
     }
 }

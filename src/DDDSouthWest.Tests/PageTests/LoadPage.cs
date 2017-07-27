@@ -7,6 +7,7 @@ using Xunit;
 
 namespace DDDSouthWest.Tests.PageTests
 {
+
     [Story(
         AsA = "As a page visitor",
         IWant = "I want to view a page",
@@ -26,11 +27,7 @@ namespace DDDSouthWest.Tests.PageTests
 	        services.AddTransient<GetPage>();
 
 		    var res = services.BuildServiceProvider();
-	        
-		    
-	            
-	            
-	        res.Bui
+
 	        _handler = new GetPage.Handler();
     	}
         
