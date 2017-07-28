@@ -15,7 +15,4 @@
     <ProjectReference Include="..\DDDSouthWest.Domain\DDDSouthWest.Domain.csproj" />
     <ProjectReference Include="..\DDDSouthWest.Website\DDDSouthWest.Website.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ManageEvents" />
-  </ItemGroup>
 </Project>

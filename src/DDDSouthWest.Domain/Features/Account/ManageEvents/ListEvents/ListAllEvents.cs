@@ -11,7 +11,6 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.ListEvents
     {
         public class Query : IRequest<Response>
         {
-            public int Id { get; set; }
         }
 
         public class Handler : IAsyncRequestHandler<Query, Response>

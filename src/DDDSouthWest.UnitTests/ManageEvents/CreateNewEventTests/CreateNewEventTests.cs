@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using DDDSouthWest.Domain;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
+using FluentValidation;
 using Shouldly;
 using Xunit;
-using ValidationException = FluentValidation.ValidationException;
 
 namespace DDDSouthWest.UnitTests.ManageEvents.CreateNewEventTests
 {
@@ -24,7 +24,7 @@ namespace DDDSouthWest.UnitTests.ManageEvents.CreateNewEventTests
 
             result.Id.ShouldBeGreaterThan(0);
         }
-        
+
         [Fact]
         public async Task Prevent_duplicate_event()
         {
@@ -51,7 +51,7 @@ namespace DDDSouthWest.UnitTests.ManageEvents.CreateNewEventTests
             {
                 EventDate = DateTime.Now
             };
-            
+
             await Should.ThrowAsync<ValidationException>(mediator.Send(invalidEvent));
         }
     }

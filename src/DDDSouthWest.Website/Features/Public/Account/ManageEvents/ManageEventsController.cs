@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.ListEvents;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateEvent;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateExistingEvent;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.ViewEventDetail;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
 using MediatR;
@@ -64,7 +65,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageEvents
         }
 
         [Route("/account/events/edit/{id}", Name = RouteNames.EventEdit)]
-        public async Task<IActionResult> Edit(GetEvent.Query query)
+        public async Task<IActionResult> Edit(ViewEventDetail.Query query)
         {
             var eventModel = await _mediator.Send(query);
 
@@ -79,7 +80,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageEvents
 
         [HttpPost]
         [Route("/account/events/edit")]
-        public async Task<IActionResult> Update(UpdateEvent.Command command)
+        public async Task<IActionResult> Update(UpdateExistingEvent.Command command)
         {
             try
             {

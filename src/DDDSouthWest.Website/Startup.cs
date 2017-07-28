@@ -3,7 +3,7 @@ using System.Reflection;
 using DDDSouthWest.Domain;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateEvent;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateExistingEvent;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
 using DDDSouthWest.Domain.Features.Public.Page;
 using DDDSouthWest.Website.Framework;
@@ -41,7 +41,7 @@ namespace DDDSouthWest.Website
             
             services.AddTransient<CreateEventValidation, CreateEventValidation>();
             services.AddTransient<CreatePageValidation, CreatePageValidation>();
-            services.AddTransient<UpdateEventValidation, UpdateEventValidation>();
+            services.AddTransient<UpdateExistingEventValidation, UpdateExistingEventValidation>();
             services.AddTransient<QueryEventById, QueryEventById>();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();

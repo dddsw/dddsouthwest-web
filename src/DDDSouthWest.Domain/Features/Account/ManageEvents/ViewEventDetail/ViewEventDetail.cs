@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent;
 using MediatR;
 
-namespace DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent
+namespace DDDSouthWest.Domain.Features.Account.ManageEvents.ViewEventDetail
 {
-    public class GetEvent
+    public class ViewEventDetail
     {
         public class Query : IRequest<EventModel>
         {

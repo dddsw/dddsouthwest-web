@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using FluentValidation;
 using MediatR;
 using Npgsql;
 
-namespace DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateEvent
+namespace DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateExistingEvent
 {
-    public class UpdateEvent
+    public class UpdateExistingEvent
     {
         public class Command : IRequest
         {
@@ -20,10 +19,10 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateEvent
 
         public class Handler : IAsyncRequestHandler<Command>
         {
-            private readonly UpdateEventValidation _validation;
+            private readonly UpdateExistingEventValidation _validation;
             private readonly ClientConfigurationOptions _options;
 
-            public Handler(UpdateEventValidation validation, ClientConfigurationOptions options)
+            public Handler(UpdateExistingEventValidation validation, ClientConfigurationOptions options)
             {
                 _validation = validation;
                 _options = options;
