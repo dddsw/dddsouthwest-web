@@ -5,7 +5,7 @@ using DDDSouthWest.Domain.Features.Account.ManageEvents.ListEvents;
 using Shouldly;
 using Xunit;
 
-namespace DDDSouthWest.UnitTests.ManageEvents.ListEvents
+namespace DDDSouthWest.UnitTests.ManageEvents.ListEventsTests
 {
     public class ListEvents
     {
