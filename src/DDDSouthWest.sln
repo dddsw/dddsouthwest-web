@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDSouthWest.IdentityServer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDSouthWest.Tests", "DDDSouthWest.Tests\DDDSouthWest.Tests.csproj", "{BBA83CA3-85BE-4B3E-B8E8-769CFDE7EBB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDSouthWest.UnitTests", "DDDSouthWest.UnitTests\DDDSouthWest.UnitTests.csproj", "{220ABBEE-2BA2-461C-92ED-2153F936B0F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,18 @@ Global
 		{BBA83CA3-85BE-4B3E-B8E8-769CFDE7EBB1}.Release|x64.Build.0 = Release|x64
 		{BBA83CA3-85BE-4B3E-B8E8-769CFDE7EBB1}.Release|x86.ActiveCfg = Release|x86
 		{BBA83CA3-85BE-4B3E-B8E8-769CFDE7EBB1}.Release|x86.Build.0 = Release|x86
+		{220ABBEE-2BA2-461C-92ED-2153F936B0F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{220ABBEE-2BA2-461C-92ED-2153F936B0F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{220ABBEE-2BA2-461C-92ED-2153F936B0F0}.Debug|x64.ActiveCfg = Debug|x64
+		{220ABBEE-2BA2-461C-92ED-2153F936B0F0}.Debug|x64.Build.0 = Debug|x64
+		{220ABBEE-2BA2-461C-92ED-2153F936B0F0}.Debug|x86.ActiveCfg = Debug|x86
+		{220ABBEE-2BA2-461C-92ED-2153F936B0F0}.Debug|x86.Build.0 = Debug|x86
+		{220ABBEE-2BA2-461C-92ED-2153F936B0F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{220ABBEE-2BA2-461C-92ED-2153F936B0F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{220ABBEE-2BA2-461C-92ED-2153F936B0F0}.Release|x64.ActiveCfg = Release|x64
+		{220ABBEE-2BA2-461C-92ED-2153F936B0F0}.Release|x64.Build.0 = Release|x64
+		{220ABBEE-2BA2-461C-92ED-2153F936B0F0}.Release|x86.ActiveCfg = Release|x86
+		{220ABBEE-2BA2-461C-92ED-2153F936B0F0}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
