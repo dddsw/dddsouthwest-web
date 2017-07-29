@@ -2,9 +2,9 @@
 
 namespace DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateExistingEvent
 {
-    public class UpdateExistingEventValidation : AbstractValidator<UpdateExistingEvent.Command>
+    public class UpdateExistingEventValidator : AbstractValidator<UpdateExistingEvent.Command>
     {
-        public UpdateExistingEventValidation()
+        public UpdateExistingEventValidator()
         {
             RuleFor(x => x.EventName).NotEmpty();
             RuleFor(x => x.EventFilename).NotEmpty();

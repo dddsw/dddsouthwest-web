@@ -12,5 +12,9 @@
         
         public const string SpeakerEdit = "speaker_edit";
         public const string SpeakersManage = "speaker_manage";
+        
+        public const string TalkEdit = "talk_edit";
+        public const string TalkCreate = "talk_create";
+        public const string TalksManage = "talk_manage";
     }
 }

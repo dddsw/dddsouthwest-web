@@ -10,3 +10,13 @@ CREATE TABLE public.Events
 );
 
 CREATE UNIQUE INDEX Events_Filename_uindex ON public.Events (Filename);
+
+
+CREATE TABLE public.Talks
+(
+    Id SERIAL PRIMARY KEY,
+    TalkTitle VARCHAR(255) NOT NULL,
+    TalkFilename VARCHAR(255) NOT NULL,
+    TalkBody VARCHAR NOT NULL,
+    SubmissionDate TIMESTAMP NOT NULL
+);

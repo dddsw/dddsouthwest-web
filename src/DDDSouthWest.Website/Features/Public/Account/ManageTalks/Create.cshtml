@@ -1,0 +1,21 @@
+﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.Account.ManageEvents.ManageEventsViewModel
+
+@{
+    ViewBag.Tab = PageTab.Login;                                                        
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="Events"/>
+}
+
+@section MainColBody {
+
+    <h2>Create Event</h2>
+    
+    @using (Html.BeginForm("Create", "ManageEvents", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    {
+        @Html.Partial("_Form")
+    }
+}

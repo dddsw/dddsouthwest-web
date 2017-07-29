@@ -18,18 +18,18 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent
 
         public class Handler : IAsyncRequestHandler<Command, Response>
         {
-            private readonly CreateEventValidation _validation;
+            private readonly CreateEventValidator _validator;
             private readonly ClientConfigurationOptions _options;
 
-            public Handler(CreateEventValidation validation, ClientConfigurationOptions options)
+            public Handler(CreateEventValidator validator, ClientConfigurationOptions options)
             {
-                _validation = validation;
+                _validator = validator;
                 _options = options;
             }
             
             public async Task<Response> Handle(Command message)
             {
-                _validation.ValidateAndThrow(message);
+                _validator.ValidateAndThrow(message);
                 
                 int eventId;
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))

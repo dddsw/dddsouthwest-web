@@ -19,18 +19,18 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateExistingEvent
 
         public class Handler : IAsyncRequestHandler<Command>
         {
-            private readonly UpdateExistingEventValidation _validation;
+            private readonly UpdateExistingEventValidator _validator;
             private readonly ClientConfigurationOptions _options;
 
-            public Handler(UpdateExistingEventValidation validation, ClientConfigurationOptions options)
+            public Handler(UpdateExistingEventValidator validator, ClientConfigurationOptions options)
             {
-                _validation = validation;
+                _validator = validator;
                 _options = options;
             }
 
             public async Task Handle(Command message)
             {
-                _validation.ValidateAndThrow(message);
+                _validator.ValidateAndThrow(message);
 
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {

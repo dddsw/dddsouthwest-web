@@ -39,9 +39,9 @@ namespace DDDSouthWest.Website
 
             services.AddWebsiteAppSettingsOptions(Configuration);
             
-            services.AddTransient<CreateEventValidation, CreateEventValidation>();
+            services.AddTransient<CreateEventValidator, CreateEventValidator>();
             services.AddTransient<CreatePageValidation, CreatePageValidation>();
-            services.AddTransient<UpdateExistingEventValidation, UpdateExistingEventValidation>();
+            services.AddTransient<UpdateExistingEventValidator, UpdateExistingEventValidator>();
             services.AddTransient<QueryEventById, QueryEventById>();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
