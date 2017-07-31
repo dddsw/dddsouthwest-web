@@ -24,7 +24,7 @@ New and improved website for the DDD South West conference.
 
 ### Create your database (temporary - will be improved)
 
-`docker run -p 5432:5432-e POSTGRES_USER=dddsouthwest_user -e POSTGRES_PASSWORD=letmein -e POSTGRES_DB=dddsouthwest postgres:9.4`
+`docker run -d -p 5432:5432 -e POSTGRES_USER=dddsouthwest_user -e POSTGRES_PASSWORD=letmein -e POSTGRES_DB=dddsouthwest postgres:9.4`
 
 # Design
 
