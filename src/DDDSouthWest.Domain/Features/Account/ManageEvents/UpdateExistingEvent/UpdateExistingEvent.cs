@@ -34,10 +34,6 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateExistingEvent
 
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    int totalClashingEvents = await connection.QuerySingleOrDefaultAsync<int>("SELECT COUNT(*) FROM events WHERE EventFilename = @EventFilename AND Id != @Id", new { Id = message.Id, EventFilename = message.EventFilename});
-                    if (totalClashingEvents > 0)
-                        throw new DuplicateRecordException($"Event with filename '{message.EventFilename}' already exists");
-
                     await connection.ExecuteAsync(@"UPDATE events SET EventName = @EventName, EventFilename = @EventFilename WHERE Id = @Id", message);
                 }
             }

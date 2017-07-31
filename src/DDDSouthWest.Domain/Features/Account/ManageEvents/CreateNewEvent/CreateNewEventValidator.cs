@@ -13,7 +13,7 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent
             _options = options;
 
             RuleFor(x => x.EventName).NotEmpty();
-            RuleFor(x => x.EventFilename).Must(FilenameIsUnique).WithMessage("Event with filename already exists");
+            RuleFor(x => x.EventFilename).Must(FilenameIsUnique).WithMessage("'Event Filename' must be unqiue");
         }
 
         private bool FilenameIsUnique(string eventFilename)

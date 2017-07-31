@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.ListEvents;
+using DDDSouthWest.Domain.Features.Account.ManageTalks.ListTalks;
 using DDDSouthWest.Website.Framework;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -20,20 +21,21 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
         [Route("/account/talks/", Name = RouteNames.TalksManage)]
         public async Task<IActionResult> Index()
         {
-            var result = await _mediator.Send(new ListAllEvents.Query());
+            var result = await _mediator.Send(new ListAllTalks.Query());
 
             return View(new TalkListViewModel
             {
-                Talks = result.Events
+                Talks = result.Talks
             });
         }
 
-        /*[Route("/account/events/create", Name = RouteNames.EventCreate)]
+        [Route("/account/talks/create", Name = RouteNames.TalkCreate)]
         public IActionResult Create()
         {
             return View(new ManageTalksViewModel());
         }
         
+        /*
         [HttpPost]
         [Route("/account/events/create")]
         public async Task<IActionResult> Create(CreateNewEvent.Command command)

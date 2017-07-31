@@ -1,20 +1,20 @@
 ﻿@using DDDSouthWest.Website.Framework
-@model DDDSouthWest.Website.Features.Public.Account.ManageEvents.ManageEventsViewModel
+@model DDDSouthWest.Website.Features.Public.Account.ManageTalks.ManageTalksViewModel
 
 @{
-    ViewBag.Tab = PageTab.Login;                                                        
+    ViewBag.Tab = PageTab.Login;                          §                              
     Layout = "~/Views/Shared/_LayoutFull.cshtml";
 }
 
 @section Header {
-    <page-banner title="Events"/>
+    <page-banner title="Talks"/>
 }
 
 @section MainColBody {
 
-    <h2>Create Event</h2>
+    <h2>Add New Talk</h2>
     
-    @using (Html.BeginForm("Create", "ManageEvents", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    @using (Html.BeginForm("Create", "ManageTalks", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
     {
         @Html.Partial("_Form")
     }

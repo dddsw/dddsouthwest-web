@@ -17,6 +17,10 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
 
         public string TalkFilename { get; set; }
 
+        public string TalkSummary { get; set; }
+
+        public string TalkBody { get; set; }
+
         public IList<ValidationFailure> Errors { get; set; }
 
         public bool HasErrors => Errors.Any();

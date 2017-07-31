@@ -1,23 +1,23 @@
 ﻿@using DDDSouthWest.Website.Framework
-@model DDDSouthWest.Website.Features.Public.Account.ManageEvents.EventListViewModel
+@model DDDSouthWest.Website.Features.Public.Account.ManageTalks.TalkListViewModel
 
 @{
-    ViewBag.Tab = PageTab.Login;                                                        
+    ViewBag.Tab = PageTab.Login;
     Layout = "~/Views/Shared/_LayoutFull.cshtml";
 }
 
 @section Header {
-    <page-banner title="Events"/>
+    <page-banner title="Talks"/>
 }
 
 @section MainColBody {
 
-    <h2>Manage Events</h2>
+    <h2>Manage Talks</h2>
     
     <div class="pure-g">
         
         <div class="pure-u-1-1 pure-block">
-            <a class="pure-button pure-button-primary" href="@Url.RouteUrl(RouteNames.EventCreate)">Create new event</a>
+            <a class="pure-button pure-button-primary" href="@Url.RouteUrl(RouteNames.TalkCreate)">Add New Talk</a>
         </div>
 
         <div class="pure-u-1-1 pure-block">
@@ -26,17 +26,17 @@
                 <thead>
                 <tr>
                     <th>&nbsp;</th>
-                    <th>Event</th>
-                    <th>Date</th>
+                    <th>Talk Title</th>
+                    <th>Submission Date</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                @foreach (var eventItem in Model.Events)
+                @foreach (var talk in Model.Talks)
                 {
                     <tr>
-                        <td><a href="@Url.RouteUrl(RouteNames.EventEdit, new { id = eventItem.Id })">Edit</a></td>
-                        <td>@eventItem.EventName</td>
+                        <td><a href="@Url.RouteUrl(RouteNames.TalkEdit, new { id = talk.Id })">Edit</a></td>
+                        <td>@talk.TalkTitle</td>
                         <td>7th May 2018</td>
                     </tr>    
                 }
@@ -45,11 +45,5 @@
 
         </div>
 
-
     </div>
-    
-    
-    
-    
-
 }

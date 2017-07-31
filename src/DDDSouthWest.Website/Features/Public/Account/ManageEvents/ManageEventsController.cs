@@ -88,7 +88,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageEvents
             }
             catch (ValidationException e)
             {
-                return View(new ManageEventsViewModel
+                return View("Edit", new ManageEventsViewModel
                 {
                     Errors = e.Errors.ToList(),
                     EventDate = command.EventDate,
