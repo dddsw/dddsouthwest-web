@@ -18,10 +18,10 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent
 
         public class Handler : IAsyncRequestHandler<Command, Response>
         {
-            private readonly CreateEventValidator _validator;
+            private readonly CreateNewEventValidator _validator;
             private readonly ClientConfigurationOptions _options;
 
-            public Handler(CreateEventValidator validator, ClientConfigurationOptions options)
+            public Handler(CreateNewEventValidator validator, ClientConfigurationOptions options)
             {
                 _validator = validator;
                 _options = options;
@@ -34,12 +34,6 @@ namespace DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent
                 int eventId;
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    // TODO: Move into query object, or even validation object?
-                    const string sql = "SELECT COUNT(*) FROM events WHERE EventFilename = @EventFilename";
-                    int totalClashingEvents = await connection.QuerySingleOrDefaultAsync<int>(sql, new {EventFilename = message.EventFilename});
-                    if (totalClashingEvents > 0)
-                        throw new DuplicateRecordException($"Event with filename '{message.EventFilename}' already exists");
-
                     const string createEventSql = "INSERT INTO events (EventName, EventFilename) Values (@EventName, @EventFilename) RETURNING Id";
                     eventId = await connection.QuerySingleAsync<int>(createEventSql, message);
                 }

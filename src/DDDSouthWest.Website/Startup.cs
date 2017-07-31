@@ -39,7 +39,7 @@ namespace DDDSouthWest.Website
 
             services.AddWebsiteAppSettingsOptions(Configuration);
             
-            services.AddTransient<CreateEventValidator, CreateEventValidator>();
+            services.AddTransient<CreateNewEventValidator, CreateNewEventValidator>();
             services.AddTransient<CreatePageValidation, CreatePageValidation>();
             services.AddTransient<UpdateExistingEventValidator, UpdateExistingEventValidator>();
             services.AddTransient<QueryEventById, QueryEventById>();
