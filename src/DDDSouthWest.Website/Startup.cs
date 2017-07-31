@@ -35,6 +35,7 @@ namespace DDDSouthWest.Website
         {
             services.AddAuthorization();
             services.AddMvc().AddFeatureFolders();
+
             services.AddMediatR(typeof(GetPage.Query).GetTypeInfo().Assembly);
 
             services.AddWebsiteAppSettingsOptions(Configuration);

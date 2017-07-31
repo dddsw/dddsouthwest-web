@@ -60,6 +60,7 @@ namespace DDDSouthWest.IdentityServer
                 AllowedGrantTypes = GrantTypes.Implicit,
                 RequireConsent = false,
                 RedirectUris = {$"{websiteUrl}/signin-oidc"},
+                AllowOfflineAccess = true,
                 PostLogoutRedirectUris = {$"{websiteUrl}/signout-callback-oidc"},
                 AllowedScopes =
                 {
