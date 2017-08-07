@@ -8,6 +8,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using DDDSouthWest.IdentityServer.Framework;
 using IdentityModel;
 using IdentityServer4;
 using IdentityServer4.Services;
@@ -28,7 +29,7 @@ namespace DDDSouthWest.IdentityServer.Quickstart.Account
     [SecurityHeaders]
     public class AccountController : Controller
     {
-        private readonly TestUserStore _users;
+        private readonly UserStore _users;
         private readonly IIdentityServerInteractionService _interaction;
         private readonly AccountService _account;
 
@@ -36,10 +37,10 @@ namespace DDDSouthWest.IdentityServer.Quickstart.Account
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IHttpContextAccessor httpContextAccessor,
-            TestUserStore users = null)
+            UserStore users = null)
         {
             // if the TestUserStore is not in DI, then we'll just use the global users collection
-            _users = users ?? new TestUserStore(TestUsers.Users);
+            _users = users ?? new UserStore();
             _interaction = interaction;
             _account = new AccountService(interaction, httpContextAccessor, clientStore);
         }

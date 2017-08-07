@@ -24,3 +24,11 @@ CREATE TABLE public.Talks
     TalkBody VARCHAR NOT NULL,
     SubmissionDate TIMESTAMP NOT NULL
 );
+
+CREATE TABLE public.Users
+(
+    Id SERIAL PRIMARY KEY,
+    EmailAddress VARCHAR(255) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Salt VARCHAR(255) NOT NULL
+);

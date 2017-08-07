@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DDDSouthWest.IdentityServer.Framework;
+using IdentityServer4.Services;
+using IdentityServer4.Validation;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +35,12 @@ namespace DDDSouthWest.IdentityServer
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients(websiteUrl))
-                .AddTestUsers(Config.GetUsers());
+                /*.AddClientStore<DummyUserStore>()*/
+                /*.AddTestUsers(Config.GetUsers())*/;
+
+            services.AddTransient<DummyUserStore, DummyUserStore>();
+            services.AddTransient<IProfileService, ProfileService>();
+            services.AddTransient<IResourceOwnerPasswordValidator, CustomValidator>();
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)

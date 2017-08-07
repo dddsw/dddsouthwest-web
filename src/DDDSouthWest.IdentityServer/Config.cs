@@ -59,9 +59,9 @@ namespace DDDSouthWest.IdentityServer
                 ClientName = "MVC Client",
                 AllowedGrantTypes = GrantTypes.Implicit,
                 RequireConsent = false,
-                RedirectUris = {$"{websiteUrl}/signin-oidc"},
-                AllowOfflineAccess = true,
-                PostLogoutRedirectUris = {$"{websiteUrl}/signout-callback-oidc"},
+                RedirectUris = {"http://0.0.0.0:5002/signin-oidc"},
+/*                AllowOfflineAccess = true,*/
+                PostLogoutRedirectUris = {"http://0.0.0.0:5002/signout-callback-oidc"},
                 AllowedScopes =
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
