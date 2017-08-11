@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Dapper;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent;
 using Npgsql;
 
-namespace DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent
+namespace DDDSouthWest.Domain.Features.Account.ManageEvents.ViewEventDetail
 {
     public class QueryEventById
     {

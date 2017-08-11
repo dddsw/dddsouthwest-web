@@ -1,0 +1,22 @@
+﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.Account.Registration.RegistrationViewModel
+
+@{
+    ViewBag.Tab = PageTab.Register;
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="Registration"/>
+}
+
+@section MainColBody {
+
+    <h2>Speaker Registration</h2>
+
+    @using (Html.BeginForm("Create", "Registration", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    {
+        @Html.Partial("_Form")
+    }
+
+}

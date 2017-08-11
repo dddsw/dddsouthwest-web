@@ -4,7 +4,9 @@ using DDDSouthWest.Domain;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateExistingEvent;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.ViewEventDetail;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
+using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
 using DDDSouthWest.Domain.Features.Public.Page;
 using DDDSouthWest.Website.Framework;
 using MediatR;
@@ -43,7 +45,9 @@ namespace DDDSouthWest.Website
             services.AddTransient<CreateNewEventValidator, CreateNewEventValidator>();
             services.AddTransient<CreatePageValidation, CreatePageValidation>();
             services.AddTransient<UpdateExistingEventValidator, UpdateExistingEventValidator>();
+            services.AddTransient<RegisterNewUserValidator, RegisterNewUserValidator>();
             services.AddTransient<QueryEventById, QueryEventById>();
+            services.AddTransient<CreateNewRegisteredUser, CreateNewRegisteredUser>();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthorization(options =>

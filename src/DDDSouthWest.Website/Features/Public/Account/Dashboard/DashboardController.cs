@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DDDSouthWest.Website.Features.Public.Account.Dashboard
 {
-    [Route("account/", Name = "account_dashboard")]
+    [Route("account/", Name = RouteNames.AccountDashboard)]
     [Authorize(Policy = AccessPolicies.RegisteredAccessPolicy)]
     public class DashboardController : Controller
     {

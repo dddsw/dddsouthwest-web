@@ -8,6 +8,7 @@
         Sessions,
         Venue,
         Sponsors,
+        Register,
         Login,
         Account,
         Contact

@@ -1,0 +1,23 @@
+﻿@model DDDSouthWest.Website.Features.Public.Account.Registration.RegistrationViewModel
+
+@Html.AntiForgeryToken()
+
+<validation-summary errors="@Model.Errors" />
+
+<fieldset>
+    
+    <div class="pure-control-group">
+        <label asp-for="EmailAddress">Email Address</label>
+        <input asp-for="EmailAddress" class="pure-input-2-3"/>
+    </div>
+    
+    <div class="pure-control-group">
+        <label asp-for="Password">Password</label>
+        <input asp-for="Password" type="password" class="pure-input-2-3"/>
+    </div>
+    
+    <div class="pure-controls">
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    </div>
+
+</fieldset>
