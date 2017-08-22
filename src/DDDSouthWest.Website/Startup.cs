@@ -5,6 +5,9 @@ using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateExistingEvent;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.ViewEventDetail;
+using DDDSouthWest.Domain.Features.Account.ManageNews.CreateNews;
+using DDDSouthWest.Domain.Features.Account.ManageNews.UpdateExistingNews;
+using DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
 using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
 using DDDSouthWest.Domain.Features.Public.Page;
@@ -42,11 +45,18 @@ namespace DDDSouthWest.Website
 
             services.AddWebsiteAppSettingsOptions(Configuration);
             
+            // Validation
             services.AddTransient<CreateNewEventValidator, CreateNewEventValidator>();
-            services.AddTransient<CreatePageValidation, CreatePageValidation>();
             services.AddTransient<UpdateExistingEventValidator, UpdateExistingEventValidator>();
+                        
+            services.AddTransient<CreateNewsValidation, CreateNewsValidation>();
+            services.AddTransient<UpdateExistingNewsValidator, UpdateExistingNewsValidator>();
+            
+            services.AddTransient<CreatePageValidation, CreatePageValidation>();
             services.AddTransient<RegisterNewUserValidator, RegisterNewUserValidator>();
+            
             services.AddTransient<QueryEventById, QueryEventById>();
+            services.AddTransient<QueryNewsById, QueryNewsById>();
             services.AddTransient<CreateNewRegisteredUser, CreateNewRegisteredUser>();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
@@ -69,6 +79,11 @@ namespace DDDSouthWest.Website
                 AuthenticationScheme = "Cookies"
             });
 
+            if (env.IsDevelopment())
+                app.UseDeveloperExceptionPage();
+            else
+                app.UseExceptionHandler("/Home/Error");
+
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
                 AuthenticationScheme = "oidc",
@@ -77,20 +92,17 @@ namespace DDDSouthWest.Website
                 RequireHttpsMetadata = false,
                 ClientId = "mvc",
                 SaveTokens = true,
+                /*CallbackPath = "/boo",*/
                 Scope = {"roles"},
                 GetClaimsFromUserInfoEndpoint = true
             });
-
-            if (env.IsDevelopment())
-                app.UseDeveloperExceptionPage();
-            else
-                app.UseExceptionHandler("/Home/Error");
-
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute("page", "page/{*filename}", new {controller = "Page", action = "Index"});
             });
+
         }
     }
 }

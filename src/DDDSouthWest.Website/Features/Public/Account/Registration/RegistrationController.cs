@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
 using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
@@ -34,6 +35,8 @@ namespace DDDSouthWest.Website.Features.Public.Account.Registration
             }
             catch (ValidationException e)
             {
+                var res = e.Errors.Any(x => x.ErrorCode == RegisterNewUserValidator.NotUniqueErrorCode);
+                
                 return View("Index", new RegistrationViewModel
                 {
                     EmailAddress = register.EmailAddress,

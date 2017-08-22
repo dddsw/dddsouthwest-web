@@ -1,0 +1,57 @@
+﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.Account.ManageNews.NewsListViewModel
+
+@{
+    ViewBag.Tab = PageTab.Login;                                                        
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="News"/>
+}
+
+@section MainColBody {
+
+    <h2>Manage News</h2>
+    
+    <div class="pure-g">
+        
+        <div class="pure-u-1-1 pure-block">
+            <a class="pure-button pure-button-primary" href="@Url.RouteUrl(RouteNames.NewsCreate)">Create News Item</a>
+        </div>
+
+        <div class="pure-u-1-1 pure-block">
+
+            <table class="pure-table pure-table-horizontal util--stretch">
+                <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Title</th>
+                    <th>Date Posted</th>
+                    <th>Is Live</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                @foreach (var newsItem in Model.News)
+                {
+                    <tr>
+                        <td><a href="@Url.RouteUrl(RouteNames.NewsEdit, new { id = newsItem.Id })">Edit</a></td>
+                        <td>@newsItem.Title</td>
+                        <td>@newsItem.DatePosted</td>
+                        <td>@(newsItem.IsLive ? "Yes" : "No")</td>
+                    </tr>    
+                }
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+    
+    
+    
+    
+
+}

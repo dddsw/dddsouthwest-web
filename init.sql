@@ -31,5 +31,15 @@ CREATE TABLE public.Users
     EmailAddress VARCHAR(255) NOT NULL,
     Password VARCHAR(255) NOT NULL,
     Salt VARCHAR(255) NOT NULL,
-    Confirmed BOOLEAN DEFAULT FALSE NULL
+    Confirmed BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE public.News
+(
+    Id SERIAL PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    Filename VARCHAR(255) NOT NULL,
+    DatePosted TIMESTAMP,
+    Body VARCHAR,
+    IsLive BOOLEAN DEFAULT FALSE
 );

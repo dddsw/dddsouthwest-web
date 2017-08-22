@@ -1,0 +1,21 @@
+﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.Account.ManageNews.ManageNewsViewModel
+
+@{
+    ViewBag.Tab = PageTab.Login;                                                        
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="News"/>
+}
+
+@section MainColBody {
+
+    <h2>Create News Item</h2>
+    
+    @using (Html.BeginForm("Create", "ManageNews", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    {
+        @Html.Partial("_Form")
+    }
+}

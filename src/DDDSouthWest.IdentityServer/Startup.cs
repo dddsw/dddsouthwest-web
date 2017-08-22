@@ -36,11 +36,11 @@ namespace DDDSouthWest.IdentityServer
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients(websiteUrl))
                 /*.AddClientStore<DummyUserStore>()*/
-                /*.AddTestUsers(Config.GetUsers())*/;
+                .AddTestUsers(Config.GetUsers());
 
-            services.AddTransient<DummyUserStore, DummyUserStore>();
+            /*services.AddTransient<DummyUserStore, DummyUserStore>();
             services.AddTransient<IProfileService, ProfileService>();
-            services.AddTransient<IResourceOwnerPasswordValidator, CustomValidator>();
+            services.AddTransient<IResourceOwnerPasswordValidator, CustomValidator>();*/
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)

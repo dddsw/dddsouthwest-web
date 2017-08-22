@@ -30,7 +30,7 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
             }
         }
 
-        public static string Sha256(string input)
+        private static string Sha256(string input)
         {
             using (var shA256 = SHA256.Create())
             {

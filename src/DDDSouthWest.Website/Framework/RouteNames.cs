@@ -9,6 +9,11 @@
         public const string PageEdit = "page_edit";
         public const string PageCreate = "page_create";
         public const string PagesManage = "page_manage";
+
+        public const string NewsEdit = "news_edit";
+        public const string NewsCreate = "news_create";
+        public const string NewsDelete = "news_delete";
+        public const string NewsManage = "news_manage";
         
         public const string SpeakerEdit = "speaker_edit";
         public const string SpeakersManage = "speaker_manage";
