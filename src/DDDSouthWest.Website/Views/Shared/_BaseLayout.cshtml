@@ -22,6 +22,7 @@
         <link href="/css/normalize.css" rel="stylesheet" />
         <link href="/css/unsemantic-grid-responsive-no-ie7.css" rel="stylesheet" />
 	    <link href="/css/default.css" rel="stylesheet" />
+	    <link href="/css/styles.css" rel="stylesheet" />
 	    <link href="/css/layout.css" rel="stylesheet" />
 	    <link href="/css/nav.css" rel="stylesheet" />
 	    <link href="/css/components.css" rel="stylesheet" />
@@ -53,6 +54,7 @@
         <nav class="main-menu-container">
             <ul class="main-menu">
                 <li @Html.Raw(ViewBag.Tab == PageTab.Home ? "class=\"active\"" : string.Empty)><a href="/">Home</a></li>
+                <li @Html.Raw(ViewBag.Tab == PageTab.News ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.NewsList)">News</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.About ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "about"})">About</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Speakers ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "speakers"})">Speakers</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Sessions ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sessions"})">Sessions</a></li>

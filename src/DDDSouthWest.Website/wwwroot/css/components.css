@@ -17,3 +17,34 @@
 .error-list li {
     color: red;
 }
+
+/* News */
+
+.news-component {}
+
+.news-component__main-col {
+    padding: 10px;
+}
+
+.news-component__side-col {
+    background-color: #efefef;
+    padding: 10px;
+}
+
+.news-list {
+    margin: 0;
+    padding: 0;
+}
+
+.news-list .news-list__item {
+    margin: 0 0 20px;
+    list-style: none;
+    padding: 0;
+    border-bottom: 1px solid #efefef;
+}
+
+.news-list .news-list__title {
+    font-weight: bold;
+    margin: 0;
+    font-size:18px;
+}

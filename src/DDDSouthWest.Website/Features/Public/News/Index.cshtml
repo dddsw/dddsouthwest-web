@@ -1,0 +1,35 @@
+﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.News.NewsListViewModel
+
+@{
+    ViewBag.Tab = PageTab.News;                                                        
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="News"/>
+}
+
+@section MainColBody {
+        
+    <h2>Latest News</h2>
+    
+    <div class="pure-g">
+        
+        <div class="pure-u-1-1 pure-block">
+
+            <ol class="news-list">
+            @foreach (var newsItem in Model.News)
+            {
+                <li class="news-list__item">
+                <p class="news-list__title"><a href="@Url.RouteUrl(RouteNames.NewsDetail, new { id = newsItem.Id, filename = newsItem.Filename })">@newsItem.Title</a></p>
+                <p>Posted @newsItem.DatePosted</p>
+                </li>
+            }
+            </ol>
+            
+        </div>
+
+    </div>
+
+}

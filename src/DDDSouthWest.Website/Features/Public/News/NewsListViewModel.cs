@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using DDDSouthWest.Domain.Features.Account.ManageNews.ListNews;
+using DDDSouthWest.Domain.Features.Public.News.ListNews;
 
-namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
+namespace DDDSouthWest.Website.Features.Public.News
 {
     public class NewsListViewModel
     {
         public IList<NewsListModel> News { get; set; }
     }
-}
+}   

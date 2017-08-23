@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.ListNews;
 using DDDSouthWest.Domain.Features.Account.ManageNews.CreateNews;
+using DDDSouthWest.Domain.Features.Account.ManageNews.ListNews;
 using DDDSouthWest.Domain.Features.Account.ManageNews.UpdateExistingNews;
 using DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;

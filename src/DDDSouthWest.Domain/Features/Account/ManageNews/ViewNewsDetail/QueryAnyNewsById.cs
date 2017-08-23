@@ -5,11 +5,11 @@ using Npgsql;
 
 namespace DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail
 {
-    public class QueryNewsById
+    public class QueryAnyNewsById
     {
         private readonly ClientConfigurationOptions _options;
 
-        public QueryNewsById(ClientConfigurationOptions options)
+        public QueryAnyNewsById(ClientConfigurationOptions options)
         {
             _options = options;
         }

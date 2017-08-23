@@ -1,0 +1,8 @@
+.title {
+    font-size: 22px;
+}
+
+.title--underline {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+}

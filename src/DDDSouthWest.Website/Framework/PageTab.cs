@@ -3,6 +3,7 @@
     public enum PageTab
     {
         Home,
+        News,
         About,
         Speakers,
         Sessions,

@@ -40,6 +40,7 @@ namespace DDDSouthWest.Domain.Features.Account.ManageNews.UpdateExistingNews
                     const string query = @"UPDATE news SET Title = @Title, Filename = @Filename, Body = @Body, DatePosted = @DatePosted, IsLive = @IsLive WHERE Id = @Id";
                     await connection.ExecuteAsync(query, new
                     {
+                        Id = message.Id,
                         Title = message.Title,
                         Filename = message.Filename,
                         DatePosted = message.DatePosted,

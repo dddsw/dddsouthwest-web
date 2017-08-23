@@ -12,9 +12,9 @@ namespace DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail
 
         public class Handler : IAsyncRequestHandler<Query, NewsModel>
         {
-            private readonly QueryNewsById _queryEventById;
+            private readonly QueryAnyNewsById _queryEventById;
 
-            public Handler(QueryNewsById queryEventById)
+            public Handler(QueryAnyNewsById queryEventById)
             {
                 _queryEventById = queryEventById;
             }

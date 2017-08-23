@@ -5,7 +5,7 @@ using Dapper;
 using MediatR;
 using Npgsql;
 
-namespace DDDSouthWest.Domain.Features.Account.ManageEvents.ListNews
+namespace DDDSouthWest.Domain.Features.Account.ManageNews.ListNews
 {
     public class ListAllNews
     {

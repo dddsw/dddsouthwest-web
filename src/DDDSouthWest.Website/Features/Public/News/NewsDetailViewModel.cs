@@ -1,17 +1,14 @@
 ﻿using System;
 
-namespace DDDSouthWest.Domain.Features.Account.ManageEvents.ListNews
+namespace DDDSouthWest.Website.Features.Public.News
 {
-    public class NewsListModel
+    public class NewsDetailViewModel
     {
         public int Id { get; set; }
-
         public string Title { get; set; }
-
         public string Filename { get; set; }
-        
+        public string Body { get; set; }
         public DateTime DatePosted { get; set; }
-
-        public bool IsLive { get; set; }
+        public string CanonicalFilename { get; set; }
     }
 }

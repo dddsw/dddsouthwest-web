@@ -56,7 +56,7 @@ namespace DDDSouthWest.Website
             services.AddTransient<RegisterNewUserValidator, RegisterNewUserValidator>();
             
             services.AddTransient<QueryEventById, QueryEventById>();
-            services.AddTransient<QueryNewsById, QueryNewsById>();
+            services.AddTransient<QueryAnyNewsById, QueryAnyNewsById>();
             services.AddTransient<CreateNewRegisteredUser, CreateNewRegisteredUser>();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();

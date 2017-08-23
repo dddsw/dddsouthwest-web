@@ -4,7 +4,6 @@
     padding: 0;
     font-size: .875em;
     line-height: 1.42857;
-    font-family: 'Open Sans', sans-serif;
 }
 *, *:before, *:after {
     box-sizing: inherit;
@@ -17,7 +16,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', Arial;
     font-weight: normal;
 }
 
@@ -55,7 +54,6 @@ h3 {
 }
 
 p {
-    font-family: "Open Sans";
     font-size: 15.4px;
     line-height: 1.5em;
     margin: 0 0 16px;
