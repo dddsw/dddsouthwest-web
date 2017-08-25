@@ -92,7 +92,6 @@ namespace DDDSouthWest.Website
                 RequireHttpsMetadata = false,
                 ClientId = "mvc",
                 SaveTokens = true,
-                /*CallbackPath = "/boo",*/
                 Scope = {"roles"},
                 GetClaimsFromUserInfoEndpoint = true
             });
@@ -102,7 +101,6 @@ namespace DDDSouthWest.Website
                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute("page", "page/{*filename}", new {controller = "Page", action = "Index"});
             });
-
         }
     }
 }
