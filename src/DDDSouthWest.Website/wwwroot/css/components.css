@@ -48,3 +48,19 @@
     margin: 0;
     font-size:18px;
 }
+
+.news-detail{}
+
+.news-detail .news-detail__title {
+    margin: 0 0 5px;
+}
+
+.news-detail .news-detail__date {
+    margin: 0 0 20px;
+    font-size: 18px;
+}
+
+.news-detail .news-detail__content {
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 20px;
+}

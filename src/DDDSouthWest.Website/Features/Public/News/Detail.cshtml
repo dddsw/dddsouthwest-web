@@ -3,31 +3,29 @@
 
 @{
     ViewBag.Tab = PageTab.News;                                                        
-    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+    Layout = "~/Views/Shared/_LayoutSideColumn.cshtml";
 }
 
 @section Header {
     <page-banner title="News"/>
 }
 
-@section MainColBody {
+@section MainCol {
         
-    
-    
-    <div class="pure-g">
-        
-        <div class="pure-u-1-1 pure-block">                        
-            <h2>@Model.Title</h2>
-            <p>Posted @Model.DatePosted</p>
-            <p>@Model.Body</p>
-        </div>
-        
-        <div class="pure-u-1-1 pure-block">
-            
-            <a href="@Url.RouteUrl(RouteNames.NewsList)">View all news</a>
-
-        </div>
-
+    <div class="news-detail">
+        <h2 class="news-detail__title branding--primary">@Model.Title</h2>
+        <p class="news-detail__date">Posted @Model.DatePosted</p>
+        <p class="news-detail__content">@Model.Body</p>
     </div>
 
+            
+    <div class="pure-u-1-1 pure-block">
+        <a href="@Url.RouteUrl(RouteNames.NewsList)">View all news</a>    
+    </div>
+    
+}
+
+@section SideColumn
+{
+    <div style="border-left: 1px solid red; height: 500px;">sdfs</div>
 }

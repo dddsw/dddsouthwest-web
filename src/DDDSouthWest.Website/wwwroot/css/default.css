@@ -47,6 +47,7 @@ h2, h3, h4 {
 
 h2 {
     font-size: 40px;
+    line-height: 1.5em;
 }
 
 h3 {
@@ -70,4 +71,23 @@ p {
 .pure-block,
 .util--app-block {
     margin-bottom: 20px;
+}
+
+.l-box {
+    padding-right: 20px;
+}
+
+.r-box {
+    padding-left: 20px;
+}
+
+.gt-10 { padding-top: 10px; }
+.gt-20 { padding-top: 20px; }
+
+.gb-20 {
+    padding-bottom: 20px;
+}
+
+.g-10 {
+    padding: 10px;
 }
