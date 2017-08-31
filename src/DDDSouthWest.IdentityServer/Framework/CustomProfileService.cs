@@ -9,9 +9,9 @@ namespace DDDSouthWest.IdentityServer.Framework
     // https://github.com/IdentityServer/IdentityServer4/blob/75ac815e744051d8150274743cdd8588eb68abb0/src/IdentityServer4/Test/TestUserProfileService.cs
     public class CustomProfileService : IProfileService
     {
-        private readonly CustomUserStore _userStore;
+        private readonly IUserStore _userStore;
 
-        public CustomProfileService(CustomUserStore userStore)
+        public CustomProfileService(IUserStore userStore)
         {
             _userStore = userStore;
         }

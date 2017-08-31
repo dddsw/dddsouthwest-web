@@ -29,7 +29,7 @@ namespace DDDSouthWest.IdentityServer.Quickstart.Account
     [SecurityHeaders]
     public class AccountController : Controller
     {
-        private readonly CustomUserStore _users;
+        private readonly IUserStore _userStore;
         private readonly IIdentityServerInteractionService _interaction;
         private readonly AccountService _account;
 
@@ -37,10 +37,10 @@ namespace DDDSouthWest.IdentityServer.Quickstart.Account
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IHttpContextAccessor httpContextAccessor,
-            CustomUserStore users)
+            IUserStore userStore)
         {
             // if the TestUserStore is not in DI, then we'll just use the global users collection
-            _users = users;
+            _userStore = userStore;
             _interaction = interaction;
             _account = new AccountService(interaction, httpContextAccessor, clientStore);
         }
@@ -72,7 +72,7 @@ namespace DDDSouthWest.IdentityServer.Quickstart.Account
             if (ModelState.IsValid)
             {
                 // validate username/password against in-memory store
-                if (_users.ValidateCredentials(model.Username, model.Password))
+                if (_userStore.ValidateCredentials(model.Username, model.Password))
                 {
                     AuthenticationProperties props = null;
                     // only set explicit expiration here if persistent. 
@@ -87,7 +87,7 @@ namespace DDDSouthWest.IdentityServer.Quickstart.Account
                     };
 
                     // issue authentication cookie with subject ID and username
-                    var user = _users.FindByUsername(model.Username);
+                    var user = _userStore.FindByUsername(model.Username);
                     await HttpContext.Authentication.SignInAsync(user.SubjectId, user.EmailAddress, props);
 
                     // make sure the returnUrl is still valid, and if yes - redirect back to authorize endpoint
@@ -179,11 +179,8 @@ namespace DDDSouthWest.IdentityServer.Quickstart.Account
                     await HttpContext.Authentication.SignInAsync(IdentityServerConstants.ExternalCookieAuthenticationScheme, new ClaimsPrincipal(id), props);
                     return Redirect(returnUrl);
                 }
-                else
-                {
-                    // this triggers all of the windows auth schemes we're supporting so the browser can use what it supports
-                    return new ChallengeResult(AccountOptions.WindowsAuthenticationSchemes);
-                }
+                // this triggers all of the windows auth schemes we're supporting so the browser can use what it supports
+                return new ChallengeResult(AccountOptions.WindowsAuthenticationSchemes);
             }
             else
             {
@@ -233,14 +230,7 @@ namespace DDDSouthWest.IdentityServer.Quickstart.Account
             var userId = userIdClaim.Value;
 
             // check if the external user is already provisioned
-            var user = _users.FindByExternalProvider(provider, userId);
-            if (user == null)
-            {
-                // this sample simply auto-provisions new external user
-                // another common approach is to start a registrations workflow first
-                user = _users.AutoProvisionUser(provider, userId, claims);
-            }
-
+            var user = _userStore.FindByExternalProvider(provider, userId);
             var additionalClaims = new List<Claim>();
 
             // if the external system sent a session id claim, copy it over
@@ -260,7 +250,7 @@ namespace DDDSouthWest.IdentityServer.Quickstart.Account
             }
 
             // issue authentication cookie for user
-            await HttpContext.Authentication.SignInAsync(user.SubjectId, user.Username, provider, props, additionalClaims.ToArray());
+            await HttpContext.Authentication.SignInAsync(user.SubjectId, user.EmailAddress, provider, props, additionalClaims.ToArray());
 
             // delete temporary cookie used during external authentication
             await HttpContext.Authentication.SignOutAsync(IdentityServerConstants.ExternalCookieAuthenticationScheme);

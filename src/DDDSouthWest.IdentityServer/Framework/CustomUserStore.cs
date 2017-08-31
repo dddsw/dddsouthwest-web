@@ -11,7 +11,7 @@ using Npgsql;
 
 namespace DDDSouthWest.IdentityServer.Framework
 {
-    public class CustomUserStore
+    public class CustomUserStore : IUserStore
     {
         private readonly AuthServerConfigurationOptions _config;
 
@@ -47,7 +47,7 @@ namespace DDDSouthWest.IdentityServer.Framework
             using (var connection = new NpgsqlConnection(_config.Database.ConnectionString))
             {
                 var tempUser = connection.QuerySingleOrDefault<UserModelDataMap>(
-                    "SELECT Id, EmailAddress, Password, Salt, Roles, FamilyName, GivenName, Blocked FROM users WHERE Id = @Id LIMIT 1", new { Id = id });
+                    "SELECT Id, EmailAddress, Password, Salt, Roles, FamilyName, GivenName, IsBlocked FROM users WHERE Id = @Id LIMIT 1", new { Id = id });
 
                 //TODO: Do these fields (blocked etc) get serialised into the token?
                 var user = new UserModel
@@ -57,7 +57,7 @@ namespace DDDSouthWest.IdentityServer.Framework
                     Password = tempUser.Password,
                     FamilyName = tempUser.FamilyName,
                     GivenName = tempUser.GivenName,
-                    Blocked = tempUser.Blocked
+                    IsBlocked = tempUser.Blocked
                 };
                 
                 // TODO: Change to separate claims to allow separation of name?
@@ -103,12 +103,7 @@ namespace DDDSouthWest.IdentityServer.Framework
             }
         }
 
-        public TestUser AutoProvisionUser(string provider, string userId, List<Claim> claims)
-        {
-            throw new NotImplementedException();
-        }
-
-        public TestUser FindByExternalProvider(string provider, string userId)
+        public UserModel FindByExternalProvider(string provider, string userId)
         {
             throw new NotImplementedException();
         }

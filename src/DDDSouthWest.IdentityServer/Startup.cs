@@ -39,7 +39,7 @@ namespace DDDSouthWest.IdentityServer
                 .AddInMemoryClients(Config.GetClients(websiteUrl))
                 .AddProfileService<CustomProfileService>();
 
-            services.AddTransient<CustomUserStore, CustomUserStore>();
+            services.AddTransient<IUserStore, CustomUserStore>();
             services.AddTransient<IProfileService, CustomProfileService>();
             services.AddTransient<IResourceOwnerPasswordValidator, CustomValidator>();
         }

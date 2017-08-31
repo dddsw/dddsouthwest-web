@@ -71,35 +71,5 @@ namespace DDDSouthWest.IdentityServer
                 }
             }
         };
-
-        public static List<TestUser> GetUsers() => new List<TestUser>
-        {
-            new TestUser
-            {
-                SubjectId = "1",
-                Username = "josephwoodward",
-                Password = "password",
-                Claims = new List<Claim>
-                {
-                    new Claim("name", "Joseph Woodward"),
-                    new Claim("role", Role.Organiser),
-                    new Claim("role", Role.Speaker),
-                    new Claim("role", Role.Registered)
-                }
-            },
-            new TestUser
-            {
-                SubjectId = "2",
-                Username = "stuartlang",
-                Password = "password",
-                Claims = new List<Claim>
-                {
-                    new Claim("name", "Stuart Lang"),
-                    /*new Claim("role", Role.Organiser),*/
-                    new Claim("role", Role.Speaker),
-                    new Claim("role", Role.Registered)
-                }
-            }
-        };
     }
 }

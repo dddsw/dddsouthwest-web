@@ -33,7 +33,7 @@ CREATE TABLE public.Users
     EmailAddress VARCHAR(255) NOT NULL,
     Password VARCHAR(255) NOT NULL,
     Salt VARCHAR(255) NOT NULL,
-    Confirmed BOOLEAN DEFAULT FALSE,
+    IsBlocked BOOLEAN DEFAULT FALSE,
     Roles JSON NULL
 );
 
