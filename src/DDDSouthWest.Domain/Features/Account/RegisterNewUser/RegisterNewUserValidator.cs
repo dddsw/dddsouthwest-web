@@ -16,7 +16,7 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
             _options = options;
 
             RuleFor(x => x.EmailAddress).Must(BeAnEmailAddress).WithMessage("'Email address' is a valid email address");
-            RuleFor(x => x.EmailAddress).Must(BeAUniqueEmailAddress).WithErrorCode(NotUniqueErrorCode);
+            RuleFor(x => x.EmailAddress).Must(BeAUniqueEmailAddress).WithMessage("'Email address' is already in use");
 
             RuleFor(x => x.Password).Must(BeASensiblePassword).WithMessage(
                 $"'Password' must be at least {PasswordLength} characters long with at least one uppercase and one number");

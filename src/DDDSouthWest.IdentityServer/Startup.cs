@@ -13,6 +13,7 @@ namespace DDDSouthWest.IdentityServer
     {
         public Startup(IHostingEnvironment env)
         {
+            var res = env.EnvironmentName.ToLower();
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", false, true)
@@ -28,19 +29,19 @@ namespace DDDSouthWest.IdentityServer
         {
             services.AddMvc();
 
+            services.AddAuthServerAppSettingsOptions(Configuration);
+            
             var websiteUrl = Configuration["DDDSouthWestIdentityServer:WebsiteUrl"];
-
             services.AddIdentityServer()
                 .AddTemporarySigningCredential()
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApiResources())
+                .AddInMemoryApiResources(Config.GetApiResources()) // only used for API
                 .AddInMemoryClients(Config.GetClients(websiteUrl))
-                /*.AddClientStore<DummyUserStore>()*/
-                .AddTestUsers(Config.GetUsers());
+                .AddProfileService<CustomProfileService>();
 
-            /*services.AddTransient<DummyUserStore, DummyUserStore>();
-            services.AddTransient<IProfileService, ProfileService>();
-            services.AddTransient<IResourceOwnerPasswordValidator, CustomValidator>();*/
+            services.AddTransient<CustomUserStore, CustomUserStore>();
+            services.AddTransient<IProfileService, CustomProfileService>();
+            services.AddTransient<IResourceOwnerPasswordValidator, CustomValidator>();
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)

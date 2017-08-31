@@ -2,11 +2,15 @@
 {
     public class AuthServerConfigurationOptions
     {
-        public IdentityServer IdentityServer { get; set; }
+        public string WebsiteUrl { get; set; }
+
+        public Database Database { get; set; }
     }
 
-    public class IdentityServer
+    public class Database
     {
-        public string WebsiteUrl { get; set; }
+        public string Type { get; set; }
+
+        public string ConnectionString { get; set; }
     }
 }

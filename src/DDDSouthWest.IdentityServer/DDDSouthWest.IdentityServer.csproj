@@ -3,31 +3,19 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Properties" />
-    <Folder Include="Quickstart\Account" />
-    <Folder Include="Quickstart\Consent" />
-    <Folder Include="Quickstart\Grants" />
-    <Folder Include="Quickstart\Home" />
-    <Folder Include="Views\Account" />
-    <Folder Include="Views\Consent" />
-    <Folder Include="Views\Grants" />
-    <Folder Include="Views\Home" />
-    <Folder Include="Views\Shared" />
-    <Folder Include="wwwroot\" />
-    <Folder Include="wwwroot\css" />
-    <Folder Include="wwwroot\js" />
-    <Folder Include="wwwroot\lib\bootstrap\css" />
-    <Folder Include="wwwroot\lib\bootstrap\fonts" />
-    <Folder Include="wwwroot\lib\bootstrap\js" />
-    <Folder Include="wwwroot\lib\jquery" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Dapper" Version="1.50.2" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
     <PackageReference Include="IdentityServer4" Version="1.5.2" />
+    <PackageReference Include="MediatR" Version="3.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Scrutor" Version="1.12.0" />
+    <PackageReference Include="Npgsql" Version="3.2.5" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="1.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Framework\UserStore.cs" />
   </ItemGroup>
 </Project>

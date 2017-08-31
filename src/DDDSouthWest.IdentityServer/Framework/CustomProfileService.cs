@@ -7,11 +7,11 @@ using IdentityServer4.Services;
 namespace DDDSouthWest.IdentityServer.Framework
 {
     // https://github.com/IdentityServer/IdentityServer4/blob/75ac815e744051d8150274743cdd8588eb68abb0/src/IdentityServer4/Test/TestUserProfileService.cs
-    public class ProfileService : IProfileService
+    public class CustomProfileService : IProfileService
     {
-        private readonly DummyUserStore _userStore;
+        private readonly CustomUserStore _userStore;
 
-        public ProfileService(DummyUserStore userStore)
+        public CustomProfileService(CustomUserStore userStore)
         {
             _userStore = userStore;
         }
@@ -21,6 +21,7 @@ namespace DDDSouthWest.IdentityServer.Framework
             if (context.RequestedClaimTypes.Any())
             {
                 var user = _userStore.FindBySubjectId(context.Subject.GetSubjectId());
+
                 if (user != null)
                     context.AddFilteredClaims(user.Claims);
             }

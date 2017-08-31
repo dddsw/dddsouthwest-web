@@ -29,7 +29,7 @@ namespace DDDSouthWest.IdentityServer.Quickstart.Account
     [SecurityHeaders]
     public class AccountController : Controller
     {
-        private readonly UserStore _users;
+        private readonly CustomUserStore _users;
         private readonly IIdentityServerInteractionService _interaction;
         private readonly AccountService _account;
 
@@ -37,10 +37,10 @@ namespace DDDSouthWest.IdentityServer.Quickstart.Account
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IHttpContextAccessor httpContextAccessor,
-            UserStore users = null)
+            CustomUserStore users)
         {
             // if the TestUserStore is not in DI, then we'll just use the global users collection
-            _users = users ?? new UserStore();
+            _users = users;
             _interaction = interaction;
             _account = new AccountService(interaction, httpContextAccessor, clientStore);
         }
@@ -88,7 +88,7 @@ namespace DDDSouthWest.IdentityServer.Quickstart.Account
 
                     // issue authentication cookie with subject ID and username
                     var user = _users.FindByUsername(model.Username);
-                    await HttpContext.Authentication.SignInAsync(user.SubjectId, user.Username, props);
+                    await HttpContext.Authentication.SignInAsync(user.SubjectId, user.EmailAddress, props);
 
                     // make sure the returnUrl is still valid, and if yes - redirect back to authorize endpoint
                     if (_interaction.IsValidReturnUrl(model.ReturnUrl))

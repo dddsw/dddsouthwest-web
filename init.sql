@@ -28,10 +28,13 @@ CREATE TABLE public.Talks
 CREATE TABLE public.Users
 (
     Id SERIAL PRIMARY KEY,
+    GivenName VARCHAR(150) NULL,
+    FamilyName VARCHAR(150) NULL,
     EmailAddress VARCHAR(255) NOT NULL,
     Password VARCHAR(255) NOT NULL,
     Salt VARCHAR(255) NOT NULL,
-    Confirmed BOOLEAN DEFAULT FALSE
+    Confirmed BOOLEAN DEFAULT FALSE,
+    Roles JSON NULL
 );
 
 CREATE TABLE public.News

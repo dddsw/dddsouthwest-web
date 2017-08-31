@@ -6,13 +6,15 @@ namespace DDDSouthWest.IdentityServer.Framework
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddWebsiteAppSettingsOptions(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddAuthServerAppSettingsOptions(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddOptions();
-
-            services.Configure<IdentityServer>(configuration.GetSection("DDDSouthWestIdentityServer"));
-            services.AddSingleton(p => p.GetRequiredService<IOptions<IdentityServer>>().Value);
-            services.AddSingleton(p => p.GetRequiredService<IdentityServer>().WebsiteUrl);
+            /*services.Configure<ClientConfigurationOptions>(configuration.GetSection("DDDSouthWestWebsite"));*/
+            
+            services.Configure<AuthServerConfigurationOptions>(configuration.GetSection("DDDSouthWestIdentityServer"));
+            services.AddSingleton(p => p.GetRequiredService<IOptions<AuthServerConfigurationOptions>>().Value);
+            services.AddSingleton(p => p.GetRequiredService<Database>().ConnectionString);
+            services.AddSingleton(p => p.GetRequiredService<Database>().Type);
 
             return services;
         }

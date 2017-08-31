@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using IdentityServer4.Test;
 using IdentityServer4.Validation;
 
@@ -8,14 +10,14 @@ namespace DDDSouthWest.IdentityServer.Framework
     /// <seealso cref="T:IdentityServer4.Validation.IResourceOwnerPasswordValidator" />
     public class CustomValidator : IResourceOwnerPasswordValidator
     {
-        private readonly DummyUserStore _users;
+        private readonly CustomUserStore _users;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="T:IdentityServer4.Test.TestUserResourceOwnerPasswordValidator" />
         ///     class.
         /// </summary>
         /// <param name="users">The users.</param>
-        public CustomValidator(DummyUserStore users)
+        public CustomValidator(CustomUserStore users)
         {
             _users = users;
         }
@@ -28,7 +30,13 @@ namespace DDDSouthWest.IdentityServer.Framework
             if (_users.ValidateCredentials(context.UserName, context.Password))
             {
                 var byUsername = _users.FindByUsername(context.UserName);
-                context.Result = new GrantValidationResult(byUsername.SubjectId, "pwd", byUsername.Claims, "local", null);
+                context.Result = new GrantValidationResult(byUsername.SubjectId, "pwd", new List<Claim>
+                {
+                    new Claim("name", "Joseph Woodward"),
+                    new Claim("role", Role.Organiser),
+                    new Claim("role", Role.Speaker),
+                    new Claim("role", Role.Registered)
+                }, "local", null);
             }
             return Task.FromResult(0);
         }
