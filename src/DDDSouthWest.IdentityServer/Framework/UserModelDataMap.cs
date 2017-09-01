@@ -18,6 +18,8 @@
 
         public string Salt { get; set; }
 
-        public bool Blocked { get; set; }
+        public bool IsActivated { get; set; }
+        
+        public bool IsBlocked { get; set; }
     }
 }

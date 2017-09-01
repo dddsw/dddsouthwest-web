@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using DDDSouthWest.Domain;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
 using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
 using DDDSouthWest.Website.Framework;
@@ -13,10 +14,12 @@ namespace DDDSouthWest.Website.Features.Public.Account.Registration
     public class RegistrationController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly WebsiteSettings _settings;
 
-        public RegistrationController(IMediator mediator)
+        public RegistrationController(IMediator mediator, WebsiteSettings settings)
         {
             _mediator = mediator;
+            _settings = settings;
         }
 
         [Route("/account/register/", Name = RouteNames.AccountRegistration)]
@@ -51,7 +54,10 @@ namespace DDDSouthWest.Website.Features.Public.Account.Registration
         [Route("/account/register/complete")]
         public async Task<IActionResult> ConfirmRegistration()
         {
-            return View();
+            return View(new RegistrationConfirmationViewModel
+            {
+                NeedsToApproveEmail = !_settings.RequireNewAccountConfirmation
+            });
         }
     }
 }

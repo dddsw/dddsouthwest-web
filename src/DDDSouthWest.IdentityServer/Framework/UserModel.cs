@@ -27,6 +27,8 @@ namespace DDDSouthWest.IdentityServer.Framework
         
         public ICollection<Claim> Claims { get; set; }
         
+        public bool IsActivated { get; set; }
+        
         public bool IsBlocked { get; set; }
     }
 }

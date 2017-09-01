@@ -16,6 +16,7 @@ namespace DDDSouthWest.Website.Framework
             
             services.AddSingleton(p => p.GetRequiredService<ClientConfigurationOptions>().IdentityServer);
             services.AddSingleton(p => p.GetRequiredService<ClientConfigurationOptions>().Database);
+            services.AddSingleton(p => p.GetRequiredService<ClientConfigurationOptions>().WebsiteSettings);
 
             return services;
         }

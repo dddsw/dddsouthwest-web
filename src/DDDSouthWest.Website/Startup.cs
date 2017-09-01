@@ -15,6 +15,7 @@ using DDDSouthWest.Website.Framework;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -58,7 +59,15 @@ namespace DDDSouthWest.Website
             services.AddTransient<QueryEventById, QueryEventById>();
             services.AddTransient<QueryAnyNewsById, QueryAnyNewsById>();
             services.AddTransient<CreateNewRegisteredUser, CreateNewRegisteredUser>();
+            
+            // Email Notification
+            services.AddTransient<IRegistrationConfirmation, SendEmailConfirmation>();
 
+            services.AddMetrics()
+                .AddHealthChecks()
+                .AddJsonSerialization()
+                .AddMetricsMiddleware(options => options.IgnoredHttpStatusCodes = new [] {404});
+            
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthorization(options =>
             {
@@ -76,7 +85,7 @@ namespace DDDSouthWest.Website
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationScheme = "Cookies"
+                AuthenticationScheme = "Cookies",
             });
 
             if (env.IsDevelopment())
@@ -87,7 +96,7 @@ namespace DDDSouthWest.Website
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
                 AuthenticationScheme = "oidc",
-                SignInScheme = "Cookies",
+                SignInScheme = "Cookies", 
                 Authority = configurationOptions.IdentityServer.AuthorityServer,
                 RequireHttpsMetadata = false,
                 ClientId = "mvc",

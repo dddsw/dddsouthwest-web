@@ -1,6 +1,6 @@
 ﻿
 @using DDDSouthWest.Website.Framework
-@model DDDSouthWest.Website.Features.Public.Account.Registration.RegistrationViewModel
+@model DDDSouthWest.Website.Features.Public.Account.Registration.RegistrationConfirmationViewModel
 
 @{
     ViewBag.Tab = PageTab.Register;
@@ -13,8 +13,18 @@
 
 @section MainColBody {
 
-    <h2>Confirm registration</h2>
+    @if (Model.NeedsToApproveEmail)
+    {
+        <h2>Confirm registration</h2>
+        <p>Please check your email account registered to confirm your email address.</p>
+    }
+    else
+    {
+        <h2>Registration Complete</h2>
 
-    <p>Please check your email account registered to confirm your email address</p>
+        <p>You may now log in using the email address and password provided.</p>
+    }
+    
+    
 
 }

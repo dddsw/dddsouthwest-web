@@ -32,22 +32,13 @@ namespace DDDSouthWest.IdentityServer.Framework
             return false;
         }
         
-        private static string Sha256(string input)
-        {
-            using (var shA256 = SHA256.Create())
-            {
-                var bytes = Encoding.UTF8.GetBytes(input);
-                return Convert.ToBase64String(shA256.ComputeHash(bytes));
-            }
-        }
-
         public UserModel FindBySubjectId(string subjectId)
         {
             var id = int.Parse(subjectId);
             using (var connection = new NpgsqlConnection(_config.Database.ConnectionString))
             {
                 var tempUser = connection.QuerySingleOrDefault<UserModelDataMap>(
-                    "SELECT Id, EmailAddress, Password, Salt, Roles, FamilyName, GivenName, IsBlocked FROM users WHERE Id = @Id LIMIT 1", new { Id = id });
+                    "SELECT Id, EmailAddress, Password, Salt, Roles, FamilyName, GivenName, IsActivated, IsBlocked FROM users WHERE Id = @Id LIMIT 1", new { Id = id });
 
                 //TODO: Do these fields (blocked etc) get serialised into the token?
                 var user = new UserModel
@@ -57,7 +48,8 @@ namespace DDDSouthWest.IdentityServer.Framework
                     Password = tempUser.Password,
                     FamilyName = tempUser.FamilyName,
                     GivenName = tempUser.GivenName,
-                    IsBlocked = tempUser.Blocked
+                    IsActivated = tempUser.IsActivated,
+                    IsBlocked = tempUser.IsBlocked
                 };
                 
                 // TODO: Change to separate claims to allow separation of name?
@@ -78,7 +70,7 @@ namespace DDDSouthWest.IdentityServer.Framework
             using (var connection = new NpgsqlConnection(_config.Database.ConnectionString))
             {
                 var tempUser = connection.QuerySingleOrDefault<UserModelDataMap>(
-                    "SELECT Id, EmailAddress, Password, Salt, Roles, FamilyName, GivenName FROM users WHERE EmailAddress = @Email LIMIT 1", new { Email = emailAddress });
+                    "SELECT Id, EmailAddress, Password, Salt, Roles, FamilyName, GivenName, IsActivated, IsBlocked FROM users WHERE EmailAddress = @Email LIMIT 1", new { Email = emailAddress });
 
                 var user = new UserModel
                 {
@@ -87,7 +79,9 @@ namespace DDDSouthWest.IdentityServer.Framework
                     Password = tempUser.Password,
                     FamilyName = tempUser.FamilyName,
                     GivenName = tempUser.GivenName,
-                    Salt = tempUser.Salt
+                    Salt = tempUser.Salt,
+                    IsActivated = tempUser.IsActivated,
+                    IsBlocked = tempUser.IsBlocked
                 };
 
                 // TODO: Change to separate claims to allow separation of name?
@@ -106,6 +100,15 @@ namespace DDDSouthWest.IdentityServer.Framework
         public UserModel FindByExternalProvider(string provider, string userId)
         {
             throw new NotImplementedException();
+        }
+        
+        private static string Sha256(string input)
+        {
+            using (var shA256 = SHA256.Create())
+            {
+                var bytes = Encoding.UTF8.GetBytes(input);
+                return Convert.ToBase64String(shA256.ComputeHash(bytes));
+            }
         }
     }
 }

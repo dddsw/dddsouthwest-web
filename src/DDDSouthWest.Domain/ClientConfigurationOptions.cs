@@ -5,6 +5,8 @@
         public IdentityServer IdentityServer { get; set; }
 
         public Database Database { get; set; }
+
+        public WebsiteSettings WebsiteSettings { get; set; }
     }
 
     public class IdentityServer
@@ -15,5 +17,10 @@
     public class Database
     {
         public string ConnectionString { get; set; }
+    }
+
+    public class WebsiteSettings
+    {
+        public bool RequireNewAccountConfirmation { get; set; }
     }
 }
