@@ -18,6 +18,7 @@ namespace DDDSouthWest.IdentityServer
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", false, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName.ToLower()}.json", true)
+                /*.AddJsonFile($"appsettings.development.docker.json", true)*/
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();

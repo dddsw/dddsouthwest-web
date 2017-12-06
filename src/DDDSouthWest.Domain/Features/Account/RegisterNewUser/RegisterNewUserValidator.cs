@@ -19,7 +19,7 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
             RuleFor(x => x.EmailAddress).Must(BeAUniqueEmailAddress).WithMessage("'Email address' is already in use");
 
             RuleFor(x => x.Password).Must(BeASensiblePassword).WithMessage(
-                $"'Password' must be at least {PasswordLength} characters long with at least one uppercase and one number");
+                $"'Password' must be at least {PasswordLength} characters long with at least one uppercase letter and one number");
         }
 
         private bool BeAUniqueEmailAddress(RegisterNewUser.Command command, string emailAddress, PropertyValidatorContext arg3)
@@ -44,6 +44,8 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
 
         private static bool BeASensiblePassword(string password)
         {
+            if (string.IsNullOrEmpty(password))
+                return false;
             if (password.Length < PasswordLength)
                 return false;
 

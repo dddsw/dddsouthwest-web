@@ -47,7 +47,7 @@ h2, h3, h4 {
 
 h2 {
     font-size: 40px;
-    line-height: 1.5em;
+    line-height: 1.3em;
 }
 
 h3 {
@@ -81,13 +81,10 @@ p {
     padding-left: 20px;
 }
 
-.gt-10 { padding-top: 10px; }
-.gt-20 { padding-top: 20px; }
+.gutter-top-none { padding-top: 0; margin-top: 0; }
+.gutter-top-small { padding-top: 10px; }
+.gutter-top-default { padding-top: 20px; }
 
-.gb-20 {
-    padding-bottom: 20px;
-}
+.gutter-bottom-default { padding-bottom: 20px; }
 
-.g-10 {
-    padding: 10px;
-}
+.gutter-small { padding: 10px; }

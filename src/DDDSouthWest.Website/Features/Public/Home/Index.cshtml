@@ -1,4 +1,5 @@
 @using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.Home.HomepageViewModel
 
 @{
     ViewBag.Tab = PageTab.Home;
@@ -18,27 +19,69 @@
     
     <div class="util-text--center">
         <h2 class="home-strapline">DDD South West is an inclusive, non-profit Developer’s conference organised by the community, for the community </h2>
-        <a href="#" class="button button--small button--primary">Learn more about us</a>
+        <a href="/page/about" class="button button--small button--primary">Learn more about us</a>
     </div>
     
-    <div class="news-component">
+    <div class="grid-container grid-parent">
+        
+        <h3 class="title--medium title--underline">Latest News &amp; Announcements</h3>
+        
+        <div class="grid-70 grid-parent">
+            <div class="news-component--main-col">
+                
+                @{
+                    var latestItem = Model.News.FirstOrDefault();
+                    if (latestItem != null)
+                    {
+                        <h4 class="title--medium branding--primary gutter-top-none">@latestItem.Title</h4>
+                        <div>@latestItem.Body</div>
+                    }
+                }
+                
+                <div class="gutter-top-default"></div>
+                <a href="@Url.RouteUrl(RouteNames.NewsList)" class="button button--small button--primary">More News</a>
+                
+            </div>
+        </div>
+        
+        <div class="grid-30 grid-parent">
+            <div class="news-component__side-col">
+                
+                @if (Model.News.Any())
+                {
+                    <ol class="news-list">
+                        @foreach (var newsItem in Model.News)
+                        {
+                            <li class="news-list__item">
+                                <a href="@Url.RouteUrl(RouteNames.NewsDetail, new {id = newsItem.Id, filename = newsItem.Filename})" class="news-list__title">@newsItem.Title</a>
+                                <p>Posted @newsItem.DatePosted</p>
+                            </li>
+                        }
+                    </ol>
+                }
+                else
+                {
+                    <p>There is currently no news.</p>
+                }   
+                
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="gutter-bottom-default"></div>
+
+    <div class="sponsor-component">
         <div class="grid-container grid-parent">
             
-            <h3 class="title title--underline">Latest Announcement</h3>
+            <h3 class="title--medium title--underline">Sponsors</h3>
+            <p>DDD Southwest is a free community based conference, without the support of our sponsors it wouldn't be possible.</p>
             
-            <div class="grid-70 grid-parent">
-                <div class="news-component--main-col">
-                    <h4>New DDD South West date announced</h4>    
-                </div>
-            </div>
-            
-            <div class="grid-30 grid-parent">
-                <div class="news-component__side-col">
-                    Hello World    
-                </div>
-            </div>
+            <div class="gutter-top-default"></div>
+            <a href="/page/about" class="button button--small button--primary">More about our sponsors</a>
             
         </div>
     </div>
+
 
 }

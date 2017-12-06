@@ -1,5 +1,7 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
+using App.Metrics.Configuration;
 using DDDSouthWest.Domain;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
 using DDDSouthWest.Domain.Features.Account.ManageEvents.GetEvent;
@@ -63,10 +65,30 @@ namespace DDDSouthWest.Website
             // Email Notification
             services.AddTransient<IRegistrationConfirmation, SendEmailConfirmation>();
 
-            services.AddMetrics()
+            var database = "appmetricsdemo";
+            var uri = new Uri("http://127.0.0.1:8086");
+
+            /*services.AddMetrics(options => 
+                {
+                    options.WithGlobalTags((globalTags, info) => 
+                    { 
+                        globalTags.Add("app", info.EntryAssemblyName); 
+                        globalTags.Add("env", "stage");
+                    });
+                })
                 .AddHealthChecks()
                 .AddJsonSerialization()
-                .AddMetricsMiddleware(options => options.IgnoredHttpStatusCodes = new [] {404});
+                .AddReporting(
+                    factory =>
+                    {
+                        factory.AddInfluxDb(
+                            new InfluxDBReporterSettings
+                            {                  
+                                InfluxDbSettings = new InfluxDBSettings(database, uri),
+                                ReportInterval = TimeSpan.FromSeconds(5)
+                            });
+                    })
+                .AddMetricsMiddleware(options => options.IgnoredHttpStatusCodes = new [] {404});*/
             
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthorization(options =>
@@ -105,6 +127,7 @@ namespace DDDSouthWest.Website
                 GetClaimsFromUserInfoEndpoint = true
             });
             
+            /*app.UseMetrics();*/
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");

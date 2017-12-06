@@ -36,7 +36,10 @@
                 @foreach (var newsItem in Model.News)
                 {
                     <tr>
-                        <td><a href="@Url.RouteUrl(RouteNames.NewsEdit, new { id = newsItem.Id })">Edit</a></td>
+                        <td>
+                            <a href="@Url.RouteUrl(RouteNames.NewsEdit, new {id = newsItem.Id})">Edit</a>
+                            <a href="@Url.RouteUrl(RouteNames.NewsDelete, new {id = newsItem.Id})">Delete</a>
+                        </td>
                         <td>@newsItem.Title</td>
                         <td>@newsItem.DatePosted</td>
                         <td>@(newsItem.IsLive ? "Yes" : "No")</td>

@@ -1,4 +1,5 @@
 ﻿using DDDSouthWest.Domain;
+using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
 using DDDSouthWest.Domain.Features.Public.Page;
 using MediatR;
 using StructureMap;
@@ -24,12 +25,17 @@ namespace DDDSouthWest.UnitTests
                         scanner.ConnectImplementationsToTypesClosing(typeof(IAsyncNotificationHandler<>));
                     });
 
+                    cfg.For<IRegistrationConfirmation>().Use<SendEmailConfirmation>();
                     cfg.For<ClientConfigurationOptions>().Use(() => new ClientConfigurationOptions
                     {
                         Database = new Database
                         {
                             ConnectionString =
                                 "Host=localhost;Username=dddsouthwest_user;Password=letmein;Database=dddsouthwest"
+                        },
+                        WebsiteSettings = new WebsiteSettings
+                        {
+                            RequireNewAccountConfirmation = false
                         }
                     }).Singleton();
                     

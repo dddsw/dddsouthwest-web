@@ -37,8 +37,6 @@ namespace DDDSouthWest.UnitTests.ManageEvents.CreateNewEventTests
                 EventName = "Event name"
             };
 
-            mediator.Send(command).Wait();
-
             await Should.ThrowAsync<DuplicateRecordException>(mediator.Send(command));
         }
 

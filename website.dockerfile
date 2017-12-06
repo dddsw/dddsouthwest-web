@@ -2,9 +2,9 @@ FROM microsoft/dotnet:1.1-runtime
 
 MAINTAINER DDDSouthWest
 
-COPY ./dist/website /website
+COPY . /website
 
-WORKDIR /website
+WORKDIR ./website/
 
 EXPOSE 5002
 

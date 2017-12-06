@@ -18,14 +18,14 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
 
         public async Task Invoke(RegisterNewUser.Command command)
         {
-            string pass = Guid.NewGuid() + command.Password;
+            var guid = Guid.NewGuid();
 
             using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
             {
                 const string createUserSql =
                     "INSERT INTO users (EmailAddress, Password, Salt, IsActivated, Roles) Values (@EmailAddress, @Password, @Salt, FALSE, '[\"registered\"]') RETURNING Id";
                 await connection.QuerySingleAsync<int>(createUserSql,
-                    new {command.EmailAddress, Password = pass, Salt = Sha256(pass)});
+                    new {command.EmailAddress, Password = Sha256(guid + command.Password), Salt = guid});
             }
         }
 

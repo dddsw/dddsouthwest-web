@@ -40,7 +40,6 @@ namespace DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage
             }
         }
 
-
         public class Response
         {
             public int Id { get; set; }

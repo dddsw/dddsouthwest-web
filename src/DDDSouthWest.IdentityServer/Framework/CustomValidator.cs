@@ -19,6 +19,7 @@ namespace DDDSouthWest.IdentityServer.Framework
                 var user = _userStore.FindByUsername(context.UserName);
                 context.Result = new GrantValidationResult(user.SubjectId, "pwd", user.Claims);
             }
+
             return Task.FromResult(0);
         }
     }

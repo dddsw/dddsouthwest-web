@@ -2,29 +2,47 @@ version: '3'
 services:
 
   identityserver:
-      build:
-        context: .
-        dockerfile: identityserver.dockerfile
       container_name: ddd-southwest-identityserver
-      image: ddd_southwest_identityserver
+      depends_on:
+        - postgres
+      image: ddd_southwest/identityserver
       environment:
-        - ASPNETCORE_ENVIRONMENT=Development
+        - ASPNETCORE_ENVIRONMENT=Development.Docker
         - DDDSouthWestIdentityServer__WebsiteUrl=http://website:5002
       ports:
         - "5000:5000"
+      networks:
+        - default
 
   website:
-      build:
-        context: .
-        dockerfile: website.dockerfile
       depends_on:
         - identityserver
+        - postgres
       container_name: ddd-southwest-website
-      image: ddd_southwest_website
+      image: ddd_southwest/website
       environment:
-        - ASPNETCORE_ENVIRONMENT=Development
+        - ASPNETCORE_ENVIRONMENT=Development.Docker
         - DDDSouthWestWebsite__IdentityServer__AuthorityServer=http://identityserver:5000
       ports:
         - "5002:5002"
-      links: 
-        - identityserver
+      networks:
+        - default
+
+  postgres:
+      container_name: ddd-southwest-database
+      image: ddd_southwest/database
+      restart: always
+      # volumes:
+      #   - ./postgres-data:/var/lib/postgresql/data
+      # environment:
+      #   - POSTGRES_USER=dddsouthwest_user
+      #   - POSTGRES_PASSWORD=letmein
+      #   - POSTGRES_DB=dddsouthwest
+      ports:
+        - "5432:5432"
+      networks:
+        - default
+
+networks:
+  default:
+    driver: bridge

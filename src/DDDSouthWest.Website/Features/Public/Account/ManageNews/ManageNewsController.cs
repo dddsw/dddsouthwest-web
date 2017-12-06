@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.ManageNews.CreateNews;
+using DDDSouthWest.Domain.Features.Account.ManageNews.DeleteNews;
 using DDDSouthWest.Domain.Features.Account.ManageNews.ListNews;
 using DDDSouthWest.Domain.Features.Account.ManageNews.UpdateExistingNews;
 using DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail;
@@ -43,7 +44,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
         }
 
         [HttpPost]
-        [Route("/account/news/create")]
+        [Route("/account/news/create", Name = RouteNames.NewsCreate)]
         public async Task<IActionResult> Create(CreateNews.Command command)
         {
             CreateNews.Response result;
@@ -64,7 +65,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
                 });
             }
 
-            return RedirectToAction("Edit", result.Id);
+            return RedirectToRoute(RouteNames.NewsEdit, new { Id = result.Id });
         }
 
         [Route("/account/news/edit/{id}", Name = RouteNames.NewsEdit)]
@@ -106,5 +107,25 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
 
             return RedirectToRoute(RouteNames.NewsManage);
         }
+        
+        [HttpGet]
+        [Route("/account/news/delete/{id}", Name = RouteNames.NewsDelete)]
+        public async Task<IActionResult> Delte(DeleteNews.Command command)
+        {
+            try
+            {
+                await _mediator.Send(command);
+            }
+            catch (ValidationException e)
+            {
+                return View(new ManageNewsViewModel
+                {
+                    Errors = e.Errors.ToList()
+                });
+            }
+
+            return RedirectToRoute(RouteNames.NewsManage);
+        }
+
     }
 }

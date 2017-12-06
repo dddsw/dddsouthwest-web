@@ -21,12 +21,19 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
         public async Task Notify(string emailAddress)
         {
             if (!_options.WebsiteSettings.RequireNewAccountConfirmation)
+            {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
                     await connection.ExecuteAsync(
                         @"UPDATE users SET IsActivated = TRUE WHERE EmailAddress = @EmailAddress",
                         new {EmailAddress = emailAddress});
                 }
+            }
+            else
+            {
+                // Send email
+            }
+            
         }
     }
 }

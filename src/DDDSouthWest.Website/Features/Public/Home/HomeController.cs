@@ -14,13 +14,27 @@ namespace DDDSouthWest.Website.Features.Public.Home
         {
             _mediator = mediator;
         }
+
         public async Task<IActionResult> Index()
         {
             var result = await _mediator.Send(new ListAllNews.QueryByLimit(4));
-            
+
+            return View(new HomepageViewModel
+            {
+                News = result.News
+            });
+        }
+
+        public async Task<IActionResult> About()
+        {
             return View();
         }
-        
+
+        public async Task<IActionResult> Contact()
+        {
+            return View();
+        }
+
         [Authorize]
         public IActionResult Secure()
         {

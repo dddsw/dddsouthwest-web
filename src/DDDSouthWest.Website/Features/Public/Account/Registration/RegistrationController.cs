@@ -52,11 +52,11 @@ namespace DDDSouthWest.Website.Features.Public.Account.Registration
         }
         
         [Route("/account/register/complete")]
-        public async Task<IActionResult> ConfirmRegistration()
+        public IActionResult ConfirmRegistration()
         {
             return View(new RegistrationConfirmationViewModel
             {
-                NeedsToApproveEmail = !_settings.RequireNewAccountConfirmation
+                RequireEmailConfirmation = _settings.RequireNewAccountConfirmation
             });
         }
     }

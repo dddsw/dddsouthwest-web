@@ -72,6 +72,9 @@ namespace DDDSouthWest.IdentityServer.Framework
                 var tempUser = connection.QuerySingleOrDefault<UserModelDataMap>(
                     "SELECT Id, EmailAddress, Password, Salt, Roles, FamilyName, GivenName, IsActivated, IsBlocked FROM users WHERE EmailAddress = @Email LIMIT 1", new { Email = emailAddress });
 
+                if (tempUser == null)
+                    return null;
+
                 var user = new UserModel
                 {
                     Id = tempUser.Id,

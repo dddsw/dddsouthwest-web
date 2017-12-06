@@ -2,6 +2,6 @@
 {
     public class RegistrationConfirmationViewModel
     {
-        public bool NeedsToApproveEmail { get; set; }
+        public bool RequireEmailConfirmation { get; set; }
     }
 }

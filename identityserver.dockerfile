@@ -2,9 +2,9 @@ FROM microsoft/dotnet:1.1-runtime
 
 MAINTAINER DDDSouthWest
 
-COPY ./dist/identityserver /identityserver
+COPY . /identityserver
 
-WORKDIR /identityserver
+WORKDIR ./identityserver/
 
 EXPOSE 5000
 

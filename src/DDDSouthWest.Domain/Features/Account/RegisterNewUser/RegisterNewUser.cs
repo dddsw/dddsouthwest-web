@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using FluentValidation;
-using FluentValidation.Results;
 using MediatR;
 
 namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
@@ -33,13 +30,9 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
             {
                 var validationResult = _validator.Validate(message);
                 if (!validationResult.IsValid)
-                {
                     throw new ValidationException(validationResult.Errors);
-                }   
-                
-                await _createNewRegisteredUser.Invoke(message);
 
-                //TODO: Move into MediatR pipeline?
+                await _createNewRegisteredUser.Invoke(message);
                 await _registrationConfirmation.Notify(message.EmailAddress);
             }
         }

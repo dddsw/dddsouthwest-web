@@ -26,7 +26,7 @@ namespace DDDSouthWest.Domain.Features.Account.ManageNews.ListNews
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    const string sql = "SELECT Id, Title, Filename, IsLive, DatePosted FROM news ORDER BY DatePosted";
+                    const string sql = "SELECT Id, Title, Filename, IsLive, DatePosted FROM news WHERE IsDeleted = FALSE ORDER BY DatePosted";
                     var results = await connection.QueryAsync<NewsListModel>(sql);
 
                     return new Response

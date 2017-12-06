@@ -2,9 +2,9 @@ CREATE USER dddsouthwest_user WITH PASSWORD 'letmein';
 CREATE DATABASE dddsouthwest;
 GRANT ALL PRIVILEGES ON DATABASE dddsouthwest TO dddsouthwest_user;
 
-/* Run below against your new Postgres SQL database */
+-- Run below against your new Postgres SQL database
 
-CREATE TABLE public.Events
+CREATE TABLE Events
 (
     Id SERIAL PRIMARY KEY,
     EventName VARCHAR(200) NOT NULL,
@@ -12,10 +12,10 @@ CREATE TABLE public.Events
     EventDate TIMESTAMP NULL
 );
 
-CREATE UNIQUE INDEX Events_Filename_uindex ON public.Events (EventFilename);
+CREATE UNIQUE INDEX Events_Filename_uindex ON Events (EventFilename);
 
 
-CREATE TABLE public.Talks
+CREATE TABLE Talks
 (
     Id SERIAL PRIMARY KEY,
     TalkTitle VARCHAR(255) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE public.Talks
     SubmissionDate TIMESTAMP NOT NULL
 );
 
-CREATE TABLE public.Users
+CREATE TABLE Users
 (
     Id SERIAL PRIMARY KEY,
     GivenName VARCHAR(150) NULL,
@@ -38,12 +38,13 @@ CREATE TABLE public.Users
     Roles JSON NULL
 );
 
-CREATE TABLE public.News
+CREATE TABLE News
 (
     Id SERIAL PRIMARY KEY,
     Title VARCHAR(255) NOT NULL,
     Filename VARCHAR(255) NOT NULL,
     DatePosted TIMESTAMP,
     Body VARCHAR,
-    IsLive BOOLEAN DEFAULT FALSE
+    IsLive BOOLEAN DEFAULT FALSE NOT NULL,
+    IsDeleted BOOLEAN DEFAULT FALSE NOT NULL
 );

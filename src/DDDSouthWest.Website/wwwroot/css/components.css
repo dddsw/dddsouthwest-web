@@ -28,7 +28,7 @@
 
 .news-component__side-col {
     background-color: #efefef;
-    padding: 10px;
+    padding: 20px;
 }
 
 .news-list {
@@ -40,20 +40,18 @@
     margin: 0 0 20px;
     list-style: none;
     padding: 0;
-    border-bottom: 1px solid #efefef;
 }
 
 .news-list .news-list__title {
     font-weight: bold;
     margin: 0;
+    display: block;
     font-size:18px;
 }
 
 .news-detail{}
 
-.news-detail .news-detail__title {
-    margin: 0 0 5px;
-}
+.news-detail .news-detail__title {}
 
 .news-detail .news-detail__date {
     margin: 0 0 20px;
