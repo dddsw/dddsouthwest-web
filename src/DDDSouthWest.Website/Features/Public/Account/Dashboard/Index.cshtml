@@ -11,26 +11,24 @@
 }
 
 @section MainColBody {
-
-    <h2>Welcome</h2>
     
     <div is-visible="@Model.IsOrganiser">
-        <h2>Organiser</h2>
-        <h3>Website Management</h3>
+        <h2 class="title title--underline">Organiser</h2>
+        <h3 class="title--medium">Website Management</h3>
         <ul>
             <li><a href="@Url.RouteUrl(RouteNames.NewsManage)">Manage News</a></li>
             <li><a href="@Url.RouteUrl(RouteNames.EventsManage)">Manage Events</a></li>
             <li><a href="@Url.RouteUrl(RouteNames.PagesManage)">Manage Pages</a></li>
         </ul>
         
-        <h3>Speaker Management</h3>
+        <h3 class="title--medium">Speaker Management</h3>
         <ul>
             <li><a href="@Url.RouteUrl(RouteNames.SpeakersManage)">Manage Speakers</a></li>
         </ul>
     </div>
     
     <div is-visible="@Model.IsRegistered">
-        <h2>Speakers</h2>
+        <h2 class="title title--underline">Speaker</h2>
         <ul>
             <li><a href="#">Manage Profile</a></li>
             <li><a href="#">Manage Talks</a></li>
