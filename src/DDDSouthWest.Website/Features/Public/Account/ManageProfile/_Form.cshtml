@@ -1,0 +1,28 @@
+﻿@model DDDSouthWest.Website.Features.Public.Account.ManagePages.ManagePagesViewModel
+
+@Html.AntiForgeryToken()
+
+<validation-summary errors="@Model.Errors" />
+
+<fieldset>
+    
+    <div class="pure-control-group">
+        <label asp-for="PageTitle">Page Name</label>
+        <input asp-for="PageTitle" class="pure-input-2-3"/>
+    </div>
+
+    <div class="pure-control-group">
+        <label asp-for="PageFilename">Page Filename</label>
+        <input asp-for="PageFilename" class="pure-input-2-3"/>
+    </div>
+
+    <div class="pure-control-group">
+        <label asp-for="PageBody">Page Body</label>
+        <textarea asp-for="PageBody" class="pure-input-2-3" style="height: 250px;"></textarea>
+    </div>
+
+    <div class="pure-controls">
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    </div>
+
+</fieldset>

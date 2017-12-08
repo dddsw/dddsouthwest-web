@@ -1,0 +1,22 @@
+﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.Account.ManageProfile.ManageProfileViewModel
+
+@{
+    ViewBag.Tab = PageTab.Login;                                                        
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="Speaker Profile"/>
+}
+
+@section MainColBody {
+
+    <h2>Edit Profile</h2>
+    
+    @using (Html.BeginForm("Edit", "ManageProfile", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    {
+        @Html.HiddenFor(x => x.Id)
+        @Html.Partial("_Form")
+    }
+}
