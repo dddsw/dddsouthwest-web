@@ -13,6 +13,6 @@ dotnet publish src/DDDSouthwest.IdentityServer/ -c Release -o ../../dist/identit
 cp ./website.dockerfile ./dist/website/website.dockerfile
 cp ./identityserver.dockerfile ./dist/identityserver/identityserver.dockerfile
 
-docker build -f ./dist/website/website.dockerfile -t ddd_southwest/website ./dist/website
-docker build -f ./dist/identityserver/identityserver.dockerfile -t ddd_southwest/identityserver ./dist/identityserver
-docker build -f postgres.dockerfile -t ddd_southwest/database .
+docker build -f ./dist/website/website.dockerfile -t ddd_southwest/website -t dddsouthwest.azurecr.io/website ./dist/website
+docker build -f ./dist/identityserver/identityserver.dockerfile -t ddd_southwest/identityserver -t dddsouthwest.azurecr.io/identityserver ./dist/identityserver
+docker build -f postgres.dockerfile -t ddd_southwest/database -t dddsouthwest.azurecr.io/database .
