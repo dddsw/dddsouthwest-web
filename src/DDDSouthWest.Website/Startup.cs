@@ -97,6 +97,8 @@ namespace DDDSouthWest.Website
                     policy => policy.RequireClaim("role", "organiser"));
                 options.AddPolicy(AccessPolicies.RegisteredAccessPolicy,
                     policy => policy.RequireClaim("role", "registered"));
+                options.AddPolicy(AccessPolicies.SpeakerAccessPolicy,
+                    policy => policy.RequireClaim("role", "speaker"));
             });
         }
 

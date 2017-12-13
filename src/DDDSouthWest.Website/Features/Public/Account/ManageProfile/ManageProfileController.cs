@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
+using DDDSouthWest.Domain.Features.Account.ManageProfile.ViewProfile;
 using DDDSouthWest.Website.Framework;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -7,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DDDSouthWest.Website.Features.Public.Account.ManageProfile
 {
-    [Authorize(Policy = AccessPolicies.SpeakerAccessPolicy)]
+    [Authorize(Policy = AccessPolicies.RegisteredAccessPolicy)]
     public class ManageProfileController : Controller
     {
         private readonly IMediator _mediator;
@@ -16,13 +19,28 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageProfile
         {
             _mediator = mediator;
         }
-        
+
         [Route("/account/profile/", Name = RouteNames.ProfileManage)]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Index()
         {
-            return View("Edit", new ManageProfileViewModel
+            var res = HttpContext.User.Claims.Select(x => x.Subject).FirstOrDefault();
+            var response = await _mediator.Send(new ViewProfileDetail.Query(1));
+
+            return View(new ProfileDetailViewModel
             {
-                Id = id
+                Profile = response.ProfileDetailModel
+            });
+        }
+        
+        [Route("/account/profile/edit", Name = RouteNames.ProfileEdit)]
+        public async Task<IActionResult> Edit()
+        {
+            // TODO: Get ID from token
+            var response = await _mediator.Send(new ViewProfileDetail.Query(1));
+            
+            return View("Edit", new ProfileEditViewModel
+            {
+                Profile = response.ProfileDetailModel
             });
         }
 

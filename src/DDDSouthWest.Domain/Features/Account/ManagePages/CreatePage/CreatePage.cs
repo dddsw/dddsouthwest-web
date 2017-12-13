@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-
 namespace DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage
 {
     public class CreatePage

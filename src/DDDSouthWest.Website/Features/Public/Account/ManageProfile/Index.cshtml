@@ -1,0 +1,62 @@
+﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.Account.ManageProfile.ProfileDetailViewModel
+
+@{
+    ViewBag.Tab = PageTab.Login;                                                        
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="Speaker Profile"/>
+}
+
+@section MainColBody {
+
+    <h2>Profile</h2>
+
+    <div class="pure-g">
+
+        <div class="pure-u-1-1 pure-block">
+            <a class="pure-button pure-button-primary" href="@Url.RouteUrl(RouteNames.ProfileEdit)">Edit Profile</a>
+        </div>
+
+        <div class="pure-u-1-1 pure-block">
+        
+            <fieldset>
+
+                <div class="pure-control-group">
+                    <label asp-for="Profile.GivenName">Given Name:</label>
+                    <input asp-for="Profile.GivenName" class="pure-input-2-3"/>
+                </div>
+
+                <div class="pure-control-group">
+                    <label asp-for="Profile.FamilyName">Family Name:</label>
+                    <input asp-for="Profile.FamilyName" class="pure-input-2-3"/>
+                </div>
+
+                <div class="pure-control-group">
+                    <label asp-for="Profile.Bio">Speaker Bio:</label>
+                    <input asp-for="Profile.Bio" class="pure-input-2-3"/>
+                </div>
+
+                <div class="pure-control-group">
+                    <label asp-for="Profile.Website">Website:</label>
+                    <textarea asp-for="Profile.Website" class="pure-input-2-3" style="height: 250px;"></textarea>
+                </div>
+
+                <div class="pure-control-group">
+                    <label asp-for="Profile.Twitter">Twitter:</label>
+                    <textarea asp-for="Profile.Twitter" class="pure-input-2-3" style="height: 250px;"></textarea>
+                </div>
+
+                <div class="pure-control-group">
+                    <label asp-for="Profile.LinkedIn">LinkedIn:</label>
+                    <textarea asp-for="Profile.LinkedIn" class="pure-input-2-3" style="height: 250px;"></textarea>
+                </div>
+
+            </fieldset>
+
+        </div>
+
+    </div>
+}

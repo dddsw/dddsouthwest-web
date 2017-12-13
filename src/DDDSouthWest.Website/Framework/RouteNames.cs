@@ -22,6 +22,7 @@
         public const string SpeakersManage = "speaker_manage";
         
         public const string ProfileManage = "profile_manage";
+        public const string ProfileEdit = "profile_edit";
         
         public const string TalkEdit = "talk_edit";
         public const string TalkCreate = "talk_create";

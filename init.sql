@@ -48,3 +48,18 @@ CREATE TABLE News
     IsLive BOOLEAN DEFAULT FALSE NOT NULL,
     IsDeleted BOOLEAN DEFAULT FALSE NOT NULL
 );
+
+CREATE TABLE Profiles
+(
+  id           SERIAL    NOT NULL
+    CONSTRAINT profile_pkey
+    PRIMARY KEY,
+  twitter      VARCHAR(150),
+  website      VARCHAR(255),
+  linkedin     VARCHAR(255),
+  bio          VARCHAR,
+  lastmodified TIMESTAMP NOT NULL,
+  userid       INTEGER
+    CONSTRAINT profile_users_id_fk
+    REFERENCES users
+);
