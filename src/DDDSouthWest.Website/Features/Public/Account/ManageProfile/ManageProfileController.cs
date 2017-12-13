@@ -1,13 +1,10 @@
-﻿using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
 using DDDSouthWest.Domain.Features.Account.ManageProfile.ViewProfile;
 using DDDSouthWest.Website.Framework;
 using IdentityServer4.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DDDSouthWest.Website.Features.Public.Account.ManageProfile
@@ -25,10 +22,8 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageProfile
         [Route("/account/profile/", Name = RouteNames.ProfileManage)]
         public async Task<IActionResult> Index()
         {
-            /*var res = context.Subject.FindFirst("sub").Value;*/
-            var res2 = User.Identity.GetSubjectId();
-            var res = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            var response = await _mediator.Send(new ViewProfileDetail.Query(1));
+            var userId = User.Identity.GetSubjectId();
+            var response = await _mediator.Send(new ViewProfileDetail.Query(int.Parse(userId)));
 
             return View(new ProfileDetailViewModel
             {

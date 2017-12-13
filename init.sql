@@ -63,3 +63,17 @@ CREATE TABLE Profiles
     CONSTRAINT profile_users_id_fk
     REFERENCES users
 );
+
+CREATE TABLE public.Pages
+(
+    Id SERIAL PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    Filename VARCHAR(255) NOT NULL,
+    Body VARCHAR,
+    IsLive BOOLEAN DEFAULT FALSE NOT NULL,
+    IsDeleted BOOLEAN DEFAULT FALSE NOT NULL,
+    DateCreated TIMESTAMP,
+    LastModified TIMESTAMP
+);
+CREATE UNIQUE INDEX Pages_Id_uindex ON public.Pages (Id);
+CREATE UNIQUE INDEX Pages_Filename_uindex ON public.Pages (Filename);

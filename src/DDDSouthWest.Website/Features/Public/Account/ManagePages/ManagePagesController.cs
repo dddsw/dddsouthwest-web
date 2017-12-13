@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
+using DDDSouthWest.Domain.Features.Account.ManagePages.ListPages;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
 using MediatR;
@@ -20,9 +21,13 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManagePages
         }
 
         [Route("/account/pages/", Name = RouteNames.PagesManage)]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var result = await _mediator.Send(new ListAllPages.Query());
+            return View(new ManagePagesListViewModel
+            {
+                Pages = result.Pages
+            });
         }
 
         [Route("/account/pages/create", Name = RouteNames.PageCreate)]

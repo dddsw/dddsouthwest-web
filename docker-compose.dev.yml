@@ -8,8 +8,8 @@ services:
       container_name: ddd-southwest-database
       image: postgres:9.4
       restart: always
-      # volumes:
-      #   - ./postgres-data:/var/lib/postgresql/data
+      volumes:
+        - ./postgres-data:/var/lib/postgresql/data
       environment:
         - POSTGRES_USER=dddsouthwest_user
         - POSTGRES_PASSWORD=letmein

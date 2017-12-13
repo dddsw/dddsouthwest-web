@@ -1,4 +1,5 @@
 ﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.Account.ManagePages.ManagePagesListViewModel
 
 @{
     ViewBag.Tab = PageTab.Login;                                                        
@@ -25,22 +26,21 @@
                 <thead>
                 <tr>
                     <th>&nbsp;</th>
-                    <th>Event</th>
-                    <th>Date</th>
+                    <th>Page</th>
+                    <th>Last Modified</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td><a href="@Url.RouteUrl(RouteNames.PageEdit, new { id = 1 })">Edit</a></td>
-                    <td>DDD South West 8</td>
-                    <td>7th May 2018</td>
-                </tr>
-                <tr>
-                    <td><a href="@Url.RouteUrl(RouteNames.PageEdit, new { id = 1 })">Edit</a></td>
-                    <td>DDD South West 7</td>
-                    <td>7th May 2017</td>
-                </tr>
+                @foreach (var newsItem in Model.Pages)
+                {
+                    <tr>
+                        <td><a href="@Url.RouteUrl(RouteNames.PageEdit, new { id = 1 })">Edit</a></td>
+                        <td>@newsItem.Title</td>
+                        <td>@newsItem.LastModified</td>
+                        <td>@(newsItem.IsLive ? "Yes" : "No")</td>
+                    </tr>    
+                }
                 </tbody>
             </table>
 
