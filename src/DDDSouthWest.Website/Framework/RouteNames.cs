@@ -29,6 +29,7 @@
         public const string TalksManage = "talk_manage";
         
         public const string AccountLogin = "account_login";
+        public const string AccountLogout = "account_logout";
         public const string AccountRegistration = "account_register";
         public const string AccountDashboard = "account_dashboard";
     }

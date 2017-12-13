@@ -72,6 +72,7 @@ CREATE TABLE public.Pages
     Body VARCHAR,
     IsLive BOOLEAN DEFAULT FALSE NOT NULL,
     IsDeleted BOOLEAN DEFAULT FALSE NOT NULL,
+    PageOrder INT NOT NULL,
     DateCreated TIMESTAMP,
     LastModified TIMESTAMP
 );

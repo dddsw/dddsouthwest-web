@@ -27,7 +27,7 @@ namespace DDDSouthWest.Domain.Features.Account.ManagePages.ListPages
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
                     const string sql =
-                        "SELECT Id, Title, IsLive, DateModified FROM pages WHERE IsDeleted = FALSE ORDER BY PageOrder";
+                        "SELECT Id, Title, IsLive, LastModified FROM pages WHERE IsDeleted = FALSE ORDER BY PageOrder";
                     var results = await connection.QueryAsync<PageListModel>(sql);
 
                     return new Response
