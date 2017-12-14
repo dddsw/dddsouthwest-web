@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail;
 using MediatR;
 
@@ -7,7 +6,7 @@ namespace DDDSouthWest.Domain.Features.Public.News.NewsDetail
 {
     public class ViewLiveNewsDetail
     {
-        public class Query : IRequest<NewsModel>
+        public class Query : IRequest<NewsDetailModel>
         {
             public Query()
             {    
@@ -24,7 +23,7 @@ namespace DDDSouthWest.Domain.Features.Public.News.NewsDetail
             public string Filename { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Query, NewsModel>
+        public class Handler : IAsyncRequestHandler<Query, NewsDetailModel>
         {
             private readonly QueryAnyNewsById _newsById;
 
@@ -33,7 +32,7 @@ namespace DDDSouthWest.Domain.Features.Public.News.NewsDetail
                 _newsById = newsById;
             }
 
-            public async Task<NewsModel> Handle(Query message)
+            public async Task<NewsDetailModel> Handle(Query message)
             {
                 var news = await _newsById.Invoke(message.Id);
                 if (!news.IsLive)

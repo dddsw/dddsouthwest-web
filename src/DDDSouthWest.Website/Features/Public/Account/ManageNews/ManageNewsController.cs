@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using DDDSouthWest.Domain;
 using DDDSouthWest.Domain.Features.Account.ManageNews.CreateNews;
 using DDDSouthWest.Domain.Features.Account.ManageNews.DeleteNews;
 using DDDSouthWest.Domain.Features.Account.ManageNews.ListNews;
@@ -20,10 +21,12 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
     public class ManageNewsController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly MarkdownTransformer _transformer;
 
-        public ManageNewsController(IMediator mediator)
+        public ManageNewsController(IMediator mediator, MarkdownTransformer transformer)
         {
             _mediator = mediator;
+            _transformer = transformer;
         }
 
         [Route("/account/news/", Name = RouteNames.NewsManage)]
@@ -49,6 +52,8 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
         {
             CreateNews.Response result;
 
+            command.BodyHtml = _transformer.ToHtml(command.BodyMarkdown);
+            
             try
             {
                 result = await _mediator.Send(command);
@@ -60,7 +65,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
                     Errors = e.Errors.ToList(),
                     Title = command.Title,
                     Filename = command.Filename,
-                    Body = command.Body,
+                    BodyMarkdown = command.BodyMarkdown,
                     IsLive = command.IsLive
                 });
             }
@@ -78,7 +83,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
                 Id = model.Id,
                 Filename = model.Filename,
                 Title = model.Title,
-                Body = model.Body,
+                BodyMarkdown = model.BodyMarkdown,
                 DatePosted = model.DatePosted,
                 IsLive = model.IsLive
             });
@@ -100,7 +105,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
                     Title = command.Title,
                     Filename = command.Filename,
                     DatePosted = command.DatePosted,
-                    Body = command.Body,
+                    BodyMarkdown = command.BodyMarkdown,
                     IsLive = command.IsLive
                 });
             }

@@ -22,8 +22,13 @@
     </div>
 
     <div class="pure-control-group">
-        <label asp-for="Body">News Post</label>
-        <textarea asp-for="Body" class="pure-input-2-3" style="height: 250px;"></textarea>
+        <label asp-for="BodyMarkdown">News Post</label>
+        <div class="pure-u-2-3">
+            <div style="padding-right: 8px;">
+                <textarea asp-for="BodyMarkdown" id="postBody" style="height: 250px;"></textarea>
+            </div>
+            
+        </div>
     </div>
 
     <div class="pure-controls">

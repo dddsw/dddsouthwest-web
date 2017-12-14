@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using Dapper;
 using FluentValidation;
@@ -16,7 +15,8 @@ namespace DDDSouthWest.Domain.Features.Account.ManageNews.UpdateExistingNews
             public string Title { get; set; }
             public string Filename { get; set; }
             public DateTime DatePosted { get; set; }
-            public string Body { get; set; }
+            public string BodyMarkdown { get; set; }
+            public string BodyHtml { get; set; }
             public bool IsLive { get; set; }
         }
 
@@ -37,14 +37,15 @@ namespace DDDSouthWest.Domain.Features.Account.ManageNews.UpdateExistingNews
 
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    const string query = @"UPDATE news SET Title = @Title, Filename = @Filename, Body = @Body, DatePosted = @DatePosted, IsLive = @IsLive WHERE Id = @Id";
+                    const string query = @"UPDATE news SET Title = @Title, Filename = @Filename, BodyMarkdown = @BodyMarkdown, BodyHtml = @BodyHtml, DatePosted = @DatePosted, IsLive = @IsLive WHERE Id = @Id";
                     await connection.ExecuteAsync(query, new
                     {
                         Id = message.Id,
                         Title = message.Title,
                         Filename = message.Filename,
                         DatePosted = message.DatePosted,
-                        Body = message.Body,
+                        BodyMarkdown = message.BodyMarkdown,
+                        BodyHtml = message.BodyHtml,
                         IsLive = message.IsLive
                     });
                 }

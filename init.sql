@@ -22,6 +22,7 @@ CREATE TABLE Talks
     TalkFilename VARCHAR(255) NOT NULL,
     TalkSummary VARCHAR NOT NULL,
     TalkBody VARCHAR NOT NULL,
+    TalkBodyMarkdown VARCHAR,
     SubmissionDate TIMESTAMP NOT NULL
 );
 
@@ -44,7 +45,8 @@ CREATE TABLE News
     Title VARCHAR(255) NOT NULL,
     Filename VARCHAR(255) NOT NULL,
     DatePosted TIMESTAMP,
-    Body VARCHAR,
+    BodyHtml VARCHAR,
+    BodyMarkdown VARCHAR,
     IsLive BOOLEAN DEFAULT FALSE NOT NULL,
     IsDeleted BOOLEAN DEFAULT FALSE NOT NULL
 );
@@ -58,6 +60,7 @@ CREATE TABLE Profiles
   website      VARCHAR(255),
   linkedin     VARCHAR(255),
   bio          VARCHAR,
+  bioMarkdown VARCHAR,
   lastmodified TIMESTAMP NOT NULL,
   userid       INTEGER
     CONSTRAINT profile_users_id_fk
@@ -70,6 +73,7 @@ CREATE TABLE public.Pages
     Title VARCHAR(255) NOT NULL,
     Filename VARCHAR(255) NOT NULL,
     Body VARCHAR,
+    BodyMarkdown VARCHAR,
     IsLive BOOLEAN DEFAULT FALSE NOT NULL,
     IsDeleted BOOLEAN DEFAULT FALSE NOT NULL,
     PageOrder INT NOT NULL,

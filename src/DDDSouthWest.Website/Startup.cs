@@ -49,7 +49,7 @@ namespace DDDSouthWest.Website
 
             services.AddWebsiteAppSettingsOptions(Configuration);
             
-            // Validation
+            // Validation            
             services.AddTransient<CreateNewEventValidator, CreateNewEventValidator>();
             services.AddTransient<UpdateExistingEventValidator, UpdateExistingEventValidator>();
                         
@@ -59,12 +59,14 @@ namespace DDDSouthWest.Website
             services.AddTransient<CreatePageValidation, CreatePageValidation>();
             services.AddTransient<RegisterNewUserValidator, RegisterNewUserValidator>();
             
+            // Email Notification
+            services.AddTransient<IRegistrationConfirmation, SendEmailConfirmation>();
+            
+            // Misc
+            services.AddTransient<MarkdownTransformer, MarkdownTransformer>();
             services.AddTransient<QueryEventById, QueryEventById>();
             services.AddTransient<QueryAnyNewsById, QueryAnyNewsById>();
             services.AddTransient<CreateNewRegisteredUser, CreateNewRegisteredUser>();
-            
-            // Email Notification
-            services.AddTransient<IRegistrationConfirmation, SendEmailConfirmation>();
 
             var database = "appmetricsdemo";
             var uri = new Uri("http://127.0.0.1:8086");

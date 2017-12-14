@@ -1,5 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail;
 using DDDSouthWest.Domain.Features.Public.News.ListNews;
 using DDDSouthWest.Domain.Features.Public.News.NewsDetail;
 using DDDSouthWest.Website.Framework;
@@ -37,7 +37,7 @@ namespace DDDSouthWest.Website.Features.Public.News
             {
                 Id = result.Id,
                 Title = result.Title,
-                Body = result.Body,
+                Body = result.BodyHtml,
                 DatePosted = result.DatePosted,
                 CanonicalFilename = result.Filename,
             });

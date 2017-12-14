@@ -21,7 +21,17 @@ namespace DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail
 
             public async Task<NewsModel> Handle(Query message)
             {
-                return await _queryEventById.Invoke(message.Id);
+                var model = await _queryEventById.Invoke(message.Id);
+
+                return new NewsModel
+                {
+                    BodyMarkdown = model.BodyMarkdown,
+                    DatePosted = model.DatePosted,
+                    Filename = model.Filename,
+                    Id = model.Id,
+                    IsLive = model.IsLive,
+                    Title = model.Title
+                };
             }
         }
     }

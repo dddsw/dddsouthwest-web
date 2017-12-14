@@ -20,7 +20,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
 
         public DateTime DatePosted { get; set; }
 
-        public string Body { get; set; }
+        public string BodyMarkdown { get; set; }
 
         public bool IsLive { get; set; }
 

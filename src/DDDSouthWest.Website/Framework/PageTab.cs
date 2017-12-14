@@ -11,6 +11,7 @@
         Sponsors,
         Register,
         Login,
+        Logout,
         Account,
         Contact
     }

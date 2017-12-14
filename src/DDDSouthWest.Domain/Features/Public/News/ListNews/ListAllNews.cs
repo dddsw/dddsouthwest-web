@@ -36,7 +36,7 @@ namespace DDDSouthWest.Domain.Features.Public.News.ListNews
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    var sql = "SELECT Id, Title, Filename, Body, IsLive, DatePosted FROM news WHERE IsLive = TRUE AND IsDeleted = FALSE ORDER BY DatePosted DESC";
+                    var sql = "SELECT Id, Title, Filename, BodyHtml AS Body, IsLive, DatePosted FROM news WHERE IsLive = TRUE AND IsDeleted = FALSE ORDER BY DatePosted DESC";
                     if (message.Limit.HasValue && message.Limit.Value > 0)
                         sql += " LIMIT @Count";
                     var results = await connection.QueryAsync<NewsListModel>(sql, new

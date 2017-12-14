@@ -19,7 +19,9 @@ namespace DDDSouthWest.Domain.Features.Account.ManageNews.CreateNews
 
             public DateTime DatePosted { get; set; }
 
-            public string Body { get; set; }
+            public string BodyHtml { get; set; }
+            
+            public string BodyMarkdown { get; set; }
 
             public bool IsLive { get; set; }
 
@@ -44,7 +46,7 @@ namespace DDDSouthWest.Domain.Features.Account.ManageNews.CreateNews
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
                     const string query =
-                        "INSERT INTO News (Title, Filename, Body, DatePosted, IsLive) Values (@Title, @Filename, @Body, current_timestamp, @IsLive) RETURNING Id";
+                        "INSERT INTO News (Title, Filename, BodyHtml, BodyMarkdown, DatePosted, IsLive) Values (@Title, @Filename, @BodyHtml, @BodyMarkdown, current_timestamp, @IsLive) RETURNING Id";
 
                     return new Response
                     {
@@ -52,7 +54,8 @@ namespace DDDSouthWest.Domain.Features.Account.ManageNews.CreateNews
                         {
                             Title = message.Title,
                             Filename = message.Filename,
-                            Body = message.Body,
+                            BodyHtml = message.BodyHtml,
+                            BodyMarkdown = message.BodyMarkdown,
                             IsLive = message.IsLive
                         })
                     };

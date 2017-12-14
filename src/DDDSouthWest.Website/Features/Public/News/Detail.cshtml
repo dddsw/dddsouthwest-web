@@ -16,7 +16,7 @@
         <div class="news-detail">
             <h2 class="news-detail__title branding--primary">@Model.Title</h2>
             <p class="news-detail__date">Posted @Model.DatePosted</p>
-            <p class="news-detail__content">@Model.Body</p>
+            <p class="news-detail__content">@Html.Raw(Model.Body)</p>
         </div>
 
         <div class="pure-u-1-1 pure-block">
