@@ -93,6 +93,8 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
         [Route("/account/news/edit")]
         public async Task<IActionResult> Update(UpdateExistingNews.Command command)
         {
+            command.BodyHtml = _transformer.ToHtml(command.BodyMarkdown);
+            
             try
             {
                 await _mediator.Send(command);

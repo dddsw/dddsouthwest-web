@@ -34,7 +34,7 @@
                     if (latestItem != null)
                     {
                         <h4 class="title--medium branding--primary gutter-top-none">@latestItem.Title</h4>
-                        <div>@latestItem.Body</div>
+                        <div>@Html.Raw(latestItem.Body)</div>
                     }
                 }
                 
