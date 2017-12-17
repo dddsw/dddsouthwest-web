@@ -50,9 +50,9 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
         [Route("/account/news/create", Name = RouteNames.NewsCreate)]
         public async Task<IActionResult> Create(CreateNews.Command command)
         {
-            CreateNews.Response result;
-
             command.BodyHtml = _transformer.ToHtml(command.BodyMarkdown);
+
+            CreateNews.Response result;
             
             try
             {

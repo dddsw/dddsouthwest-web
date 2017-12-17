@@ -14,10 +14,12 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManagePages
     public class ManagePagesController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly MarkdownTransformer _transformer;
 
-        public ManagePagesController(IMediator mediator)
+        public ManagePagesController(IMediator mediator, MarkdownTransformer transformer)
         {
             _mediator = mediator;
+            _transformer = transformer;
         }
 
         [Route("/account/pages/", Name = RouteNames.PagesManage)]
@@ -40,6 +42,8 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManagePages
         [Route("/account/pages/create")]
         public async Task<IActionResult> Create(CreatePage.Command command)
         {
+            command.BodyHtml = _transformer.ToHtml(command.BodyMarkdown);
+            
             CreatePage.Response result;
 
             try
@@ -51,14 +55,14 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManagePages
                 return View(new ManagePagesViewModel
                 {
                     Errors = e.Errors.ToList(),
-                    PageTitle = command.PageTitle,
-                    PageFilename = command.PageFilename,
-                    PageBody = command.PageBody
+                    Title = command.Title,
+                    Filename = command.Filename,
+                    BodyMarkdown = command.BodyMarkdown
                 });
             }
 
             /*return RedirectToAction("Edit", new BlogPostEdit.Query { Id = id.Id });*/
-            return RedirectToAction("Edit", result.Id);
+            return RedirectToAction("Index");
         }
 
         [Route("/account/pages/edit/{id}", Name = RouteNames.PageEdit)]

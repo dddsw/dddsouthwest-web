@@ -7,18 +7,23 @@
 <fieldset>
     
     <div class="pure-control-group">
-        <label asp-for="PageTitle">Page Name</label>
-        <input asp-for="PageTitle" class="pure-input-2-3"/>
+        <label asp-for="Title">Page Name</label>
+        <input asp-for="Title" class="pure-input-2-3"/>
     </div>
 
     <div class="pure-control-group">
-        <label asp-for="PageFilename">Page Filename</label>
-        <input asp-for="PageFilename" class="pure-input-2-3"/>
+        <label asp-for="Filename">Page Filename</label>
+        <input asp-for="Filename" class="pure-input-2-3"/>
     </div>
-
+    
     <div class="pure-control-group">
-        <label asp-for="PageBody">Page Body</label>
-        <textarea asp-for="PageBody" class="pure-input-2-3" style="height: 250px;"></textarea>
+        <label asp-for="BodyMarkdown">Page Body</label>
+        <div class="pure-u-2-3">
+            <div style="padding-right: 8px;">
+                <textarea asp-for="BodyMarkdown" id="postBody" style="height: 250px;"></textarea>
+            </div>
+            
+        </div>
     </div>
 
     <div class="pure-controls">

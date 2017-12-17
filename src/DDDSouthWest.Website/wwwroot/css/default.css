@@ -85,6 +85,8 @@ p {
 .gutter-top-small { padding-top: 10px; }
 .gutter-top-default { padding-top: 20px; }
 
+.gutter-right-default { padding-right: 20px; }
+
 .gutter-bottom-default { padding-bottom: 20px; }
 
 .gutter-small { padding: 10px; }

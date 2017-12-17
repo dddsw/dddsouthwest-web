@@ -6,9 +6,9 @@ namespace DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage
     {
         public CreatePageValidation()
         {
-            RuleFor(x => x.PageTitle).NotEmpty();
-            RuleFor(x => x.PageFilename).NotEmpty();
-            RuleFor(x => x.PageBody).NotEmpty();
+            RuleFor(x => x.Title).NotEmpty();
+            RuleFor(x => x.Filename).NotEmpty();
+            RuleFor(x => x.BodyMarkdown).NotEmpty();
         }
     }
 }

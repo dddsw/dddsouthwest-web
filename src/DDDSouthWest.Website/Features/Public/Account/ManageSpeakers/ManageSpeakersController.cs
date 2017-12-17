@@ -49,9 +49,9 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageSpeakers
                 return View(new ManageSpeakersViewModel
                 {
                     Errors = e.Errors.ToList(),
-                    SpeakerFirstName = command.PageTitle,
-                    SpeakerFamilyName = command.PageFilename,
-                    SpeakerBio = command.PageBody
+                    SpeakerFirstName = command.Title,
+                    SpeakerFamilyName = command.Filename,
+                    SpeakerBio = command.BodyMarkdown
                 });
             }
             

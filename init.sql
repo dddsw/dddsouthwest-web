@@ -74,6 +74,7 @@ CREATE TABLE public.Pages
     Filename VARCHAR(255) NOT NULL,
     Body VARCHAR,
     BodyMarkdown VARCHAR,
+    BodyHtml VARCHAR,
     IsLive BOOLEAN DEFAULT FALSE NOT NULL,
     IsDeleted BOOLEAN DEFAULT FALSE NOT NULL,
     PageOrder INT NOT NULL,

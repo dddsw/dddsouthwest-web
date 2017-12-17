@@ -13,11 +13,11 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManagePages
 
         public int Id { get; set; }
 
-        public string PageTitle { get; set; }
+        public string Title { get; set; }
 
-        public string PageFilename { get; set; }
+        public string Filename { get; set; }
 
-        public string PageBody { get; set; }
+        public string BodyMarkdown { get; set; }
 
         public DateTime LastModified { get; set; }
 
