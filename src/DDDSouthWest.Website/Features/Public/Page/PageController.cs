@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
+using DDDSouthWest.Domain;
 using DDDSouthWest.Domain.Features.Public.Page;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -19,10 +21,22 @@ namespace DDDSouthWest.Website.Features.Public.Page
             /* TODO: Check to see if view exists on disk, if not then load from DB
              * return View($"~/Features/Public/Page/{filename}.cshtml");
              */
+
+            GetPage.Response response;
+            try
+            {
+                response = await _mediator.Send(query);
+            }
+            catch (RecordNotFoundException)
+            {
+                HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return View("~/Features/Public/Page/notfound.cshtml");
+            }
             
-            var result = await _mediator.Send(query);
-            
-            return View(result);
+            return View(new PageDetailViewModel
+            {
+                PageDetail = response?.PageDetail
+            });
         }
     }
 }
