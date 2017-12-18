@@ -1,6 +1,9 @@
 using System;
 using System.Threading.Tasks;
+using Dapper;
+using DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail;
 using MediatR;
+using Npgsql;
 
 namespace DDDSouthWest.Domain.Features.Public.Page
 {
@@ -13,15 +16,19 @@ namespace DDDSouthWest.Domain.Features.Public.Page
 
         public class Handler : IAsyncRequestHandler<Query, Reponse>
         {
+            private readonly ClientConfigurationOptions _options;
+
+            public Handler(ClientConfigurationOptions options)
+            {
+                _options = options;
+            }
+            
             public Task<Reponse> Handle(Query message)
             {
-                return Task.FromResult(new Reponse
+                using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    Title = "About",
-                    Filename = "about",
-                    BodyContent = "Hello from the about page"
-                });
-            }
+                    return await connection.QuerySingleOrDefaultAsync<PageDetailModel>("SELECT Id, Title, Filename, BodyHtml AS Body, IsLive, LastModified FROM page WHERE Id = @id AND Live = TRUE LIMIT 1", new {id});
+                }            }
         }
 
         public class Reponse

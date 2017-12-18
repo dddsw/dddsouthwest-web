@@ -1,12 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CommonMark.NET" Version="0.15.1" />
     <PackageReference Include="Dapper" Version="1.50.2" />
     <PackageReference Include="FluentValidation" Version="7.1.0" />
+    <PackageReference Include="InfluxDB.Collector" Version="1.0.0" />
+    <PackageReference Include="InfluxDB.Net.Core" Version="1.1.22-beta" />
     <PackageReference Include="MediatR" Version="3.0.1" />
     <PackageReference Include="Npgsql" Version="3.2.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="InfluxDB.Collector, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\.nuget\packages\influxdb.collector\1.0.0\lib\netstandard1.3\InfluxDB.Collector.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\Account\ManagePages\EditPage" />
   </ItemGroup>
 </Project>
