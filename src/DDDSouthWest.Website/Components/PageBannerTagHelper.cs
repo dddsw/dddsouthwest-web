@@ -14,7 +14,7 @@ namespace DDDSouthWest.Website.Components
                 <div class=""grid-container"">
                     <div class=""grid-100"">
                         <div class=""page-banner__content"">
-                            <h1 class=""page-banner--title"">{Title}</h1>
+                            <span class=""page-banner--title"">{Title}</span>
                         </div>
                     </div>
                 </div>

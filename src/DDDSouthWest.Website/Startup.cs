@@ -11,6 +11,7 @@ using DDDSouthWest.Domain.Features.Account.ManageNews.CreateNews;
 using DDDSouthWest.Domain.Features.Account.ManageNews.UpdateExistingNews;
 using DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
+using DDDSouthWest.Domain.Features.Account.ManagePages.UpdateExistingPage;
 using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
 using DDDSouthWest.Domain.Features.Public.Page;
 using DDDSouthWest.Website.Framework;
@@ -57,6 +58,8 @@ namespace DDDSouthWest.Website
             services.AddTransient<UpdateExistingNewsValidator, UpdateExistingNewsValidator>();
             
             services.AddTransient<CreatePageValidation, CreatePageValidation>();
+            services.AddTransient<UpdateExistingPageValidator, UpdateExistingPageValidator>();
+            
             services.AddTransient<RegisterNewUserValidator, RegisterNewUserValidator>();
             
             // Email Notification

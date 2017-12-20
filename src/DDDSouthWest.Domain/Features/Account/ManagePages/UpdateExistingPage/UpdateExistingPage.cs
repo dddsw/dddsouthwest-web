@@ -38,7 +38,7 @@ namespace DDDSouthWest.Domain.Features.Account.ManagePages.UpdateExistingPage
 
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    const string query = @"UPDATE page SET Title = @Title, Filename = @Filename, BodyMarkdown = @BodyMarkdown, BodyHtml = @BodyHtml, LastModified = current_timestamp, IsLive = @IsLive, PageOrder = @PageOrder WHERE Id = @Id";
+                    const string query = @"UPDATE pages SET Title = @Title, Filename = @Filename, BodyMarkdown = @BodyMarkdown, BodyHtml = @BodyHtml, LastModified = current_timestamp, IsLive = @IsLive, PageOrder = @PageOrder WHERE Id = @Id";
                     await connection.ExecuteAsync(query, new
                     {
                         Id = message.Id,

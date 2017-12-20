@@ -13,7 +13,6 @@ namespace DDDSouthWest.IdentityServer
     {
         public Startup(IHostingEnvironment env)
         {
-            var res = env.EnvironmentName.ToLower();
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", false, true)

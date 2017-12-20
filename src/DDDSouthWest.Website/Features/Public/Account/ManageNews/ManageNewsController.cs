@@ -106,7 +106,6 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageNews
                     Errors = e.Errors.ToList(),
                     Title = command.Title,
                     Filename = command.Filename,
-                    DatePosted = command.DatePosted,
                     BodyMarkdown = command.BodyMarkdown,
                     IsLive = command.IsLive
                 });

@@ -18,12 +18,11 @@ namespace DDDSouthWest.Domain.Features.Account.ManagePages.UpdateExistingPage
             RuleFor(x => x.Filename).Must(FilenameIsUnique).WithMessage("'News Filename' must be unqiue");
         }
 
-        private bool FilenameIsUnique(UpdateExistingPage.Command command, string newsFilename,
-            PropertyValidatorContext context)
+        private bool FilenameIsUnique(UpdateExistingPage.Command command, string newsFilename, PropertyValidatorContext context)
         {
             using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
             {
-                const string sql = "SELECT COUNT(*) FROM news WHERE Filename = @Filename AND Id != @Id";
+                const string sql = "SELECT COUNT(*) FROM pages WHERE Filename = @Filename AND Id != @Id";
                 var totalClashes = connection.QuerySingleOrDefault<int>(sql, new {command.Id, Filename = newsFilename});
 
                 return totalClashes == 0;

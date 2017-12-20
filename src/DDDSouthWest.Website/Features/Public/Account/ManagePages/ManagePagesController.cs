@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
 using DDDSouthWest.Domain.Features.Account.ManagePages.ListPages;
@@ -82,7 +81,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManagePages
         }
 
         [HttpPost]
-        [Route("/account/pages/edit")]
+        [Route("/account/pages/edit/{id}")]
         public async Task<IActionResult> Edit(UpdateExistingPage.Command command)
         {
             command.BodyHtml = _transformer.ToHtml(command.BodyMarkdown);
