@@ -21,6 +21,8 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManagePages
 
         public DateTime LastModified { get; set; }
 
+        public bool IsLive { get; set; }
+        
         public List<ValidationFailure> Errors { get; set; }
     }
 }

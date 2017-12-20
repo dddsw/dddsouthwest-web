@@ -18,9 +18,9 @@ namespace DDDSouthWest.Website.Features.Public.Page
         
         public async Task<IActionResult> Index(GetPage.Query query)
         {
-            /* TODO: Check to see if view exists on disk, if not then load from DB
-             * return View($"~/Features/Public/Page/{filename}.cshtml");
-             */
+            
+            // TODO: Check to see if view exists on disk, if not then load from DB
+            /*return View($"~/Features/Public/Page/{query.Filename}.cshtml");*/
 
             GetPage.Response response;
             try

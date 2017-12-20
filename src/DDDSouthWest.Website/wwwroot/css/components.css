@@ -22,9 +22,7 @@
 
 .news-component {}
 
-.news-component__main-col {
-    padding: 10px;
-}
+.news-component__main-col {}
 
 .news-component__side-col {
     background-color: #efefef;
@@ -49,8 +47,7 @@
     font-size:18px;
 }
 
-.news-detail{
-}
+.news-detail{}
 
 .news-detail .news-detail__title {}
 

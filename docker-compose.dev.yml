@@ -17,31 +17,31 @@ services:
       ports:
         - "5432:5432"
 
-  influxdb:
-      container_name: ddd-southwest-influx
-      image: influxdb
-      restart: always
-      volumes:
-        - ./influxdb:/var/lib/influxdb
-      environment:
-        - INFLUXDB_DB=dddsouthwest_user
-        - INFLUXDB_USER_PASSWORD=letmein
-        - INFLUXDB_DB=dddsouthwest
-      ports:
-        - "8086:8086"
-      networks:
-        - default
+  # influxdb:
+  #     container_name: ddd-southwest-influx
+  #     image: influxdb
+  #     restart: always
+  #     volumes:
+  #       - ./influxdb:/var/lib/influxdb
+  #     environment:
+  #       - INFLUXDB_DB=dddsouthwest_user
+  #       - INFLUXDB_USER_PASSWORD=letmein
+  #       - INFLUXDB_DB=dddsouthwest
+  #     ports:
+  #       - "8086:8086"
+  #     networks:
+  #       - default
 
-  grafana:
-      container_name: ddd-southwest-grafana
-      image: grafana/grafana:latest
-      ports:
-        - "3000:3000"
-      environment:
-        FORCE_HOSTNAME: auto
-        INFLUXDB_HOST: dddsouthwest_user
-        INFLUXDB_PASS: letmein
-      links:
-        - influxdb
-      networks:
-        - default
+  # grafana:
+  #     container_name: ddd-southwest-grafana
+  #     image: grafana/grafana:latest
+  #     ports:
+  #       - "3000:3000"
+  #     environment:
+  #       FORCE_HOSTNAME: auto
+  #       INFLUXDB_HOST: dddsouthwest_user
+  #       INFLUXDB_PASS: letmein
+  #     links:
+  #       - influxdb
+  #     networks:
+  #       - default

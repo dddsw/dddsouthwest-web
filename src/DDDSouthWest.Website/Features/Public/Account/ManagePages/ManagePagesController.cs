@@ -43,12 +43,10 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManagePages
         public async Task<IActionResult> Create(CreatePage.Command command)
         {
             command.BodyHtml = _transformer.ToHtml(command.BodyMarkdown);
-            
-            CreatePage.Response result;
 
             try
             {
-                result = await _mediator.Send(command);
+                await _mediator.Send(command);
             }
             catch (ValidationException e)
             {

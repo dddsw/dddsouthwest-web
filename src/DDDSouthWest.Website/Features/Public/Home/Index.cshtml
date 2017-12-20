@@ -22,12 +22,14 @@
         <a href="/page/about" class="button button--small button--primary">Learn more about us</a>
     </div>
     
-    <div class="grid-container grid-parent">
+    <div class="grid-container">
         
-        <h3 class="title--medium title--underline">Latest News &amp; Announcements</h3>
+        <div class="grid-100">
+            <h3 class="title--medium title--underline">Latest News &amp; Announcements</h3>
+        </div>
         
-        <div class="grid-70 grid-parent">
-            <div class="news-component--main-col gutter-right-default">
+        <div class="grid-60">
+            <div class="news-component__main-col">
                 
                 @{
                     var latestItem = Model.News.FirstOrDefault();
@@ -44,10 +46,10 @@
             </div>
         </div>
         
-        <div class="grid-30 grid-parent">
+        <div class="grid-40 hide-on-mobile">
             <div class="news-component__side-col">
                 
-                @if (Model.News.Any())
+                @if (Model.News.Any())    
                 {
                     <ol class="news-list">
                         @foreach (var newsItem in Model.News)
@@ -71,19 +73,22 @@
     
     <div class="gutter-bottom-default"></div>
 
-    <div class="sponsor-component">
-        <div class="grid-container grid-parent">
-            
-            <h3 class="title--medium title--underline">Sponsors</h3>
-            <p>DDD Southwest is a free community based conference, without the support of our sponsors it wouldn't be possible.</p>
-            
-            <div class="gutter-top-default"></div>
-            <a href="/page/about" class="button button--small button--primary">More about our sponsors</a>
-            
+    <div class="grid-100">
+    
+        <div class="sponsor-component">
+            <div class="grid-container grid-parent">
+                
+                <h3 class="title--medium title--underline">Sponsors</h3>
+                <p>DDD Southwest is a free community based conference, without the support of our sponsors it wouldn't be possible.</p>
+                
+                <div class="gutter-top-default"></div>
+                <a href="/page/about" class="button button--small button--primary">More about our sponsors</a>
+                
+            </div>
         </div>
+    
     </div>
     
     <div class="gutter-bottom-default"></div>
-
 
 }

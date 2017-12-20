@@ -90,3 +90,5 @@ p {
 .gutter-bottom-default { padding-bottom: 20px; }
 
 .gutter-small { padding: 10px; }
+
+.grid-container { max-width: 100%; padding: 0 10px; }
