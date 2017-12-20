@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
 using DDDSouthWest.Domain.Features.Account.ManagePages.ListPages;
+using DDDSouthWest.Domain.Features.Account.ManagePages.UpdateExistingPage;
+using DDDSouthWest.Domain.Features.Account.ManagePages.ViewPageDetail;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
 using MediatR;
@@ -61,27 +64,47 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManagePages
 
             /*return RedirectToAction("Edit", new BlogPostEdit.Query { Id = id.Id });*/
             return RedirectToAction("Index");
-        }
+        }    
 
         [Route("/account/pages/edit/{id}", Name = RouteNames.PageEdit)]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(ViewPageDetail.Query query)
         {
-            // TODO: Pull data from database
+            var response = await _mediator.Send(query);
 
             return View(new ManagePagesViewModel
             {
-                Id = id
+                Id = response.Id,
+                BodyMarkdown = response.BodyMarkdown,
+                Filename = response.Filename,
+                IsLive = response.IsLive,
+                Title = response.Title
             });
         }
 
         [HttpPost]
         [Route("/account/pages/edit")]
-        public async Task<IActionResult> Edit(CreatePage.Command command)
+        public async Task<IActionResult> Edit(UpdateExistingPage.Command command)
         {
-            var result = await _mediator.Send(command);
+            command.BodyHtml = _transformer.ToHtml(command.BodyMarkdown);
 
-            /*return RedirectToAction("Edit", new BlogPostEdit.Query { Id = id.Id });*/
-            return RedirectToAction("Edit", result.Id);
+            try
+            {
+                await _mediator.Send(command);
+            }
+            catch (ValidationException e)
+            {
+                return View(new ManagePagesViewModel
+                {
+                    Errors = e.Errors.ToList(),
+                    Title = command.Title,
+                    Filename = command.Filename,
+                    IsLive = command.IsLive,
+                    Id = command.Id,
+                    BodyMarkdown = command.BodyMarkdown
+                });
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -16,7 +16,4 @@
       <HintPath>..\..\..\..\.nuget\packages\influxdb.collector\1.0.0\lib\netstandard1.3\InfluxDB.Collector.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\Account\ManagePages\EditPage" />
-  </ItemGroup>
 </Project>
