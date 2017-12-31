@@ -22,11 +22,13 @@
 
 .news-component {}
 
-.news-component__main-col {}
+.news-component__main-col {
+}
 
 .news-component__side-col {
-    background-color: #efefef;
     padding: 20px;
+    border-left: 1px solid #eaeaea;
+    min-height: 445px;
 }
 
 .news-list {

@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail;
 using DDDSouthWest.Domain.Features.Public.News.ListNews;
 using DDDSouthWest.Domain.Features.Public.News.NewsDetail;
 using DDDSouthWest.Website.Framework;

@@ -35,23 +35,25 @@ nav, section {
     display: block;
 }
 
-h1 {
-    margin: 0;
-    padding: 0;
-}
-
-h2, h3, h4 {
+h1, h2, h3, h4 {
     margin: 20px 0;
     padding: 0;
 }
 
-h2 {
-    font-size: 40px;
+h1 {
+    font-size: 38px;
     line-height: 1.3em;
 }
 
+h2 {
+    font-size: 28px;
+    line-height: 1.3em;
+    color: #858585;
+}
+
 h3 {
-    font-size: 30px;
+    font-size: 20px;
+    color: #858585;
 }
 
 p {

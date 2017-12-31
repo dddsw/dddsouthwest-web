@@ -9,7 +9,7 @@
 .title--medium {
     font-size: 22px;
 }
-
+.content-container h1,
 .title--underline {
     border-bottom: 1px solid #eaeaea;
     padding-bottom: 15px;

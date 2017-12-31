@@ -47,40 +47,45 @@
 <body>
         
 <header>
-    
     <div class="header-container">
         
-        <a href="/" class="site-logo">
-            <span class="site-logo__title">DDD South West</span>
-        </a>
-        <nav class="main-menu-container">
-            <ul class="main-menu">
-                <li @Html.Raw(ViewBag.Tab == PageTab.Home ? "class=\"active\"" : string.Empty)><a href="/">Home</a></li>
-                <li @Html.Raw(ViewBag.Tab == PageTab.News ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.NewsList)">News</a></li>
-                <li @Html.Raw(ViewBag.Tab == PageTab.About ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "about"})">About</a></li>
-                @*<li @Html.Raw(ViewBag.Tab == PageTab.Speakers ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "speakers"})">Speakers</a></li>
+        <div class="grid-container">
+            <a href="/" class="site-logo">
+                <span class="site-logo__title">DDD South West</span>
+            </a>
+            <nav class="main-menu-container">
+                <ul class="main-menu">
+                    <li @Html.Raw(ViewBag.Tab == PageTab.Home ? "class=\"active\"" : string.Empty)><a href="/">Home</a></li>
+                    <li @Html.Raw(ViewBag.Tab == PageTab.News ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.NewsList)">News</a></li>
+                    <li @Html.Raw(ViewBag.Tab == PageTab.About ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "about"})">About</a></li>
+                    @*<li @Html.Raw(ViewBag.Tab == PageTab.Speakers ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "speakers"})">Speakers</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Sessions ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sessions"})">Sessions</a></li>*@
-                <li @Html.Raw(ViewBag.Tab == PageTab.Venue ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "venue"})">Venue</a></li>
-                <li @Html.Raw(ViewBag.Tab == PageTab.Sponsors ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sponsors"})">Sponsors</a></li>
-                @if (await AuthorizationService.AuthorizeAsync(User, AccessPolicies.RegisteredAccessPolicy))
-                {
-                    <li @Html.Raw(ViewBag.Tab == PageTab.Login ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountDashboard)">My Account</a></li>
-                    <li @Html.Raw(ViewBag.Tab == PageTab.Logout ? "class=\"active\"" : string.Empty)><a href="#">Logout</a></li>
-                }
-                else
-                {
-                    <li @Html.Raw(ViewBag.Tab == PageTab.Register ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountRegistration)">Register</a></li>
-                    <li @Html.Raw(ViewBag.Tab == PageTab.Logout ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountLogin)">Login</a></li>
-                }
-            </ul>
-        </nav>
+                    <li @Html.Raw(ViewBag.Tab == PageTab.Venue ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "venue"})">Venue</a></li>
+                    <li @Html.Raw(ViewBag.Tab == PageTab.Sponsors ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sponsors"})">Sponsors</a></li>
+                    @if (await AuthorizationService.AuthorizeAsync(User, AccessPolicies.RegisteredAccessPolicy))
+                    {
+                        <li @Html.Raw(ViewBag.Tab == PageTab.Login ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountDashboard)">My Account</a></li>
+                        <li @Html.Raw(ViewBag.Tab == PageTab.Logout ? "class=\"active\"" : string.Empty)><a href="#">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li @Html.Raw(ViewBag.Tab == PageTab.Register ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountRegistration)">Register</a></li>
+                        <li @Html.Raw(ViewBag.Tab == PageTab.Logout ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountLogin)">Login</a></li>
+                    }
+                </ul>
+            </nav>
+            <div class="clear"></div>
+        </div>
         
-        <div class="clear"></div>
+        
     </div>
-
 </header>
 
 @RenderBody()
+
+@*<div class="footer-wrapper">
+    
+</div>*@
 
 @if (IsSectionDefined("ScriptsFooter"))
 {

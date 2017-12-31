@@ -26,7 +26,9 @@
 {
     <div class="grid-container">
         <div class="grid-100">
-            @RenderSection("MainColBody")
+            <div class="content-container">
+                @RenderSection("MainColBody")
+            </div>
         </div>
     </div>
 } else if (IsSectionDefined("MainCol"))
