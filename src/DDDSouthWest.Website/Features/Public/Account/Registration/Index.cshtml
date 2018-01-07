@@ -12,11 +12,18 @@
 
 @section MainColBody {
 
-    <h2>Speaker Registration</h2>
+    <h1>Speaker Registration</h1>
 
-    @using (Html.BeginForm("Create", "Registration", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    @if (Model.AllowRegistration)
     {
-        @Html.Partial("_Form")
+        using (Html.BeginForm("Create", "Registration", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+        {
+            @Html.Partial("_Form")
+        }
+    }
+    else
+    {
+        <p>Registration is currently disabled, please check back soon.</p>
     }
 
 }

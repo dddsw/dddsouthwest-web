@@ -1,28 +1,48 @@
-﻿@model DDDSouthWest.Website.Features.Public.Account.ManagePages.ManagePagesViewModel
+﻿@model DDDSouthWest.Website.Features.Public.Account.ManageProfile.ProfileEditViewModel
 
 @Html.AntiForgeryToken()
 
-<validation-summary errors="@Model.Errors" />
+@*<validation-summary errors="@Model.Errors" />*@
 
 <fieldset>
     
     <div class="pure-control-group">
-        <label asp-for="Title">Page Name</label>
-        <input asp-for="Title" class="pure-input-2-3"/>
+        <label asp-for="Profile.GivenName">Given Name:</label>
+        <input asp-for="Profile.GivenName" class="pure-input-2-3"/>
     </div>
 
     <div class="pure-control-group">
-        <label asp-for="Filename">Page Filename</label>
-        <input asp-for="Filename" class="pure-input-2-3"/>
+        <label asp-for="Profile.FamilyName">Family Name:</label>
+        <input asp-for="Profile.FamilyName" class="pure-input-2-3"/>
     </div>
 
     <div class="pure-control-group">
-        <label asp-for="BodyMarkdown">Page Body</label>
-        <textarea asp-for="BodyMarkdown" class="pure-input-2-3" style="height: 250px;"></textarea>
+        <label asp-for="Profile.Website">Website:</label>
+        <input asp-for="Profile.Website" class="pure-input-2-3" />
     </div>
 
+    <div class="pure-control-group">
+        <label asp-for="Profile.Twitter">Twitter:</label>
+        <input asp-for="Profile.Twitter" class="pure-input-2-3" />
+    </div>
+
+    <div class="pure-control-group">
+        <label asp-for="Profile.LinkedIn">LinkedIn:</label>
+        <input asp-for="Profile.LinkedIn" class="pure-input-2-3" />
+    </div>
+    
+    <div class="pure-control-group">
+        <label asp-for="Profile.Bio">Bio:</label>
+        <div class="pure-u-2-3">
+            <div style="padding-right: 8px;">
+                <textarea asp-for="Profile.Bio" id="postBody" style="height: 250px;"></textarea>
+            </div>
+        </div>
+    </div>
+    
     <div class="pure-controls">
-        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        
+        <button type="submit" class="pure-button pure-button-primary">Save</button>
     </div>
 
 </fieldset>

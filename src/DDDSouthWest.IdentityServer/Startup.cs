@@ -44,10 +44,12 @@ namespace DDDSouthWest.IdentityServer
             services.AddTransient<IResourceOwnerPasswordValidator, CustomValidator>();
         }
 
-        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(LogLevel.Debug);
-            app.UseDeveloperExceptionPage();
+
+            if (env.IsDevelopment())
+                app.UseDeveloperExceptionPage();
 
             app.UseIdentityServer();
 

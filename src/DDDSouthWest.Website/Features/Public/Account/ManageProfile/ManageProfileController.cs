@@ -1,7 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
+using DDDSouthWest.Domain.Features.Account.ManageProfile.UpdateExistingProfile;
 using DDDSouthWest.Domain.Features.Account.ManageProfile.ViewProfile;
 using DDDSouthWest.Website.Framework;
+using FluentValidation;
 using IdentityServer4.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -13,10 +16,12 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageProfile
     public class ManageProfileController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly MarkdownTransformer _transformer;
 
-        public ManageProfileController(IMediator mediator)
+        public ManageProfileController(IMediator mediator, MarkdownTransformer transformer)
         {
             _mediator = mediator;
+            _transformer = transformer;
         }
 
         [Route("/account/profile/", Name = RouteNames.ProfileManage)]
@@ -45,11 +50,34 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageProfile
 
         [HttpPost]
         [Route("/account/profile/edit")]
-        public async Task<IActionResult> Edit(CreatePage.Command command)
+        public async Task<IActionResult> Edit(UpdateExistingProfile.Command command)
         {
-            var result = await _mediator.Send(command);
+            command.BodyHtml = _transformer.ToHtml(command.BodyMarkdown);
 
-            return RedirectToAction("Edit", result.Id);
+            try
+            {
+                await _mediator.Send(command);
+            }
+            catch (ValidationException e)
+            {
+                return View(new ProfileEditViewModel
+                {
+                    Errors = e.Errors.ToList(),
+                    Profile = new ProfileDetailModel
+                    {
+                        Bio = command.Bio,
+                        FamilyName = command.FamilyName,
+                        GivenName = command.GivenName,
+                        Id = command.Id,
+                        LinkedIn = command.LinkedIn,
+                        Twitter = command.Twitter,
+                        Website = command.Website
+                    }
+                    
+                });
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

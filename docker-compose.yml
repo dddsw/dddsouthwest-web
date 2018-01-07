@@ -43,21 +43,6 @@ services:
       networks:
         - default
 
-  influxdb:
-      container_name: ddd-southwest-influx
-      image: influxdb
-      restart: always
-      volumes:
-        - ./influxdb:/var/lib/influxdb
-      environment:
-        - INFLUXDB_DB=dddsouthwest_user
-        - INFLUXDB_USER_PASSWORD=letmein
-        - INFLUXDB_DB=dddsouthwest
-      ports:
-        - "8086:8086"
-      networks:
-        - default
-
 networks:
   default:
     driver: bridge

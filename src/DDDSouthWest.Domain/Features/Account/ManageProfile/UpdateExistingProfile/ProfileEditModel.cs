@@ -1,6 +1,6 @@
-﻿namespace DDDSouthWest.Domain.Features.Account.ManageProfile.ViewProfile
+﻿namespace DDDSouthWest.Domain.Features.Account.ManageProfile.UpdateExistingProfile
 {
-    public class ProfileDetailModel
+    public class ProfileEditModel
     {
         public int Id { get; set; }
  
@@ -15,5 +15,7 @@
         public string LinkedIn { get; set; }
 
         public string Bio { get; set; }
+
+        public int UserId { get; set; }
     }
 }

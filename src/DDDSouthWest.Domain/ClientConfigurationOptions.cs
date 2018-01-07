@@ -21,6 +21,8 @@
 
     public class WebsiteSettings
     {
+        public bool AllowRegistration { get; set; }
+
         public bool RequireNewAccountConfirmation { get; set; }
     }
 }

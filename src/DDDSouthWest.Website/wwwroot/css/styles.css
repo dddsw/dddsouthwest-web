@@ -2,12 +2,10 @@
     color: #ff9930;
 }
 
-.title {
-    
-}
+.title {}
 
 .title--medium {
-    font-size: 22px;
+    font-size: 2.2rem;
 }
 .content-container h1,
 .title--underline {

@@ -2,7 +2,8 @@
 @model DDDSouthWest.Website.Features.Public.News.NewsDetailViewModel
 
 @{
-    ViewBag.Tab = PageTab.News;                                                        
+    ViewBag.Tab = PageTab.News;
+    ViewBag.TitleTag = Model.Title;
     Layout = "~/Views/Shared/_LayoutFull.cshtml";
 }
 
@@ -18,7 +19,7 @@
         
             <div class="news-detail gutter-bottom-default">
                 <h1 class="news-detail__title">@Model.Title</h1>
-                <p class="news-detail__date">Posted @Model.DatePosted</p>
+                <p class="news-detail__date">Posted @Model.DatePosted.ToString("ddddd, dd MMM yyyy")</p>
                 <div class="news-detail__content">@Html.Raw(Model.Body)</div>
             </div>
 

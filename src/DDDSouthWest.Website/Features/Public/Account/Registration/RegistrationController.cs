@@ -25,7 +25,10 @@ namespace DDDSouthWest.Website.Features.Public.Account.Registration
         [Route("/account/register/", Name = RouteNames.AccountRegistration)]
         public IActionResult Index()
         {
-            return View(new RegistrationViewModel());
+            return View(new RegistrationViewModel
+            {
+                AllowRegistration = _settings.AllowRegistration
+            });
         }
 
         [HttpPost]

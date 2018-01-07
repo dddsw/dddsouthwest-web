@@ -1,9 +1,14 @@
 ﻿@using DDDSouthWest.Website.Framework
-@model DDDSouthWest.Website.Features.Public.Account.ManageProfile.ManageProfileViewModel
+@model DDDSouthWest.Website.Features.Public.Account.ManageProfile.ProfileEditViewModel
 
 @{
     ViewBag.Tab = PageTab.Login;                                                        
     Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section ScriptsHeader {
+    <link rel="stylesheet" href="/js/simplemde/simplemde.min.css">
+    <script src="/js/simplemde/simplemde.min.js"></script>
 }
 
 @section Header {
@@ -16,7 +21,14 @@
     
     @using (Html.BeginForm("Edit", "ManageProfile", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
     {
-        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.Profile.Id)
         @Html.Partial("_Form")
     }
+    
+    <script type="text/javascript">
+        var simplemde = new SimpleMDE({
+            element: document.getElementById("postBody"),
+            tabSize: 2
+        });
+    </script>
 }

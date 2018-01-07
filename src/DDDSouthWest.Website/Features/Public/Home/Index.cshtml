@@ -3,6 +3,8 @@
 
 @{
     ViewBag.Tab = PageTab.Home;
+    ViewBag.TitleTag = "DDD South West - The free, non-profit developers .NET Developers' conference based in the South West of England";
+    ViewBag.MetaDescription = "DDD South West is an inclusive, non-profit developers' conference organised by the community, for the community";
     Layout = "~/Views/Shared/_LayoutFull.cshtml";
 }
 
@@ -14,15 +16,17 @@
             <span class="home-banner__line2">Saturday 21st April, 2018</span>
             <span class="home-banner__line3">Redcliffe Sixth Form Centre, Bristol</span>
         </p>
-        <a href="#" class="button button--large button--primary">Reserve your ticket now</a>
-    </div>
-    
-    <div class="util-text--center">
-        <h2 class="home-strapline">DDD South West is an inclusive, non-profit developers' conference organised by the community, for the community </h2>
-        <a href="/page/about" class="button button--small button--primary">Learn more about us</a>
+        @*<a href="#" class="button button--large button--primary">Reserve your ticket now</a>*@
     </div>
     
     <div class="grid-container">
+
+        <div class="grid-100">
+            <div class="util-text--center">
+                <p class="home-strapline">DDD South West is an inclusive, non-profit developers' conference organised by the community, for the community</p>
+                <a href="/page/about" class="button button--small button--primary">Learn more about us</a>
+            </div>
+        </div>
         
         <div class="grid-100">
             <h3 class="title--medium title--underline">Latest News &amp; Announcements</h3>
@@ -35,8 +39,11 @@
                     var latestItem = Model.News.FirstOrDefault();
                     if (latestItem != null)
                     {
-                        <h4 class="title--medium branding--primary gutter-top-none">@latestItem.Title</h4>
-                        <div>@Html.Raw(latestItem.Body)</div>
+                        <h4 class="title--medium branding--primary gutter-top-none gutter-bottom-none">@latestItem.Title</h4>
+                        <p>Posted @latestItem.DatePosted.ToString("ddddd, dd MMM yyyy")</p>
+                        <div>@Html.Raw((string)latestItem.Body)</div>
+                        <div class="gutter-top-default"></div>
+                        <a href="@Url.RouteUrl(RouteNames.NewsList)" class="button button--small button--primary">More News</a>
                     }
                 }
                 
@@ -53,7 +60,7 @@
                         {
                             <li class="news-list__item">
                                 <a href="@Url.RouteUrl(RouteNames.NewsDetail, new {id = newsItem.Id, filename = newsItem.Filename})" class="news-list__title">@newsItem.Title</a>
-                                <p>Posted @newsItem.DatePosted</p>
+                                <p>@newsItem.DatePosted.ToString("ddddd, dd MMM yyyy")</p>
                             </li>
                         }
                     </ol>
@@ -66,31 +73,25 @@
             </div>
         </div>
         
-        <div class="grid-100">
-            <div class="gutter-top-default"></div>
-            <a href="@Url.RouteUrl(RouteNames.NewsList)" class="button button--small button--primary">More News</a>
-        </div>
-        
     </div>
     
     <div class="gutter-bottom-default"></div>
 
-    <div class="grid-100">
+    <div class="grid-container">
+        <div class="grid-100">
     
-        <div class="sponsor-component">
-            <div class="grid-container grid-parent">
+            <div class="sponsor-component">
                 
                 <h3 class="title--medium title--underline">Sponsors</h3>
-                <p>DDD Southwest is a free community based conference, without the support of our sponsors it wouldn't be possible.</p>
-                
+                <p>DDD South West is a free community based conference, without the support of our sponsors it wouldn't be possible.</p>
+                        
                 <div class="gutter-top-default"></div>
-                <a href="/page/about" class="button button--small button--primary">More about our sponsors</a>
-                
+                <a href="/page/about" class="button button--small button--primary">More about our sponsors</a>   
+                    
             </div>
+
         </div>
-    
     </div>
     
     <div class="gutter-bottom-default"></div>
-
 }

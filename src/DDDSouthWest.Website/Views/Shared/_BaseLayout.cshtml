@@ -6,9 +6,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111941483-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-111941483-1');
+    </script>
+
     @if (!string.IsNullOrEmpty(ViewBag.TitleTag))
     {
-      <title>@ViewBag.TitleTag</title>
+        <title>@ViewBag.TitleTag</title>
     }
 
     @if (!string.IsNullOrEmpty(ViewBag.MetaDescription))
@@ -18,22 +26,22 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    @*<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">*@
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
 
     @*<environment names="Development,Development.Docker"> TODO: Minify when in prod*@
-    <link href="/css/normalize.css" rel="stylesheet" />
-    <link href="/css/unsemantic-grid-responsive-no-ie7.css" rel="stylesheet" />
-    <link href="/css/default.css" rel="stylesheet" />
-    <link href="/css/styles.css" rel="stylesheet" />
-    <link href="/css/layout.css" rel="stylesheet" />
-    <link href="/css/nav.css" rel="stylesheet" />
-    <link href="/css/components.css" rel="stylesheet" />
-    <link href="/pure-1.0.0/forms.css" rel="stylesheet" />
-    <link href="/pure-1.0.0/grids.css" rel="stylesheet" />
-    <link href="/pure-1.0.0/buttons.css" rel="stylesheet" />
-    <link href="/pure-1.0.0/tables.css" rel="stylesheet" />
+    <link href="/css/normalize.css" rel="stylesheet"/>
+    <link href="/css/unsemantic-grid-responsive-no-ie7.css" rel="stylesheet"/>
+    <link href="/css/default.css" rel="stylesheet"/>
+    <link href="/css/styles.css" rel="stylesheet"/>
+    <link href="/css/layout.css" rel="stylesheet"/>
+    <link href="/css/nav.css" rel="stylesheet"/>
+    <link href="/css/components.css" rel="stylesheet"/>
+    <link href="/pure-1.0.0/forms.css" rel="stylesheet"/>
+    <link href="/pure-1.0.0/grids.css" rel="stylesheet"/>
+    <link href="/pure-1.0.0/buttons.css" rel="stylesheet"/>
+    <link href="/pure-1.0.0/tables.css" rel="stylesheet"/>
     @*</environment>    *@
-    
+
     @if (IsSectionDefined("Css"))
     {
         @RenderSection("Css", false)
@@ -61,11 +69,11 @@
                     @*<li @Html.Raw(ViewBag.Tab == PageTab.Speakers ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "speakers"})">Speakers</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Sessions ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sessions"})">Sessions</a></li>*@
                     <li @Html.Raw(ViewBag.Tab == PageTab.Venue ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "venue"})">Venue</a></li>
-                    <li @Html.Raw(ViewBag.Tab == PageTab.Sponsors ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sponsors"})">Sponsors</a></li>
+                    @*<li @Html.Raw(ViewBag.Tab == PageTab.Sponsors ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sponsors"})">Sponsors</a></li>*@
                     @if (await AuthorizationService.AuthorizeAsync(User, AccessPolicies.RegisteredAccessPolicy))
                     {
                         <li @Html.Raw(ViewBag.Tab == PageTab.Login ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountDashboard)">My Account</a></li>
-                        <li @Html.Raw(ViewBag.Tab == PageTab.Logout ? "class=\"active\"" : string.Empty)><a href="#">Logout</a></li>
+                        <li @Html.Raw(ViewBag.Tab == PageTab.Logout ? "class=\"active\"" : string.Empty)><a href="http://auth.dddsouthwest.com/account/logout">Logout</a></li>
                     }
                     else
                     {

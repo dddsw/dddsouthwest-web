@@ -2,7 +2,9 @@
 @model DDDSouthWest.Website.Features.Public.News.NewsListViewModel
 
 @{
-    ViewBag.Tab = PageTab.News;                                                        
+    ViewBag.Tab = PageTab.News;
+    ViewBag.TitleTag = "Latest News - DDD South West";
+    ViewBag.MetaDescription = "All of the latest news around DDD South West";
     Layout = "~/Views/Shared/_LayoutFull.cshtml";
 }
 
@@ -23,14 +25,14 @@
                     {
                         <li class="news-list__item">
                             <p class="news-list__title"><a href="@Url.RouteUrl(RouteNames.NewsDetail, new {id = newsItem.Id, filename = newsItem.Filename})">@newsItem.Title</a></p>
-                            <p>Posted @newsItem.DatePosted</p>
+                            <p>Posted @newsItem.DatePosted.ToString("ddddd, dd MMM yyyy")</p>
                         </li>
                     }
                 </ol>
             }
             else
             {
-                <p>There is currently no news, please check bac at a later date.</p>
+                <p>There is currently no news, please check back at a later date.</p>
             }    
         </div>
 

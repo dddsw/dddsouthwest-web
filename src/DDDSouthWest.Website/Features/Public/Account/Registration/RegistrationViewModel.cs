@@ -18,5 +18,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.Registration
         public IList<ValidationFailure> Errors { get; set; }
 
         public bool HasErrors => Errors.Any();
+
+        public bool AllowRegistration { get; set; }
     }
 }

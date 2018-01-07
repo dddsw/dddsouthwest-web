@@ -1,5 +1,5 @@
 ﻿@using DDDSouthWest.Website.Framework
-@model DDDSouthWest.Website.Features.Public.Account.ManageProfile.ProfileDetailViewModel
+@model DDDSouthWest.Website.Features.Public.Account.ManageProfile.ProfileEditViewModel
 
 @{
     ViewBag.Tab = PageTab.Login;                                                        
@@ -24,35 +24,7 @@
         
             <fieldset>
 
-                <div class="pure-control-group">
-                    <label asp-for="Profile.GivenName">Given Name:</label>
-                    <input asp-for="Profile.GivenName" class="pure-input-2-3"/>
-                </div>
-
-                <div class="pure-control-group">
-                    <label asp-for="Profile.FamilyName">Family Name:</label>
-                    <input asp-for="Profile.FamilyName" class="pure-input-2-3"/>
-                </div>
-
-                <div class="pure-control-group">
-                    <label asp-for="Profile.Bio">Speaker Bio:</label>
-                    <input asp-for="Profile.Bio" class="pure-input-2-3"/>
-                </div>
-
-                <div class="pure-control-group">
-                    <label asp-for="Profile.Website">Website:</label>
-                    <textarea asp-for="Profile.Website" class="pure-input-2-3" style="height: 250px;"></textarea>
-                </div>
-
-                <div class="pure-control-group">
-                    <label asp-for="Profile.Twitter">Twitter:</label>
-                    <textarea asp-for="Profile.Twitter" class="pure-input-2-3" style="height: 250px;"></textarea>
-                </div>
-
-                <div class="pure-control-group">
-                    <label asp-for="Profile.LinkedIn">LinkedIn:</label>
-                    <textarea asp-for="Profile.LinkedIn" class="pure-input-2-3" style="height: 250px;"></textarea>
-                </div>
+                
 
             </fieldset>
 

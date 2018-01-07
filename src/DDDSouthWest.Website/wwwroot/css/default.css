@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-size: .875em;
+    font-size: 62.5%;
     line-height: 1.42857;
 }
 *, *:before, *:after {
@@ -12,7 +12,7 @@
 body {
     background-color: #fff;
     color: #6d6d6d;
-    font-size: 16px;
+    font-size: 1.6rem;
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -41,23 +41,23 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-    font-size: 38px;
+    font-size: 3.8rem;
     line-height: 1.3em;
 }
 
 h2 {
-    font-size: 28px;
+    font-size: 2.8rem;
     line-height: 1.3em;
     color: #858585;
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 2.0rem;
     color: #858585;
 }
 
 p {
-    font-size: 15.4px;
+    font-size: 1.5rem;
     line-height: 1.5em;
     margin: 0 0 16px;
 }
@@ -89,8 +89,10 @@ p {
 
 .gutter-right-default { padding-right: 20px; }
 
+.gutter-bottom-none { padding-bottom: 0; margin-bottom: 0; }
+.gutter-top-small { padding-bottom: 10px; }
 .gutter-bottom-default { padding-bottom: 20px; }
 
 .gutter-small { padding: 10px; }
 
-.grid-container { max-width: 100%; padding: 0 10px; }
+.grid-container { max-width: 1280px; }
