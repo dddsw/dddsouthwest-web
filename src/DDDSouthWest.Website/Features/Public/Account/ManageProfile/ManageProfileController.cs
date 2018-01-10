@@ -32,27 +32,45 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageProfile
 
             return View(new ProfileDetailViewModel
             {
-                Profile = response.ProfileDetailModel
+                Profile = response.ProfileDetailModel,
+                HasProfile = response.ProfileDetailModel != null
             });
         }
         
         [Route("/account/profile/edit", Name = RouteNames.ProfileEdit)]
         public async Task<IActionResult> Edit()
         {
-            // TODO: Get ID from token
-            var response = await _mediator.Send(new ViewProfileDetail.Query(1));
+            var userId = User.Identity.GetSubjectId();
+                var response = await _mediator.Send(new ViewProfileDetail.Query(int.Parse(userId)));
+
+            if (response.ProfileDetailModel == null)
+                return View("Edit", new ProfileEditViewModel
+                {
+                    HasProfile = false
+                });
             
             return View("Edit", new ProfileEditViewModel
             {
-                Profile = response.ProfileDetailModel
+                HasProfile = true,
+                Id = int.Parse(userId),
+                BioHtml = response.ProfileDetailModel.BioHtml,
+                BioMarkdown = response.ProfileDetailModel.BioMarkdown,
+                FamilyName = response.ProfileDetailModel.FamilyName,
+                GivenName = response.ProfileDetailModel.GivenName,
+                LinkedIn = response.ProfileDetailModel.LinkedIn,
+                Twitter = response.ProfileDetailModel.Twitter,
+                Website = response.ProfileDetailModel.Website
             });
         }
 
         [HttpPost]
         [Route("/account/profile/edit")]
-        public async Task<IActionResult> Edit(UpdateExistingProfile.Command command)
+        public async Task<IActionResult> Edit(UpsertSpeakerProfile.Command command)
         {
-            command.BodyHtml = _transformer.ToHtml(command.BodyMarkdown);
+            var userId = User.Identity.GetSubjectId();
+
+            command.Id = int.Parse(userId);
+            command.BioHtml = _transformer.ToHtml(command.BioMarkdown);
 
             try
             {
@@ -63,17 +81,13 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageProfile
                 return View(new ProfileEditViewModel
                 {
                     Errors = e.Errors.ToList(),
-                    Profile = new ProfileDetailModel
-                    {
-                        Bio = command.Bio,
-                        FamilyName = command.FamilyName,
-                        GivenName = command.GivenName,
-                        Id = command.Id,
-                        LinkedIn = command.LinkedIn,
-                        Twitter = command.Twitter,
-                        Website = command.Website
-                    }
-                    
+                    BioMarkdown = command.Bio,
+                    FamilyName = command.FamilyName,
+                    GivenName = command.GivenName,
+                    Id = command.Id,
+                    LinkedIn = command.LinkedIn,
+                    Twitter = command.Twitter,
+                    Website = command.Website
                 });
             }
 

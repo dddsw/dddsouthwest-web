@@ -14,7 +14,7 @@
 
     <h1>Speaker Registration</h1>
 
-    @if (Model.AllowRegistration)
+    @if (!Model.AllowRegistration)
     {
         using (Html.BeginForm("Create", "Registration", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
         {

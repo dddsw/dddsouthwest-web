@@ -7,7 +7,7 @@ using Npgsql;
 
 namespace DDDSouthWest.Domain.Features.Account.ManageProfile.UpdateExistingProfile
 {
-    public class UpdateExistingProfile
+    public class UpsertSpeakerProfile
     {
         public class Command : IRequest
         {
@@ -18,37 +18,28 @@ namespace DDDSouthWest.Domain.Features.Account.ManageProfile.UpdateExistingProfi
             public string Website { get; set; }
             public string LinkedIn { get; set; }
             public string Bio { get; set; }
-            public string BodyMarkdown { get; set; }
-            public string BodyHtml { get; set; }
+            public string BioMarkdown { get; set; }
+            public string BioHtml { get; set; }
             public DateTime LastModified { get; set; }
         }
 
         public class Handler : IAsyncRequestHandler<Command>
         {
-            private readonly UpdateExistingProfileValidator _validator;
+            private readonly UpsertSpeakerProfileValidator _validator;
+            private readonly UpsertSpeakerProfileQuery _upsertSpeakerProfileQuery;
             private readonly ClientConfigurationOptions _options;
 
-            public Handler(UpdateExistingProfileValidator validator, ClientConfigurationOptions options)
+            public Handler(UpsertSpeakerProfileValidator validator, UpsertSpeakerProfileQuery upsertSpeakerProfileQuery, ClientConfigurationOptions options)
             {
                 _validator = validator;
+                _upsertSpeakerProfileQuery = upsertSpeakerProfileQuery;
                 _options = options;
             }
 
             public async Task Handle(Command message)
             {
                 _validator.ValidateAndThrow(message);
-
-                using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
-                {
-                    const string query = @"UPDATE pages SET Title = @Title, Filename = @Filename, BodyMarkdown = @BodyMarkdown, BodyHtml = @BodyHtml, LastModified = current_timestamp, IsLive = @IsLive, PageOrder = @PageOrder WHERE Id = @Id";
-                    await connection.ExecuteAsync(query, new
-                    {
-                        Id = message.Id,
-                        LastModified = message.LastModified,
-                        BodyMarkdown = message.BodyMarkdown,
-                        BodyHtml = message.BodyHtml
-                    });
-                }
+                await _upsertSpeakerProfileQuery.Invoke(message);
             }
         }
     }

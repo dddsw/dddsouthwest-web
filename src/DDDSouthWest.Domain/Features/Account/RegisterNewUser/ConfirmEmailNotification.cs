@@ -31,7 +31,7 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
             }
             else
             {
-                // Send email
+                // TODO: Send email
             }
             
         }

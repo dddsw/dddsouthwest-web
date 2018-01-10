@@ -11,6 +11,8 @@ namespace DDDSouthWest.Website.Features.Public.Account.Registration
             Errors = new List<ValidationFailure>();
         }
 
+        public bool ReceiveNewsletter { get; set; }
+        
         public string EmailAddress { get; set; }
 
         public string Password { get; set; }

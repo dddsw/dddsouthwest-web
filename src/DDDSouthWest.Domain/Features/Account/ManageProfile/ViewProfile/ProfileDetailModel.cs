@@ -14,6 +14,8 @@
 
         public string LinkedIn { get; set; }
 
-        public string Bio { get; set; }
+        public string BioMarkdown { get; set; }
+        
+        public string BioHtml { get; set; }
     }
 }

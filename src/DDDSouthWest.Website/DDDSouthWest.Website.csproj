@@ -29,4 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DDDSouthWest.Domain\DDDSouthWest.Domain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\Admin" />
+  </ItemGroup>
 </Project>

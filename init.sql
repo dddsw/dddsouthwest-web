@@ -36,7 +36,8 @@ CREATE TABLE Users
     Salt VARCHAR(255) NOT NULL,
     IsBlocked BOOLEAN DEFAULT FALSE NOT NULL,
     IsActivated BOOLEAN DEFAULT FALSE NOT NULL,
-    Roles JSON NULL
+    Roles JSON NULL,
+    ReceiveNewsletter BOOLEAN DEFAULT FALSE NOT NULL,
 );
 
 CREATE TABLE News
@@ -53,21 +54,21 @@ CREATE TABLE News
 
 CREATE TABLE Profiles
 (
-  id           SERIAL    NOT NULL
+    id SERIAL NOT NULL
     CONSTRAINT profile_pkey
     PRIMARY KEY,
-  twitter      VARCHAR(150),
-  website      VARCHAR(255),
-  linkedin     VARCHAR(255),
-  bio          VARCHAR,
-  bioMarkdown VARCHAR,
-  lastmodified TIMESTAMP NOT NULL,
-  userid       INTEGER
+    Twitter VARCHAR(150),
+    Website VARCHAR(255),
+    Linkedin VARCHAR(255),
+    BioMarkdown VARCHAR,
+    BioHtml VARCHAR,
+    Lastmodified TIMESTAMP NOT NULL,
+    Userid INTEGER
     CONSTRAINT profile_users_id_fk
     REFERENCES users
 );
 
-CREATE TABLE public.Pages
+CREATE TABLE Pages
 (
     Id SERIAL PRIMARY KEY,
     Title VARCHAR(255) NOT NULL,
@@ -81,5 +82,5 @@ CREATE TABLE public.Pages
     DateCreated TIMESTAMP,
     LastModified TIMESTAMP
 );
-CREATE UNIQUE INDEX Pages_Id_uindex ON public.Pages (Id);
-CREATE UNIQUE INDEX Pages_Filename_uindex ON public.Pages (Filename);
+CREATE UNIQUE INDEX Pages_Id_uindex ON Pages (Id);
+CREATE UNIQUE INDEX Pages_Filename_uindex ON Pages (Filename);

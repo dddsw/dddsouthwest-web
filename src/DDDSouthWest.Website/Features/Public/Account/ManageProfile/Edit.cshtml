@@ -17,11 +17,11 @@
 
 @section MainColBody {
 
-    <h2>Edit Profile</h2>
+    <h1>Edit Profile</h1>
     
     @using (Html.BeginForm("Edit", "ManageProfile", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
     {
-        @Html.HiddenFor(x => x.Profile.Id)
+        @Html.HiddenFor(x => x.Id)
         @Html.Partial("_Form")
     }
     

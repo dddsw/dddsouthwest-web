@@ -31,7 +31,7 @@ namespace DDDSouthWest.Domain.Features.Account.ManageProfile.ViewProfile
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
                     const string sql =
-                        @"SELECT u.givenname, u.familyname, p.Id, p.Twitter, p.Website, p.LinkedIn, p.Bio, p.LastModified
+                        @"SELECT u.givenname, u.familyname, p.Id, p.Twitter, p.Website, p.LinkedIn, p.BioMarkdown, p.BioHtml, p.LastModified
                         FROM profiles AS p LEFT JOIN users AS u ON p.userid = u.id WHERE p.UserId = @Id";
 
                     var result = await connection.QuerySingleOrDefaultAsync<ProfileDetailModel>(sql, new {message.Id});

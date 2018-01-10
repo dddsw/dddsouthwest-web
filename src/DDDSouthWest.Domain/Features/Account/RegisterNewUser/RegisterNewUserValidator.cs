@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using System.Linq;
+using Dapper;
 using FluentValidation;
 using FluentValidation.Validators;
 using Npgsql;
@@ -15,7 +16,7 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
         {
             _options = options;
 
-            RuleFor(x => x.EmailAddress).Must(BeAnEmailAddress).WithMessage("'Email address' is a valid email address");
+            RuleFor(x => x.EmailAddress).Must(BeAnEmailAddress).WithMessage("'Email address' must be a valid email address");
             RuleFor(x => x.EmailAddress).Must(BeAUniqueEmailAddress).WithMessage("'Email address' is already in use");
 
             RuleFor(x => x.Password).Must(BeASensiblePassword).WithMessage(
@@ -35,22 +36,27 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
 
         private static bool BeAnEmailAddress(string emailAddress)
         {
-            if (string.IsNullOrWhiteSpace(emailAddress))
-                return false;
-
-            //TODO: Email validation
-            return true;
+            return IsValidEmail(emailAddress);
         }
 
         private static bool BeASensiblePassword(string password)
         {
             if (string.IsNullOrEmpty(password))
                 return false;
-            if (password.Length < PasswordLength)
+            if (password.Length < 5)
+                return false;
+            if (!password.Any(char.IsDigit))
+                return false;
+            if (!password.Any(char.IsUpper))
                 return false;
 
-            //TODO: Enforce sensible password rules whatever that may be
             return true;
+        }
+        
+        private static bool IsValidEmail(string email)
+        {
+            var util = new RegexUtilities();
+            return util.IsValidEmail(email);
         }
     }
 }

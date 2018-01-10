@@ -22,10 +22,14 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
 
             using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
             {
-                const string createUserSql =
-                    "INSERT INTO users (EmailAddress, Password, Salt, IsActivated, Roles) Values (@EmailAddress, @Password, @Salt, FALSE, '[\"registered\"]') RETURNING Id";
-                await connection.QuerySingleAsync<int>(createUserSql,
-                    new {command.EmailAddress, Password = Sha256(guid + command.Password), Salt = guid});
+                const string createUserSql = "INSERT INTO users (EmailAddress, Password, Salt, IsActivated, Roles, ReceiveNewsletter) Values (@EmailAddress, @Password, @Salt, FALSE, '[\"registered\"]', @ReceiveNewsletter) RETURNING Id";
+                await connection.QuerySingleAsync<int>(createUserSql, new
+                {
+                    EmailAddress = command.EmailAddress,
+                    Password = Sha256(guid + command.Password),
+                    Salt = guid,
+                    ReceiveNewsletter = command.ReceiveNewsletter
+                });
             }
         }
 

@@ -2,46 +2,45 @@
 
 @Html.AntiForgeryToken()
 
-@*<validation-summary errors="@Model.Errors" />*@
+<validation-summary errors="@Model.Errors" />
 
 <fieldset>
     
     <div class="pure-control-group">
-        <label asp-for="Profile.GivenName">Given Name:</label>
-        <input asp-for="Profile.GivenName" class="pure-input-2-3"/>
+        <label asp-for="GivenName">Given Name:</label>
+        <input asp-for="GivenName" class="pure-input-2-3"/>
     </div>
 
     <div class="pure-control-group">
-        <label asp-for="Profile.FamilyName">Family Name:</label>
-        <input asp-for="Profile.FamilyName" class="pure-input-2-3"/>
+        <label asp-for="FamilyName">Family Name:</label>
+        <input asp-for="FamilyName" class="pure-input-2-3"/>
     </div>
 
     <div class="pure-control-group">
-        <label asp-for="Profile.Website">Website:</label>
-        <input asp-for="Profile.Website" class="pure-input-2-3" />
+        <label asp-for="Website">Website:</label>
+        <input asp-for="Website" class="pure-input-2-3" />
     </div>
 
     <div class="pure-control-group">
-        <label asp-for="Profile.Twitter">Twitter:</label>
-        <input asp-for="Profile.Twitter" class="pure-input-2-3" />
+        <label asp-for="Twitter">Twitter:</label>
+        <input asp-for="Twitter" class="pure-input-2-3" />
     </div>
 
     <div class="pure-control-group">
-        <label asp-for="Profile.LinkedIn">LinkedIn:</label>
-        <input asp-for="Profile.LinkedIn" class="pure-input-2-3" />
+        <label asp-for="LinkedIn">LinkedIn:</label>
+        <input asp-for="LinkedIn" class="pure-input-2-3" />
     </div>
     
     <div class="pure-control-group">
-        <label asp-for="Profile.Bio">Bio:</label>
+        <label asp-for="BioMarkdown">Bio:</label>
         <div class="pure-u-2-3">
             <div style="padding-right: 8px;">
-                <textarea asp-for="Profile.Bio" id="postBody" style="height: 250px;"></textarea>
+                <textarea asp-for="BioMarkdown" id="postBody" style="height: 250px;"></textarea>
             </div>
         </div>
     </div>
     
     <div class="pure-controls">
-        
         <button type="submit" class="pure-button pure-button-primary">Save</button>
     </div>
 

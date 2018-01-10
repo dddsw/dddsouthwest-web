@@ -1,5 +1,5 @@
 ﻿@using DDDSouthWest.Website.Framework
-@model DDDSouthWest.Website.Features.Public.Account.ManageProfile.ProfileEditViewModel
+@model DDDSouthWest.Website.Features.Public.Account.ManageProfile.ProfileDetailViewModel
 
 @{
     ViewBag.Tab = PageTab.Login;                                                        
@@ -12,23 +12,69 @@
 
 @section MainColBody {
 
-    <h2>Profile</h2>
+    <h1>Profile</h1>
 
     <div class="pure-g">
-
         <div class="pure-u-1-1 pure-block">
             <a class="pure-button pure-button-primary" href="@Url.RouteUrl(RouteNames.ProfileEdit)">Edit Profile</a>
         </div>
-
-        <div class="pure-u-1-1 pure-block">
-        
+    </div>
+    
+    @if (Model.HasProfile)
+    {
+        <div class="pure-form pure-form-aligned">
+    
             <fieldset>
+    
+                <div class="pure-control-group">
+                    <label asp-for="Profile.GivenName">Given Name:</label>
+                    <input asp-for="Profile.GivenName" class="pure-input-2-3" readonly />
+                </div>
 
-                
+                <div class="pure-control-group">
+                    <label asp-for="Profile.FamilyName">Family Name:</label>
+                    <input asp-for="Profile.FamilyName" class="pure-input-2-3" readonly/>
+                </div>
+
+                <div class="pure-control-group">
+                    <label asp-for="Profile.Website">Website:</label>
+                    <input asp-for="Profile.Website" class="pure-input-2-3" readonly />
+                </div>
+
+                <div class="pure-control-group">
+                    <label asp-for="Profile.Twitter">Twitter:</label>
+                    <input asp-for="Profile.Twitter" class="pure-input-2-3" readonly />
+                </div>
+
+                <div class="pure-control-group">
+                    <label asp-for="Profile.LinkedIn">LinkedIn:</label>
+                    <input asp-for="Profile.LinkedIn" class="pure-input-2-3" readonly />
+                </div>
+    
+                <div class="pure-control-group">
+                    <label asp-for="Profile.BioMarkdown">Bio:</label>
+                    <div class="pure-u-2-3">
+                        @*<div style="padding-right: 8px;">
+                            <textarea asp-for="Profile.BioMarkdown" id="postBody" style="height: 250px;"></textarea>
+                        </div>*@
+                        <div style="padding-top: 4px;">
+                            @Html.Raw(Model.Profile.BioHtml)
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="pure-controls">
+        
+                    <button type="submit" class="pure-button pure-button-primary">Save</button>
+                </div>
 
             </fieldset>
+    
+        </div>    
+    }
+    else
+    {
+        <p>You do not have a profile set, please create one.</p>
+    }
 
-        </div>
-
-    </div>
 }

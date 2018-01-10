@@ -12,6 +12,7 @@ using DDDSouthWest.Domain.Features.Account.ManageNews.UpdateExistingNews;
 using DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail;
 using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
 using DDDSouthWest.Domain.Features.Account.ManagePages.UpdateExistingPage;
+using DDDSouthWest.Domain.Features.Account.ManageProfile.UpdateExistingProfile;
 using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
 using DDDSouthWest.Domain.Features.Public.Page;
 using DDDSouthWest.Website.Framework;
@@ -46,7 +47,7 @@ namespace DDDSouthWest.Website
             services.AddAuthorization();
             services.AddMvc().AddFeatureFolders();
 
-            services.AddMediatR(typeof(GetPage.Query).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(UpsertSpeakerProfile.Command).GetTypeInfo().Assembly);
 
             services.AddWebsiteAppSettingsOptions(Configuration);
             
@@ -54,10 +55,13 @@ namespace DDDSouthWest.Website
             services.AddTransient<CreateNewEventValidator, CreateNewEventValidator>();
             services.AddTransient<UpdateExistingEventValidator, UpdateExistingEventValidator>();
                         
+            services.AddTransient<UpsertSpeakerProfileValidator, UpsertSpeakerProfileValidator>();
+            
             services.AddTransient<CreateNewsValidation, CreateNewsValidation>();
             services.AddTransient<UpdateExistingNewsValidator, UpdateExistingNewsValidator>();
             
             services.AddTransient<CreatePageValidation, CreatePageValidation>();
+            services.AddTransient<UpdateExistingPageValidator, UpdateExistingPageValidator>();
             services.AddTransient<UpdateExistingPageValidator, UpdateExistingPageValidator>();
             
             services.AddTransient<RegisterNewUserValidator, RegisterNewUserValidator>();
@@ -70,32 +74,8 @@ namespace DDDSouthWest.Website
             services.AddTransient<QueryEventById, QueryEventById>();
             services.AddTransient<QueryAnyNewsById, QueryAnyNewsById>();
             services.AddTransient<CreateNewRegisteredUser, CreateNewRegisteredUser>();
+            services.AddTransient<UpsertSpeakerProfileQuery, UpsertSpeakerProfileQuery>();
 
-            var database = "appmetricsdemo";
-            var uri = new Uri("http://127.0.0.1:8086");
-
-            /*services.AddMetrics(options => 
-                {
-                    options.WithGlobalTags((globalTags, info) => 
-                    { 
-                        globalTags.Add("app", info.EntryAssemblyName); 
-                        globalTags.Add("env", "stage");
-                    });
-                })
-                .AddHealthChecks()
-                .AddJsonSerialization()
-                .AddReporting(
-                    factory =>
-                    {
-                        factory.AddInfluxDb(
-                            new InfluxDBReporterSettings
-                            {                  
-                                InfluxDbSettings = new InfluxDBSettings(database, uri),
-                                ReportInterval = TimeSpan.FromSeconds(5)
-                            });
-                    })
-                .AddMetricsMiddleware(options => options.IgnoredHttpStatusCodes = new [] {404});*/
-            
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthorization(options =>
             {
