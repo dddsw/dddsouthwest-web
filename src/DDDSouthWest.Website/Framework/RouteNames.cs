@@ -24,9 +24,13 @@
         public const string ProfileManage = "profile_manage";
         public const string ProfileEdit = "profile_edit";
         
-        public const string TalkEdit = "talk_edit";
-        public const string TalkCreate = "talk_create";
-        public const string TalksManage = "talk_manage";
+        public const string AdminTalkEdit = "admin_talk_edit";
+        public const string AdminTalkCreate = "admin_talk_create";
+        public const string AdminTalksManage = "admin_talk_manage";
+        
+        public const string SpeakerTalkEdit = "speaker_talk_edit";
+        public const string SpeakerTalkCreate = "speaker_talk_create";
+        public const string SpeakerTalkManage = "speaker_talk_manage";
         
         public const string AccountLogin = "account_login";
         public const string AccountLogout = "account_logout";

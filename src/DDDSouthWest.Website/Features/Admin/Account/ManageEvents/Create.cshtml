@@ -1,5 +1,4 @@
-﻿@using DDDSouthWest.Website.Features.Admin.Account.ManageEvents
-@using DDDSouthWest.Website.Framework
+﻿@using DDDSouthWest.Website.Framework
 @model DDDSouthWest.Website.Features.Admin.Account.ManageEvents.ManageEventsViewModel
 
 @{
@@ -13,7 +12,7 @@
 
 @section MainColBody {
 
-    <h2>Create Event</h2>
+    <h1>Create Event</h1>
     
     @using (Html.BeginForm("Create", "ManageEvents", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
     {

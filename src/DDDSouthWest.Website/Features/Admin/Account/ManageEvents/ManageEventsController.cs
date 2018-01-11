@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.ListEvents;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateExistingEvent;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.ViewEventDetail;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.CreateNewEvent;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.ListEvents;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.UpdateExistingEvent;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.ViewEventDetail;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
 using MediatR;

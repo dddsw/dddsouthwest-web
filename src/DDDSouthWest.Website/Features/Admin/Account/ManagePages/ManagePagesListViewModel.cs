@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DDDSouthWest.Domain.Features.Account.ManagePages.ListPages;
+using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.ListPages;
 
 namespace DDDSouthWest.Website.Features.Admin.Account.ManagePages
 {

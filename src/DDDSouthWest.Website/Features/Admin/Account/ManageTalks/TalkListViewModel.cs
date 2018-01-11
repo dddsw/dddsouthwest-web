@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DDDSouthWest.Domain.Features.Account.ManageTalks.ListTalks;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.ListTalks;
 
 namespace DDDSouthWest.Website.Features.Admin.Account.ManageTalks
 {

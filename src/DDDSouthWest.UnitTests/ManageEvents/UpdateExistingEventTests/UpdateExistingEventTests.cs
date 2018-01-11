@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DDDSouthWest.Domain;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.UpdateExistingEvent;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.ViewEventDetail;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.CreateNewEvent;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.UpdateExistingEvent;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.ViewEventDetail;
 using FluentValidation;
 using Shouldly;
 using Xunit;

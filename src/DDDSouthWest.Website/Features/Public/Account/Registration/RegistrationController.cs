@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using DDDSouthWest.Domain;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
 using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;

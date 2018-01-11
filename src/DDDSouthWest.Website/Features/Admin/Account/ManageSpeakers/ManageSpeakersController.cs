@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
+using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.CreatePage;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
 using MediatR;

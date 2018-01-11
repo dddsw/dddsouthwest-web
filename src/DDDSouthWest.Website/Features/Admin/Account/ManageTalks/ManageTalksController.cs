@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Account.ManageTalks.ListTalks;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.ListTalks;
 using DDDSouthWest.Website.Framework;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -17,7 +17,7 @@ namespace DDDSouthWest.Website.Features.Admin.Account.ManageTalks
             _mediator = mediator;
         }
 
-        [Route("/account/talks/", Name = RouteNames.TalksManage)]
+        [Route("/account/admin/talks/", Name = RouteNames.AdminTalksManage)]
         public async Task<IActionResult> Index()
         {
             var result = await _mediator.Send(new ListAllTalks.Query());
@@ -28,7 +28,7 @@ namespace DDDSouthWest.Website.Features.Admin.Account.ManageTalks
             });
         }
 
-        [Route("/account/talks/create", Name = RouteNames.TalkCreate)]
+        [Route("/account/admin/talks/create", Name = RouteNames.AdminTalkCreate)]
         public IActionResult Create()
         {
             return View(new ManageTalksViewModel());

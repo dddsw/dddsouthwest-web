@@ -1,5 +1,4 @@
-﻿@using DDDSouthWest.Website.Features.Admin.Account.ManagePages
-@using DDDSouthWest.Website.Framework
+﻿@using DDDSouthWest.Website.Framework
 @model DDDSouthWest.Website.Features.Admin.Account.ManagePages.ManagePagesViewModel
 
 @{
@@ -18,7 +17,7 @@
 
 @section MainColBody {
 
-    <h2>Edit Page</h2>
+    <h1>Edit Page</h1>
     
     @using (Html.BeginForm("Edit", "ManagePages", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
     {

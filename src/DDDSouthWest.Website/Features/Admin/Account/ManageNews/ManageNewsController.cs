@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Account.ManageNews.CreateNews;
-using DDDSouthWest.Domain.Features.Account.ManageNews.DeleteNews;
-using DDDSouthWest.Domain.Features.Account.ManageNews.ListNews;
-using DDDSouthWest.Domain.Features.Account.ManageNews.UpdateExistingNews;
-using DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageNews.CreateNews;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageNews.DeleteNews;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageNews.ListNews;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageNews.UpdateExistingNews;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageNews.ViewNewsDetail;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
 using MediatR;

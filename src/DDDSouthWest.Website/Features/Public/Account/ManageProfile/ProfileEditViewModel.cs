@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using DDDSouthWest.Domain.Features.Account.ManageProfile.ViewProfile;
 using FluentValidation.Results;
 
 namespace DDDSouthWest.Website.Features.Public.Account.ManageProfile

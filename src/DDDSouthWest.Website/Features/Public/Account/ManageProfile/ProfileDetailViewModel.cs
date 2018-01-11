@@ -1,4 +1,4 @@
-﻿using DDDSouthWest.Domain.Features.Account.ManageProfile.ViewProfile;
+﻿using DDDSouthWest.Domain.Features.Account.Admin.ManageProfile.ViewProfile;
 
 namespace DDDSouthWest.Website.Features.Public.Account.ManageProfile
 {

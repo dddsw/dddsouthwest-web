@@ -1,8 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
-using DDDSouthWest.Domain.Features.Account.ManageProfile.UpdateExistingProfile;
-using DDDSouthWest.Domain.Features.Account.ManageProfile.ViewProfile;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageProfile.UpdateExistingProfile;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageProfile.ViewProfile;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
 using IdentityServer4.Extensions;

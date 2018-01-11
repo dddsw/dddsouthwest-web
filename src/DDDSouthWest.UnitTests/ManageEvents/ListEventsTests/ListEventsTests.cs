@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.CreateNewEvent;
-using DDDSouthWest.Domain.Features.Account.ManageEvents.ListEvents;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.CreateNewEvent;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.ListEvents;
 using Shouldly;
 using Xunit;
 

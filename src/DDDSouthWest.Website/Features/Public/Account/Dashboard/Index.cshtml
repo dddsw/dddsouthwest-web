@@ -10,29 +10,50 @@
     <page-banner title="Account"/>
 }
 
-@section MainColBody {
+@section MainCol {
     
     <div is-visible="@Model.IsOrganiser">
-        <h2 class="title title--underline">Organiser</h2>
-        <h3 class="title--medium">Website Management</h3>
-        <ul>
-            <li><a href="@Url.RouteUrl(RouteNames.NewsManage)">Manage News</a></li>
-            <li><a href="@Url.RouteUrl(RouteNames.EventsManage)">Manage Events</a></li>
-            <li><a href="@Url.RouteUrl(RouteNames.PagesManage)">Manage Pages</a></li>
-        </ul>
         
-        <h3 class="title--medium">Speaker Management</h3>
-        <ul>
-            <li><a href="@Url.RouteUrl(RouteNames.SpeakersManage)">Manage Speakers</a></li>
-        </ul>
-    </div>
+        <div class="grid-container">
+        
+            <div class="grid-100">
+                <h2 class="title title--underline">Organiser</h2>
+            </div>
+            
+            <div class="grid-50">
+                <h3 class="title--medium gutter-top-none">Website Management</h3>
+                <ul>
+                    <li><a href="@Url.RouteUrl(RouteNames.NewsManage)">Manage News</a></li>
+                    <li><a href="@Url.RouteUrl(RouteNames.EventsManage)">Manage Events</a></li>
+                    <li><a href="@Url.RouteUrl(RouteNames.PagesManage)">Manage Pages</a></li>
+                </ul>
+            </div>
+            
+            <div class="grid-50">
+                <h3 class="title--medium gutter-top-none">Speaker Management</h3>
+                <ul>
+                    <li><a href="@Url.RouteUrl(RouteNames.SpeakersManage)">Manage Speakers</a></li>
+                    <li><a href="@Url.RouteUrl(RouteNames.AdminTalksManage)">Manage Talks</a></li>
+                </ul>
+            </div>
+            
+        </div>
+        </div>
     
     <div is-visible="@Model.IsRegistered">
-        <h2 class="title title--underline">Speaker</h2>
-        <ul>
-            <li><a href="@Url.RouteUrl(RouteNames.ProfileManage)">Manage Profile</a></li>
-            <li><a href="#">Manage Talks</a></li>
-        </ul>    
+        
+        <div class="grid-container">
+            <div class="grid-100">
+                <h2 class="title title--underline">Speaker</h2>
+            </div>
+            <div class="grid-50">
+                <p>This area is actively under development, expect to see more functionality soon.</p>
+                <ul>
+                    <li><a href="@Url.RouteUrl(RouteNames.ProfileManage)">Manage Your Profile</a></li>
+                    <li><a href="@Url.RouteUrl(RouteNames.SpeakerTalkManage)">Manage Your Talks</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 }

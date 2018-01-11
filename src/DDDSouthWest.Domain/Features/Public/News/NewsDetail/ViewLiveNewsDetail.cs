@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Account.ManageNews.ViewNewsDetail;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageNews.ViewNewsDetail;
 using MediatR;
 
 namespace DDDSouthWest.Domain.Features.Public.News.NewsDetail

@@ -20,4 +20,7 @@
     <Reference Include="System" />
     <Reference Include="System" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\Account\Admin" />
+  </ItemGroup>
 </Project>

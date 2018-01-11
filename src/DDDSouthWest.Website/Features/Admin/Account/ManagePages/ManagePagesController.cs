@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using DDDSouthWest.Domain.Features.Account.ManagePages.CreatePage;
-using DDDSouthWest.Domain.Features.Account.ManagePages.ListPages;
-using DDDSouthWest.Domain.Features.Account.ManagePages.UpdateExistingPage;
-using DDDSouthWest.Domain.Features.Account.ManagePages.ViewPageDetail;
+using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.CreatePage;
+using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.ListPages;
+using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.UpdateExistingPage;
+using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.ViewPageDetail;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
 using MediatR;

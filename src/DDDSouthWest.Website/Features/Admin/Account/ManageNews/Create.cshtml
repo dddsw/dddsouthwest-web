@@ -1,5 +1,4 @@
-﻿@using DDDSouthWest.Website.Features.Admin.Account.ManageNews
-@using DDDSouthWest.Website.Framework
+﻿@using DDDSouthWest.Website.Framework
 @model DDDSouthWest.Website.Features.Admin.Account.ManageNews.ManageNewsViewModel
 
 @{
@@ -18,7 +17,7 @@
 
 @section MainColBody {
 
-    <h2>Create News Item</h2>
+    <h1>Create News Item</h1>
     
     @using (Html.BeginForm("Create", "ManageNews", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
     {
