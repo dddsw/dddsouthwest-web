@@ -1,0 +1,23 @@
+﻿@using DDDSouthWest.Website.Features.Admin.Account.ManagePages
+@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Admin.Account.ManagePages.ManagePagesViewModel
+
+@{
+    ViewBag.Tab = PageTab.Login;                                                        
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="Speakers"/>
+}
+
+@section MainColBody {
+
+    <h2>Edit Page</h2>
+    
+    @using (Html.BeginForm("Edit", "ManageSpeakers", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    {
+        @Html.HiddenFor(x => x.Id)
+        @Html.Partial("_Form")
+    }
+}

@@ -1,0 +1,29 @@
+﻿@using DDDSouthWest.Website.Features.Admin.Account.ManageEvents
+@model DDDSouthWest.Website.Features.Admin.Account.ManageEvents.ManageEventsViewModel
+
+@Html.AntiForgeryToken()
+
+<validation-summary errors="@Model.Errors" />
+
+<fieldset>
+    
+    <div class="pure-control-group">
+        <label asp-for="EventName">Event Name</label>
+        <input asp-for="EventName" class="pure-input-2-3"/>
+    </div>
+
+    <div class="pure-control-group">
+        <label asp-for="EventName">Event Filename</label>
+        <input asp-for="EventFilename" class="pure-input-2-3"/>
+    </div>
+
+    <div class="pure-control-group">
+        <label asp-for="EventDate">Event Date</label>
+        <input asp-for="EventDate" class="pure-input-1-4"/>
+    </div>
+
+    <div class="pure-controls">
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    </div>
+
+</fieldset>

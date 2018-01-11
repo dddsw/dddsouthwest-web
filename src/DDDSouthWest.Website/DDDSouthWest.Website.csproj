@@ -30,6 +30,6 @@
     <ProjectReference Include="..\DDDSouthWest.Domain\DDDSouthWest.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Admin" />
+    <Folder Include="Features\Admin\Account" />
   </ItemGroup>
 </Project>

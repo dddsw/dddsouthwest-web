@@ -1,0 +1,44 @@
+﻿@using DDDSouthWest.Website.Features.Admin.Account.ManageNews
+@model DDDSouthWest.Website.Features.Admin.Account.ManageNews.ManageNewsViewModel
+
+@Html.AntiForgeryToken()
+
+<validation-summary errors="@Model.Errors" />
+
+<fieldset>
+    
+    <div class="pure-control-group">
+        <label asp-for="Title">News Title</label>
+        <input asp-for="Title" class="pure-input-2-3"/>
+    </div>
+
+    <div class="pure-control-group">
+        <label asp-for="Filename">News Filename</label>
+        <input asp-for="Filename" class="pure-input-2-3"/>
+    </div>
+    
+    <div class="pure-control-group">
+        <label asp-for="DatePosted">Date Posted</label>
+        <input asp-for="DatePosted" class="pure-input-2-3"/>
+    </div>
+
+    <div class="pure-control-group">
+        <label asp-for="BodyMarkdown">News Post</label>
+        <div class="pure-u-2-3">
+            <div style="padding-right: 8px;">
+                <textarea asp-for="BodyMarkdown" id="postBody" style="height: 250px;"></textarea>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="pure-controls">
+        
+        <label asp-for="IsLive" class="pure-checkbox">
+            <input asp-for="IsLive" type="checkbox"> Is Live
+        </label>
+        
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    </div>
+
+</fieldset>

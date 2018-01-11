@@ -1,0 +1,52 @@
+﻿@using DDDSouthWest.Website.Features.Admin.Account.ManagePages
+@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Admin.Account.ManagePages.ManagePagesListViewModel
+
+@{
+    ViewBag.Tab = PageTab.Login;                                                        
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="Pages"/>
+}
+
+@section MainColBody {
+
+    <h2>Manage Pages</h2>
+    
+    <div class="pure-g">
+        
+        <div class="pure-u-1-1 pure-block">
+            <a class="pure-button pure-button-primary" href="@Url.RouteUrl(RouteNames.PageCreate)">Create new Page</a>
+        </div>
+
+        <div class="pure-u-1-1 pure-block">
+
+            <table class="pure-table pure-table-horizontal util--stretch">
+                <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Page</th>
+                    <th>Last Modified</th>
+                    <th>Is Live?</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                @foreach (var newsItem in Model.Pages)
+                {
+                    <tr>
+                        <td><a href="@Url.RouteUrl(RouteNames.PageEdit, new { id = newsItem.Id })">Edit</a></td>
+                        <td>@newsItem.Title</td>
+                        <td>@newsItem.LastModified</td>
+                        <td>@(newsItem.IsLive ? "Yes" : "No")</td>
+                    </tr>    
+                }
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+}
