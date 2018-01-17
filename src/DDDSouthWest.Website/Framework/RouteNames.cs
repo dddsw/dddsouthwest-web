@@ -15,6 +15,8 @@
         public const string NewsDelete = "news_delete";
         public const string NewsManage = "news_manage";
         
+        public const string ProposedTalks = "talks_list";
+        
         public const string NewsList = "news_list";
         public const string NewsDetail = "news_detail";
         

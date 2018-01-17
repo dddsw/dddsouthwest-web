@@ -1,9 +1,14 @@
 ﻿@using DDDSouthWest.Website.Framework
-@model DDDSouthWest.Website.Features.Admin.Account.ManageTalks.ManageTalksViewModel
+@model DDDSouthWest.Website.Features.Public.Account.ManageTalks.ManageTalksViewModel
 
 @{
     ViewBag.Tab = PageTab.Login;                        
     Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section ScriptsHeader {
+    <link rel="stylesheet" href="/js/simplemde/simplemde.min.css">
+    <script src="/js/simplemde/simplemde.min.js"></script>
 }
 
 @section Header {
@@ -14,8 +19,15 @@
 
     <h1>Add New Talk</h1>
     
-    @using (Html.BeginForm("Create", "ManageTalks", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    @using (Html.BeginRouteForm(RouteNames.SpeakerTalkCreate, FormMethod.Post, new { @class="pure-form pure-form-aligned"}))
     {
         @Html.Partial("_Form")
     }
+    
+    <script type="text/javascript">
+        var simplemde = new SimpleMDE({
+            element: document.getElementById("talkBody"),
+            tabSize: 2
+        });
+    </script>
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
-using App.Metrics.Configuration;
 using DDDSouthWest.Domain;
 using DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.CreateNewEvent;
 using DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.UpdateExistingEvent;
@@ -12,14 +11,12 @@ using DDDSouthWest.Domain.Features.Account.Admin.ManageNews.ViewNewsDetail;
 using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.CreatePage;
 using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.UpdateExistingPage;
 using DDDSouthWest.Domain.Features.Account.Admin.ManageProfile.UpdateExistingProfile;
+using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk;
 using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
-using DDDSouthWest.Domain.Features.Public.Page;
 using DDDSouthWest.Website.Framework;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -53,6 +50,7 @@ namespace DDDSouthWest.Website
             // Validation            
             services.AddTransient<CreateNewEventValidator, CreateNewEventValidator>();
             services.AddTransient<UpdateExistingEventValidator, UpdateExistingEventValidator>();
+            services.AddTransient<AddNewTalkValidator, AddNewTalkValidator>();
                         
             services.AddTransient<UpsertSpeakerProfileValidator, UpsertSpeakerProfileValidator>();
             
@@ -60,7 +58,6 @@ namespace DDDSouthWest.Website
             services.AddTransient<UpdateExistingNewsValidator, UpdateExistingNewsValidator>();
             
             services.AddTransient<CreatePageValidation, CreatePageValidation>();
-            services.AddTransient<UpdateExistingPageValidator, UpdateExistingPageValidator>();
             services.AddTransient<UpdateExistingPageValidator, UpdateExistingPageValidator>();
             
             services.AddTransient<RegisterNewUserValidator, RegisterNewUserValidator>();

@@ -11,7 +11,10 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk
         public class Command : IRequest<Response>
         {
             public string TalkTitle { get; set; }
-            public string TalkBody { get; set; }
+            public string TalkSummary { get; set; }
+            public string TalkBodyMarkdown { get; set; }
+            public string TalkBodyHtml { get; set; }
+            public int UserId { get; set; }
         }
 
         public class Handler : IAsyncRequestHandler<Command, Response>
@@ -31,10 +34,17 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk
 
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    const string addNewTalkSql = "INSERT INTO Talks (TalkTitle, TalkFilename, SubmissionDate) Values (@TalkTitle, @TalkFilename, current_timestamp) RETURNING Id";
+                    const string addNewTalkSql = "INSERT INTO Talks (TalkTitle, TalkBodyHtml, TalkBodyMarkdown, TalkSummary, DateAdded, LastModified, UserId) Values (@TalkTitle, @TalkBodyHtml, @TalkBodyMarkdown, @TalkSummary, current_timestamp, current_timestamp, @UserId) RETURNING Id";
                     return new Response
                     {
-                        Id = await connection.QuerySingleAsync<int>(addNewTalkSql, message)
+                        Id = await connection.QuerySingleAsync<int>(addNewTalkSql, new
+                        {
+                            TalkTitle = message.TalkTitle,
+                            TalkSummary = message.TalkSummary,
+                            TalkBodyHtml = message.TalkBodyHtml,
+                            TalkBodyMarkdown = message.TalkBodyMarkdown,
+                            UserId = message.UserId
+                        })
                     };
                 }                
             }

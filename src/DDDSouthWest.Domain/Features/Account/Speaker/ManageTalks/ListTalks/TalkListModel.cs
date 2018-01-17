@@ -1,4 +1,6 @@
-﻿namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ListTalks
+﻿using System;
+
+namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ListTalks
 {
     public class TalkListModel
     {
@@ -9,5 +11,9 @@
         public string TalkFilename { get; set; }
 
         public string TalkBody { get; set; }
+
+        public DateTime DateAdded { get; set; }
+
+        public DateTime LastModified { get; set; }
     }
 }

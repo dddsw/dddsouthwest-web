@@ -8,6 +8,7 @@
         Speakers,
         Sessions,
         Venue,
+        ProposedTalks,
         Sponsors,
         Register,
         Login,

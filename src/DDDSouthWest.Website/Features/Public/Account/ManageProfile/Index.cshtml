@@ -54,18 +54,10 @@
                 <div class="pure-control-group">
                     <label asp-for="Profile.BioMarkdown">Bio:</label>
                     <div class="pure-u-2-3">
-                        @*<div style="padding-right: 8px;">
-                            <textarea asp-for="Profile.BioMarkdown" id="postBody" style="height: 250px;"></textarea>
-                        </div>*@
                         <div style="padding-top: 4px;">
                             @Html.Raw(Model.Profile.BioHtml)
                         </div>
                     </div>
-                </div>
-    
-                <div class="pure-controls">
-        
-                    <button type="submit" class="pure-button pure-button-primary">Save</button>
                 </div>
 
             </fieldset>

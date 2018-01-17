@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DDDSouthWest.Website.Components
 {
-    [HtmlTargetElement("div")]
+    [HtmlTargetElement("*", Attributes = nameof(Condition))]
     public class VisibilityTagHelper : TagHelper
     {
-        public bool IsVisible { get; set; } = true;
+        public bool Condition { get; set; } = true;
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            if (!IsVisible)
+            if (!Condition)
                 output.SuppressOutput();
 
             base.Process(context, output);
@@ -18,7 +18,7 @@ namespace DDDSouthWest.Website.Components
 
         public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            if (!IsVisible)
+            if (!Condition)
                 output.SuppressOutput();
 
             return base.ProcessAsync(context, output);

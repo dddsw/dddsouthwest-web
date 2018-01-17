@@ -1,22 +1,16 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using MediatR;
 using Npgsql;
 
-namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ListTalks
+namespace DDDSouthWest.Domain.Features.Public.ProposedTalks
 {
-    public class ListAllTalks
+    public class ProposedTalks
     {
         public class Query : IRequest<Response>
         {
-            public Query(int userId)
-            {
-                UserId = userId;
-            }
-            
-            public int UserId { get; }
         }
 
         public class Handler : IAsyncRequestHandler<Query, Response>
@@ -32,15 +26,11 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ListTalks
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    const string sql = "SELECT Id, TalkTitle, DateAdded, LastModified FROM Talks WHERE UserId = @UserId";
-                    var talks = await connection.QueryAsync<TalkListModel>(sql, new
-                    {
-                        UserId = message.UserId
-                    });
+                    var response = await connection.QueryAsync<ProposedTalksModel>("SELECT Id, TalkTitle, TalkSummary FROM talks ORDER BY random()");
 
                     return new Response
                     {
-                        Talks = talks.ToList()
+                        ProposedTalks = response.ToList()
                     };
                 }
             }
@@ -48,7 +38,7 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ListTalks
 
         public class Response
         {
-            public IList<TalkListModel> Talks { get; set; }
+            public IList<ProposedTalksModel> ProposedTalks { get; set; }
         }
     }
 }

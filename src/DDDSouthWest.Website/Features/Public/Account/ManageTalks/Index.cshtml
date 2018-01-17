@@ -27,7 +27,8 @@
                 <tr>
                     <th>&nbsp;</th>
                     <th>Talk Title</th>
-                    <th>Submission Date</th>
+                    <th>Last Modified</th>
+                    <th>Submitted</th>
                 </tr>
                 </thead>
 
@@ -37,7 +38,10 @@
                     <tr>
                         <td><a href="@Url.RouteUrl(RouteNames.SpeakerTalkEdit, new { id = talk.Id })">Edit</a></td>
                         <td>@talk.TalkTitle</td>
-                        <td>7th May 2018</td>
+                        <td>@talk.LastModified.ToString("ddddd, dd MMM yyyy")</td>
+                        <td>
+                            Yes/No
+                        </td>
                     </tr>    
                 }
                 </tbody>

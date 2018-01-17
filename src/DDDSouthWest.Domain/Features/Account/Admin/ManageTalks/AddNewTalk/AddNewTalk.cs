@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using Dapper;
 using FluentValidation;
 using MediatR;
@@ -11,7 +12,10 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.AddNewTalk
         public class Command : IRequest<Response>
         {
             public string TalkTitle { get; set; }
-            public string TalkBody { get; set; }
+            public string TalkSummary { get; set; }
+            public string TalkBodyMarkdown { get; set; }
+            public string TalkBodyHtml { get; set; }
+            public int UserId { get; set; }
         }
 
         public class Handler : IAsyncRequestHandler<Command, Response>
@@ -31,7 +35,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.AddNewTalk
 
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    const string addNewTalkSql = "INSERT INTO Talks (TalkTitle, TalkFilename, SubmissionDate) Values (@TalkTitle, @TalkFilename, current_timestamp) RETURNING Id";
+                    const string addNewTalkSql = "INSERT INTO Talks (TalkTitle, TalkBodyHtml, TalkBodyMarkdown, TalkSummary, SubmissionDate, UserId) Values (@TalkTitle, @TalkBodyHtml, @TalkBodyMarkdown, @TalkSummary, current_timestamp, @UserId) RETURNING Id";
                     return new Response
                     {
                         Id = await connection.QuerySingleAsync<int>(addNewTalkSql, message)

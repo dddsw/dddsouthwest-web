@@ -1,6 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ListTalks;
 using DDDSouthWest.Website.Framework;
+using FluentValidation;
+using IdentityServer4.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,16 +15,19 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
     public class ManageTalksController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly MarkdownTransformer _transformer;
 
-        public ManageTalksController(IMediator mediator)
+        public ManageTalksController(IMediator mediator, MarkdownTransformer transformer)
         {
             _mediator = mediator;
+            _transformer = transformer;
         }
 
         [Route("/account/talks/", Name = RouteNames.SpeakerTalkManage)]
         public async Task<IActionResult> Index()
         {
-            var result = await _mediator.Send(new ListAllTalks.Query());
+            var userId = User.Identity.GetSubjectId();
+            var result = await _mediator.Send(new ListAllTalks.Query(int.Parse(userId)));
 
             return View(new TalkListViewModel
             {
@@ -34,31 +41,33 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
             return View(new ManageTalksViewModel());
         }
         
-        /*
         [HttpPost]
-        [Route("/account/events/create")]
-        public async Task<IActionResult> Create(CreateNewEvent.Command command)
+        [Route("/account/talks/create")]
+        public async Task<IActionResult> Create(AddNewTalk.Command command)
         {
-            CreateNewEvent.Response result;
-
             try
             {
-                result = await _mediator.Send(command);
+                command.TalkBodyHtml = _transformer.ToHtml(command.TalkBodyMarkdown);
+                var userId = User.Identity.GetSubjectId();
+                command.UserId = int.Parse(userId);
+                
+                await _mediator.Send(command);
             }
             catch (ValidationException e)
             {
-                return View(new ManageEventsViewModel
+                return View(new ManageTalksViewModel
                 {
                     Errors = e.Errors.ToList(),
-                    EventDate = command.EventDate,
-                    EventFilename = command.EventFilename,
-                    EventName = command.EventName
+                    TalkBodyMarkdown = command.TalkBodyMarkdown,
+                    TalkTitle = command.TalkTitle,
+                    TalkSummary = command.TalkSummary
                 });
             }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToRoute(RouteNames.SpeakerTalkManage);
         }
 
+        /*
         [Route("/account/events/edit/{id}", Name = RouteNames.EventEdit)]
         public async Task<IActionResult> Edit(ViewEventDetail.Query query)
         {

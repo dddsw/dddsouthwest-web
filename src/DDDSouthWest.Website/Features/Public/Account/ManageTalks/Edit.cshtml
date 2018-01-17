@@ -19,4 +19,11 @@
         @Html.HiddenFor(x => x.Id)
         @Html.Partial("_Form")
     }
+    
+    <script type="text/javascript">
+        var simplemde = new SimpleMDE({
+            element: document.getElementById("postBody"),
+            tabSize: 2
+        });
+    </script>
 }

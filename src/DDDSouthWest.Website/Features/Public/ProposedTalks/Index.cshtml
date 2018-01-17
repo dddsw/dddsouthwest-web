@@ -1,0 +1,48 @@
+﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.ProposedTalks.ProposedTalksViewModel
+
+@{
+    ViewBag.Tab = PageTab.ProposedTalks;
+    ViewBag.TitleTag = "Proposed talks - DDD South West";
+    ViewBag.MetaDescription = "DDD South West's proposed talks";
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="Talks"/>
+}
+
+@section MainColBody {
+
+    <h1>Proposed Talks</h1>
+    <div class="pure-g">
+
+        <div class="pure-u-1-1 pure-block">
+            @if (Model.ProposedTalks.Any())
+            {
+
+                foreach (var talk in Model.ProposedTalks)
+                {
+                    <div class="gutter-bottom-default">
+                        <div class="media">
+                            <div class="media__left">
+                                <img src="https://www.developerdeveloperdeveloper.com/images/profiles/660209cf-1fa4-434f-b074-cb29548b2bd3_portrait-2.png" style="width: 160px;" class="polaroid"/>
+                            </div>
+                            <div class="media__body">
+                                <h3 class="gutter-none"><a href="#">@talk.TalkTitle</a></h3>
+                                <p>by <a href="#">John Doe</a></p>
+                                <p>@talk.TalkSummary</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>There is currently no proposed talks.</p>
+            }    
+        </div>
+
+    </div>
+
+}

@@ -17,14 +17,18 @@ CREATE UNIQUE INDEX Events_Filename_uindex ON Events (EventFilename);
 
 CREATE TABLE Talks
 (
-    Id SERIAL PRIMARY KEY,
+    Id SERIAL NOT NULL CONSTRAINT talks_pkey PRIMARY KEY,
     TalkTitle VARCHAR(255) NOT NULL,
-    TalkFilename VARCHAR(255) NOT NULL,
     TalkSummary VARCHAR NOT NULL,
-    TalkBody VARCHAR NOT NULL,
-    TalkBodyMarkdown VARCHAR,
-    SubmissionDate TIMESTAMP NOT NULL
+    TalkBodyHtml VARCHAR NOT NULL,
+    TalkBodyMarkdown VARCHAR NOT NULL,
+    DateAdded TIMESTAMP NOT NULL,
+    LastModified TIMESTAMP NOT NULL,
+    SubmissionDate TIMESTAMP,
+    UserId INTEGER NOT NULL
+    CONSTRAINT talks_users_id_fk REFERENCES Users
 );
+
 
 CREATE TABLE Users
 (

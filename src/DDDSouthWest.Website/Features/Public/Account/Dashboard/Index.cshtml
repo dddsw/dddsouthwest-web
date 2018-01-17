@@ -12,7 +12,7 @@
 
 @section MainCol {
     
-    <div is-visible="@Model.IsOrganiser">
+    <div condition="@Model.IsOrganiser">
         
         <div class="grid-container">
         
@@ -40,7 +40,7 @@
         </div>
         </div>
     
-    <div is-visible="@Model.IsRegistered">
+    <div condition="@Model.IsRegistered">
         
         <div class="grid-container">
             <div class="grid-100">

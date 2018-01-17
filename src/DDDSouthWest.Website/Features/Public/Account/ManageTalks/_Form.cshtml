@@ -1,4 +1,4 @@
-﻿@model DDDSouthWest.Website.Features.Admin.Account.ManageTalks.ManageTalksViewModel
+﻿@model DDDSouthWest.Website.Features.Public.Account.ManageTalks.ManageTalksViewModel
 
 @Html.AntiForgeryToken()
 
@@ -7,25 +7,23 @@
 <fieldset>
     
     <div class="pure-control-group">
-        <label asp-for="TalkTitle">Talk Title</label>
+        <label asp-for="TalkTitle">Talk Title:</label>
         <input asp-for="TalkTitle" class="pure-input-2-3"/>
     </div>
 
     <div class="pure-control-group">
-        <label asp-for="TalkFilename">Talk Filename</label>
-        <input asp-for="TalkFilename" class="pure-input-2-3"/>
-    </div>
-
-    <div class="pure-control-group">
-        <label asp-for="TalkSummary">Talk Summary</label>
-        <textarea asp-for="TalkSummary" class="pure-input-1-4"></textarea>
+        <label asp-for="TalkSummary">Talk Summary:</label>
+        <textarea asp-for="TalkSummary" class="pure-input-2-3" style="height: 100px;"></textarea>
     </div>
     
     <div class="pure-control-group">
-        <label asp-for="Talkbody">Talk</label>
-        <textarea asp-for="Talkbody" class="pure-input-1-4"></textarea>
+        <label asp-for="TalkBodyMarkdown">Talk Proposal:</label>
+        <div class="pure-u-2-3">
+            <div style="padding-right: 8px;">
+                <textarea asp-for="TalkBodyMarkdown" id="talkBody" style="height: 250px;"></textarea>
+            </div>
+        </div>
     </div>
-    
 
     <div class="pure-controls">
         <button type="submit" class="pure-button pure-button-primary">Submit</button>
