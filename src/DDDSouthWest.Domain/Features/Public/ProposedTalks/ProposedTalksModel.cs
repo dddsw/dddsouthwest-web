@@ -2,10 +2,18 @@
 {
     public class ProposedTalksModel
     {
-        public int Id { get; set; }
+        public int TalkId { get; set; }
 
         public string TalkTitle { get; set; }
 
         public string TalkSummary { get; set; }
+
+        public string SpeakerGivenName { get; set; }
+
+        public string SpeakerFamilyName { get; set; }
+
+        public int SpeakerId { get; set; }
+        
+        
     }
 }

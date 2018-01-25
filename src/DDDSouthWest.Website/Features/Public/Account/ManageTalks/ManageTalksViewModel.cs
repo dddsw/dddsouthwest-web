@@ -19,6 +19,8 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
 
         public string TalkBodyMarkdown { get; set; }
 
+        public bool IsSubmitted { get; set; }
+
         public IList<ValidationFailure> Errors { get; set; }
 
         public bool HasErrors => Errors.Any();

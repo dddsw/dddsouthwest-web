@@ -46,7 +46,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.CreateNews
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
                     const string query =
-                        "INSERT INTO News (Title, Filename, BodyHtml, BodyMarkdown, DatePosted, IsLive) Values (@Title, @Filename, @BodyHtml, @BodyMarkdown, current_timestamp, @IsLive) RETURNING Id";
+                        "INSERT INTO News (Title, Filename, BodyHtml, BodyMarkdown, DatePosted, IsLive) Values (@Title, @Filename, @BodyHtml, @BodyMarkdown, @DatePosted, @IsLive) RETURNING Id";
 
                     return new Response
                     {
@@ -56,7 +56,8 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.CreateNews
                             Filename = message.Filename,
                             BodyHtml = message.BodyHtml,
                             BodyMarkdown = message.BodyMarkdown,
-                            IsLive = message.IsLive
+                            IsLive = message.IsLive,
+                            DatePosted = message.DatePosted
                         })
                     };
                 }

@@ -14,23 +14,22 @@
 
 @section MainColBody {
 
-    <h1>Proposed Talks</h1>
+    <h1>Proposed Talks for DDD South West 2018</h1>
     <div class="pure-g">
 
         <div class="pure-u-1-1 pure-block">
-            @if (Model.ProposedTalks.Any())
+            @if (Model.ProposedTalk.Any())
             {
-
-                foreach (var talk in Model.ProposedTalks)
+                foreach (var talk in Model.ProposedTalk)
                 {
-                    <div class="gutter-bottom-default">
+                    <div class="gutter-bottom-default underline" style="margin-bottom: 20px;">
                         <div class="media">
                             <div class="media__left">
-                                <img src="https://www.developerdeveloperdeveloper.com/images/profiles/660209cf-1fa4-434f-b074-cb29548b2bd3_portrait-2.png" style="width: 160px;" class="polaroid"/>
+                                @*<img src="https://www.developerdeveloperdeveloper.com/images/profiles/660209cf-1fa4-434f-b074-cb29548b2bd3_portrait-2.png" style="width: 160px;" class="polaroid" alt=""/>*@
                             </div>
                             <div class="media__body">
-                                <h3 class="gutter-none"><a href="#">@talk.TalkTitle</a></h3>
-                                <p>by <a href="#">John Doe</a></p>
+                                <h3 class="gutter-none"><a href="@Url.RouteUrl(RouteNames.ProposedTalkDetail, new { Id = talk.TalkId })">@talk.TalkTitle</a></h3>
+                                <p>by @talk.SpeakerGivenName @talk.SpeakerFamilyName</p>
                                 <p>@talk.TalkSummary</p>
                             </div>
                         </div>
@@ -39,10 +38,9 @@
             }
             else
             {
-                <p>There is currently no proposed talks.</p>
+                <p>No proposed talks as of yet! If you're interested in speaking at this year's DDD South West then why not submit a talk proposal yourself?</p>
             }    
         </div>
 
     </div>
-
 }

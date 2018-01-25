@@ -1,0 +1,54 @@
+﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Admin.Account.ManageUsers.ManageUsersViewModel
+
+@{
+    ViewBag.Tab = PageTab.Login;                                                    
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="Users"/>
+}
+
+@section MainColBody {
+
+    <h1>Manage Users</h1>
+    
+    <div class="pure-g">
+
+        <div class="pure-u-1-1 pure-block">
+
+            <table class="pure-table pure-table-horizontal util--stretch">
+                <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Is Blocked</th>
+                    <th>Is Activated</th>
+                    <th>Newsletter</th>
+                    <th>Date Registered</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <td><a href="@Url.RouteUrl(RouteNames.UserEdit, new {id = 1})">Edit</a></td>
+                        <td>@user.FullName</td>
+                        <td>@user.EmailAddress</td>
+                        <td>@user.Roles</td>
+                        <td>@user.IsBlocked</td>
+                        <td>@user.IsActivated</td>
+                        <td>@user.ReceiveNewsletter</td>
+                        <td>@user.DateRegistered</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+}

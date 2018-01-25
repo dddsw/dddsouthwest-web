@@ -9,6 +9,7 @@
         Sessions,
         Venue,
         ProposedTalks,
+        CodeOfConduct,
         Sponsors,
         Register,
         Login,

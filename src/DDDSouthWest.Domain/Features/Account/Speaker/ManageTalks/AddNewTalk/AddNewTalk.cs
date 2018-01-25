@@ -14,6 +14,7 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk
             public string TalkSummary { get; set; }
             public string TalkBodyMarkdown { get; set; }
             public string TalkBodyHtml { get; set; }
+            public bool IsSubmitted { get; set; }
             public int UserId { get; set; }
         }
 
@@ -34,7 +35,7 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk
 
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    const string addNewTalkSql = "INSERT INTO Talks (TalkTitle, TalkBodyHtml, TalkBodyMarkdown, TalkSummary, DateAdded, LastModified, UserId) Values (@TalkTitle, @TalkBodyHtml, @TalkBodyMarkdown, @TalkSummary, current_timestamp, current_timestamp, @UserId) RETURNING Id";
+                    const string addNewTalkSql = "INSERT INTO Talks (TalkTitle, TalkBodyHtml, TalkBodyMarkdown, TalkSummary, DateAdded, LastModified, UserId, IsSubmitted) Values (@TalkTitle, @TalkBodyHtml, @TalkBodyMarkdown, @TalkSummary, current_timestamp, current_timestamp, @UserId, @IsSubmitted) RETURNING Id";
                     return new Response
                     {
                         Id = await connection.QuerySingleAsync<int>(addNewTalkSql, new
@@ -43,7 +44,8 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk
                             TalkSummary = message.TalkSummary,
                             TalkBodyHtml = message.TalkBodyHtml,
                             TalkBodyMarkdown = message.TalkBodyMarkdown,
-                            UserId = message.UserId
+                            UserId = message.UserId,
+                            IsSubmitted = message.IsSubmitted
                         })
                     };
                 }                

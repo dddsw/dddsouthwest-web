@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
 {
-    [Authorize(Policy = AccessPolicies.SpeakerAccessPolicy)]
+    [Authorize(Policy = AccessPolicies.RegisteredAccessPolicy)]
     public class ManageTalksController : Controller
     {
         private readonly IMediator _mediator;
@@ -60,15 +60,15 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
                     Errors = e.Errors.ToList(),
                     TalkBodyMarkdown = command.TalkBodyMarkdown,
                     TalkTitle = command.TalkTitle,
-                    TalkSummary = command.TalkSummary
+                    TalkSummary = command.TalkSummary,
+                    IsSubmitted = command.IsSubmitted
                 });
             }
 
             return RedirectToRoute(RouteNames.SpeakerTalkManage);
         }
 
-        /*
-        [Route("/account/events/edit/{id}", Name = RouteNames.EventEdit)]
+        /*[Route("/account/talks/edit", Name = RouteNames.SpeakerTalkEdit)]
         public async Task<IActionResult> Edit(ViewEventDetail.Query query)
         {
             var eventModel = await _mediator.Send(query);
@@ -80,8 +80,9 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
                 EventDate = eventModel.EventDate,
                 EventName = eventModel.EventName
             });
-        }
+        }*/
 
+        /*
         [HttpPost]
         [Route("/account/events/edit")]
         public async Task<IActionResult> Update(UpdateExistingEvent.Command command)

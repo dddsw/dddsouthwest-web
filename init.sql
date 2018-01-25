@@ -25,7 +25,9 @@ CREATE TABLE Talks
     DateAdded TIMESTAMP NOT NULL,
     LastModified TIMESTAMP NOT NULL,
     SubmissionDate TIMESTAMP,
-    UserId INTEGER NOT NULL
+    UserId INTEGER NOT NULL,
+    IsApproved BOOLEAN DEFAULT FALSE NOT NULL,
+    IsSubmitted BOOLEAN DEFAULT FALSE NOT NULL,
     CONSTRAINT talks_users_id_fk REFERENCES Users
 );
 
@@ -42,6 +44,7 @@ CREATE TABLE Users
     IsActivated BOOLEAN DEFAULT FALSE NOT NULL,
     Roles JSON NULL,
     ReceiveNewsletter BOOLEAN DEFAULT FALSE NOT NULL,
+    DateRegistered TIMESTAMP NOT NULL,
 );
 
 CREATE TABLE News

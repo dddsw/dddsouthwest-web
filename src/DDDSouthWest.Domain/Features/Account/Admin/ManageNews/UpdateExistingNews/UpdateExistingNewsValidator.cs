@@ -5,7 +5,7 @@ using Npgsql;
 
 namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.UpdateExistingNews
 {
-    public class UpdateExistingNewsValidator : AbstractValidator<Admin.ManageNews.UpdateExistingNews.UpdateExistingNews.Command>
+    public class UpdateExistingNewsValidator : AbstractValidator<UpdateExistingNews.Command>
     {
         private readonly ClientConfigurationOptions _options;
 
@@ -18,11 +18,11 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.UpdateExistingNe
             RuleFor(x => x.Filename).Must(FilenameIsUnique).WithMessage("'News Filename' must be unqiue");
         }
 
-        private bool FilenameIsUnique(Admin.ManageNews.UpdateExistingNews.UpdateExistingNews.Command command, string newsFilename, PropertyValidatorContext context)
+        private bool FilenameIsUnique(UpdateExistingNews.Command command, string newsFilename, PropertyValidatorContext context)
         {
             using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
             {
-                const string sql = "SELECT COUNT(*) FROM news WHERE Filename = @Filename AND Id != @Id";
+                const string sql = "SELECT COUNT(*) FROM news WHERE Filename = @Filename AND Id != @Id AND IsDeleted = FALSE";
                 var totalClashes = connection.QuerySingleOrDefault<int>(sql, new { Id = command.Id, Filename = newsFilename });
 
                 return totalClashes == 0;

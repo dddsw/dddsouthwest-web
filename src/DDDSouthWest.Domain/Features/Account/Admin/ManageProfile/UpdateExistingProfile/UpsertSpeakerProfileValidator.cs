@@ -8,7 +8,6 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageProfile.UpdateExistin
         {
             RuleFor(x => x.GivenName).NotEmpty();
             RuleFor(x => x.FamilyName).NotEmpty();
-            RuleFor(x => x.BioMarkdown).NotEmpty().WithMessage("'Bio' should not be empty");
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.ProposedTalks.ProposedTalkDetailViewModel
+
+@{
+    ViewBag.Tab = PageTab.ProposedTalks;
+    ViewBag.TitleTag = @Model.ProposedTalk.TalkTitle + " by " + Model.ProposedTalk.SpeakerFullName  + " - DDD South West";
+    ViewBag.MetaDescription = "DDD South West's proposed talks";
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="Talks"/>
+}
+
+@section MainColBody {
+
+    <h1>@Model.ProposedTalk.TalkTitle</h1>
+    <div class="pure-g">
+
+        <div class="pure-u-1-1 pure-block">
+                @Html.Raw(Model.ProposedTalk.TalkBodyHtml)
+        </div>
+
+    </div>
+}

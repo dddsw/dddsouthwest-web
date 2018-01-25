@@ -12,9 +12,13 @@
 
 @section MainColBody {
 
-    <h1>Manage Talks</h1>
+    <h1>Your Proposed Talks</h1>
     
     <div class="pure-g">
+        
+        <div class="pure-u-1-1 pure-block">
+            <p>Below you'll find a list of your proposed talks. From here you can add, edit and delete talk proposals then once happy submit them for voting. Please bear in mind that talks will need to be approved by an administrator before they are publically visible on the DDD South West website.</p>
+        </div>
         
         <div class="pure-u-1-1 pure-block">
             <a class="pure-button pure-button-primary" href="@Url.RouteUrl(RouteNames.SpeakerTalkCreate)">Add New Talk</a>
@@ -29,6 +33,7 @@
                     <th>Talk Title</th>
                     <th>Last Modified</th>
                     <th>Submitted</th>
+                    <th>Awaiting Approval</th>
                 </tr>
                 </thead>
 
@@ -39,8 +44,16 @@
                         <td><a href="@Url.RouteUrl(RouteNames.SpeakerTalkEdit, new { id = talk.Id })">Edit</a></td>
                         <td>@talk.TalkTitle</td>
                         <td>@talk.LastModified.ToString("ddddd, dd MMM yyyy")</td>
+                        <td>@(talk.IsSubmitted ? "Yes" : "No")</td>
                         <td>
-                            Yes/No
+                            @if (talk.IsSubmitted)
+                            {
+                                @(talk.IsApproved ? "Proposal Approved" : "Pending Approval")   
+                            }
+                            else
+                            {
+                                <span>Not submitted</span>
+                            }
                         </td>
                     </tr>    
                 }

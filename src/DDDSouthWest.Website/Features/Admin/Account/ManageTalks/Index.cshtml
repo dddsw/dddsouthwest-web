@@ -27,7 +27,9 @@
                 <tr>
                     <th>&nbsp;</th>
                     <th>Talk Title</th>
-                    <th>Submission Date</th>
+                    <th>Dated Added</th>
+                    <th>Is Submitted</th>
+                    <th>Is Approved</th>
                 </tr>
                 </thead>
 
@@ -37,7 +39,9 @@
                     <tr>
                         <td><a href="@Url.RouteUrl(RouteNames.AdminTalkEdit, new { id = talk.Id })">Edit</a></td>
                         <td>@talk.TalkTitle</td>
-                        <td>7th May 2018</td>
+                        <td>@talk.DateAdded</td>
+                        <td>@talk.IsSubmitted</td>
+                        <td>@talk.IsApproved</td>
                     </tr>    
                 }
                 </tbody>

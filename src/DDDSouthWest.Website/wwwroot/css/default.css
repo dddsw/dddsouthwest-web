@@ -98,3 +98,5 @@ p {
 .gutter-small { padding: 10px; }
 
 .grid-container { max-width: 1280px; }
+
+.underline { border-bottom: 1px solid #eaeaea; }

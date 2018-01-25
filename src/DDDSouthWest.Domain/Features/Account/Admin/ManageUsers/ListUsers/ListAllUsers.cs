@@ -1,13 +1,14 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.ListTalks;
 using MediatR;
 using Npgsql;
 
-namespace DDDSouthWest.Domain.Features.Public.ProposedTalks
+namespace DDDSouthWest.Domain.Features.Account.Admin.ManageUsers.ListUsers
 {
-    public class ProposedTalks
+    public class ListAllUsers
     {
         public class Query : IRequest<Response>
         {
@@ -26,13 +27,12 @@ namespace DDDSouthWest.Domain.Features.Public.ProposedTalks
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    const string query =
-                        "SELECT t.Id AS TalkId, t.TalkTitle, t.TalkSummary, t.UserId AS SpeakerId, u.GivenName AS SpeakerGivenName, u.FamilyName AS SpeakerFamilyName FROM talks AS t LEFT JOIN users AS u ON u.id = t.userid WHERE t.IsApproved = TRUE AND u.IsActivated = TRUE ORDER BY random()";
-                    var response = await connection.QueryAsync<ProposedTalksModel>(query);
+                    const string sql = "SELECT GivenName, FamilyName, EmailAddress, IsBlocked, IsActivated, ReceiveNewsletter, DateRegistered, Roles FROM Users ORDER BY dateregistered DESC";
+                    var users = await connection.QueryAsync<UsersListModel>(sql);
 
                     return new Response
                     {
-                        ProposedTalks = response.ToList()
+                        Users = users.ToList()
                     };
                 }
             }
@@ -40,7 +40,7 @@ namespace DDDSouthWest.Domain.Features.Public.ProposedTalks
 
         public class Response
         {
-            public IList<ProposedTalksModel> ProposedTalks { get; set; }
+            public IList<UsersListModel> Users { get; set; }
         }
     }
 }

@@ -46,7 +46,8 @@ namespace DDDSouthWest.Website.Features.Public.Account.Registration
                 {
                     EmailAddress = register.EmailAddress,
                     Password = register.Password,
-                    Errors = e.Errors.ToList()
+                    Errors = e.Errors.ToList(),
+                    AllowRegistration = _settings.AllowRegistration
                 });    
             }
             

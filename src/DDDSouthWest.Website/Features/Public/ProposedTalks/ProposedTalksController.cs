@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
 using DDDSouthWest.Domain;
+using DDDSouthWest.Domain.Features.Public.ProposedTalkDetail;
 using DDDSouthWest.Website.Framework;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,18 @@ namespace DDDSouthWest.Website.Features.Public.ProposedTalks
 
             return View(new ProposedTalksViewModel
             {
-                ProposedTalks = response.ProposedTalks
+                ProposedTalk = response.ProposedTalks
+            });
+        }
+        
+        [Route("/proposed-talks/{id}/", Name = RouteNames.ProposedTalkDetail)]
+        public async Task<IActionResult> Detail(int id)
+        {
+            var response = await _mediator.Send(new ProposedTalkDetail.Query(id));
+
+            return View(new ProposedTalkDetailViewModel
+            {
+                ProposedTalk = response.ProposedTalkDetail
             });
         }
     }

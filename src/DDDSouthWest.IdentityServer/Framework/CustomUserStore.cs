@@ -23,7 +23,7 @@ namespace DDDSouthWest.IdentityServer.Framework
         public virtual bool ValidateCredentials(string username, string password)
         {
             var user = FindByUsername(username);
-            if (user.EmailAddress != null)
+            if (user.EmailAddress != null || user.IsBlocked || !user.IsActivated)
             {
                 var pass = Sha256(user.Salt + password);
                 return user.Password.Equals(pass);

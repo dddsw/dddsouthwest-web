@@ -15,13 +15,17 @@
         public const string NewsDelete = "news_delete";
         public const string NewsManage = "news_manage";
         
+        public const string SpeakerDetail = "speaker_detail";
         public const string ProposedTalks = "talks_list";
+        public const string ProposedTalkDetail = "talks_detail";
         
         public const string NewsList = "news_list";
         public const string NewsDetail = "news_detail";
         
-        public const string SpeakerEdit = "speaker_edit";
-        public const string SpeakersManage = "speaker_manage";
+        public const string CodeOfConduct = "page_codeofconduct";
+        
+        public const string UserEdit = "user_edit";
+        public const string UsersManage = "user_manage";
         
         public const string ProfileManage = "profile_manage";
         public const string ProfileEdit = "profile_edit";

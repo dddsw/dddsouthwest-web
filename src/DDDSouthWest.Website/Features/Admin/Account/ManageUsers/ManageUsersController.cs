@@ -1,43 +1,46 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.CreatePage;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageUsers.ListUsers;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DDDSouthWest.Website.Features.Admin.Account.ManageSpeakers
+namespace DDDSouthWest.Website.Features.Admin.Account.ManageUsers
 {
     [Authorize(Policy = AccessPolicies.OrganiserAccessPolicy)]
-    public class ManageSpeakersController : Controller
+    public class ManageUsersController : Controller
     {
         private readonly IMediator _mediator;
 
-        public ManageSpeakersController(IMediator mediator)
+        public ManageUsersController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [Route("/account/speakers/", Name = RouteNames.SpeakersManage)]
-        public IActionResult Index()
+        [Route("/account/users/", Name = RouteNames.UsersManage)]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var result = await _mediator.Send(new ListAllUsers.Query());
+
+            return View(new ManageUsersViewModel
+            {
+                Users = result.Users
+            });
         }
 
-        [Route("/account/speakers/edit/{id}", Name = RouteNames.SpeakerEdit)]
+        [Route("/account/users/edit/{id}", Name = RouteNames.UserEdit)]
         public IActionResult Edit(int id)
         {
             // TODO: Pull data from database
 
-            return View(new ManageSpeakersViewModel
-            {
-                Id = id
-            });
+            return View();
         }
 
         [HttpPost]
-        [Route("/account/speakers/edit")]
+        [Route("/account/users/edit")]
         public async Task<IActionResult> Edit(CreatePage.Command command)
         {
             try
@@ -46,12 +49,12 @@ namespace DDDSouthWest.Website.Features.Admin.Account.ManageSpeakers
             }
             catch (ValidationException e)
             {
-                return View(new ManageSpeakersViewModel
+                return View(new ManageUsersViewModel
                 {
-                    Errors = e.Errors.ToList(),
+                    /*Errors = e.Errors.ToList(),
                     SpeakerFirstName = command.Title,
                     SpeakerFamilyName = command.Filename,
-                    SpeakerBio = command.BodyMarkdown
+                    SpeakerBio = command.BodyMarkdown*/
                 });
             }
             

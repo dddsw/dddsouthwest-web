@@ -7,9 +7,9 @@ namespace DDDSouthWest.Website.Features.Public.ProposedTalks
     {
         public ProposedTalksViewModel()
         {
-            ProposedTalks = new List<ProposedTalksModel>();    
+            ProposedTalk = new List<ProposedTalksModel>();    
         }
         
-        public IList<ProposedTalksModel> ProposedTalks { get; set; }
+        public IList<ProposedTalksModel> ProposedTalk { get; set; }
     }
 }

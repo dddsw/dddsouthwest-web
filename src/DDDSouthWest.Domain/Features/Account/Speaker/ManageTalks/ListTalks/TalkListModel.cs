@@ -12,6 +12,10 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ListTalks
 
         public string TalkBody { get; set; }
 
+        public bool IsSubmitted { get; set; }
+
+        public bool IsApproved { get; set; }
+
         public DateTime DateAdded { get; set; }
 
         public DateTime LastModified { get; set; }

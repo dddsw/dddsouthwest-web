@@ -27,6 +27,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon.png">
 
     @*<environment names="Development,Development.Docker"> TODO: Minify when in prod*@
     <link href="/css/normalize.css" rel="stylesheet"/>
@@ -69,11 +70,12 @@
                     @*<li @Html.Raw(ViewBag.Tab == PageTab.Speakers ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "speakers"})">Speakers</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Sessions ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sessions"})">Sessions</a></li>*@
                     <li @Html.Raw(ViewBag.Tab == PageTab.Venue ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "venue"})">Venue</a></li>
-                    <li @Html.Raw(ViewBag.Tab == PageTab.ProposedTalks ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.ProposedTalks)">Proposed Talks</a></li>
+                    <li @Html.Raw(ViewBag.Tab == PageTab.ProposedTalks ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.ProposedTalks)">Talks</a></li>
+                    <li @Html.Raw(ViewBag.Tab == PageTab.CodeOfConduct ? "class=\"active\"" : string.Empty)><a href="/page/code-of-conduct">Code of Conduct</a></li>
                     @*<li @Html.Raw(ViewBag.Tab == PageTab.Sponsors ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sponsors"})">Sponsors</a></li>*@
                     @if (await AuthorizationService.AuthorizeAsync(User, AccessPolicies.RegisteredAccessPolicy))
                     {
-                        <li @Html.Raw(ViewBag.Tab == PageTab.Login ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountDashboard)">My Account</a></li>
+                        <li @Html.Raw(ViewBag.Tab == PageTab.Login ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountDashboard)">Account</a></li>
                         <li @Html.Raw(ViewBag.Tab == PageTab.Logout ? "class=\"active\"" : string.Empty)><a href="http://auth.dddsouthwest.com/account/logout">Logout</a></li>
                     }
                     else

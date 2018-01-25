@@ -22,7 +22,7 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
 
             using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
             {
-                const string createUserSql = "INSERT INTO users (EmailAddress, Password, Salt, IsActivated, Roles, ReceiveNewsletter) Values (@EmailAddress, @Password, @Salt, FALSE, '[\"registered\"]', @ReceiveNewsletter) RETURNING Id";
+                const string createUserSql = "INSERT INTO users (EmailAddress, Password, Salt, IsActivated, Roles, ReceiveNewsletter, DateRegistered) Values (@EmailAddress, @Password, @Salt, FALSE, '[\"registered\",\"speaker\"]', @ReceiveNewsletter, current_timestamp) RETURNING Id";
                 await connection.QuerySingleAsync<int>(createUserSql, new
                 {
                     EmailAddress = command.EmailAddress,
