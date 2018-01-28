@@ -17,6 +17,7 @@ using DDDSouthWest.Website.Framework;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -87,6 +88,7 @@ namespace DDDSouthWest.Website
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ClientConfigurationOptions configurationOptions)
         {
+            app.UseForwardedHeaders();
             app.UseStaticFiles();
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
