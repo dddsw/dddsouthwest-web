@@ -13,12 +13,15 @@ using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.UpdateExistingPage;
 using DDDSouthWest.Domain.Features.Account.Admin.ManageProfile.UpdateExistingProfile;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk;
 using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
+using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistingTalk;
 using DDDSouthWest.Website.Framework;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace DDDSouthWest.Website
 {
@@ -56,6 +59,7 @@ namespace DDDSouthWest.Website
             
             services.AddTransient<CreateNewsValidation, CreateNewsValidation>();
             services.AddTransient<UpdateExistingNewsValidator, UpdateExistingNewsValidator>();
+            services.AddTransient<UpdateExistingTalkValidator, UpdateExistingTalkValidator>();
             
             services.AddTransient<CreatePageValidation, CreatePageValidation>();
             services.AddTransient<UpdateExistingPageValidator, UpdateExistingPageValidator>();
@@ -85,8 +89,10 @@ namespace DDDSouthWest.Website
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ClientConfigurationOptions configurationOptions)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory,
+            IApplicationLifetime appLifetime, ClientConfigurationOptions configurationOptions)
         {
+            loggerfactory.AddSerilog();
             app.UseStaticFiles();
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -117,6 +123,8 @@ namespace DDDSouthWest.Website
                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute("page", "page/{*filename}", new {controller = "Page", action = "Index"});
             });
+            
+            appLifetime.ApplicationStopped.Register(Log.CloseAndFlush);
         }
     }
 }

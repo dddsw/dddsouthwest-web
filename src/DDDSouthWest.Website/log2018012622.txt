@@ -1,0 +1,42 @@
+2018-01-26 22:01:17.225 +00:00 [INF] User profile is available. Using '/Users/josephwoodward/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2018-01-26 22:50:24.626 +00:00 [INF] Request starting HTTP/1.1 GET http://0.0.0.0:5002/  
+2018-01-26 22:50:25.170 +00:00 [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: Cookies.
+2018-01-26 22:50:25.919 +00:00 [INF] Executing action method DDDSouthWest.Website.Features.Public.Home.HomeController.Index (DDDSouthWest.Website) with arguments (null) - ModelState is "Valid"
+2018-01-26 22:50:30.187 +00:00 [INF] Request starting HTTP/1.1 GET http://0.0.0.0:5002/  
+2018-01-26 22:50:30.189 +00:00 [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: Cookies.
+2018-01-26 22:50:30.191 +00:00 [INF] Executing action method DDDSouthWest.Website.Features.Public.Home.HomeController.Index (DDDSouthWest.Website) with arguments (null) - ModelState is "Valid"
+2018-01-26 22:50:33.189 +00:00 [INF] Executing ViewResult, running view at path Features/Public/Home\Index.cshtml.
+2018-01-26 22:50:33.189 +00:00 [INF] Executing ViewResult, running view at path Features/Public/Home\Index.cshtml.
+2018-01-26 22:50:45.927 +00:00 [INF] Authorization was successful for user: 1.
+2018-01-26 22:50:45.927 +00:00 [INF] Authorization was successful for user: 1.
+2018-01-26 22:50:47.642 +00:00 [INF] Connection id "0HLB51SNQQBV3" communication error.
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2018-01-26 22:50:47.652 +00:00 [INF] Connection id "0HLB51SNQQBV3" communication error.
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2018-01-26 22:50:47.677 +00:00 [INF] Executed action DDDSouthWest.Website.Features.Public.Home.HomeController.Index (DDDSouthWest.Website) in 17473.9872ms
+2018-01-26 22:50:47.678 +00:00 [INF] Executed action DDDSouthWest.Website.Features.Public.Home.HomeController.Index (DDDSouthWest.Website) in 21825.4444ms
+2018-01-26 22:50:47.758 +00:00 [INF] Request starting HTTP/1.1 GET http://0.0.0.0:5002/css/default.css  
+2018-01-26 22:50:47.763 +00:00 [INF] Request starting HTTP/1.1 GET http://0.0.0.0:5002/css/nav.css  
+2018-01-26 22:50:47.782 +00:00 [INF] Request finished in 23252.6266ms 200 text/html; charset=utf-8
+2018-01-26 22:50:47.782 +00:00 [INF] Request finished in 17583.5849ms 200 text/html; charset=utf-8
+2018-01-26 22:50:47.882 +00:00 [INF] The file /css/nav.css was not modified
+2018-01-26 22:50:47.882 +00:00 [INF] The file /css/default.css was not modified
+2018-01-26 22:50:47.929 +00:00 [INF] Request finished in 171.0993ms 304 text/css
+2018-01-26 22:50:47.954 +00:00 [INF] Request finished in 166.6728ms 304 text/css
+2018-01-26 22:50:56.328 +00:00 [INF] Request starting HTTP/1.1 GET http://0.0.0.0:5002/page/code-of-conduct  
+2018-01-26 22:50:56.329 +00:00 [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: Cookies.
+2018-01-26 22:50:56.614 +00:00 [INF] Executing action method DDDSouthWest.Website.Features.Public.Page.PageController.Index (DDDSouthWest.Website) with arguments (["DDDSouthWest.Domain.Features.Public.Page.GetPage+Query"]) - ModelState is "Valid"
+2018-01-26 22:50:57.716 +00:00 [INF] Executing ViewResult, running view at path /Features/Public/Page/notfound.cshtml.
+2018-01-26 22:50:57.773 +00:00 [INF] Authorization was successful for user: 1.
+2018-01-26 22:50:57.776 +00:00 [INF] Executed action DDDSouthWest.Website.Features.Public.Page.PageController.Index (DDDSouthWest.Website) in 1438.616ms
+2018-01-26 22:50:57.777 +00:00 [INF] Request finished in 1448.7127ms 404 text/html; charset=utf-8
+2018-01-26 22:50:57.920 +00:00 [INF] Request starting HTTP/1.1 GET http://0.0.0.0:5002/favicon.png  
+2018-01-26 22:50:57.923 +00:00 [INF] The file /favicon.png was not modified
+2018-01-26 22:50:57.925 +00:00 [INF] Request finished in 4.3618ms 304 image/png
+2018-01-26 22:50:58.888 +00:00 [INF] Request starting HTTP/1.1 GET http://0.0.0.0:5002/news  
+2018-01-26 22:50:58.889 +00:00 [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: Cookies.
+2018-01-26 22:50:58.893 +00:00 [INF] Executing action method DDDSouthWest.Website.Features.Public.News.NewsController.Index (DDDSouthWest.Website) with arguments (null) - ModelState is "Valid"
+2018-01-26 22:50:59.160 +00:00 [INF] Executing ViewResult, running view at path Features/Public/News\Index.cshtml.
+2018-01-26 22:51:00.138 +00:00 [INF] Authorization was successful for user: 1.
+2018-01-26 22:51:00.139 +00:00 [INF] Executed action DDDSouthWest.Website.Features.Public.News.NewsController.Index (DDDSouthWest.Website) in 1246.6951000000001ms
+2018-01-26 22:51:00.140 +00:00 [INF] Request finished in 1252.0428ms 200 text/html; charset=utf-8

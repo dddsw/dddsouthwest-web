@@ -8,12 +8,14 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ViewTalkDetai
 {
     public class ViewTalkDetail
     {
-        public class Query : IRequest<TakeDetailModel>
+        public class Query : IRequest<TalkDetailModel>
         {
             public int Id { get; set; }
+            
+            public int UserId { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Query, TakeDetailModel>
+        public class Handler : IAsyncRequestHandler<Query, TalkDetailModel>
         {
             private readonly ClientConfigurationOptions _options;
 
@@ -22,15 +24,16 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ViewTalkDetai
                 _options = options;
             }
 
-            public async Task<TakeDetailModel> Handle(Query message)
+            public async Task<TalkDetailModel> Handle(Query message)
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    var response = await connection.QuerySingleOrDefaultAsync<TakeDetailModel>(
-                        "SELECT Id, TitleTalk, TalkSummary, TalkBodyHtml, TalkBodyMarkdown, IsLive FROM pages WHERE Id = @Id LIMIT 1",
+                    var response = await connection.QuerySingleOrDefaultAsync<TalkDetailModel>(
+                        "SELECT Id, TalkTitle, TalkSummary, TalkBodyHtml, TalkBodyMarkdown, IsApproved, IsSubmitted, UserId FROM talks WHERE Id = @Id AND UserId = @UserId LIMIT 1",
                         new
                         {
-                            Id = message.Id
+                            Id = message.Id,
+                            UserId = message.UserId
                         });
 
                     return response;

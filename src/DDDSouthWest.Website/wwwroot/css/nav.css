@@ -1,7 +1,7 @@
 .main-menu-container {
     float: right;
     position: relative;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .main-menu {
@@ -20,7 +20,7 @@
     display: block;
     line-height: 50px;
     text-decoration: none;
-    padding: 0 10px;
+    padding: 0 5px;
     font-size: 1.3rem;
     color: #717171;
     text-transform: uppercase;
@@ -31,7 +31,7 @@
 }
 
 .main-menu a:last-child {
-    padding-right: 10px;
+    padding-right: 5px;
 }
     
 .main-menu .active a {

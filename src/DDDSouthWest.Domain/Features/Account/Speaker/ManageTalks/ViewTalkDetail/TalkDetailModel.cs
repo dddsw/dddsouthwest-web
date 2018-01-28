@@ -2,21 +2,21 @@
 
 namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ViewTalkDetail
 {
-    public class TakeDetailModel
+    public class TalkDetailModel
     {
         public int Id { get; set; }
 
-        public string Title { get; set; }
+        public string TalkTitle { get; set; }
 
-        public string Filename { get; set; }
+        public string TalkSummary { get; set; }
 
-        public string BodyMarkdown { get; set; }
+        public string TalkBodyMarkdown { get; set; }
             
-        public string BodyHtml { get; set; }
+        public string TalkBodyHtml { get; set; }
 
-        public bool IsLive { get; set; }
+        public bool IsApproved { get; set; }
 
-        public int PageOrder { get; set; }
+        public bool IsSubmitted { get; set; }
         
         public DateTime LastModified { get; set; }
     }

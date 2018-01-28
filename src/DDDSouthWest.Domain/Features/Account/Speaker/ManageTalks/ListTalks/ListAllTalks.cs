@@ -32,7 +32,7 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ListTalks
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    const string sql = "SELECT Id, TalkTitle, DateAdded, LastModified, IsSubmitted, IsApproved FROM Talks WHERE UserId = @UserId";
+                    const string sql = "SELECT Id, TalkTitle, DateAdded, LastModified, IsSubmitted, IsApproved FROM Talks WHERE UserId = @UserId ORDER BY LastModified DESC";
                     var talks = await connection.QueryAsync<TalkListModel>(sql, new
                     {
                         UserId = message.UserId

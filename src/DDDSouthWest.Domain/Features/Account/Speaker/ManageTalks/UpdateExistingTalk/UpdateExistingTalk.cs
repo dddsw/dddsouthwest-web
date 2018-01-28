@@ -14,7 +14,9 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistin
             public string TalkSummary { get; set; }
             public string TalkBodyMarkdown { get; set; }
             public string TalkBodyHtml { get; set; }
+            public bool IsSubmitted { get; set; }
             public int UserId { get; set; }
+            public int Id { get; set; }
         }
 
         public class Handler : IAsyncRequestHandler<Command>
@@ -34,17 +36,15 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistin
 
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    const string query = @"UPDATE pages SET Title = @Title, Filename = @Filename, BodyMarkdown = @BodyMarkdown, BodyHtml = @BodyHtml, LastModified = current_timestamp, IsLive = @IsLive, PageOrder = @PageOrder WHERE Id = @Id";
+                    const string query = @"UPDATE Talks SET TalkTitle = @TalkTitle, TalkBodyHtml = @TalkBodyHtml, TalkBodyMarkdown = @TalkBodyMarkdown, TalkSummary = @TalkSummary, IsSubmitted = @IsSubmitted, LastModified = current_timestamp WHERE Id = @Id AND UserId = @UserId";
                     await connection.ExecuteAsync(query, new
                     {
-                        /*Id = message.Id,
-                        Title = message.Title,
-                        Filename = message.Filename,
-                        LastModified = message.LastModified,
-                        BodyMarkdown = message.BodyMarkdown,
-                        BodyHtml = message.BodyHtml,
-                        IsLive = message.IsLive,
-                        PageOrder = message.PageOrder*/
+                        Id = message.Id,
+                        TalkTitle = message.TalkTitle,
+                        TalkBodyHtml = message.TalkBodyHtml,
+                        TalkBodyMarkdown = message.TalkBodyMarkdown,
+                        TalkSummary = message.TalkSummary,
+                        IsSubmitted = message.IsSubmitted
                     });
                 }
             }

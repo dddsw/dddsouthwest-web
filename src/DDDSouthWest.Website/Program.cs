@@ -1,6 +1,6 @@
 ﻿using System.IO;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Serilog;
 
 namespace DDDSouthWest.Website
 {
@@ -8,6 +8,13 @@ namespace DDDSouthWest.Website
     {
         public static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .MinimumLevel.Warning()
+                .WriteTo.File("/logs/log.txt", rollingInterval: RollingInterval.Hour, buffered: true)
+                .WriteTo.Console()
+                .CreateLogger();
+            
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())

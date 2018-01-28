@@ -1,20 +1,25 @@
 ﻿@using DDDSouthWest.Website.Framework
-@model DDDSouthWest.Website.Features.Admin.Account.ManageEvents.ManageEventsViewModel
+@model DDDSouthWest.Website.Features.Public.Account.ManageTalks.ManageTalksViewModel
 
 @{
     ViewBag.Tab = PageTab.Login;                                                        
     Layout = "~/Views/Shared/_LayoutFull.cshtml";
 }
 
+@section ScriptsHeader {
+    <link rel="stylesheet" href="/js/simplemde/simplemde.min.css">
+    <script src="/js/simplemde/simplemde.min.js"></script>
+}
+
 @section Header {
-    <page-banner title="Events"/>
+    <page-banner title="Talks"/>
 }
 
 @section MainColBody {
 
-    <h1>Edit Event</h1>
+    <h1>Edit Talk</h1>
     
-    @using (Html.BeginForm("Update", "ManageEvents", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    @using (Html.BeginForm("Update", "ManageTalks", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
     {
         @Html.HiddenFor(x => x.Id)
         @Html.Partial("_Form")
@@ -22,7 +27,7 @@
     
     <script type="text/javascript">
         var simplemde = new SimpleMDE({
-            element: document.getElementById("postBody"),
+            element: document.getElementById("talkBody"),
             tabSize: 2
         });
     </script>

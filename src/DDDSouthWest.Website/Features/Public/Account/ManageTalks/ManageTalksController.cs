@@ -2,6 +2,9 @@
 using System.Threading.Tasks;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ListTalks;
+using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistingTalk;
+using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ViewTalkDetail;
+using DDDSouthWest.Website.Features.Admin.Account.ManageEvents;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
 using IdentityServer4.Extensions;
@@ -29,7 +32,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
             var userId = User.Identity.GetSubjectId();
             var result = await _mediator.Send(new ListAllTalks.Query(int.Parse(userId)));
 
-            return View(new TalkListViewModel
+            return View("Index", new TalkListViewModel
             {
                 Talks = result.Talks
             });
@@ -48,6 +51,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
             try
             {
                 command.TalkBodyHtml = _transformer.ToHtml(command.TalkBodyMarkdown);
+
                 var userId = User.Identity.GetSubjectId();
                 command.UserId = int.Parse(userId);
                 
@@ -68,41 +72,51 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
             return RedirectToRoute(RouteNames.SpeakerTalkManage);
         }
 
-        /*[Route("/account/talks/edit", Name = RouteNames.SpeakerTalkEdit)]
-        public async Task<IActionResult> Edit(ViewEventDetail.Query query)
+        [Route("/account/talks/edit/{id}", Name = RouteNames.SpeakerTalkEdit)]
+        public async Task<IActionResult> Edit(ViewTalkDetail.Query query)
         {
-            var eventModel = await _mediator.Send(query);
+            var userId = User.Identity.GetSubjectId();
+            query.UserId = int.Parse(userId);
 
-            return View(new ManageEventsViewModel
+            var talk = await _mediator.Send(query);
+
+            return View(new ManageTalksViewModel
             {
-                Id = eventModel.Id,
-                EventFilename = eventModel.EventFilename,
-                EventDate = eventModel.EventDate,
-                EventName = eventModel.EventName
+                Id = talk.Id,
+                TalkTitle = talk.TalkTitle,
+                TalkSummary = talk.TalkSummary,
+                TalkBodyMarkdown = talk.TalkBodyMarkdown,
+                IsSubmitted = talk.IsSubmitted
             });
-        }*/
+        }
 
-        /*
         [HttpPost]
-        [Route("/account/events/edit")]
-        public async Task<IActionResult> Update(UpdateExistingEvent.Command command)
+        [Route("/account/talks/edit/{id}")]
+        public async Task<IActionResult> Update(UpdateExistingTalk.Command command)
         {
             try
             {
+                command.TalkBodyHtml = _transformer.ToHtml(command.TalkBodyMarkdown);
+
+                var userId = User.Identity.GetSubjectId();
+                command.UserId = int.Parse(userId);
+                
                 await _mediator.Send(command);
             }
             catch (ValidationException e)
             {
-                return View(new ManageEventsViewModel
+                return View(new ManageTalksViewModel
                 {
-                    Errors = e.Errors.ToList(),
-                    EventDate = command.EventDate,
-                    EventFilename = command.EventFilename,
-                    EventName = command.EventName
+                    Id = command.Id,
+                    TalkTitle = command.TalkTitle,
+                    TalkSummary = command.TalkSummary,
+                    TalkBodyMarkdown = command.TalkBodyMarkdown,
+                    IsSubmitted = command.IsSubmitted,
+                    Errors = e.Errors.ToList()
                 });
             }
 
-            return RedirectToRoute(RouteNames.EventsManage);
-        }*/
+            return RedirectToRoute(RouteNames.SpeakerTalkManage);
+        }
     }
 }

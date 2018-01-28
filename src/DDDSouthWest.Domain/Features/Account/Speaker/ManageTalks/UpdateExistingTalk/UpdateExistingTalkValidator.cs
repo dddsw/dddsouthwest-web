@@ -1,32 +1,14 @@
-﻿using Dapper;
-using FluentValidation;
-using FluentValidation.Validators;
-using Npgsql;
+﻿using FluentValidation;
 
 namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistingTalk
 {
     public class UpdateExistingTalkValidator : AbstractValidator<UpdateExistingTalk.Command>
     {
-        private readonly ClientConfigurationOptions _options;
-
-        public UpdateExistingTalkValidator(ClientConfigurationOptions options)
+        public UpdateExistingTalkValidator()
         {
-            _options = options;
-
-            /*RuleFor(x => x.Title).NotEmpty();
-            RuleFor(x => x.Filename).NotEmpty();
-            RuleFor(x => x.Filename).Must(FilenameIsUnique).WithMessage("'News Filename' must be unqiue");*/
-        }
-
-        private bool FilenameIsUnique(Admin.ManagePages.UpdateExistingPage.UpdateExistingPage.Command command, string newsFilename, PropertyValidatorContext context)
-        {
-            using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
-            {
-                const string sql = "SELECT COUNT(*) FROM pages WHERE Filename = @Filename AND Id != @Id";
-                var totalClashes = connection.QuerySingleOrDefault<int>(sql, new {command.Id, Filename = newsFilename});
-
-                return totalClashes == 0;
-            }
+            RuleFor(x => x.TalkTitle).NotEmpty();
+            RuleFor(x => x.TalkSummary).NotEmpty();
+            RuleFor(x => x.TalkBodyMarkdown).NotEmpty().WithMessage("'Talk Body' must not be empty");
         }
     }
 }

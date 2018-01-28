@@ -18,11 +18,11 @@ namespace DDDSouthWest.Website.Features.Admin.Account.ManageTalks
         }
 
         [Route("/account/admin/talks/", Name = RouteNames.AdminTalksManage)]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> List()
         {
             var result = await _mediator.Send(new ListAllTalks.Query());
 
-            return View(new TalkListViewModel
+            return View("List", new ListViewModel
             {
                 Talks = result.Talks
             });
