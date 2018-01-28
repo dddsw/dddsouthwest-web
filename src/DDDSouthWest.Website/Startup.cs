@@ -1,5 +1,4 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using DDDSouthWest.Domain;
 using DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.CreateNewEvent;
@@ -18,6 +17,7 @@ using DDDSouthWest.Website.Framework;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -93,6 +93,11 @@ namespace DDDSouthWest.Website
             IApplicationLifetime appLifetime, ClientConfigurationOptions configurationOptions)
         {
             loggerfactory.AddSerilog();
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
             app.UseStaticFiles();
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
