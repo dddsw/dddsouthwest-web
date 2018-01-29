@@ -93,10 +93,15 @@ namespace DDDSouthWest.Website
             IApplicationLifetime appLifetime, ClientConfigurationOptions configurationOptions)
         {
             loggerfactory.AddSerilog();
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            
+            var forwardedHeadersOptions = new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
+            };
+            forwardedHeadersOptions.KnownProxies.Clear();
+            forwardedHeadersOptions.KnownNetworks.Clear();
+
+            app.UseForwardedHeaders(forwardedHeadersOptions);
 
             app.UseStaticFiles();
 
