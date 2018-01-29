@@ -32,7 +32,7 @@
         
         public const string AdminTalkEdit = "admin_talk_edit";
         public const string AdminTalkCreate = "admin_talk_create";
-        public const string AdminTalksManage = "admin_talk_manage";
+        public const string AdminTalkManage = "admin_talk_manage";
         
         public const string SpeakerTalkEdit = "speaker_talk_edit";
         public const string SpeakerTalkCreate = "speaker_talk_create";

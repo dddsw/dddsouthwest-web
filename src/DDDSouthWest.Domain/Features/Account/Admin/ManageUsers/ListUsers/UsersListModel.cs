@@ -2,7 +2,7 @@
 
 namespace DDDSouthWest.Domain.Features.Account.Admin.ManageUsers.ListUsers
 {
-    public class     UsersListModel
+    public class UsersListModel
     {
         public int Id { get; set; }
 
@@ -23,6 +23,10 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageUsers.ListUsers
         public DateTime DateRegistered { get; set; }
         
         public string Roles { get; set; }
+
+        public string Twitter { get; set; }
+
+        public string Website { get; set; }
         
         /*var roles = JsonConvert.DeserializeObject<List<string>>(tempUser.Roles);*/
     }

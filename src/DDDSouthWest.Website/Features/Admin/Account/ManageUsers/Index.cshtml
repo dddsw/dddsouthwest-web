@@ -24,6 +24,8 @@
                     <th>&nbsp;</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Website</th>
+                    <th>Twitter</th>
                     <th>Roles</th>
                     <th>Is Blocked</th>
                     <th>Is Activated</th>
@@ -38,6 +40,8 @@
                         <td><a href="@Url.RouteUrl(RouteNames.UserEdit, new {id = 1})">Edit</a></td>
                         <td>@user.FullName</td>
                         <td>@user.EmailAddress</td>
+                        <td>@user.Website</td>
+                        <td>@user.Twitter</td>
                         <td>@user.Roles</td>
                         <td>@user.IsBlocked</td>
                         <td>@user.IsActivated</td>

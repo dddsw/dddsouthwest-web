@@ -10,7 +10,7 @@ namespace DDDSouthWest.Website
         {
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
-                .MinimumLevel.Warning()
+                .MinimumLevel.Debug()
                 .WriteTo.File("/logs/log.txt", rollingInterval: RollingInterval.Hour, buffered: true)
                 .WriteTo.Console()
                 .CreateLogger();

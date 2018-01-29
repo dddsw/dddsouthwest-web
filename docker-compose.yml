@@ -10,7 +10,7 @@ services:
         - ASPNETCORE_ENVIRONMENT=Development.Docker
         - DDDSouthWestIdentityServer__WebsiteUrl=http://website:5002
       ports:
-        - "5000:5000"
+        - "5001:5001"
       networks:
         - default
 
@@ -22,7 +22,7 @@ services:
       image: ddd_southwest/website
       environment:
         - ASPNETCORE_ENVIRONMENT=Development.Docker
-        - DDDSouthWestWebsite__IdentityServer__AuthorityServer=http://identityserver:5000
+        - DDDSouthWestWebsite__IdentityServer__AuthorityServer=http://identityserver:5001
       ports:
         - "5002:5002"
       networks:

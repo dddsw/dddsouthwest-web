@@ -32,5 +32,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\Admin\Account" />
+    <Folder Include="Features\Public\Account\LogOut" />
   </ItemGroup>
 </Project>

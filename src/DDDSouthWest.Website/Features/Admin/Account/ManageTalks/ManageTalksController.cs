@@ -1,5 +1,8 @@
 ﻿using System.Threading.Tasks;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageNews.ViewNewsDetail;
 using DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.ListTalks;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.ViewTalkDetail;
+using DDDSouthWest.Website.Features.Admin.Account.ManageNews;
 using DDDSouthWest.Website.Framework;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -17,7 +20,7 @@ namespace DDDSouthWest.Website.Features.Admin.Account.ManageTalks
             _mediator = mediator;
         }
 
-        [Route("/account/admin/talks/", Name = RouteNames.AdminTalksManage)]
+        [Route("/account/admin/talks/", Name = RouteNames.AdminTalkManage)]
         public async Task<IActionResult> List()
         {
             var result = await _mediator.Send(new ListAllTalks.Query());
@@ -28,6 +31,23 @@ namespace DDDSouthWest.Website.Features.Admin.Account.ManageTalks
             });
         }
 
+        [Route("/account/admin/talks/edit/{id}", Name = RouteNames.AdminTalkEdit)]
+        public async Task<IActionResult> Edit(ViewTalkDetail.Query query)
+        {
+            var model = await _mediator.Send(query);
+
+            return View(new ViewTalkDetailViewModel
+            {
+                Id = model.ViewTalkDetailModel.Id,
+                SpeakerBioHtml = model.ViewTalkDetailModel.SpeakerBioHtml,
+                SpeakerFamilyName = model.ViewTalkDetailModel.SpeakerFamilyName,
+                SpeakerGivenName = model.ViewTalkDetailModel.SpeakerGivenName,
+                SpeakerId = model.ViewTalkDetailModel.SpeakerId,
+                TalkBodyHtml = model.ViewTalkDetailModel.TalkBodyHtml,
+                TalkTitle = model.ViewTalkDetailModel.TalkTitle 
+            });
+        }
+        
         [Route("/account/admin/talks/create", Name = RouteNames.AdminTalkCreate)]
         public IActionResult Create()
         {

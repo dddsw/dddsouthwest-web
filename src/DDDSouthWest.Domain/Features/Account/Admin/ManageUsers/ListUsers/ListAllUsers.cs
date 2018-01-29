@@ -27,7 +27,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageUsers.ListUsers
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    const string sql = "SELECT GivenName, FamilyName, EmailAddress, IsBlocked, IsActivated, ReceiveNewsletter, DateRegistered, Roles FROM Users ORDER BY dateregistered DESC";
+                    const string sql = "SELECT u.GivenName, u.FamilyName, u.EmailAddress, u.IsBlocked, u.IsActivated, u.ReceiveNewsletter, u.DateRegistered, u.Roles, p.Twitter, p.Website FROM Users u LEFT JOIN profiles p ON u.Id = p.UserId ORDER BY dateregistered DESC";
                     var users = await connection.QueryAsync<UsersListModel>(sql);
 
                     return new Response
@@ -40,6 +40,11 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageUsers.ListUsers
 
         public class Response
         {
+            public Response()
+            {
+                Users = new List<UsersListModel>();                
+            }
+            
             public IList<UsersListModel> Users { get; set; }
         }
     }
