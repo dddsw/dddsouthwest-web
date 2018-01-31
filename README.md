@@ -15,11 +15,14 @@ New and improved website for the DDD South West conference.
 - Navigate to the website on `http://0.0.0.0:5002`
 
 **Populate Database**  
-As this point you'll see it'll fail to connect to the database, run the following command to create the database with necessary credentials:
+
+As this point you'll see the website fail to connect to the database. As the DDD South West website uses PostgreSQL as its data persistance engine you'll need to have an instance running (either installed locally, remotely or via Docker).
+
+The easiest way is to use the PostgresSQL Docker image via the below command:
 
 `docker run -d -p 5432:5432 -e POSTGRES_USER=dddsouthwest_user -e POSTGRES_PASSWORD=letmein -e POSTGRES_DB=dddsouthwest postgres:9.4`
 
-You'll also need to seed the data, so connect to your PostgreSQL instance and execute contents of `init.sql`.
+Once PostgreSQL is running, you can use the `init.sql` file to seed the database schema.
 
 ### Run from Docker
 
