@@ -8,7 +8,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.AddNewTalk
         {
             RuleFor(x => x.TalkTitle).NotEmpty();
             RuleFor(x => x.TalkSummary).NotEmpty();
-            RuleFor(x => x.TalkBodyMarkdown).NotEmpty().WithMessage("'Talk Body' must not be empty");
+            RuleFor(x => x.TalkBodyMarkdown).NotEmpty().WithMessage("'Talk Abstract' must not be empty");
         }
     }
 }

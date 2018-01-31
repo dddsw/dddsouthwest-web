@@ -10,6 +10,7 @@ using DDDSouthWest.Domain.Features.Account.Admin.ManageNews.ViewNewsDetail;
 using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.CreatePage;
 using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.UpdateExistingPage;
 using DDDSouthWest.Domain.Features.Account.Admin.ManageProfile.UpdateExistingProfile;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.UpdateExistingTalk;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk;
 using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistingTalk;
@@ -54,6 +55,7 @@ namespace DDDSouthWest.Website
             services.AddTransient<CreateNewEventValidator, CreateNewEventValidator>();
             services.AddTransient<UpdateExistingEventValidator, UpdateExistingEventValidator>();
             services.AddTransient<AddNewTalkValidator, AddNewTalkValidator>();
+            services.AddTransient<UpdateExistingTalkAsAdminValidator, UpdateExistingTalkAsAdminValidator>();
                         
             services.AddTransient<UpsertSpeakerProfileValidator, UpsertSpeakerProfileValidator>();
             

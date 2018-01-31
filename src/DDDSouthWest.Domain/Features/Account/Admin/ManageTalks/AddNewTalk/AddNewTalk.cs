@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Dapper;
 using FluentValidation;
 using MediatR;
@@ -38,7 +37,14 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.AddNewTalk
                     const string addNewTalkSql = "INSERT INTO Talks (TalkTitle, TalkBodyHtml, TalkBodyMarkdown, TalkSummary, SubmissionDate, UserId) Values (@TalkTitle, @TalkBodyHtml, @TalkBodyMarkdown, @TalkSummary, current_timestamp, @UserId) RETURNING Id";
                     return new Response
                     {
-                        Id = await connection.QuerySingleAsync<int>(addNewTalkSql, message)
+                        Id = await connection.QuerySingleAsync<int>(addNewTalkSql, new
+                        {
+                            TalkTitle = message.TalkTitle,
+                            TalkBodyHtml = message.TalkBodyHtml,
+                            TalkBodyMarkdown = message.TalkBodyMarkdown,
+                            TalkSummary = message.TalkSummary,
+                            UserId = message.UserId
+                        })
                     };
                 }                
             }

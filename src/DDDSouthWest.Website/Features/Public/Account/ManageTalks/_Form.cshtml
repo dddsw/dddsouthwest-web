@@ -12,12 +12,12 @@
     </div>
 
     <div class="pure-control-group">
-        <label asp-for="TalkSummary">Talk Summary:</label>
-        <textarea asp-for="TalkSummary" class="pure-input-2-3" style="height: 100px;"></textarea>
+        <label asp-for="TalkSummary">Short Summary Abstract:</label>
+        <textarea asp-for="TalkSummary" class="pure-input-2-3" style="height: 130px;"></textarea>
     </div>
     
     <div class="pure-control-group">
-        <label asp-for="TalkBodyMarkdown">Talk Proposal:</label>
+        <label asp-for="TalkBodyMarkdown">Long Abstract:</label>
         <div class="pure-u-2-3">
             <div style="padding-right: 8px;">
                 <textarea asp-for="TalkBodyMarkdown" id="talkBody" style="height: 250px;"></textarea>
@@ -28,7 +28,7 @@
     <div class="pure-controls">
         
         <label asp-for="IsSubmitted" class="pure-checkbox">
-            <input asp-for="IsSubmitted" type="checkbox"> Submit talk to this year's DDD conference?
+            <input asp-for="IsSubmitted" type="checkbox"> Happy with your talk? Check to submit your talk for approval.
         </label>
         
         <button type="submit" class="pure-button pure-button-primary">Submit</button>

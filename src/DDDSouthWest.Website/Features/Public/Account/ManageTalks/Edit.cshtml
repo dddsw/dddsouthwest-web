@@ -19,7 +19,7 @@
 
     <h1>Edit Talk</h1>
     
-    @using (Html.BeginForm("Update", "ManageTalks", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    @using (Html.BeginForm("Update", "SpeakerManageTalks", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
     {
         @Html.HiddenFor(x => x.Id)
         @Html.Partial("_Form")
@@ -31,4 +31,8 @@
             tabSize: 2
         });
     </script>
+    
+    <div class="pure-u-1-1 pure-block">
+        <a href="@Url.RouteUrl(RouteNames.SpeakerTalkManage)">&laquo; Return to talks</a>
+    </div>
 }

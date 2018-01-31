@@ -4,7 +4,7 @@ using Npgsql;
 
 namespace DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.CreateNewEvent
 {
-    public class CreateNewEventValidator : AbstractValidator<Admin.ManageEvents.CreateNewEvent.CreateNewEvent.Command>
+    public class CreateNewEventValidator : AbstractValidator<CreateNewEvent.Command>
     {
         private readonly ClientConfigurationOptions _options;
 

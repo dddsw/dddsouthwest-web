@@ -17,5 +17,7 @@
         public string SpeakerBioHtml { get; set; }
 
         public int SpeakerId { get; set; }
+
+        public string TalkBodyMarkdown { get; set; }
     }
 }

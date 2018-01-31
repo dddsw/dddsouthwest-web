@@ -26,7 +26,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.ListTalks
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
-                    const string sql = "SELECT Id, TalkTitle, TalkSummary, DateAdded, LastModified, SubmissionDate IsApproved, IsSubmitted FROM Talks ORDER By DateAdded DESC";
+                    const string sql = "SELECT t.Id, t.TalkTitle, t.TalkSummary, t.DateAdded, t.LastModified, t.SubmissionDate, t.IsApproved, t.IsSubmitted, u.Id AS SpeakerId, u.GivenName AS SpeakerGivenName, u.FamilyName AS SpeakerFamilyName FROM Talks t LEFT JOIN Users u ON t.UserId = u.Id ORDER By DateAdded DESC";
                     var talks = await connection.QueryAsync<TalkListModel>(sql);
 
                     return new Response

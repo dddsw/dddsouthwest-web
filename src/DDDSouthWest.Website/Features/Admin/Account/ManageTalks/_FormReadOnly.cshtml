@@ -1,0 +1,26 @@
+@model DDDSouthWest.Website.Features.Admin.Account.ManageTalks.ManageTalksViewModel
+        
+<div class="pure-form pure-form-aligned">
+    
+    <fieldset>
+    
+        <div class="pure-control-group">
+            <label asp-for="TalkTitle">Talk Title:</label>
+            <input asp-for="TalkTitle" class="pure-input-2-3" readonly />
+        </div>
+
+        <div class="pure-control-group">
+            <label asp-for="TalkSummary">Short Abstract:</label>
+            <input asp-for="TalkSummary" class="pure-input-2-3" readonly/>
+        </div>
+    
+        <div class="pure-control-group">
+            <label asp-for="TalkBodyMarkdown">Long Abstract:</label>
+            <div class="pure-u-2-3">
+                <div style="padding-top: 4px;">@Html.Raw(Model.TalkBodyHtml)</div>
+            </div>
+        </div>      
+
+    </fieldset>
+
+</div>    

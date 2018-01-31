@@ -1,22 +1,46 @@
 ﻿@using DDDSouthWest.Website.Framework
-@model DDDSouthWest.Website.Features.Admin.Account.ManageEvents.ManageEventsViewModel
+@model DDDSouthWest.Website.Features.Admin.Account.ManageTalks.ManageTalksViewModel
 
 @{
     ViewBag.Tab = PageTab.Login;                                                        
     Layout = "~/Views/Shared/_LayoutFull.cshtml";
 }
 
+@section ScriptsHeader {
+    <link rel="stylesheet" href="/js/simplemde/simplemde.min.css">
+    <script src="/js/simplemde/simplemde.min.js"></script>
+}
+
 @section Header {
-    <page-banner title="Events"/>
+    <page-banner title="Talks"/>
 }
 
 @section MainColBody {
 
-    <h1>Edit Event</h1>
+    <h1>Edit Talk</h1>
     
-    @using (Html.BeginForm("Update", "ManageEvents", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    @if (Model.IsSubmitted)
     {
-        @Html.HiddenFor(x => x.Id)
-        @Html.Partial("_Form")
+        using (Html.BeginForm("Update", "AdminManageTalks", null, FormMethod.Post, true, new {@class = "pure-form pure-form-aligned"}))
+        {
+            @Html.HiddenFor(x => x.Id)
+            @Html.Partial("_Form")
+        }
+        
+        <script type="text/javascript">
+            var simplemde = new SimpleMDE({
+                element: document.getElementById("talkBody"),
+                tabSize: 2
+            });
+        </script>
     }
+    else
+    {
+        <p><strong>Note: This talk proposal is in read only mode as it has not yet been submitted.</strong></p>
+        @Html.Partial("_FormReadOnly")
+    }
+    
+    <div class="pure-u-1-1 pure-block">
+        <a href="@Url.RouteUrl(RouteNames.AdminTalkManage)">&laquo; Return to talks</a>
+    </div>
 }

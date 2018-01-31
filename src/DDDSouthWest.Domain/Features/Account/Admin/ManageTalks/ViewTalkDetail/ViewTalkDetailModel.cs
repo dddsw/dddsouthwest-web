@@ -7,6 +7,10 @@
         public string TalkTitle { get; set; }
 
         public string TalkBodyHtml { get; set; }
+        
+        public string TalkBodyMarkdown { get; set; }
+
+        public string TalkSummary { get; set; }
 
         public string SpeakerGivenName { get; set; }
 
@@ -14,8 +18,8 @@
 
         public string SpeakerFullName => $"{SpeakerGivenName} {SpeakerFamilyName}";
 
-        public string SpeakerBioHtml { get; set; }
+        public bool IsApproved { get; set; }
 
-        public int SpeakerId { get; set; }
+        public bool IsSubmitted { get; set; }
     }
 }

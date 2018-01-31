@@ -15,12 +15,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
 {
     [Authorize(Policy = AccessPolicies.RegisteredAccessPolicy)]
-    public class ManageTalksController : Controller
+    public class SpeakerManageTalksController : Controller
     {
         private readonly IMediator _mediator;
         private readonly MarkdownTransformer _transformer;
 
-        public ManageTalksController(IMediator mediator, MarkdownTransformer transformer)
+        public SpeakerManageTalksController(IMediator mediator, MarkdownTransformer transformer)
         {
             _mediator = mediator;
             _transformer = transformer;

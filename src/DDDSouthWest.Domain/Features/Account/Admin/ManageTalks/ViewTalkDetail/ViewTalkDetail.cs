@@ -31,7 +31,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.ViewTalkDetail
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
                     const string query =
-                        "SELECT t.Id, t.TalkTitle, t.TalkBodyHtml, t.UserId AS SpeakerId, u.GivenName AS SpeakerGivenName, u.FamilyName AS SpeakerFamilyName, p.BioHtml AS SpeakerBioHtml FROM talks AS t LEFT JOIN users AS u ON u.id = t.userid LEFT JOIN Profiles AS p ON p.UserId = t.userid WHERE t.Id = @Id";
+                        "SELECT t.Id, t.TalkTitle, t.TalkBodyHtml, t.TalkBodyMarkdown, t.TalkSummary, t.IsApproved, t.IsSubmitted, u.GivenName AS SpeakerGivenName, u.FamilyName AS SpeakerFamilyName FROM talks AS t LEFT JOIN users AS u ON u.Id = t.UserId LEFT JOIN Profiles AS p ON p.UserId = t.userid WHERE t.Id = @Id";
                     var response = await connection.QuerySingleOrDefaultAsync<ViewTalkDetailModel>(query, new
                     {
                         Id = message.Id

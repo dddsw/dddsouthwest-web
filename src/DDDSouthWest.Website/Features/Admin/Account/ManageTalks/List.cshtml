@@ -15,10 +15,6 @@
     <h1>Manage Talks</h1>
     
     <div class="pure-g">
-        
-        <div class="pure-u-1-1 pure-block">
-            <a class="pure-button pure-button-primary" href="@Url.RouteUrl(RouteNames.AdminTalkCreate)">Add New Talk</a>
-        </div>
 
         <div class="pure-u-1-1 pure-block">
 
@@ -27,6 +23,7 @@
                 <tr>
                     <th>&nbsp;</th>
                     <th>Talk Title</th>
+                    <th>Speaker</th>
                     <th>Dated Added</th>
                     <th>Is Submitted</th>
                     <th>Is Approved</th>
@@ -39,6 +36,7 @@
                     <tr>
                         <td><a href="@Url.RouteUrl(RouteNames.AdminTalkEdit, new { id = talk.Id })">Edit</a></td>
                         <td>@talk.TalkTitle</td>
+                        <td>@talk.SpeakerFullName</td>
                         <td>@talk.DateAdded</td>
                         <td>@talk.IsSubmitted</td>
                         <td>@talk.IsApproved</td>
@@ -47,6 +45,10 @@
                 </tbody>
             </table>
 
+        </div>
+        
+        <div class="pure-u-1-1 pure-block">
+            <a href="@Url.RouteUrl(RouteNames.AccountDashboard)">&laquo; Return to Account</a>
         </div>
 
     </div>

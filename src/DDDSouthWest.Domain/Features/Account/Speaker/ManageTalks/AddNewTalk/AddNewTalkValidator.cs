@@ -7,8 +7,8 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk
         public AddNewTalkValidator()
         {
             RuleFor(x => x.TalkTitle).NotEmpty();
-            RuleFor(x => x.TalkSummary).NotEmpty();
-            RuleFor(x => x.TalkBodyMarkdown).NotEmpty().WithMessage("'Talk Body' must not be empty");
+            RuleFor(x => x.TalkSummary).NotEmpty().WithMessage("'Short Abstract' must not be empty");
+            RuleFor(x => x.TalkBodyMarkdown).NotEmpty().WithMessage("'Long' Abstract' must not be empty");
         }
     }
 }

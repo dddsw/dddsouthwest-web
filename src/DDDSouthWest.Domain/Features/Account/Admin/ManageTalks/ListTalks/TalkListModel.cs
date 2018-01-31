@@ -19,5 +19,13 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.ListTalks
         public bool IsApproved { get; set; }
 
         public bool IsSubmitted { get; set; }
+
+        public int SpeakerId { get; set; }
+        
+        public string SpeakerGivenName { get; set; }
+        
+        public string SpeakerFamilyName { get; set; }
+        
+        public string SpeakerFullName => $"{SpeakerGivenName} {SpeakerFamilyName}";
     }
 }
