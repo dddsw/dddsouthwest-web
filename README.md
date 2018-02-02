@@ -33,7 +33,7 @@ Before you can run the DDD South West website locally, you'll need to ensure the
 
    `docker run -d -p 5432:5432 -e POSTGRES_USER=dddsouthwest_user -e POSTGRES_PASSWORD=letmein -e POSTGRES_DB=dddsouthwest postgres:9.4`
 
-   This command will download, run and setup the database with the correct database user credentials set.
+   This command will download, run and create the database with the correct database user credentials set.
 
    Once PostgreSQL is running, you need to connect to the `dddsouthwest` database and use the `init.sql` file to seed the database schema and `demo_data.sql` to seed some demo data. This demo data includes an admin account with the following login credentials:
 
@@ -45,9 +45,9 @@ Before you can run the DDD South West website locally, you'll need to ensure the
 Once the above prerequisites are met follow the steps below:
 
 1. Clone contents of repo to your local disk
-2. Run `dotnet restore` in solution root
-3. `dotnet run` within the `src/DDDSouthWest.IdentityServer/` directory
-4. `dotnet run` within the `src/DDDSouthWest.Website/` directory
+2. Run `dotnet restore` in solution root to restore the application(s) packages
+3. Run `dotnet run` within the `src/DDDSouthWest.IdentityServer/` directory
+4. Run `dotnet run` within the `src/DDDSouthWest.Website/` directory
 5. Navigate to the website on `http://website:5002`
 
 ### Run from Docker
@@ -56,8 +56,8 @@ Once the above prerequisites are met follow the steps below:
 
 1. Publish artifacts and create images by running `$ sh publish_docker.sh`
 2. Run `docker-compose up` to launch
-3. Navigate to the website on `http://website:5002`
-4. Connect to the PostgreSQL container and seed the database data using the contents of `demo_data.sql` as outlined in step 3 of the prerequisites.
+3. Connect to the PostgreSQL container and seed the database data using the contents of `demo_data.sql` as outlined in step 3 of the prerequisites.
+4. Navigate to the website on `http://website:5002`
 
 ### Logging in as an admin
 
