@@ -10,7 +10,7 @@ New and improved website for the DDD South West conference.
 
 Before you can run the DDD South West website locally, you'll need to ensure the following prerequisites are met:
 
-1. Ensure you have dotnet SDK v1 or above installed. You can do this using the `dotnet --info` command.
+1. Ensure you have dotnet SDK v1 or above installed. You can verify this using the `dotnet --info` command. If not then head over to the [.NET Core SDK download page](https://www.microsoft.com/net/download/windows) and download/install it.
 
 2. Ensure your `ASPNETCORE_ENVIRONMENT` environment variable is set to either `Development` or `development`. You can do this by running one of the following commands:
 
