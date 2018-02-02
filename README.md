@@ -19,6 +19,18 @@ New and improved website for the DDD South West conference.
    **OS X:**  
    Run `export ASPNETCORE_ENVIRONMENT=Development` in your console.
 
+3. The DDD South West website uses PostgreSQL as its data persistance engine so you'll need to have an instance running (either installed locally, remotely or via Docker) with the following development database credentials set:
+
+   Database Name: `dddsouthwest`  
+   Database Username: `dddsouthwest_user`  
+   Database Password: `letmein`  
+
+   The easiest way is to use the PostgresSQL Docker image via the below command:
+
+   `docker run -d -p 5432:5432 -e POSTGRES_USER=dddsouthwest_user -e POSTGRES_PASSWORD=letmein -e POSTGRES_DB=dddsouthwest postgres:9.4`
+
+   Once PostgreSQL is running, you can use the `init.sql` file to seed the database schema.
+
 ### Running manually
 
 - Clone contents of repo to your local disk
@@ -26,20 +38,6 @@ New and improved website for the DDD South West conference.
 - `dotnet run` within the `src/DDDSouthWest.IdentityServer/` directory
 - `dotnet run` within the `src/DDDSouthWest.Website/` directory
 - Navigate to the website on `http://0.0.0.0:5002`
-
-**Populate Database**  
-
-At this point you'll see the website fail to connect to the database. The DDD South West website uses PostgreSQL as its data persistance engine so you'll need to have an instance running (either installed locally, remotely or via Docker) with the following database credentials set:
-
-Database Name: `dddsouthwest`  
-Database Username: `dddsouthwest_user`  
-Database Password: `letmein`  
-
-The easiest way is to use the PostgresSQL Docker image via the below command:
-
-`docker run -d -p 5432:5432 -e POSTGRES_USER=dddsouthwest_user -e POSTGRES_PASSWORD=letmein -e POSTGRES_DB=dddsouthwest postgres:9.4`
-
-Once PostgreSQL is running, you can use the `init.sql` file to seed the database schema.
 
 ### Run from Docker
 
