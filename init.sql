@@ -14,6 +14,20 @@ CREATE TABLE Events
 
 CREATE UNIQUE INDEX Events_Filename_uindex ON Events (EventFilename);
 
+CREATE TABLE Users
+(
+    Id SERIAL PRIMARY KEY,
+    GivenName VARCHAR(150) NULL,
+    FamilyName VARCHAR(150) NULL,
+    EmailAddress VARCHAR(255) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Salt VARCHAR(255) NOT NULL,
+    IsBlocked BOOLEAN DEFAULT FALSE NOT NULL,
+    IsActivated BOOLEAN DEFAULT FALSE NOT NULL,
+    Roles JSON NULL,
+    ReceiveNewsletter BOOLEAN DEFAULT FALSE NOT NULL,
+    DateRegistered TIMESTAMP NOT NULL
+);
 
 CREATE TABLE Talks
 (
@@ -29,22 +43,6 @@ CREATE TABLE Talks
     IsApproved BOOLEAN DEFAULT FALSE NOT NULL,
     IsSubmitted BOOLEAN DEFAULT FALSE NOT NULL,
     CONSTRAINT talks_users_id_fk FOREIGN KEY(UserId) REFERENCES Users
-);
-
-
-CREATE TABLE Users
-(
-    Id SERIAL PRIMARY KEY,
-    GivenName VARCHAR(150) NULL,
-    FamilyName VARCHAR(150) NULL,
-    EmailAddress VARCHAR(255) NOT NULL,
-    Password VARCHAR(255) NOT NULL,
-    Salt VARCHAR(255) NOT NULL,
-    IsBlocked BOOLEAN DEFAULT FALSE NOT NULL,
-    IsActivated BOOLEAN DEFAULT FALSE NOT NULL,
-    Roles JSON NULL,
-    ReceiveNewsletter BOOLEAN DEFAULT FALSE NOT NULL,
-    DateRegistered TIMESTAMP NOT NULL
 );
 
 CREATE TABLE News
