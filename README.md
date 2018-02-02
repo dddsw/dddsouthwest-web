@@ -6,7 +6,20 @@ New and improved website for the DDD South West conference.
 
 ## Running DDD South West locally
 
-### Run manually
+### Prerequisites
+
+1. Ensure you have dotnet SDK v1 or above installed. You can do this using the `dotnet --info` command.
+
+2. Ensure your `ASPNETCORE_ENVIRONMENT` environment variable is set to either `Development` or `development`. You can do this by running one of the following commands:
+
+   **Windows:**  
+   Command Prompt: `setx ASPNETCORE_ENVIRONMENT "Development"`  
+   Powershell: `$env:ASPNETCORE_ENVIRONMENT = "Development"`
+
+   **OS X:**  
+   Run `export ASPNETCORE_ENVIRONMENT=Development` in your console.
+
+### Running manually
 
 - Clone contents of repo to your local disk
 - Run `dotnet restore` in solution root
@@ -16,7 +29,11 @@ New and improved website for the DDD South West conference.
 
 **Populate Database**  
 
-As this point you'll see the website fail to connect to the database. As the DDD South West website uses PostgreSQL as its data persistance engine you'll need to have an instance running (either installed locally, remotely or via Docker).
+At this point you'll see the website fail to connect to the database. The DDD South West website uses PostgreSQL as its data persistance engine so you'll need to have an instance running (either installed locally, remotely or via Docker) with the following database credentials set:
+
+Database Name: `dddsouthwest`  
+Database Username: `dddsouthwest_user`  
+Database Password: `letmein`  
 
 The easiest way is to use the PostgresSQL Docker image via the below command:
 
