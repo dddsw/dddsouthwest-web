@@ -4,7 +4,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using Dapper;
+using IdentityServer4.Models;
+using IdentityServer4.Stores;
 using IdentityServer4.Test;
 using Newtonsoft.Json;
 using Npgsql;
@@ -40,7 +43,6 @@ namespace DDDSouthWest.IdentityServer.Framework
                 var tempUser = connection.QuerySingleOrDefault<UserModelDataMap>(
                     "SELECT Id, EmailAddress, Password, Salt, Roles, FamilyName, GivenName, IsActivated, IsBlocked FROM users WHERE Id = @Id LIMIT 1", new { Id = id });
 
-                //TODO: Do these fields (blocked etc) get serialised into the token?
                 var user = new UserModel
                 {
                     Id = tempUser.Id,
@@ -104,7 +106,7 @@ namespace DDDSouthWest.IdentityServer.Framework
         {
             throw new NotImplementedException();
         }
-        
+
         private static string Sha256(string input)
         {
             using (var shA256 = SHA256.Create())
