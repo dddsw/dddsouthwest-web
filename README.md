@@ -45,9 +45,9 @@ Before you can run the DDD South West website locally, you'll need to ensure the
 Once the above prerequisites are met follow the steps below:
 
 1. Clone contents of repo to your local disk
-2. Run `dotnet restore` in solution root to restore the application(s) packages
-3. Run `dotnet run` within the `src/DDDSouthWest.IdentityServer/` directory
-4. Run `dotnet run` within the `src/DDDSouthWest.Website/` directory
+2. Run `dotnet restore` within the `./src/` folder to restore the application(s) packages
+3. Run `dotnet run` within the `./src/DDDSouthWest.IdentityServer/` directory
+4. Run `dotnet run` within the `./src/DDDSouthWest.Website/` directory
 5. Navigate to the website on `http://website:5002`
 
 ### Run from Docker
