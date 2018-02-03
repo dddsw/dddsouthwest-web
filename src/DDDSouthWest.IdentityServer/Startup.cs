@@ -55,10 +55,11 @@ namespace DDDSouthWest.IdentityServer
 
             app.UseForwardedHeaders(forwardedHeadersOptions);
 
-            loggerFactory.AddConsole(LogLevel.Debug);
-
             if (env.IsDevelopment())
+            {
+                loggerFactory.AddConsole(LogLevel.Debug);
                 app.UseDeveloperExceptionPage();
+            }
 
             app.UseIdentityServer();
 
