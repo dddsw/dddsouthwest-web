@@ -10,7 +10,7 @@ New and improved website for the DDD South West conference.
 
 Before you can run the DDD South West website locally, you'll need to ensure the following prerequisites are met:
 
-1. Ensure you have dotnet SDK v1 or above installed. You can do this using the `dotnet --info` command.
+1. Ensure you have dotnet SDK v1 or above installed. You can verify this using the `dotnet --info` command. If not then head over to the [.NET Core SDK download page](https://www.microsoft.com/net/download/windows) and download/install it.
 
 2. Ensure your `ASPNETCORE_ENVIRONMENT` environment variable is set to either `Development` or `development`. You can do this by running one of the following commands:
 
@@ -21,7 +21,7 @@ Before you can run the DDD South West website locally, you'll need to ensure the
    **OS X:**  
    Run `export ASPNETCORE_ENVIRONMENT=Development` in your console.
 
-3. Add `website` and `identityserver` to your host file, mapping them both to `localhost` for Windows, or `0.0.0.0` for OS X. This makes communication between the DDD South West website and Identity Server more reliable regardless of your OS.
+3. Add `website` and `identityserver` to your host file, mapping them both to `localhost` for Windows or OS X. This makes communication between the DDD South West website and Identity Server more reliable regardless of your OS.
 
 4. The DDD South West website uses PostgreSQL as its data persistance engine so you'll need to have an instance running (either installed locally, remotely or via Docker) with the following development database credentials set:
 
