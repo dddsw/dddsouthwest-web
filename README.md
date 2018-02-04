@@ -21,9 +21,7 @@ Before you can run the DDD South West website locally, you'll need to ensure the
    **OS X:**  
    Run `export ASPNETCORE_ENVIRONMENT=Development` in your console.
 
-3. Add `website` and `identityserver` to your host file, mapping them both to `localhost` for Windows or OS X. This makes communication between the DDD South West website and Identity Server more reliable regardless of your OS.
-
-4. The DDD South West website uses PostgreSQL as its data persistance engine so you'll need to have an instance running (either installed locally, remotely or via Docker) with the following development database credentials set:
+3. The DDD South West website uses PostgreSQL as its data persistance engine so you'll need to have an instance running (either installed locally, remotely or via Docker) with the following development database credentials set:
 
    Database Name: `dddsouthwest`  
    Database Username: `dddsouthwest_user`  
@@ -48,9 +46,9 @@ Once the above prerequisites are met follow the steps below:
 2. Run `dotnet restore` within the `./src/` folder to restore the application(s) packages
 3. Run `dotnet run` within the `./src/DDDSouthWest.IdentityServer/` directory
 4. Run `dotnet run` within the `./src/DDDSouthWest.Website/` directory
-5. Navigate to the website on `http://website:5002`
+5. Navigate to the website on `http://localhost:5002`
 
-### Run from Docker
+### Run from Docker (not tested for a little while - may be incorrect)
 
 Once the above prerequisites are met follow the steps below:
 

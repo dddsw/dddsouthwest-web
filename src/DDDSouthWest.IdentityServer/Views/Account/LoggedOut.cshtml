@@ -1,29 +1,33 @@
-﻿@using DDDSouthWest.IdentityServer.Quickstart.Account
-@model DDDSouthWest.IdentityServer.Quickstart.Account.LoggedOutViewModel
+﻿@model DDDSouthWest.IdentityServer.Quickstart.Account.LoggedOutViewModel
 
-@{ 
+@{
     // set this so the layout rendering sees an anonymous user
     ViewData["signed-out"] = true;
 }
 
-<div class="page-header logged-out">
-    <h1>
-        Logout
-        <small>You are now logged out</small>
-    </h1>
-
-    @if (Model.PostLogoutRedirectUri != null)
-    {
-        <div>
-            Click <a class="PostLogoutRedirectUri" href="@Model.PostLogoutRedirectUri">here</a> to return to the
-            <span>@Model.ClientName</span> application.
+<div class="col-sm-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">DDD South West - Logged out</h3>
         </div>
-    }
+        <div class="panel-body">
 
-    @if (Model.SignOutIframeUrl != null)
-    {
-        <iframe width="0" height="0" class="signout" src="@Model.SignOutIframeUrl"></iframe>
-    }
+            <p>You are now logged out.</p>
+
+            @if (Model.PostLogoutRedirectUri != null)
+            {
+                <div>
+                    <a class="PostLogoutRedirectUri" href="@Model.PostLogoutRedirectUri">Click here</a> to return to the DDD South West Website.
+                </div>
+            }
+
+            @*@if (Model.SignOutIframeUrl != null)
+            {
+                <iframe width="0" height="0" class="signout" src="@Model.SignOutIframeUrl"></iframe>
+            }*@
+
+        </div>
+    </div>
 </div>
 
 @section scripts

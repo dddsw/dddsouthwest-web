@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using DDDSouthWest.Website.Framework;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DDDSouthWest.Website.Features.Public.Account.Logout
 {
     public class LogoutController : Controller
     {
-        // GET
-        public IActionResult Index()
+        [Route("/account/logout/", Name = RouteNames.AccountLogout)]
+        public async Task<IActionResult> Index()
         {
-            return
-            View();
+            await HttpContext.Authentication.SignOutAsync("Cookies");
+            await HttpContext.Authentication.SignOutAsync("oidc");
+            
+            return View();
         }
     }
 }

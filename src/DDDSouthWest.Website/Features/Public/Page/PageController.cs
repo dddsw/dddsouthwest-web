@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using System.Threading.Tasks;
 using DDDSouthWest.Domain;
 using DDDSouthWest.Domain.Features.Public.Page;
@@ -18,10 +19,12 @@ namespace DDDSouthWest.Website.Features.Public.Page
         
         public async Task<IActionResult> Index(GetPage.Query query)
         {
+            string path = $"./Features/Public/Page/{query.Filename}.cshtml";
+            if (System.IO.File.Exists(path))
+            {
+                return View(path);   
+            }
             
-            // TODO: Check to see if view exists on disk, if not then load from DB
-            /*return View($"~/Features/Public/Page/{query.Filename}.cshtml");*/
-
             GetPage.Response response;
             try
             {
