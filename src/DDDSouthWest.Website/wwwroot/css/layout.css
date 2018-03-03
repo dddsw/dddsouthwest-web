@@ -169,6 +169,10 @@
     padding-right: 20px;
 }
 
+.media__right {
+    padding-left: 20px;
+}
+
 .media__body {
     width: 10000px;
 }

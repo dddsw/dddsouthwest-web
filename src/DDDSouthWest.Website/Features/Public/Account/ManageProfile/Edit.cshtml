@@ -19,7 +19,7 @@
 
     <h1>Edit Profile</h1>
     
-    @using (Html.BeginForm("Edit", "ManageProfile", null, FormMethod.Post, true, new { @class="pure-form pure-form-aligned"}))
+    @using (Html.BeginForm("Edit", "ManageProfile", null, FormMethod.Post, true, new { enctype="multipart/form-data", @class="pure-form pure-form-aligned"}))
     {
         @Html.HiddenFor(x => x.Id)
         @Html.Partial("_Form")

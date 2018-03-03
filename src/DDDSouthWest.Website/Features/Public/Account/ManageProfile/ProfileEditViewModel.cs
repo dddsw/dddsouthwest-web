@@ -21,9 +21,11 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageProfile
         
         public string BioHtml { get; set; }
 
-        public List<ValidationFailure> Errors { get; set; }
+        public IList<ValidationFailure> Errors { get; set; }
         
         public bool HasProfile { get; set; }
+        
+        public string ProfilePicturePath { get; set; }
 
         public ProfileEditViewModel()
         {

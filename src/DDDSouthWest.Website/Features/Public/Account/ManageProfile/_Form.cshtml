@@ -32,6 +32,18 @@
     </div>
     
     <div class="pure-control-group">
+        <label asp-for="LinkedIn">Speaker Photo:</label>
+        <input type="file" name="file" class="pure-input-2-3" />
+    </div>
+    
+    <div class="pure-control-group">
+        <label style="vertical-align: top">&nbsp;</label>
+        <span class="pure-input-2-3">
+            <img src="@Model.ProfilePicturePath" alt=""/>
+        </span>
+    </div>
+    
+    <div class="pure-control-group">
         <label asp-for="BioMarkdown">Bio:</label>
         <div class="pure-u-2-3">
             <div style="padding-right: 8px;">

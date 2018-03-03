@@ -13,7 +13,5 @@
         public string SpeakerFamilyName { get; set; }
 
         public int SpeakerId { get; set; }
-        
-        
     }
 }

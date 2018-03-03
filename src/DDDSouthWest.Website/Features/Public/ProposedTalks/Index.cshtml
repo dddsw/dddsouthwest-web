@@ -18,22 +18,25 @@
     <div class="pure-g">
 
         <div class="pure-u-1-1 pure-block">
-            @if (Model.ProposedTalk.Any())
+            @if (Model.ProposedTalks.Any())
             {
-                <p>There @(Model.ProposedTalk.Count == 1 ? "is" : "are") currently @Model.ProposedTalk.Count proposed talk@(Model.ProposedTalk.Count == 1 ? "" : "s") for DDD South West 2018. Interested in speaking this year? Why not <a href="@Url.RouteUrl(RouteNames.AccountRegistration)">register and propose a talk?</a>.</p>
-
-                foreach (var talk in Model.ProposedTalk)
+                <p>There @(Model.ProposedTalks.Count == 1 ? "is" : "are") currently @Model.ProposedTalks.Count proposed talk@(Model.ProposedTalks.Count == 1 ? "" : "s") for DDD South West 2018. Interested in speaking this year? Why not <a href="@Url.RouteUrl(RouteNames.AccountRegistration)">register and propose a talk?</a>.</p>
+                foreach (var talk in Model.ProposedTalks)
                 {
                     <div class="gutter-bottom-default underline" style="margin-bottom: 20px;">
                         <div class="media">
-                            @*<div class="media__left">
-                                $1$<img src="https://www.developerdeveloperdeveloper.com/images/profiles/660209cf-1fa4-434f-b074-cb29548b2bd3_portrait-2.png" style="width: 160px;" class="polaroid" alt=""/>#1#
-                            </div>*@
+                            @if (talk.ProfileImageExists)
+                            {
+                                <div class="media__left">
+                                    <img src="@talk.ProfileImage" style="width: 150px;" class="polaroid" alt="@talk.SpeakerGivenName @talk.SpeakerFamilyName"/>
+                                </div>    
+                            }
                             <div class="media__body">
-                                <h3 class="gutter-none"><a href="@Url.RouteUrl(RouteNames.ProposedTalkDetail, new { Id = talk.TalkId })">@talk.TalkTitle</a></h3>
+                                <h3 class="gutter-none"><a href="@Url.RouteUrl(RouteNames.ProposedTalkDetail, new {Id = talk.TalkId})">@talk.TalkTitle</a></h3>
                                 <p>by @talk.SpeakerGivenName @talk.SpeakerFamilyName</p>
                                 <p>@talk.TalkSummary</p>
                             </div>
+                            
                         </div>
                     </div>
                 }

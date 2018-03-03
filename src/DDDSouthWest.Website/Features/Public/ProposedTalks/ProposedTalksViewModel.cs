@@ -7,9 +7,28 @@ namespace DDDSouthWest.Website.Features.Public.ProposedTalks
     {
         public ProposedTalksViewModel()
         {
-            ProposedTalk = new List<ProposedTalksModel>();    
+            ProposedTalks = new List<ProposedTalkViewModel>();    
         }
         
-        public IList<ProposedTalksModel> ProposedTalk { get; set; }
+        public IList<ProposedTalkViewModel> ProposedTalks { get; set; }
+    }
+
+    public class ProposedTalkViewModel
+    {
+        public int TalkId { get; set; }
+
+        public string TalkTitle { get; set; }
+
+        public string TalkSummary { get; set; }
+
+        public string SpeakerGivenName { get; set; }
+
+        public string SpeakerFamilyName { get; set; }
+
+        public int SpeakerId { get; set; }
+
+        public string ProfileImage { get; set; }
+        
+        public bool ProfileImageExists { get; set; }
     }
 }

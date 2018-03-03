@@ -7,5 +7,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageProfile
         public ProfileDetailModel Profile { get; set; }
         
         public bool HasProfile { get; set; }
+        
+        public string ProfilePicturePath { get; set; }
     }
 }

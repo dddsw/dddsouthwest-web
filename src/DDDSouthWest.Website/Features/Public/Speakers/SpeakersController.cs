@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DDDSouthWest.Domain.Features.Public.ProposedTalks;
 using DDDSouthWest.Website.Features.Public.ProposedTalks;
 using DDDSouthWest.Website.Framework;
 using MediatR;
@@ -22,8 +25,22 @@ namespace DDDSouthWest.Website.Features.Public.Speakers
 
             return View(new ProposedTalksViewModel
             {
-                ProposedTalk = response.ProposedTalks
+                ProposedTalks = ToViewModel(response.ProposedTalks).ToList()
             });
         }
+        
+        private static IEnumerable<ProposedTalkViewModel> ToViewModel(IEnumerable<ProposedTalksModel> model)
+        {
+            return model.Select(x => new ProposedTalkViewModel
+            {
+                SpeakerFamilyName = x.SpeakerFamilyName,
+                SpeakerGivenName = x.SpeakerGivenName,
+                SpeakerId = x.SpeakerId,
+                TalkSummary = x.TalkSummary,
+                TalkId = x.TalkId,
+                TalkTitle = x.TalkTitle
+            });
+        }
+
     }
 }

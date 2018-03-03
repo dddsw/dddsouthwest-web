@@ -15,6 +15,7 @@ using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk;
 using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistingTalk;
 using DDDSouthWest.Website.Framework;
+using DDDSouthWest.Website.ImageHandlers;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -77,6 +78,7 @@ namespace DDDSouthWest.Website
             services.AddTransient<QueryAnyNewsById, QueryAnyNewsById>();
             services.AddTransient<CreateNewRegisteredUser, CreateNewRegisteredUser>();
             services.AddTransient<UpsertSpeakerProfileQuery, UpsertSpeakerProfileQuery>();
+            services.AddTransient<ProfileImageHandler, ProfileImageHandler>();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthorization(options =>

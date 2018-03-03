@@ -20,6 +20,8 @@ services:
         - postgres
       container_name: ddd-southwest-website
       image: ddd_southwest/website
+      volumes:
+        - ./wwwroot/uploads:/wwwroot/uploads/
       environment:
         - ASPNETCORE_ENVIRONMENT=Development.Docker
         - DDDSouthWestWebsite__IdentityServer__AuthorityServer=http://identityserver:5001
