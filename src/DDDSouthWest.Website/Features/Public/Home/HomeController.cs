@@ -15,10 +15,9 @@ namespace DDDSouthWest.Website.Features.Public.Home
             _mediator = mediator;
         }
 
-        [ResponseCache(Duration = 3600)]
         public async Task<IActionResult> Index()
         {
-            var result = await _mediator.Send(new ListAllNews.QueryByLimit(4));
+            var result = await _mediator.Send(new ListAllNews.QueryByLimit(10));
 
             return View(new HomepageViewModel
             {

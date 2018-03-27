@@ -21,7 +21,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.ViewNewsDetail
 
             public async Task<NewsModel> Handle(Query message)
             {
-                var model = await _queryEventById.Invoke(message.Id);
+                var model = await _queryEventById.Invoke(message.Id, false);
 
                 return new NewsModel
                 {

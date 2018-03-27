@@ -14,11 +14,11 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.ViewNewsDetail
             _options = options;
         }
 
-        public async Task<NewsDetailModel> Invoke(int id)
+        public async Task<NewsDetailModel> Invoke(int id, bool live = true)
         {
             using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
             {
-                return await connection.QuerySingleOrDefaultAsync<NewsDetailModel>("SELECT Id, Title, Filename, BodyMarkdown, BodyHtml, IsLive, DatePosted FROM news WHERE Id = @id AND IsLive = TRUE AND IsDeleted = FALSE LIMIT 1", new {id});
+                return await connection.QuerySingleOrDefaultAsync<NewsDetailModel>("SELECT Id, Title, Filename, BodyMarkdown, BodyHtml, IsLive, DatePosted FROM news WHERE Id = @id AND IsLive = " + (live ? "TRUE" : "FALSE") + "AND IsDeleted = FALSE LIMIT 1", new {id});
             }
         }
     }
