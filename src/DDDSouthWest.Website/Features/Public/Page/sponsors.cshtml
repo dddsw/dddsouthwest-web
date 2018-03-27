@@ -1,4 +1,5 @@
 ﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.Page.SponsorsViewModel
 
 @{
     ViewBag.Tab = PageTab.Sponsors;                                                        
@@ -17,38 +18,57 @@
 @section MainColBody {
 
     <h1>Sponsors</h1>
-    
+
     <p>We'd like to give a special thanks to all of our sponsors. As a free community event it really wouldn't possible without them.</p>
+
+    @foreach (var sponsor in Model.Sponsors)
+    {
+        <div class="sponsor-list gutter-bottom-default gutter-top-default">
+            <div class="sponsor-list__logo">
+                <a href="@sponsor.Url" rel="nofollow" target="_blank">
+                    <img src="@sponsor.LogoPath" alt="@sponsor.Title">
+                </a>
+            </div>
+            <div class="sponsor-list__body">
+                <p class="sponsor-list__title"><a href="@sponsor.Url" rel="nofollow" target="_blank">@sponsor.Title</a></p>
+                <p>At Scott Logic we create intuitive software applications for clients in complex domains. Our experienced UK-based consultants challenge assumptions, yet work in partnership, to deliver truly innovative solutions.&#8203;&#8203;</p>
+                <p><a href="@sponsor.Url" target="_blank" rel="nofollow">@sponsor.DisplayUrl</a></p>
+            </div>
+        </div>    
+    }
     
+    
+    
+    @*
     <div class="logo-block logo-block--first">
         <a href="http://www.scottlogic.com" style="background-image: url('/images/sponsors/scott_logic.gif')" target="_blank">
             &nbsp;
         </a>
     </div>
-    
+
     <div class="logo-block">
         <a href="https://www.landmark.co.uk" style="background-image: url('/images/sponsors/landmark.png')" target="_blank">
             &nbsp;
         </a>
     </div>
-    
+
     <div class="logo-block logo-block--last">
         <a href="http://www.ioassociates.co.uk" style="background-image: url('/images/sponsors/io_associates.png'); background-size: 30%" target="_blank">
             &nbsp;
         </a>
     </div>
-    
+
     <div class="logo-block logo-block--first">
         <a href="https://ndc-london.com" style="background-image: url('/images/sponsors/ndc_london.png')" target="_blank">
             &nbsp;
         </a>
-    </div>
+    </div>*@
 
     <div class="clearfix"></div>
-    
+
     <p style="margin-top: 100px;"><strong>Become a sponsor of DDD South West 2018</strong></p>
     <p>Interested in sponsoring this year's DDD South West conference? Read more about <a href="/page/sponsorship">sponsorship opportunities here.</a></p>
-    
+
     @*<div class="grid-container">   
         
         <div class="grid-33">
