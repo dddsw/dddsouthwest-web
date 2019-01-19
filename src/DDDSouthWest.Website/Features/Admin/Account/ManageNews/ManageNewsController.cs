@@ -112,7 +112,7 @@ namespace DDDSouthWest.Website.Features.Admin.Account.ManageNews
         
         [HttpGet]
         [Route("/account/news/delete/{id}", Name = RouteNames.NewsDelete)]
-        public async Task<IActionResult> Delte(DeleteNews.Command command)
+        public async Task<IActionResult> Delete(DeleteNews.Command command)
         {
             try
             {

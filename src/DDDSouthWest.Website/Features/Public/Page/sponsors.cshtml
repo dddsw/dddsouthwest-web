@@ -7,7 +7,7 @@
 }
 
 @section Header {
-    <page-banner title="DDD South West 2018 Sponsors"/>
+    <page-banner title="DDD South West 2019 Sponsors"/>
 }
 
 @section Css
@@ -19,9 +19,9 @@
 
     <h1>Sponsors</h1>
 
-    <p>We'd like to give a special thanks to all of our sponsors. As a free community event it really wouldn't possible without them.</p>
+    @*<p>We'd like to give a special thanks to all of our sponsors. As a free community event it really wouldn't possible without them.</p>*@
 
-    @foreach (var sponsor in Model.Sponsors)
+    @*@foreach (var sponsor in Model.Sponsors)
     {
         <div class="sponsor-list gutter-bottom-default gutter-top-default">
             <div class="sponsor-list__logo">
@@ -35,7 +35,7 @@
                 <p><a href="@sponsor.Url" target="_blank" rel="nofollow">@sponsor.DisplayUrl</a></p>
             </div>
         </div>    
-    }
+    }*@
     
     
     
@@ -64,9 +64,9 @@
         </a>
     </div>*@
 
-    <div class="clearfix"></div>
+    @*<div class="clearfix"></div>*@
 
-    <p style="margin-top: 100px;"><strong>Become a sponsor of DDD South West 2018</strong></p>
+    <p><strong>Become a sponsor of DDD South West 2019</strong></p>
     <p>Interested in sponsoring this year's DDD South West conference? Read more about <a href="/page/sponsorship">sponsorship opportunities here.</a></p>
 
     @*<div class="grid-container">   

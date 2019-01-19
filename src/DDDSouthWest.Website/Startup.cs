@@ -16,6 +16,7 @@ using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistingTalk;
 using DDDSouthWest.Website.Framework;
 using DDDSouthWest.Website.ImageHandlers;
+using JetBrains.Annotations;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
+[assembly: AspMvcViewLocationFormat(@"~\Features\Public\{1}\{0}.cshtml")]
+[assembly: AspMvcViewLocationFormat(@"~\Features\Admin\{0}.cshtml")]
+[assembly: AspMvcViewLocationFormat(@"~\Features\Shared\{0}.cshtml")]
 namespace DDDSouthWest.Website
 {
     public class Startup

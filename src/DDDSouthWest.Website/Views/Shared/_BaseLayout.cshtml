@@ -70,7 +70,7 @@
                     @*<li @Html.Raw(ViewBag.Tab == PageTab.Speakers ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "speakers"})">Speakers</a></li>
                 <li @Html.Raw(ViewBag.Tab == PageTab.Sessions ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sessions"})">Sessions</a></li>*@
                     <li @Html.Raw(ViewBag.Tab == PageTab.Venue ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "venue"})">Venue</a></li>
-                    <li @Html.Raw(ViewBag.Tab == PageTab.ProposedTalks ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.ProposedTalks)">Talks</a></li>
+                    @*<li @Html.Raw(ViewBag.Tab == PageTab.ProposedTalks ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.ProposedTalks)">Talks</a></li>*@
                     <li @Html.Raw(ViewBag.Tab == PageTab.CodeOfConduct ? "class=\"active\"" : string.Empty)><a href="/page/code-of-conduct">Code of Conduct</a></li>
                     <li @Html.Raw(ViewBag.Tab == PageTab.Sponsors ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sponsors"})">Sponsors</a></li>
                     @if (await AuthorizationService.AuthorizeAsync(User, AccessPolicies.RegisteredAccessPolicy))
