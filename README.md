@@ -21,7 +21,7 @@ Before you can run the DDD South West website locally, you'll need to ensure the
    **OS X:**  
    Run `export ASPNETCORE_ENVIRONMENT=Development` in your console.
 
-3. The DDD South West website uses PostgreSQL as its data persistance engine so you'll need to have an instance running (either installed locally, remotely or via Docker) with the following development database credentials set:
+3. The DDD South West website uses PostgreSQL as its data persistence engine so you'll need to have an instance running (either installed locally, remotely or via Docker) with the following development database credentials set:
 
    Database Name: `dddsouthwest`  
    Database Username: `dddsouthwest_user`  
