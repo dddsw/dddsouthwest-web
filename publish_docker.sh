@@ -7,8 +7,8 @@ rm -rf ./dist/
 dotnet restore src/DDDSouthwest.Website/
 dotnet restore src/DDDSouthwest.IdentityServer/
 
-dotnet publish src/DDDSouthwest.Website/ -c Release -o ../../dist/website
-dotnet publish src/DDDSouthwest.IdentityServer/ -c Release -o ../../dist/identityserver
+dotnet publish src/DDDSouthwest.Website/ -c Release -o ./dist/website
+dotnet publish src/DDDSouthwest.IdentityServer/ -c Release -o ./dist/identityserver
 
 cp ./website.dockerfile ./dist/website/website.dockerfile
 cp ./identityserver.dockerfile ./dist/identityserver/identityserver.dockerfile
