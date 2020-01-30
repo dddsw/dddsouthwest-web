@@ -14,6 +14,7 @@ using DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.UpdateExistingTalk;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk;
 using DDDSouthWest.Domain.Features.Account.RegisterNewUser;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistingTalk;
+using DDDSouthWest.Domain.Features.Public.Volunteer;
 using DDDSouthWest.Website.Framework;
 using DDDSouthWest.Website.ImageHandlers;
 using JetBrains.Annotations;
@@ -67,9 +68,11 @@ namespace DDDSouthWest.Website
             services.AddTransient<CreateNewsValidation, CreateNewsValidation>();
             services.AddTransient<UpdateExistingNewsValidator, UpdateExistingNewsValidator>();
             services.AddTransient<UpdateExistingTalkValidator, UpdateExistingTalkValidator>();
-            
+
             services.AddTransient<CreatePageValidation, CreatePageValidation>();
             services.AddTransient<UpdateExistingPageValidator, UpdateExistingPageValidator>();
+
+            services.AddTransient<VolunteerRegistrationValidation, VolunteerRegistrationValidation>();
             
             services.AddTransient<RegisterNewUserValidator, RegisterNewUserValidator>();
             
