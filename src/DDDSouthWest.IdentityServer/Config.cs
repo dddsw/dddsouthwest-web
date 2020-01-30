@@ -50,7 +50,7 @@ namespace DDDSouthWest.IdentityServer
             {
                 ClientId = "mvc",
                 ClientName = "MVC Client",
-                AllowedGrantTypes = GrantTypes.Code,
+                AllowedGrantTypes = GrantTypes.Implicit,
                 RequireConsent = false,
                 RedirectUris = {$"{websiteUrl}/signin-oidc"},
 /*                AllowOfflineAccess = true,*/

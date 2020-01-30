@@ -68,9 +68,20 @@ CREATE TABLE Profiles
     BioMarkdown VARCHAR,
     BioHtml VARCHAR,
     Lastmodified TIMESTAMP NOT NULL,
+	Volunteer BOOLEAN DEFAULT FALSE NOT NULL,
     Userid INTEGER
     CONSTRAINT profile_users_id_fk
     REFERENCES users
+);
+
+CREATE TABLE Volunteers
+(
+	Id serial constraint volunteers_pk primary key,
+	FullName varchar(255),
+	EmailAddress varchar(255),
+	PhoneNumber varchar(255),
+	HelpSetup boolean default false not null,
+    DateSubmitted TIMESTAMP NOT NULL,
 );
 
 CREATE TABLE Pages
