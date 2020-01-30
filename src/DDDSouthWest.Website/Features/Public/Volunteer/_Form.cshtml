@@ -1,0 +1,34 @@
+﻿@model DDDSouthWest.Website.Features.Public.Volunteer.VolunteerViewModel
+
+@Html.AntiForgeryToken()
+
+<validation-summary errors="@Model.Errors" />
+
+<fieldset>
+
+    <div class="pure-control-group">
+        <label asp-for="FullName">Your Name:</label>
+        <input asp-for="FullName" class="pure-input-2-3"/>
+    </div>
+
+    <div class="pure-control-group">
+        <label asp-for="EmailAddress">Email Address:</label>
+        <input asp-for="EmailAddress" class="pure-input-2-3"/>
+    </div>
+
+    <div class="pure-control-group">
+        <label asp-for="PhoneNumber">Phone Number:</label>
+        <input asp-for="PhoneNumber" class="pure-input-2-3"/>
+    </div>
+
+    <div class="pure-controls">
+
+        <label asp-for="HelpSetup" class="pure-checkbox">
+            <input asp-for="HelpSetup" type="checkbox"> Would you be available to help set the venue up the night before?
+        </label>
+
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+
+    </div>
+
+</fieldset>

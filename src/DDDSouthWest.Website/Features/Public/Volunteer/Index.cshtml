@@ -1,0 +1,27 @@
+﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.Volunteer.VolunteerViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="Volunteer for DDD South West"/>
+}
+
+@section MainColBody {
+
+    <h1>Register as Volunteer</h1>
+    <p>DDD South West is a free, community-driven event and as such we're always looking for volunteers to help on the day. Volunteers will be able to attend the speakers' meal, be guaranteed a ticket on the day, and we'll do our best to ensure you're able to attend the talks you want to attend.</p>
+    <p>Volunteer responsibilities include:</p>
+    <ul>
+        <li>Ensuring the speakers have everything they need</li>
+        <li>Showing time sheets to the speakers to inform them how much time they have left</li>
+        <li>Help us pack up after the conference</li>
+    </ul>
+
+    @using (Html.BeginRouteForm(RouteNames.VolunteerSubmit, FormMethod.Post, new { @class="pure-form pure-form-aligned"}))
+    {
+        @Html.Partial("_Form")
+    }
+}
