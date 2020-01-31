@@ -14,5 +14,5 @@ cp ./website.dockerfile ./dist/website/website.dockerfile
 cp ./identityserver.dockerfile ./dist/identityserver/identityserver.dockerfile
 
 docker build -f ./dist/website/website.dockerfile -t ddd_southwest/website -t josephwoodward.azurecr.io/website ./dist/website
-docker build -f ./dist/identityserver/identityserver.dockerfile -t ddd_southwest/identityserver -t josephwoodward.azurecr.io/identityserver ./dist/identityserver
-docker build -f postgres.dockerfile -t ddd_southwest/database -t josephwoodward.azurecr.io/database .
+# docker build -f ./dist/identityserver/identityserver.dockerfile -t ddd_southwest/identityserver -t josephwoodward.azurecr.io/identityserver ./dist/identityserver
+# docker build -f postgres.dockerfile -t ddd_southwest/database -t josephwoodward.azurecr.io/database .
