@@ -23,23 +23,21 @@ namespace DDDSouthWest.Domain.Features.Public.Page
 
             public async Task<Response> Handle(Query message)
             {
-                using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
-                {
-                    var response = await connection.QuerySingleOrDefaultAsync<PageDetailModel>(
-                        "SELECT Id, Title, BodyHtml, IsLive, LastModified FROM pages WHERE Filename = @filename AND IsLive = TRUE LIMIT 1",
-                        new
-                        {
-                            filename = message.Filename
-                        });
-                    
-                    if (response == null)
-                        throw new RecordNotFoundException("Page not found");
-
-                    return new Response
+                using var connection = new NpgsqlConnection(_options.Database.ConnectionString);                
+                var response = await connection.QuerySingleOrDefaultAsync<PageDetailModel>(
+                    "SELECT Id, Title, BodyHtml, IsLive, LastModified FROM pages WHERE Filename = @filename AND IsLive = TRUE LIMIT 1",
+                    new
                     {
-                        PageDetail = response
-                    };
-                }
+                        filename = message.Filename
+                    });
+                
+                if (response == null)
+                    throw new RecordNotFoundException("Page not found");
+
+                return new Response
+                {
+                    PageDetail = response
+                };
             }
         }
 

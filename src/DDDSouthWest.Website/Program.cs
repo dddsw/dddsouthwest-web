@@ -16,10 +16,8 @@ namespace DDDSouthWest.Website
                 .CreateLogger();
             
             var host = new WebHostBuilder()
-                .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseUrls("http://*:5002")
-                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
 

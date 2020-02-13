@@ -34,21 +34,19 @@ namespace DDDSouthWest.Domain.Features.Public.News.ListNews
 
             public async Task<Response> Handle(QueryByLimit message)
             {
-                using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
+                using var connection = new NpgsqlConnection(_options.Database.ConnectionString);
+                var sql = "SELECT Id, Title, Filename, BodyHtml AS Body, IsLive, DatePosted FROM news WHERE IsLive = TRUE AND IsDeleted = FALSE ORDER BY DatePosted DESC";
+                if (message.Limit.HasValue && message.Limit.Value > 0)
+                    sql += " LIMIT @Count";
+                var results = await connection.QueryAsync<NewsListModel>(sql, new
                 {
-                    var sql = "SELECT Id, Title, Filename, BodyHtml AS Body, IsLive, DatePosted FROM news WHERE IsLive = TRUE AND IsDeleted = FALSE ORDER BY DatePosted DESC";
-                    if (message.Limit.HasValue && message.Limit.Value > 0)
-                        sql += " LIMIT @Count";
-                    var results = await connection.QueryAsync<NewsListModel>(sql, new
-                    {
-                        Count = message.Limit
-                    });
+                    Count = message.Limit
+                });
 
-                    return new Response
-                    {
-                        News = results.ToList()
-                    };
-                }
+                return new Response
+                {
+                    News = results.ToList()
+                };
             }
         }
 

@@ -4,7 +4,6 @@ using System.Linq;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using SixLabors.Primitives;
@@ -13,7 +12,7 @@ namespace DDDSouthWest.Website.ImageHandlers
 {
     public class ProfileImageHandler
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IList<string> _supportedTypes = new List<string>
         {
             "image/png",
@@ -21,7 +20,7 @@ namespace DDDSouthWest.Website.ImageHandlers
             "image/jpeg"
         };
 
-        public ProfileImageHandler(IHostingEnvironment hostingEnvironment)
+        public ProfileImageHandler(IWebHostEnvironment hostingEnvironment)
         {
             _hostingEnvironment = hostingEnvironment;
         }
@@ -62,15 +61,13 @@ namespace DDDSouthWest.Website.ImageHandlers
 
         private static void CreateProfilePic(string path, string profile)
         {
-            using (var image = Image.Load(path))
+            using var image = Image.Load(path);
+            image.Mutate(x => x.Resize(new ResizeOptions
             {
-                image.Mutate(x => x.Resize(new ResizeOptions
-                {
-                    Mode = ResizeMode.Crop,
-                    Size = new Size(150, 150) 
-                }));
-                image.Save(profile);
-            }
+                Mode = ResizeMode.Crop,
+                Size = new Size(150, 150)
+            }));
+            image.Save(profile);
         }
 
         public (bool Exists, string Path) ResolveProfilePicture(int speakerId)

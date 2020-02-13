@@ -73,7 +73,7 @@
                     @*<li @Html.Raw(ViewBag.Tab == PageTab.ProposedTalks ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.ProposedTalks)">Talks</a></li>*@
                     <li @Html.Raw(ViewBag.Tab == PageTab.CodeOfConduct ? "class=\"active\"" : string.Empty)><a href="/page/code-of-conduct">Code of Conduct</a></li>
                     <li @Html.Raw(ViewBag.Tab == PageTab.Sponsors ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sponsors"})">Sponsors</a></li>
-                    @if (await AuthorizationService.AuthorizeAsync(User, AccessPolicies.RegisteredAccessPolicy))
+                    @if ((await AuthorizationService.AuthorizeAsync(User, AccessPolicies.RegisteredAccessPolicy)).Succeeded)
                     {
                         <li @Html.Raw(ViewBag.Tab == PageTab.Login ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountDashboard)">Account</a></li>
                         <li @Html.Raw(ViewBag.Tab == PageTab.Logout ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountLogout)">Logout</a></li>

@@ -38,17 +38,15 @@ namespace DDDSouthWest.Domain.Features.Public.Volunteer
                 if (!result.IsValid)
                     return new Response {Errors = result.Errors};
 
-                using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
+                using var connection = new NpgsqlConnection(_options.Database.ConnectionString);
+                const string volunteer = "INSERT INTO volunteers (fullname, emailaddress, phonenumber, helpsetup, datesubmitted) Values (@FullName, @EmailAddress, @PhoneNumber, @HelpSetup, current_timestamp) RETURNING Id";
+                await connection.QuerySingleAsync<int>(volunteer, new
                 {
-                    const string volunteer = "INSERT INTO volunteers (fullname, emailaddress, phonenumber, helpsetup, datesubmitted) Values (@FullName, @EmailAddress, @PhoneNumber, @HelpSetup, current_timestamp) RETURNING Id";
-                    await connection.QuerySingleAsync<int>(volunteer, new
-                    {
-                        FullName = message.FullName,
-                        EmailAddress = message.EmailAddress,
-                        PhoneNumber = message.PhoneNumber,
-                        HelpSetup = message.HelpSetup 
-                    });
-                }
+                    FullName = message.FullName,
+                    EmailAddress = message.EmailAddress,
+                    PhoneNumber = message.PhoneNumber,
+                    HelpSetup = message.HelpSetup 
+                });
 
                 return new Response();
             }

@@ -21,11 +21,13 @@ using JetBrains.Annotations;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Hosting;
 
 [assembly: AspMvcViewLocationFormat(@"~\Features\Public\{1}\{0}.cshtml")]
 [assembly: AspMvcViewLocationFormat(@"~\Features\Admin\{0}.cshtml")]
@@ -34,7 +36,7 @@ namespace DDDSouthWest.Website
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -50,8 +52,17 @@ namespace DDDSouthWest.Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie()
+                .AddOpenIdConnect(options =>
+                {
+                    
+                    options.Authority = ""; //TODO configurationOptions.IdentityServer.AuthorityServer;
+                    options.ClientId = "mvc";
+                });
+
             services.AddAuthorization();
-            services.AddMvc().AddFeatureFolders();
+            services.AddMvc(options => options.EnableEndpointRouting = false).AddFeatureFolders();
 
             services.AddMediatR(typeof(UpsertSpeakerProfile.Command).GetTypeInfo().Assembly);
 
@@ -100,8 +111,8 @@ namespace DDDSouthWest.Website
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory,
-            IApplicationLifetime appLifetime, ClientConfigurationOptions configurationOptions)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerfactory,
+            IHostApplicationLifetime appLifetime)
         {
             loggerfactory.AddSerilog();
             
@@ -116,27 +127,31 @@ namespace DDDSouthWest.Website
 
             app.UseStaticFiles();
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationScheme = "Cookies",
-            });
+            app.UseCookiePolicy();
+
+            app.UseAuthentication();
 
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
             else
-                app.UseExceptionHandler("/Home/Error");
-
-            app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
-                AuthenticationScheme = "oidc",
-                SignInScheme = "Cookies", 
-                Authority = configurationOptions.IdentityServer.AuthorityServer,
-                RequireHttpsMetadata = false,
-                ClientId = "mvc",
-                SaveTokens = true,
-                Scope = {"roles"},
-                GetClaimsFromUserInfoEndpoint = true
-            });
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
+
+            // app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
+            // {
+            //     AuthenticationScheme = "oidc",
+            //     SignInScheme = "Cookies", 
+            //     Authority = configurationOptions.IdentityServer.AuthorityServer,
+            //     RequireHttpsMetadata = false,
+            //     ClientId = "mvc",
+            //     SaveTokens = true,
+            //     Scope = {"roles"},
+            //     GetClaimsFromUserInfoEndpoint = true
+            // });
             
             /*app.UseMetrics();*/
             app.UseMvc(routes =>

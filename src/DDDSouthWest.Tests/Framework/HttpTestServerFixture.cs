@@ -55,7 +55,7 @@ namespace DDDSouthWest.Tests.Framework
 
         private sealed class TestStartup : Startup
         {
-            public TestStartup(IHostingEnvironment env)
+            public TestStartup(IWebHostEnvironment env)
                 : base(env)
             {
                 var builder = new ConfigurationBuilder()
