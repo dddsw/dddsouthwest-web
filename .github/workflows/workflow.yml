@@ -37,6 +37,9 @@ jobs:
       run: docker push slang25/dddsw
 
     - name: Update deployment file
+      env:
+        DDDSouthWestWebsite__Database__ConnectionString: ${{ secrets.DDDSouthWestWebsite__Database__ConnectionString }}
+        DDDSouthWestWebsite__IdentityServer__AuthorityServer: ${{ secrets.DDDSouthWestWebsite__IdentityServer__AuthorityServer }}
       run: |
         TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|slang25/dddsw:'${TAG}'|' $GITHUB_WORKSPACE/config/deployment.yml
         sed -i 's|<DDDSouthWestWebsite__Database__ConnectionString>|'${DDDSouthWestWebsite__Database__ConnectionString}'|' $GITHUB_WORKSPACE/config/deployment.yml
