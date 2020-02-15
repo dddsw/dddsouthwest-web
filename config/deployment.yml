@@ -20,10 +20,6 @@ spec:
       containers:
       - name: dddsw-website-container
         image: <IMAGE>
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 5002
 ---
@@ -35,6 +31,6 @@ spec:
   selector:
     app: dddsw-website-pod
   ports:
-  - port: 5002
-    targetPort: 80
+  - port: 80
+    targetPort: 5002
   type: LoadBalancer
