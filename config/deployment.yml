@@ -8,7 +8,7 @@ spec:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
-  minReadySeconds: 5
+  minReadySeconds: 0
   selector:
     matchLabels:
       app: dddsw-website-pod
