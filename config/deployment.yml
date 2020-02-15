@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dddsw-website-deployment
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  selector:
+    matchLabels:
+      app: dddsw-website-pod
+  template:
+    metadata:
+      labels:
+        app: dddsw-website-pod
+    spec:
+      containers:
+      - name: dddsw-website-container
+        image: <IMAGE>
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5002
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dddsw-website-service
+spec:
+  selector:
+    app: dddsw-website-pod
+  ports:
+  - port: 5002
+    targetPort: 80
+  type: LoadBalancer
