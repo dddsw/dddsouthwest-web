@@ -25,7 +25,7 @@ jobs:
         cp ./identityserver.dockerfile ./dist/identityserver/identityserver.dockerfile
     
     - name: Build container image
-      run: docker build -t slang25/website:$(echo $GITHUB_SHA | head -c7) ./dist/website/website.dockerfile
+      run: docker build -f website.dockerfile -t slang25/website:$(echo $GITHUB_SHA | head -c7) ./dist/website
     
     - name: Docker Login
       env:
