@@ -15,8 +15,8 @@ jobs:
       with:
         dotnet-version: '3.1.100'
     - run: |
-        dotnet publish src/DDDSouthwest.Website/ -c Release -o ./dist/website
-        dotnet publish src/DDDSouthwest.IdentityServer/ -c Release -o ./dist/identityserver
+        dotnet publish src/DDDSouthwest.Website/DDDSouthwest.Website.csproj -c Release -o ./dist/website
+        dotnet publish src/DDDSouthwest.IdentityServer/DDDSouthwest.IdentityServer.csproj -c Release -o ./dist/identityserver
 
     - run: |
         cp ./website.dockerfile ./dist/website/website.dockerfile
