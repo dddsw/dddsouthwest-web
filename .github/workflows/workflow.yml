@@ -37,7 +37,7 @@ jobs:
       run: docker push slang25/dddsw
 
     - name: Update deployment file
-      run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|slang25/dddsw:'${TAG}'|' $GITHUB_WORKSPACE/config/deployment.yml
+      run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|hub.docker.com/repository/docker/slang25/dddsw:'${TAG}'|' $GITHUB_WORKSPACE/config/deployment.yml
 
     - name: Save DigitalOcean kubeconfig
       uses: digitalocean/action-doctl@master
