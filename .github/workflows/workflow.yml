@@ -23,12 +23,9 @@ jobs:
     - run: |
         cp ./website.dockerfile ./dist/website/website.dockerfile
         cp ./identityserver.dockerfile ./dist/identityserver/identityserver.dockerfile
-
-    - name: Build the Docker image
-      run: docker build --file ./dist/website/website.dockerfile --tag slang25/website:$(date +%s)
     
     - name: Build container image
-      run: docker build -t slang25/website:$(echo $GITHUB_SHA | head -c7) .
+      run: docker build -t slang25/website:$(echo $GITHUB_SHA | head -c7) ./dist/website/website.dockerfile
     
     - name: Docker Login
       env:
