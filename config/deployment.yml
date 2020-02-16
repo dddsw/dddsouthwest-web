@@ -26,11 +26,11 @@ spec:
           - name: ASPNETCORE_ENVIRONMENT
             value: Production
           - name: DDDSouthWestWebsite__IdentityServer__AuthorityServer
-            value: <DDDSouthWestWebsite__IdentityServer__AuthorityServer>
+            value: "<DDDSouthWestWebsite__IdentityServer__AuthorityServer>"
           - name: DDDSouthWestWebsite__Database__ConnectionString
-            value: <DDDSouthWestWebsite__Database__ConnectionString>
+            value: "<DDDSouthWestWebsite__Database__ConnectionString>"
           - name: DDDSouthWestWebsite__WebsiteSettings__AllowRegistration
-            value: true
+            value: "true"
       imagePullSecrets:
       - name: regcred
 ---
