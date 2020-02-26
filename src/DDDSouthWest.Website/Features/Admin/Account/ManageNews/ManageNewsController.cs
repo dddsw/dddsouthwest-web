@@ -29,7 +29,7 @@ namespace DDDSouthWest.Website.Features.Admin.Account.ManageNews
         public async Task<IActionResult> Index()
         {
             var result = await _mediator.Send(new ListAllNews.Query());
-            
+
             return View(new NewsListViewModel
             {
                 News = result.News
