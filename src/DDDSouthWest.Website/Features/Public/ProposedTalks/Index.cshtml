@@ -20,7 +20,9 @@
         <div class="pure-u-1-1 pure-block">
             @if (Model.ProposedTalks.Any())
             {
+                @*
                 <p>There @(Model.ProposedTalks.Count == 1 ? "is" : "are") currently @Model.ProposedTalks.Count proposed talk@(Model.ProposedTalks.Count == 1 ? "" : "s") for DDD South West 2020. Interested in speaking this year? Why not <a href="@Url.RouteUrl(RouteNames.AccountRegistration)">register and propose a talk?</a>.</p>
+                *@
                 foreach (var talk in Model.ProposedTalks)
                 {
                     <div class="gutter-bottom-default underline" style="margin-bottom: 20px;">
