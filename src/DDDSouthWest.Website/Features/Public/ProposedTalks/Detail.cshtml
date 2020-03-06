@@ -9,13 +9,16 @@
 }
 
 @section Header {
-    <page-banner title="Talks"/>
+    <page-banner title="Proposed Talks"/>
 }
 
 @section MainColBody {
 
     <h1>@Model.ProposedTalk.TalkTitle</h1>
-    <p>Submitted by @Model.ProposedTalk.SpeakerFullName</p>
+    @if (!string.IsNullOrWhiteSpace(Model.ProposedTalk.SpeakerFullName))
+    {
+        <p>Submitted by @Model.ProposedTalk.SpeakerFullName</p>
+    }
     
     <div class="pure-g">
         <div class="pure-u-1-1 pure-block">
@@ -26,12 +29,15 @@
     
     <div style="border-bottom: 5px solid #eaeaea; margin-bottom: 15px;"></div>
     
-    <div class="pure-g">
-        <div class="pure-u-1-1 pure-block">
-            <h4>About @Model.ProposedTalk.SpeakerFullName</h4>
-            <p>@Html.Raw(Model.ProposedTalk.SpeakerBioHtml)</p>
+    @if (!string.IsNullOrWhiteSpace(Model.ProposedTalk.SpeakerBioHtml))
+    {
+        <div class="pure-g">
+            <div class="pure-u-1-1 pure-block">
+                <h4>About @Model.ProposedTalk.SpeakerFullName</h4>
+                <p>@Html.Raw(Model.ProposedTalk.SpeakerBioHtml)</p>
+            </div>
         </div>
-    </div>
+    }
     
     <div class="pure-u-1-1 pure-block">
         <a href="@Url.RouteUrl(RouteNames.ProposedTalks)">&laquo; Return to Proposed Talks</a>
