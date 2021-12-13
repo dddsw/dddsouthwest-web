@@ -1,6 +1,4 @@
-FROM microsoft/dotnet:1.1-runtime
-
-MAINTAINER DDDSouthWest
+FROM mcr.microsoft.com/dotnet/aspnet:2.1
 
 COPY . /identityserver
 
