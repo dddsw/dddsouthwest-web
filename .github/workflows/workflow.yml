@@ -34,7 +34,7 @@ jobs:
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
     - name: Push image to Docker Hub
-      run: docker push slang25/dddsw --all
+      run: docker push slang25/dddsw:$(echo $GITHUB_SHA | head -c7)
 
     - name: Update deployment file
       env:
