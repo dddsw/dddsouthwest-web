@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:2.1
+FROM mcr.microsoft.com/dotnet/core/runtime:1.1
 
 COPY . /website
 
