@@ -147,6 +147,7 @@ namespace DDDSouthWest.Website
             app.UseAuthentication();
             
             app.UseRouting();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
             
             appLifetime.ApplicationStopped.Register(Log.CloseAndFlush);
