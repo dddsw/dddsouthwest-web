@@ -1,8 +1,8 @@
-FROM mcr.microsoft.com/dotnet/core/runtime:1.1
+FROM mcr.microsoft.com/dotnet/runtime:6.0
 
 COPY . /website
 
-WORKDIR ./website/
+WORKDIR /website/
 
 EXPOSE 5002
 
