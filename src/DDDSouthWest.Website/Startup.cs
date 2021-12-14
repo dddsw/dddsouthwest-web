@@ -55,8 +55,7 @@ namespace DDDSouthWest.Website
         {
             services.AddAuthorization();
 
-            var configurationOptions = new ClientConfigurationOptions();
-            Configuration.GetSection("DDDSouthWestWebsite").Bind(new ClientConfigurationOptions());
+            var configurationOptions = Configuration.GetSection("DDDSouthWestWebsite").Get<ClientConfigurationOptions>();
             
             services.AddAuthentication(options =>
                 {
