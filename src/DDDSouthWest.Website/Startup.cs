@@ -148,7 +148,11 @@ namespace DDDSouthWest.Website
             
             app.UseRouting();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("page", "page/{*filename}", new { controller = "Page", action = "Index" });
+            });
             
             appLifetime.ApplicationStopped.Register(Log.CloseAndFlush);
         }
