@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using FluentValidation;
@@ -16,7 +17,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.CreateNewEvent
             public DateTime EventDate { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Command, Response>
+        public class Handler : IRequestHandler<Command, Response>
         {
             private readonly CreateNewEventValidator _validator;
             private readonly ClientConfigurationOptions _options;
@@ -27,7 +28,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.CreateNewEvent
                 _options = options;
             }
             
-            public async Task<Response> Handle(Command message)
+            public async Task<Response> Handle(Command message, CancellationToken cancellationToken)
             {
                 _validator.ValidateAndThrow(message);
                 

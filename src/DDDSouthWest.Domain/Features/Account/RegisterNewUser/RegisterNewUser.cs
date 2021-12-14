@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 
@@ -15,7 +16,7 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
             public bool ReceiveNewsletter { get; set; }
         }
 
-        public class Handler : IAsyncNotificationHandler<Command>
+        public class Handler : INotificationHandler<Command>
         {
             private readonly RegisterNewUserValidator _validator;
             private readonly CreateNewRegisteredUser _createNewRegisteredUser;
@@ -28,7 +29,7 @@ namespace DDDSouthWest.Domain.Features.Account.RegisterNewUser
                 _registrationConfirmation = registrationConfirmation;
             }
 
-            public async Task Handle(Command message)
+            public async Task Handle(Command message, CancellationToken cancellationToken)
             {
                 var validationResult = _validator.Validate(message);
                 if (!validationResult.IsValid)

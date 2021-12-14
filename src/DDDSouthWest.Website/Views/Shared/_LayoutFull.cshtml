@@ -4,22 +4,22 @@
 
 @section ScriptsHeader
 {
-    @RenderSection("ScriptsHeader", false)
+    @await RenderSectionAsync("ScriptsHeader", false)
 }
 
 @section Css
 {
-    @RenderSection("Css", false)
+    @await RenderSectionAsync("Css", false)
 }
 
 @if (IsSectionDefined("Breadcrumbs"))
 {
-    @RenderSection("Breadcrumbs")
+    @await RenderSectionAsync("Breadcrumbs")
 }
 
 @if (IsSectionDefined("Header"))
 {
-    @RenderSection("Header")
+    @await RenderSectionAsync("Header")
 }
 
 @if (IsSectionDefined("MainColBody"))
@@ -27,16 +27,16 @@
     <div class="grid-container">
         <div class="grid-100">
             <div class="content-container">
-                @RenderSection("MainColBody")
+                @await RenderSectionAsync("MainColBody")
             </div>
         </div>
     </div>
 } else if (IsSectionDefined("MainCol"))
 {
-    @RenderSection("MainCol")
+    @await RenderSectionAsync("MainCol")
 }
 
 @section ScriptsFooter
 {
-    @RenderSection("ScriptsFooter", false)
+    @await RenderSectionAsync("ScriptsFooter", false)
 }

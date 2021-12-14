@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 
 namespace DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.ViewEventDetail
@@ -10,7 +11,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.ViewEventDetai
             public int Id { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Query, EventModel>
+        public class Handler : IRequestHandler<Query, EventModel>
         {
             private readonly QueryEventById _queryEventById;
 
@@ -19,7 +20,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.ViewEventDetai
                 _queryEventById = queryEventById;
             }
 
-            public async Task<EventModel> Handle(Query message)
+            public async Task<EventModel> Handle(Query message, CancellationToken cancellationToken)
             {
                 return await _queryEventById.Invoke(message.Id);
             }

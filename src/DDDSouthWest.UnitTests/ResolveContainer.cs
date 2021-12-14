@@ -17,12 +17,9 @@ namespace DDDSouthWest.UnitTests
                     cfg.Scan(scanner =>
                     {
                         scanner.AssemblyContainingType<GetPage.Query>();
-                        scanner.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<>));
                         scanner.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
-                        scanner.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<>));
-                        scanner.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<,>));
+                        scanner.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<>));
                         scanner.ConnectImplementationsToTypesClosing(typeof(INotificationHandler<>));
-                        scanner.ConnectImplementationsToTypesClosing(typeof(IAsyncNotificationHandler<>));
                     });
 
                     cfg.For<IRegistrationConfirmation>().Use<SendEmailConfirmation>();
@@ -39,8 +36,7 @@ namespace DDDSouthWest.UnitTests
                         }
                     }).Singleton();
                     
-                    cfg.For<SingleInstanceFactory>().Use<SingleInstanceFactory>(ctx => t => ctx.GetInstance(t));
-                    cfg.For<MultiInstanceFactory>().Use<MultiInstanceFactory>(ctx => t => ctx.GetAllInstances(t));
+                    cfg.For<ServiceFactory>().Use<ServiceFactory>(ctx => t => ctx.GetInstance(t));
                     cfg.For<IMediator>().Use<Mediator>();
                 });
 

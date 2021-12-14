@@ -6,7 +6,7 @@ namespace DDDSouthWest.IdentityServer.Controllers
 {
     [Route("[controller]")]
     [Authorize]
-    public class IdentityController : ControllerBase
+    public class IdentityController : Controller
     {
         [HttpGet]
         public IActionResult Get()

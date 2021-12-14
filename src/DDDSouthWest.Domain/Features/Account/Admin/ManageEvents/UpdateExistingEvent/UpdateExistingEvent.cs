@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using FluentValidation;
@@ -17,7 +18,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.UpdateExisting
             public DateTime EventDate { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Command>
+        public class Handler : IRequestHandler<Command>
         {
             private readonly UpdateExistingEventValidator _validator;
             private readonly ClientConfigurationOptions _options;
@@ -28,7 +29,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.UpdateExisting
                 _options = options;
             }
 
-            public async Task Handle(Command message)
+            public async Task<Unit> Handle(Command message, CancellationToken cancellationToken)
             {
                 _validator.ValidateAndThrow(message);
 
@@ -36,6 +37,8 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageEvents.UpdateExisting
                 {
                     await connection.ExecuteAsync(@"UPDATE events SET EventName = @EventName, EventFilename = @EventFilename WHERE Id = @Id", message);
                 }
+
+                return Unit.Value;
             }
         }
     }

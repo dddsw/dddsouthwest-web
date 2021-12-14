@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Dapper;
 using MediatR;
 using Npgsql;
@@ -17,7 +18,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.ViewTalkDetail
             }
         }
 
-        public class Handler : IAsyncRequestHandler<Query, Response>
+        public class Handler : IRequestHandler<Query, Response>
         {
             private readonly ClientConfigurationOptions _options;
 
@@ -26,7 +27,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.ViewTalkDetail
                 _options = options;
             }
 
-            public async Task<Response> Handle(Query message)
+            public async Task<Response> Handle(Query message, CancellationToken cancellationToken)
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {

@@ -19,11 +19,14 @@ using DDDSouthWest.Website.Framework;
 using DDDSouthWest.Website.ImageHandlers;
 using JetBrains.Annotations;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
@@ -34,7 +37,7 @@ namespace DDDSouthWest.Website
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -51,7 +54,28 @@ namespace DDDSouthWest.Website
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthorization();
-            services.AddMvc().AddFeatureFolders();
+
+            var configurationOptions = new ClientConfigurationOptions();
+            Configuration.GetSection("DDDSouthWestWebsite").Bind(new ClientConfigurationOptions());
+            
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                })
+                .AddCookie()
+                .AddOpenIdConnect(options =>
+                {
+                    options.Authority = configurationOptions.IdentityServer.AuthorityServer;
+                    options.ClientId = "mvc";
+                    options.RequireHttpsMetadata = false;
+                    options.SaveTokens = true;
+                    options.SignInScheme = "Cookies";
+                    options.Scope.Add("roles");
+                    options.GetClaimsFromUserInfoEndpoint = true;
+                });
+
+            services.AddControllers().AddFeatureFolders();
 
             services.AddMediatR(typeof(UpsertSpeakerProfile.Command).GetTypeInfo().Assembly);
 
@@ -100,8 +124,8 @@ namespace DDDSouthWest.Website
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory,
-            IApplicationLifetime appLifetime, ClientConfigurationOptions configurationOptions)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerfactory,
+            IHostApplicationLifetime appLifetime)
         {
             loggerfactory.AddSerilog();
             
@@ -116,34 +140,15 @@ namespace DDDSouthWest.Website
 
             app.UseStaticFiles();
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationScheme = "Cookies",
-            });
-
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
             else
                 app.UseExceptionHandler("/Home/Error");
 
-            app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
-            {
-                AuthenticationScheme = "oidc",
-                SignInScheme = "Cookies", 
-                Authority = configurationOptions.IdentityServer.AuthorityServer,
-                RequireHttpsMetadata = false,
-                ClientId = "mvc",
-                SaveTokens = true,
-                Scope = {"roles"},
-                GetClaimsFromUserInfoEndpoint = true
-            });
+            app.UseAuthentication();
             
-            /*app.UseMetrics();*/
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute("page", "page/{*filename}", new {controller = "Page", action = "Index"});
-            });
+            app.UseRouting();
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
             
             appLifetime.ApplicationStopped.Register(Log.CloseAndFlush);
         }

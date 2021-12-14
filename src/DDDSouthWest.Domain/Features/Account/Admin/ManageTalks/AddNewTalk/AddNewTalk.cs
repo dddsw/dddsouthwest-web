@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Dapper;
 using FluentValidation;
 using MediatR;
@@ -17,7 +18,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.AddNewTalk
             public int UserId { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Command, Response>
+        public class Handler : IRequestHandler<Command, Response>
         {
             private readonly AddNewTalkValidator _validator;
             private readonly ClientConfigurationOptions _options;
@@ -28,7 +29,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.AddNewTalk
                 _options = options;
             }
 
-            public async Task<Response> Handle(Command message)
+            public async Task<Response> Handle(Command message, CancellationToken cancellationToken)
             {
                 _validator.ValidateAndThrow(message);
 

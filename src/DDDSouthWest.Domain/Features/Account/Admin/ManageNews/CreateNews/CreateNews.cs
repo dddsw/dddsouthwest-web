@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using FluentValidation;
@@ -28,7 +29,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.CreateNews
             public DateTime LastModified { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Command, Response>
+        public class Handler : IRequestHandler<Command, Response>
         {
             private readonly CreateNewsValidation _validation;
             private readonly ClientConfigurationOptions _options;
@@ -39,7 +40,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.CreateNews
                 _options = options;
             }
 
-            public async Task<Response> Handle(Command message)
+            public async Task<Response> Handle(Command message, CancellationToken cancellationToken)
             {
                 _validation.ValidateAndThrow(message);
 

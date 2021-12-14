@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 
 namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.ViewNewsDetail
@@ -10,7 +11,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.ViewNewsDetail
             public int Id { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Query, NewsModel>
+        public class Handler : IRequestHandler<Query, NewsModel>
         {
             private readonly QueryAnyNewsById _queryEventById;
 
@@ -19,7 +20,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.ViewNewsDetail
                 _queryEventById = queryEventById;
             }
 
-            public async Task<NewsModel> Handle(Query message)
+            public async Task<NewsModel> Handle(Query message, CancellationToken cancellationToken)
             {
                 var model = await _queryEventById.Invoke(message.Id, false);
 

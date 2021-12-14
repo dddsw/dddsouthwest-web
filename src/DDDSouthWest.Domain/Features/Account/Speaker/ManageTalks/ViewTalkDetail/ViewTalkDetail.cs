@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Dapper;
 using DDDSouthWest.Domain.Features.Account.Admin.ManagePages.ViewPageDetail;
 using MediatR;
@@ -15,7 +16,7 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ViewTalkDetai
             public int UserId { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Query, TalkDetailModel>
+        public class Handler : IRequestHandler<Query, TalkDetailModel>
         {
             private readonly ClientConfigurationOptions _options;
 
@@ -24,7 +25,7 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ViewTalkDetai
                 _options = options;
             }
 
-            public async Task<TalkDetailModel> Handle(Query message)
+            public async Task<TalkDetailModel> Handle(Query message, CancellationToken cancellationToken)
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {

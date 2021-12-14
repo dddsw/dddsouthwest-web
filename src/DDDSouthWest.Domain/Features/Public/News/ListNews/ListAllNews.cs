@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using MediatR;
@@ -23,7 +24,7 @@ namespace DDDSouthWest.Domain.Features.Public.News.ListNews
             }
         }
 
-        public class Handler : IAsyncRequestHandler<QueryByLimit, Response>
+        public class Handler : IRequestHandler<QueryByLimit, Response>
         {
             private readonly ClientConfigurationOptions _options;
 
@@ -32,7 +33,7 @@ namespace DDDSouthWest.Domain.Features.Public.News.ListNews
                 _options = options;
             }
 
-            public async Task<Response> Handle(QueryByLimit message)
+            public async Task<Response> Handle(QueryByLimit message, CancellationToken cancellationToken)
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {

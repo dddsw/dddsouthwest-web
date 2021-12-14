@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Dapper;
 using MediatR;
 using Npgsql;
@@ -12,7 +13,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.DeleteNews
             public int Id { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Command>
+        public class Handler : IRequestHandler<Command>
         {
             private readonly ClientConfigurationOptions _options;
 
@@ -21,7 +22,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.DeleteNews
                 _options = options;
             }
 
-            public async Task Handle(Command message)
+            public async Task<Unit> Handle(Command message, CancellationToken cancellationToken)
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
@@ -30,6 +31,8 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageNews.DeleteNews
                         Id = message.Id
                     });   
                 }
+
+                return Unit.Value;
             }
         }
     }

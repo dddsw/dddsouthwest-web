@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using MediatR;
@@ -17,7 +18,7 @@ namespace DDDSouthWest.Domain.Features.Public.ProposedTalkDetail
             }
         }
 
-        public class Handler : IAsyncRequestHandler<Query, Response>
+        public class Handler : IRequestHandler<Query, Response>
         {
             private readonly ClientConfigurationOptions _options;
 
@@ -26,7 +27,7 @@ namespace DDDSouthWest.Domain.Features.Public.ProposedTalkDetail
                 _options = options;
             }
 
-            public async Task<Response> Handle(Query message)
+            public async Task<Response> Handle(Query message, CancellationToken cancellationToken)
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {

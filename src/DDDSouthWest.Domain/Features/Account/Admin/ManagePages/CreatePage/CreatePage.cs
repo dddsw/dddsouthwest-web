@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using FluentValidation;
@@ -28,7 +29,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManagePages.CreatePage
             public DateTime LastModified { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Command, Response>
+        public class Handler : IRequestHandler<Command, Response>
         {
             private readonly ClientConfigurationOptions _options;
             private readonly CreatePageValidation _validation;
@@ -39,7 +40,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManagePages.CreatePage
                 _validation = validation;
             }
 
-            public async Task<Response> Handle(Command message)
+            public async Task<Response> Handle(Command message, CancellationToken cancellationToken)
             {
                 _validation.ValidateAndThrow(message);
 

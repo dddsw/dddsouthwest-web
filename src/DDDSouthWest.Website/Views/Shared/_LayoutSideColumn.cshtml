@@ -4,22 +4,22 @@
 
 @section ScriptsHeader
 {
-    @RenderSection("ScriptsHeader", false)
+    @await RenderSectionAsync("ScriptsHeader", false)
 }
 
 @section Css
 {
-    @RenderSection("Css", false)
+    @await RenderSectionAsync("Css", false)
 }
 
 @if (IsSectionDefined("Breadcrumbs"))
 {
-    @RenderSection("Breadcrumbs")
+    @await RenderSectionAsync("Breadcrumbs")
 }
 
 @if (IsSectionDefined("Header"))
 {
-    @RenderSection("Header")
+    @await RenderSectionAsync("Header")
 }
 
 <div class="grid-container">
@@ -27,14 +27,14 @@
     <div class="grid-70 tablet-grid-65 mobile-grid-100">
 	    <div id="mainColumn">
 		    <div class="main-content" style="padding-top: 20px;">
-		    	@RenderSection("MainCol")
+		    	@await RenderSectionAsync("MainCol")
 		    </div>
 	    </div>
     </div>
 
     <div class="grid-30 tablet-grid-35 mobile-grid-100">
         <div id="sideColumn" style="padding-top: 20px;">
-            @RenderSection("SideColumn")
+            @await RenderSectionAsync("SideColumn")
         </div>
     </div>
 
@@ -42,5 +42,5 @@
 
 @section ScriptsFooter
 {
-    @RenderSection("ScriptsFooter", false)
+    @await RenderSectionAsync("ScriptsFooter", false)
 }

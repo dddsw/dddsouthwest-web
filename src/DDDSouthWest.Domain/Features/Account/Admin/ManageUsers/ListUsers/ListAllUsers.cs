@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using DDDSouthWest.Domain.Features.Account.Admin.ManageTalks.ListTalks;
@@ -14,7 +15,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageUsers.ListUsers
         {
         }
 
-        public class Handler : IAsyncRequestHandler<Query, Response>
+        public class Handler : IRequestHandler<Query, Response>
         {
             private readonly ClientConfigurationOptions _options;
 
@@ -23,7 +24,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageUsers.ListUsers
                 _options = options;
             }
 
-            public async Task<Response> Handle(Query message)
+            public async Task<Response> Handle(Query message, CancellationToken cancellationToken)
             {
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {

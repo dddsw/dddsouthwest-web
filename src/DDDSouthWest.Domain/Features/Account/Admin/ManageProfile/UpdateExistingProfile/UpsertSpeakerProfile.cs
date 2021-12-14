@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
@@ -21,7 +22,7 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageProfile.UpdateExistin
             public DateTime LastModified { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Command>
+        public class Handler : IRequestHandler<Command>
         {
             private readonly UpsertSpeakerProfileValidator _validator;
             private readonly UpsertSpeakerProfileQuery _upsertSpeakerProfileQuery;
@@ -34,10 +35,11 @@ namespace DDDSouthWest.Domain.Features.Account.Admin.ManageProfile.UpdateExistin
                 _options = options;
             }
 
-            public async Task Handle(Command message)
+            public async Task<Unit> Handle(Command message, CancellationToken cancellationToken)
             {
                 _validator.ValidateAndThrow(message);
                 await _upsertSpeakerProfileQuery.Invoke(message);
+                return Unit.Value;
             }
         }
     }

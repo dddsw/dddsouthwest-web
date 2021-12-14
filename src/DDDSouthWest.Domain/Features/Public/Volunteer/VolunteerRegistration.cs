@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using FluentValidation;
@@ -21,7 +22,7 @@ namespace DDDSouthWest.Domain.Features.Public.Volunteer
             public bool HelpSetup { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Command, Response>
+        public class Handler : IRequestHandler<Command, Response>
         {
             private readonly ClientConfigurationOptions _options;
             private readonly VolunteerRegistrationValidation _validator;
@@ -32,7 +33,7 @@ namespace DDDSouthWest.Domain.Features.Public.Volunteer
                 _validator = validator;
             }
 
-            public async Task<Response> Handle(Command message)
+            public async Task<Response> Handle(Command message, CancellationToken cancellationToken)
             {
                 var result = await _validator.ValidateAsync(message);
                 if (!result.IsValid)

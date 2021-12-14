@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Dapper;
 using FluentValidation;
 using MediatR;
@@ -19,7 +20,7 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistin
             public int Id { get; set; }
         }
 
-        public class Handler : IAsyncRequestHandler<Command>
+        public class Handler : IRequestHandler<Command>
         {
             private readonly UpdateExistingTalkValidator _validator;
             private readonly ClientConfigurationOptions _options;
@@ -30,7 +31,7 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistin
                 _options = options;
             }
 
-            public async Task Handle(Command message)
+            public async Task<Unit> Handle(Command message, CancellationToken cancellationToken)
             {
                 _validator.ValidateAndThrow(message);
 
@@ -47,6 +48,8 @@ namespace DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistin
                         IsSubmitted = message.IsSubmitted
                     });
                 }
+                
+                return Unit.Value;
             }
         }
     }
