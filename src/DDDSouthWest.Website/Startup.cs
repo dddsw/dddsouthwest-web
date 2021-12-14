@@ -74,7 +74,7 @@ namespace DDDSouthWest.Website
                     options.GetClaimsFromUserInfoEndpoint = true;
                 });
 
-            services.AddControllers().AddFeatureFolders();
+            services.AddMvc().AddFeatureFolders();
 
             services.AddMediatR(typeof(UpsertSpeakerProfile.Command).GetTypeInfo().Assembly);
 
