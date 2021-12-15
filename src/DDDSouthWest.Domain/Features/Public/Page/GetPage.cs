@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 
 namespace DDDSouthWest.Domain.Features.Public.Page
@@ -16,14 +17,17 @@ namespace DDDSouthWest.Domain.Features.Public.Page
         public class Handler : IRequestHandler<Query, Response>
         {
             private readonly ClientConfigurationOptions _options;
+            private readonly ILogger _logger;
 
-            public Handler(ClientConfigurationOptions options)
+            public Handler(ClientConfigurationOptions options, ILogger logger)
             {
                 _options = options;
+                _logger = logger;
             }
 
             public async Task<Response> Handle(Query message, CancellationToken cancellationToken)
             {
+                _logger.LogInformation("Getting page {filename}", message.Filename);
                 using (var connection = new NpgsqlConnection(_options.Database.ConnectionString))
                 {
                     var response = await connection.QuerySingleOrDefaultAsync<PageDetailModel>(
@@ -32,9 +36,12 @@ namespace DDDSouthWest.Domain.Features.Public.Page
                         {
                             filename = message.Filename
                         });
-                    
+
                     if (response == null)
+                    {
+                        _logger.LogInformation("Page {filename} not found", message.Filename);
                         throw new RecordNotFoundException("Page not found");
+                    }
 
                     return new Response
                     {

@@ -31,6 +31,8 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 
 [assembly: AspMvcViewLocationFormat(@"~\Features\Public\{1}\{0}.cshtml")]
+[assembly: AspMvcViewLocationFormat(@"~\Features\Public\{0}.cshtml")]
+[assembly: AspMvcViewLocationFormat(@"~\Features\Admin\{1}\{0}.cshtml")]
 [assembly: AspMvcViewLocationFormat(@"~\Features\Admin\{0}.cshtml")]
 [assembly: AspMvcViewLocationFormat(@"~\Features\Shared\{0}.cshtml")]
 namespace DDDSouthWest.Website
