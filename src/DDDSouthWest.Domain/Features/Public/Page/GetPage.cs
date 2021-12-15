@@ -19,7 +19,7 @@ namespace DDDSouthWest.Domain.Features.Public.Page
             private readonly ClientConfigurationOptions _options;
             private readonly ILogger _logger;
 
-            public Handler(ClientConfigurationOptions options, ILogger logger)
+            public Handler(ClientConfigurationOptions options, ILogger<GetPage> logger)
             {
                 _options = options;
                 _logger = logger;
