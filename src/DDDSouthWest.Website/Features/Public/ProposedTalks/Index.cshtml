@@ -14,14 +14,14 @@
 
 @section MainColBody {
 
-    <h1>Proposed Talks for DDD South West 2020</h1>
+    <h1>Proposed Talks for DDD South West 2022</h1>
     <div class="pure-g">
 
         <div class="pure-u-1-1 pure-block">
             @if (Model.ProposedTalks.Any())
             {
                 @*
-                <p>There @(Model.ProposedTalks.Count == 1 ? "is" : "are") currently @Model.ProposedTalks.Count proposed talk@(Model.ProposedTalks.Count == 1 ? "" : "s") for DDD South West 2020. Interested in speaking this year? Why not <a href="@Url.RouteUrl(RouteNames.AccountRegistration)">register and propose a talk?</a>.</p>
+                <p>There @(Model.ProposedTalks.Count == 1 ? "is" : "are") currently @Model.ProposedTalks.Count proposed talk@(Model.ProposedTalks.Count == 1 ? "" : "s") for DDD South West 2022. Interested in speaking this year? Why not <a href="@Url.RouteUrl(RouteNames.AccountRegistration)">register and propose a talk?</a>.</p>
                 *@
                 foreach (var talk in Model.ProposedTalks)
                 {
