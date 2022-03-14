@@ -82,8 +82,10 @@
                     }
                     else
                     {
+                        @*
                         <li @Html.Raw(ViewBag.Tab == PageTab.Register ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountRegistration)">Register</a></li>
                         <li @Html.Raw(ViewBag.Tab == PageTab.Logout ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountLogin)">Login</a></li>
+                    *@
                     }
                 </ul>
             </nav>
