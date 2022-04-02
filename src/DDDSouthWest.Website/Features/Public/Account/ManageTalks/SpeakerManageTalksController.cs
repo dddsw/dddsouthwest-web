@@ -14,7 +14,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
 {
+    /*
     [Authorize(Policy = AccessPolicies.RegisteredAccessPolicy)]
+    */
     public class SpeakerManageTalksController : Controller
     {
         private readonly IMediator _mediator;
@@ -91,7 +93,7 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
         }
 
         [HttpPost]
-        [Route("/account/talks/edit/{id}")]
+        [Route("/account/talks/edit/")]
         public async Task<IActionResult> Update(UpdateExistingTalk.Command command)
         {
             try
