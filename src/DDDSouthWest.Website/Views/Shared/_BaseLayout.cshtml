@@ -68,7 +68,7 @@
                     <li @Html.Raw(ViewBag.Tab == PageTab.News ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.NewsList)">News</a></li>
                     <li @Html.Raw(ViewBag.Tab == PageTab.About ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "about"})">About</a></li>
                     @*<li @Html.Raw(ViewBag.Tab == PageTab.Speakers ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "speakers"})">Speakers</a></li>
-                <li @Html.Raw(ViewBag.Tab == PageTab.Sessions ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sessions"})">Sessions</a></li>*@
+                    <li @Html.Raw(ViewBag.Tab == PageTab.Sessions ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "sessions"})">Sessions</a></li>*@
                     <li @Html.Raw(ViewBag.Tab == PageTab.Venue ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl("page", new {filename = "venue"})">Venue</a></li>
                     @*
                     <li @Html.Raw(ViewBag.Tab == PageTab.ProposedTalks ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.ProposedTalks)">Talks</a></li>
@@ -82,10 +82,8 @@
                     }
                     else
                     {
-                        @*
                         <li @Html.Raw(ViewBag.Tab == PageTab.Register ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountRegistration)">Register</a></li>
                         <li @Html.Raw(ViewBag.Tab == PageTab.Logout ? "class=\"active\"" : string.Empty)><a href="@Url.RouteUrl(RouteNames.AccountLogin)">Login</a></li>
-                    *@
                     }
                 </ul>
             </nav>
