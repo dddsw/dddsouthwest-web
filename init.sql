@@ -81,7 +81,7 @@ CREATE TABLE Volunteers
 	EmailAddress varchar(255),
 	PhoneNumber varchar(255),
 	HelpSetup boolean default false not null,
-    DateSubmitted TIMESTAMP NOT NULL,
+    DateSubmitted TIMESTAMP NOT NULL
 );
 
 CREATE TABLE Pages
