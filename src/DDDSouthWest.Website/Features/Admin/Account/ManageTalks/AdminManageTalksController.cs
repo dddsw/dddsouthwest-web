@@ -61,7 +61,7 @@ namespace DDDSouthWest.Website.Features.Admin.Account.ManageTalks
         }
         
         [HttpPost]
-        [Route("/account/admin/talks/edit/{id}", Name = RouteNames.AdminTalkUpdate)]
+        [Route("/account/admin/talks/edit/", Name = RouteNames.AdminTalkUpdate)]
         public async Task<IActionResult> Update(UpdateExistingTalk.Command command)
         {
             command.TalkBodyHtml = _transformer.ToHtml(command.TalkBodyMarkdown);
