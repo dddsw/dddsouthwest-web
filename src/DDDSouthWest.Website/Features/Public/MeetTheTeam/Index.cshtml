@@ -1,0 +1,61 @@
+﻿@using DDDSouthWest.Website.Framework
+@model DDDSouthWest.Website.Features.Public.MeetTheTeam.TeamMembersViewModel
+
+@{
+    ViewBag.Tab = PageTab.MeetTheTeam;
+    ViewBag.TitleTag = "Meet the Team";
+    ViewBag.MetaDescription = "Meet the DDD South West team";
+    Layout = "~/Views/Shared/_LayoutFull.cshtml";
+}
+
+@section Header {
+    <page-banner title="Meet the team" />
+}
+
+@section Css
+{
+    <link href="/css/team.css" rel="stylesheet" />
+}
+
+@section MainColBody {
+
+    <h1>Meet the team</h1>
+    <p>DDD South West is brought to you by a small team of volunteers. Please feel free to get in touch with us if you have any questions or ideas.</p>
+
+    <div class="pure-g">
+
+        <div class="pure-u-1-1 pure-block">
+            @if (Model.TeamMembers.Any())
+            {
+                <div class="team-container">
+                    @foreach (var member in Model.TeamMembers)
+                    {
+                        <div class="member-container">
+                            @if (!string.IsNullOrWhiteSpace(member.PicturePath))
+                            {
+                                <div class="brighten">
+                                    <img src="@member.PicturePath" alt="@member.FullName" class="member-image">
+                                </div>
+                            }
+
+                            <span>@member.FullName</span>
+                            @if (member.YearJoined > 0)
+                            {
+                                <span>Joined us in @member.YearJoined</span>
+                            }
+
+                            <a href="mailto:@member.EmailAddress">Email</a>
+
+                            @if (!string.IsNullOrWhiteSpace(member.Twitter))
+                            {
+                                <a href="https://www.twitter.com/@member.Twitter" target="_blank">Twitter</a>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+    </div>
+
+}

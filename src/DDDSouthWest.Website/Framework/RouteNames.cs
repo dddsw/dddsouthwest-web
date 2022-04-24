@@ -47,5 +47,7 @@
         public const string AccountLogout = "account_logout";
         public const string AccountRegistration = "account_register";
         public const string AccountDashboard = "account_dashboard";
+
+        public const string MeetTheTeam = "meet_the_team";
     }
 }
