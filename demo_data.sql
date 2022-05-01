@@ -125,3 +125,11 @@ Participants asked to stop any harassing behavior are expected to comply immedia
 <p>Conference staff will be happy to help participants contact hotel/venue security or local police, provide escorts, or otherwise assist those experiencing harassment to feel safe for the duration of the conference. We value your attendance.</p>
 <p>We expect participants to follow these rules at conference and workshop venues and conference-related social events.</p>
 ', true, false, 0, '2018-01-06 01:48:46.381620', '2018-01-06 01:49:51.155571');
+
+-- Insert team members
+INSERT INTO Team (FullName, EmailAddress, PicturePath, YearJoined, Twitter) VALUES ('Hannah Price', 'hannahprice@dddsouthwest.com', '/images/team/hannah.png', 2021, 'Handalf1994');
+INSERT INTO Team (FullName, EmailAddress, PicturePath, YearJoined) VALUES ('Lorraine Pearce', 'lorrainepearce@dddsouthwest.com', '/images/team/lorraine.jpg', 2020);
+INSERT INTO Team (FullName, EmailAddress, PicturePath) VALUES ('Russell Day', 'russell.day@dddsouthwest.com', '/images/team/russ.png');
+INSERT INTO Team (FullName, EmailAddress) VALUES ('Martyn Fewtrell', 'martynfewtrell@dddsouthwest.com');
+INSERT INTO Team (FullName, EmailAddress, Twitter) VALUES ('Stuart Lang', 'stuartlang@dddsouthwest.com', 'stuartblang');
+INSERT INTO Team (FullName, EmailAddress) VALUES ('Joseph Woodward', 'josephwoodward@dddsouthwest.com');

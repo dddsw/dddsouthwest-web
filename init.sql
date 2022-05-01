@@ -100,3 +100,13 @@ CREATE TABLE Pages
 );
 CREATE UNIQUE INDEX Pages_Id_uindex ON Pages (Id);
 CREATE UNIQUE INDEX Pages_Filename_uindex ON Pages (Filename);
+
+CREATE TABLE Team 
+(
+    Id SERIAL CONSTRAINT team_pk PRIMARY KEY,
+    FullName VARCHAR(255) NOT NULL,
+    EmailAddress VARCHAR(255),
+    PicturePath VARCHAR(255),
+    YearJoined INT,
+    Twitter VARCHAR(255)
+);
