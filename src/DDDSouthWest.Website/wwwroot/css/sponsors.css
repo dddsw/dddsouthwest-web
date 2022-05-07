@@ -13,13 +13,15 @@
 }
 
 .logo-block a {
-    /*max-width: 240px;*/
+    max-width: 240px;
     background-repeat: no-repeat;
     background-position: center;
     height: 152px;
     background-size: 70%;
     display: block;
     text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .logo-block a:hover {
