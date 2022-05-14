@@ -1,0 +1,19 @@
+﻿.claimed {
+    background-color: #cbcbcb;
+    text-decoration: line-through;
+}
+
+.claimed-tooltip {
+    visibility: hidden;
+    text-decoration: none;
+    background-color: grey;
+    color: white;
+    position: absolute;
+    z-index: 1;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.claimed:hover .claimed-tooltip {
+    visibility: visible;
+}

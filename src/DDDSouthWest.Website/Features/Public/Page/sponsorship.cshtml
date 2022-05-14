@@ -9,6 +9,11 @@
     <page-banner title="Sponsorship"/>
 }
 
+@section Css
+{
+    <link href="/css/sponsorship.css" rel="stylesheet"/>
+}
+
 @section MainColBody {
 
     <h1>Sponsorship Opportunities</h1>
@@ -53,21 +58,19 @@
             </td>
             <td>&pound;1500+</td>
         </tr>
-        <tr>
-            <td>Welcome Pastry</td>
-            <td>
-                Your company name and logo displayed with the pastries on arrival
-            </td>
+        <tr class="claimed">
+            <td>Welcome Pastries <span class="claimed-tooltip">This item has been sponsored</span> </td>
+            <td>Your company name and logo displayed with the pastries on arrival</td>
             <td>&pound;300</td>
         </tr>
-        <tr>
-            <td>Lunchtime Pasties</td>
-            <td>Your company name and logo displayed with the pasties at lunch</td>
+        <tr class="claimed">
+            <td>Lunch <span class="claimed-tooltip">This item has been sponsored</span></td>
+            <td>Your company name and logo displayed with the lunch</td>
             <td>&pound;600</td>
         </tr>
-        <tr>
-            <td>Afternoon Cream Teas</td>
-            <td>Your company name and logo displayed with the afternoon cream teas</td>
+        <tr class="claimed">
+            <td>Afternoon Tea <span class="claimed-tooltip">This item has been sponsored</span></td>
+            <td>Your company name and logo displayed with the afternoon tea</td>
             <td>&pound;500</td>
         </tr>
         </tbody>
