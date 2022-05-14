@@ -1,8 +1,8 @@
 ﻿@using DDDSouthWest.Website.Framework
-@model DDDSouthWest.Website.Features.Public.Page.SponsorsViewModel
+@model DDDSouthWest.Website.Features.Public.Sponsors.SponsorsViewModel
 
 @{
-    ViewBag.Tab = PageTab.Sponsors;                                                        
+    ViewBag.Tab = PageTab.Sponsors;
     Layout = "~/Views/Shared/_LayoutFull.cshtml";
 }
 
@@ -19,25 +19,19 @@
 
     <h1>Sponsors</h1>
 
-    @*<p>We'd like to give a special thanks to all of our sponsors. As a free community event it really wouldn't possible without them.</p>*@
+    <p>We'd like to give a special thanks to all of our sponsors. As a free community event it really wouldn't possible without them.</p>
 
-    @*@foreach (var sponsor in Model.Sponsors)
-    {
-        <div class="sponsor-list gutter-bottom-default gutter-top-default">
-            <div class="sponsor-list__logo">
-                <a href="@sponsor.Url" rel="nofollow" target="_blank">
-                    <img src="@sponsor.LogoPath" alt="@sponsor.Title">
-                </a>
+    <div class="sponsors-list">
+        @foreach (var sponsor in Model.Sponsors)
+        {
+            <div class="gutter-bottom-default gutter-top-default">
+                    <a href="@sponsor.Url" rel="nofollow" target="_blank">
+                        <img src="@sponsor.LogoPath" alt="@sponsor.Title" class="sponsor-logo">
+                    </a>
             </div>
-            <div class="sponsor-list__body">
-                <p class="sponsor-list__title"><a href="@sponsor.Url" rel="nofollow" target="_blank">@sponsor.Title</a></p>
-                <p>At Scott Logic we create intuitive software applications for clients in complex domains. Our experienced UK-based consultants challenge assumptions, yet work in partnership, to deliver truly innovative solutions.&#8203;&#8203;</p>
-                <p><a href="@sponsor.Url" target="_blank" rel="nofollow">@sponsor.DisplayUrl</a></p>
-            </div>
-        </div>    
-    }*@
-    
-    
+        }
+    </div>
+
     
     @*
     <div class="logo-block logo-block--first">

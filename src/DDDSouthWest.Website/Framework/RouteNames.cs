@@ -49,5 +49,6 @@
         public const string AccountDashboard = "account_dashboard";
 
         public const string MeetTheTeam = "meet_the_team";
+        public const string Sponsors = "sponsors";
     }
 }
