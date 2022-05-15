@@ -1,15 +1,16 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using DDDSouthWest.Domain.Features.Account.Admin.ManageProfile.ViewProfile;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.AddNewTalk;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ListTalks;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.UpdateExistingTalk;
 using DDDSouthWest.Domain.Features.Account.Speaker.ManageTalks.ViewTalkDetail;
-using DDDSouthWest.Website.Features.Admin.Account.ManageEvents;
 using DDDSouthWest.Website.Framework;
 using FluentValidation;
+using FluentValidation.Results;
 using IdentityServer4.Extensions;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
@@ -52,11 +53,26 @@ namespace DDDSouthWest.Website.Features.Public.Account.ManageTalks
         {
             try
             {
+                var userId = int.Parse(User.Identity.GetSubjectId());
+                command.UserId = userId;
+
+                var profileResult = await _mediator.Send(new ViewProfileDetail.Query(userId));
+
+                if (string.IsNullOrWhiteSpace(profileResult?.ProfileDetailModel?.GivenName) ||
+                    string.IsNullOrWhiteSpace(profileResult?.ProfileDetailModel?.FamilyName))
+                {
+                    return View(new ManageTalksViewModel
+                    {
+                        Errors = new List<ValidationFailure> { new ValidationFailure("Names", "You must set a given and family name in your profile to submit a talk") },
+                        TalkBodyMarkdown = command.TalkBodyMarkdown,
+                        TalkTitle = command.TalkTitle,
+                        TalkSummary = command.TalkSummary,
+                        IsSubmitted = command.IsSubmitted
+                    });
+                };
+
                 command.TalkBodyHtml = _transformer.ToHtml(command.TalkBodyMarkdown);
 
-                var userId = User.Identity.GetSubjectId();
-                command.UserId = int.Parse(userId);
-                
                 await _mediator.Send(command);
             }
             catch (ValidationException e)
