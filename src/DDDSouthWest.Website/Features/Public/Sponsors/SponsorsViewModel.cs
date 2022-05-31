@@ -69,6 +69,12 @@ namespace DDDSouthWest.Website.Features.Public.Sponsors
                     Title = "Avanade",
                     Url = "https://www.avanade.com/en-gb",
                     LogoPath = "/images/sponsors/avanade.svg"
+                },
+                new SponsorDto
+                {
+                    Title = "UK Hydrographic Office",
+                    Url = "https://www.gov.uk/government/organisations/uk-hydrographic-office",
+                    LogoPath = "/images/sponsors/ukho.svg"
                 }
             };
         }
