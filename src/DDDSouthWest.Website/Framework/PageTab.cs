@@ -16,6 +16,7 @@
         Logout,
         Account,
         Contact,
-        MeetTheTeam
+        MeetTheTeam,
+        Schedule
     }
 }
