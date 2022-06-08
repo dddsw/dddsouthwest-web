@@ -75,7 +75,19 @@ namespace DDDSouthWest.Website.Features.Public.Sponsors
                     Title = "UK Hydrographic Office",
                     Url = "https://www.gov.uk/government/organisations/uk-hydrographic-office",
                     LogoPath = "/images/sponsors/ukho.svg"
-                }
+                },
+                new SponsorDto
+                {
+                    Title = "Elastic",
+                    Url = "https://www.elastic.co/",
+                    LogoPath = "/images/sponsors/elastic.png" 
+                },
+                new SponsorDto
+                {
+                    Title = "Warp",
+                    Url = "https://www.warp.co.uk/",
+                    LogoPath = "/images/sponsors/warp.jpg"
+                },
             };
         }
     }
