@@ -88,6 +88,18 @@ namespace DDDSouthWest.Website.Features.Public.Sponsors
                     Url = "https://www.warp.co.uk/",
                     LogoPath = "/images/sponsors/warp.jpg"
                 },
+                new SponsorDto
+                {
+                    Title = "Rock Solid Knowledge",
+                    Url = "https://www.identityserver.com/",
+                    LogoPath = "/images/sponsors/rock_solid.png"
+                },
+                new SponsorDto
+                {
+                    Title = "ClearBank",
+                    Url = "https://clear.bank/",
+                    LogoPath = "/images/sponsors/clearbank.png"
+                }
             };
         }
     }
