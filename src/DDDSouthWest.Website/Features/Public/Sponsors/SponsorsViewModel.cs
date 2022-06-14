@@ -18,14 +18,6 @@ namespace DDDSouthWest.Website.Features.Public.Sponsors
                 //    Description = "At Scott Logic we create intuitive software applications for clients in complex domains. Our experienced UK-based consultants challenge assumptions, yet work in partnership, to deliver truly innovative solutions.​​",
                 //    LogoPath = "/images/sponsors/scott_logic.gif"
                 //},
-                //new SponsorDto
-                //{
-                //    Title = "Landmark",
-                //    Url = "https://www.landmark.co.uk",
-                //    DisplayUrl = "www.landmark.co.uk",
-                //    Description = "Landmark offer an innovative and sociable team environment, encouraging input throughout the whole software development life cycle from idea through to deployment. Celebrating success, and learning quickly from failure Landmark Developers have an important voice in how products/services are constructed and in future decision making, their contribution and ideas are truly valued.",
-                //    LogoPath = "/images/sponsors/landmark.png"
-                //},
                 new SponsorDto
                 {
                     Title = "IO Associates",
@@ -99,6 +91,12 @@ namespace DDDSouthWest.Website.Features.Public.Sponsors
                     Title = "ClearBank",
                     Url = "https://clear.bank/",
                     LogoPath = "/images/sponsors/clearbank.png"
+                },
+                new SponsorDto
+                {
+                    Title = "Landmark",
+                    Url = "https://www.landmark.co.uk/",
+                    LogoPath = "/images/sponsors/landmark.png"
                 }
             };
         }
